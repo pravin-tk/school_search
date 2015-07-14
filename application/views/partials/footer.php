@@ -81,56 +81,15 @@
     
   </script>
 
+ <script src="<?php echo asset_url();?>js/jquery.js"></script>
+ <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
+  <script src="<?php echo asset_url();?>js/forms/all.js"></script>
+  <script src="<?php echo asset_url();?>js/home.js"></script>
+    <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
+    <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
+  <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+    <script src="<?php echo asset_url();?>js/jquery.scrollNav.js"></script>
+    <script>
+     $('.multiselect').multiselect();
+    </script>
   
-  <script src="<?php echo asset_url();?>js/all.js"></script>
-
-  <!-- Vendor Scripts Standalone Libraries -->
-  <!-- <script src="js/vendor/core/all.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.js"></script> -->
-  <!-- <script src="js/vendor/core/bootstrap.js"></script> -->
-  <!-- <script src="js/vendor/core/breakpoints.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.nicescroll.js"></script> -->
-  <!-- <script src="js/vendor/core/isotope.pkgd.js"></script> -->
-  <!-- <script src="js/vendor/core/packery-mode.pkgd.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.grid-a-licious.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.cookie.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery-ui.custom.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.hotkeys.js"></script> -->
-  <!-- <script src="js/vendor/core/handlebars.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.hotkeys.js"></script> -->
-  <!-- <script src="js/vendor/core/load_image.js"></script> -->
-  <!-- <script src="js/vendor/core/jquery.debouncedresize.js"></script> -->
-  <!-- <script src="js/vendor/forms/all.js"></script> -->
-  <!-- <script src="js/vendor/media/all.js"></script> -->
-  <!-- <script src="js/vendor/angular/all.js"></script> -->
-
-  <!-- App Scripts Bundle
-    Includes Custom Application JavaScript used for the current theme/module;
-    Do not use it simultaneously with the standalone modules below. -->
-
-
-
-<!--<script type="text/javascript" src="<?php echo asset_url();?>js/js"></script>-->
-<script type="text/javascript">
-$('#detailmenubar').affix({
-	offset:  {
-		top:120,
-	}
-
-})
-
-$('.demo').slick({
-	infinite: true,
-	  slidesToShow: 6,
-	  slidesToScroll: 6,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
-	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
-	  autoplay: true,
-	  autoplaySpeed: 3000,
-	  centerMode: false,
-	  centerPadding: '50px'
-	  
-	  	  
-});
-
-  </script>

@@ -20,22 +20,20 @@
 #detailmenubar.affix{top:50px;z-index:1000;width:100%;}
 </style>
 
-<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
      
   <link href="<?php echo asset_url();?>css/all.css" rel="stylesheet">
 
   <link href="<?php echo asset_url();?>css/app.css" rel="stylesheet">
   <link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
+  <link href="<?php echo asset_url();?>css/cobox.css" rel="stylesheet">
   <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" wtype="text/css" href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
       <!-- jQuery -->
 <!--    <script src="<?php echo asset_url();?>js/all.js"></script>-->
-
+   
     <!-- Bootstrap Core JavaScript -->
-     <script src="<?php echo asset_url();?>js/jquery.js"></script>
-     <script src="<?php echo asset_url();?>js/bootstrap.js"></script> 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <?php 
 //include 'header.php';

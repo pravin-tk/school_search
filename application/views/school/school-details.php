@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<!-- saved from url=(0065)http://real-estate.aws.ipv4.ro/angular/index.html#/front/property -->
-<html lang="en" class="st-effect-rxs-1 hide-sidebar ls-bottom-footer-fixed top-navbar">
-<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
-<body class="breakpoint-1024">
 
-  <!-- uiView:  --><div data-ui-view="" class="ui-view-main">
-  <div ui-view="" class="ui-view-main">
-  <!-- Fixed navbar -->
-<?php include 'header.php';?>
 <div id="content">
   <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden margin-bottom-none height-500 height-600-lg max-height-600" data-ride="carousel">
     <div class="carousel-inner" role="listbox">
@@ -43,7 +33,7 @@
   </div>
 
   <div class="property-meta" id="detailmenubar">
-    <ul>
+    <ul class="nav navbar-nav">
       <a href="#overview" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building-o"></i> Overview</li></a>
       <a href="#timeline" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building wow"></i> Timeline</li></a>
       <a href="#facility" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building-o"></i> Facility</li></a>
@@ -141,56 +131,6 @@
     </div>
   </div>
 <!-- Near By -->
-  <section class="footer-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-6 col-md-2">
-          <h4>Corporate</h4>
-          <ul class="list-unstyled">
-            <li><a href="">About the company</a></li>
-            <li><a href="">Company offices</a></li>
-            <li><a href="">Agents</a></li>
-            <li><a href="">Partners</a></li>
-            <li><a href="">Terms of use</a></li>
-            <li><a href="">Privacy</a></li>
-          </ul>
-        </div>
-        <div class="col-xs-6 col-md-2">
-          <h4>Explore</h4>
-          <ul class="list-unstyled">
-            <li><a href="">Properties listing</a></li>
-            <li><a href="">List a property</a></li>
-            <li><a href="">Become a member</a></li>
-            <li><a href="">Become a partner</a></li>
-            <li><a href="">Sign Up</a></li>
-          </ul>
-        </div>
-        <div class="col-xs-12 col-md-4 text-center">
-          <h4>Newsletter</h4>
-          <div class="panel bg-transparent margin-none">
-            <div class="panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda autem dolor, ea eaque laboriosam modi quam repellat sunt tenetur voluptatum! Ad cumque deleniti deserunt eaque labore molestiae nostrum odit quibusdam?</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="panel bg-transparent margin-none">
-            <div class="panel-body">
-              <div class="form-group form-control-default">
-                <label for="email">Email:</label>
-                <input id="email" class="form-control" type="text" placeholder="Your email address ..">
-              </div>
-              <div class="form-group">
-                <button class="btn btn-pink-500">Subscribe</button>
-              </div>
-
-              <small class="help-block">* We will never sell your email</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 </div>
-<?php include 'footer.php';?>
-<div id="ascrail2002" class="nicescroll-rails" style="width: 5px; z-index: auto; cursor: default; position: absolute; top: 0px; left: 1274px; height: 85px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2006" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 660px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2010" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 168px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2013" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2016" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 1274px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2020" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 180px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2024" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><span role="status" aria-live="polite" class="select2-hidden-accessible"></span></body></html>
+<?php include 'footer.php';?></body></html>

@@ -212,45 +212,4 @@
 
   </div>
     
-    
-    <script type="text/javascript">
-        google.maps.event.addDomListener(window, 'load', function () {
-            var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
-            google.maps.event.addListener(places, 'place_changed', function () {
-                var place = places.getPlace();
-                var address = place.formatted_address;
-                var latitude = place.geometry.location.A;
-                var longitude = place.geometry.location.F;
-                var mesg = "Address: " + address;
-                mesg += "\nLatitude: " + latitude;
-                mesg += "\nLongitude: " + longitude;
-                $("#latitude").val(latitude);
-                $("#longitude").val(longitude);
-                $("#address").val(address);
-                
-            });
-        });
-        
-        $("#sch").click(function() {
-            if($("#latitude").val() == "" || $("#longitude").val() == "" ) {
-                $("#schbox").addClass('has-error');
-                $("#schbox").focus();
-            }else if($("#standardId").val = ""){
-                $("#standardId").addClass('has-error');
-                $("#standardId").focus();
-            }else{
-                alert('hey');
-                $("#schbox").removeClass('has-error');
-                $("#standardId").addClass('has-error');
-                $( "#searchform" ).submit();
-            }
-        });
-        
-        // A $( document ).ready() block.
-        $( document ).ready(function() {
-//            console.log('yoohoo')
-//            alert(base_url);
-
-            $("#cboStd").css("display", "block");
-        });
-    </script>
+  

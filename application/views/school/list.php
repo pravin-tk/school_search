@@ -34,7 +34,6 @@ foreach ($activities as $key => $value) {
 ?>
 
 
-<!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
         <?php //include 'header.php'; ?>
         <div id="content" class="ng-scope">
             <section class="cover overlay height-200 height-270-xs">
@@ -56,6 +55,12 @@ foreach ($activities as $key => $value) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
+                        <div id="searchfilter">
+                        <div class="panel panel-default"  style="">
+				            <div class="panel-heading " >
+				            <h4 class="panel-title"><strong><i class="fa fa-heart"></i> &nbsp &nbsp Favourites</strong></h4>
+				          	</div>
+				        </div>
                         <!--        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
                                   <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse"  aria-expanded="true" style="">
                                     <h4 class="panel-title">Location</h4>
@@ -127,7 +132,7 @@ foreach ($activities as $key => $value) {
                                         <label class="label-block" for="check-in">Board Type</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <select id="boardtypeselectbox"  class="form-control">
+                                            <select id="boardtypeselectbox"  class="form-control multiselect" multiple="multiple">
                                                 <?php foreach ($schoolBoard as $key => $value) { ?>
                                                     <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
 
@@ -139,7 +144,7 @@ foreach ($activities as $key => $value) {
                                         <label class="label-block" for="check-out">School Medium</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <select id="mediumselectbox"  class="form-control">
+                                            <select id="mediumselectbox"  class="form-control multiselect" multiple="multiple">
                                                 <?php foreach ($schoolMedium as $key => $value) { ?>
                                                     <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
 
@@ -151,7 +156,7 @@ foreach ($activities as $key => $value) {
                                         <label class="label-block" for="check-out">School Type</label>
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <select id="schooltypeselectbox" class="form-control">
+                                            <select id="schooltypeselectbox" class="form-control multiselect" multiple="multiple">
                                                 <?php foreach ($schoolType as $key => $value) { ?>
 
                                                     <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
@@ -173,7 +178,7 @@ foreach ($activities as $key => $value) {
                                     <div class="form-group">
                                         <label for="guests">Category:</label>
                                         <div class="input-group bootstrap-touchspin">
-                                            <select id="schoolcategoryselectbox" class="form-control">
+                                            <select id="schoolcategoryselectbox" class="form-control multiselect" multiple="multiple">
                                                 <?php foreach ($schoolCategory as $key => $value) { ?>
                                                     <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
 
@@ -189,7 +194,7 @@ foreach ($activities as $key => $value) {
                                         <div class="form-group">
                                             <label for="sports">Activities:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="activityselectbox" class="form-control">
+                                                <select id="activityselectbox" class="form-control multiselect" multiple="multiple">
                                                     <option value=""> -- Select -- </option>
                                                     <?php foreach ($activityOptions as $key => $items) { ?>
                                                         <optgroup label="<?php echo $key; ?>">
@@ -206,9 +211,9 @@ foreach ($activities as $key => $value) {
                                         <div class="form-group">
                                             <label for="arts">Infrastructure:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="infraselectbox" class="form-control">
+                                                <select id="infraselectbox" class="form-control multiselect" multiple="multiple">
                                                     <option value=""> -- Select -- </option>
-<?php foreach ($infraOptions as $key => $items) { ?>
+										<?php foreach ($infraOptions as $key => $items) { ?>
                                                         <optgroup label="<?php echo $key; ?>">
                                                         <?php foreach ($items as $key1 => $itemvalue) { ?>
                                                                 <option value="<?php echo $itemvalue['itemId'] ?>">
@@ -223,7 +228,7 @@ foreach ($activities as $key => $value) {
                                         <div class="form-group">
                                             <label for="bedrooms">Safety:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="safetyselectbox" class="form-control">
+                                                <select id="safetyselectbox" class="form-control multiselect" multiple="multiple">
                                                     <option value=""> -- Select -- </option>
 <?php foreach ($safetyOptions as $key => $items) { ?>
                                                         <optgroup label="<?php echo $key; ?>">
@@ -278,6 +283,7 @@ foreach ($activities as $key => $value) {
                             </div>
                         </div>
                         <br>
+                        </div>
                     </div>
                     <div class="col-md-9">
 
@@ -318,53 +324,17 @@ foreach ($activities as $key => $value) {
                                 </div>
                             </div></div>
                         <!-- Map end -->
+						<div id="search-layout">
+						<?php include 'pages/list.php';?>
+		 				</div>
 
-<?php for ($i = 0; $i < 10; $i++) { ?>
-
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="media media-clearfix-xs media-clearfix-sm">
-                                        <div class="media-left">
-                                            <p>
-                                                <a  href="school-details.php">
-                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" class="media-object">
-                                                </a>
-                                            </p>
-                                            <div class="text-center small">
-                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
-                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
-                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
-                                                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                                                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="pull-right">
-                                                <a  class="text-primary" href=""><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
-                                                <a  class="text-grey-400" href=""><i class="fa fa-star-o fa-fw"></i></a>
-                                            </div>
-                                            <h4 class="media-heading margin-v-0-10">
-                                                <a  href="schoolDetailsTest">Dastur High School , Camp</a>
-                                            </h4>
-                                            <p>
-                                                <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>Board : CBSE</span>
-                                                <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> Medium :English</span>
-                                                <span class="label label-grey-100"><i class="icon icon-shovel "></i> Category :none </span>
-                                            </p>
-                                            <p class="margin-none">The school boasts a fully equipped  ...</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-<?php } ?>
 
                         <ul class="pagination margin-top-none">
-                            <li class="disabled"><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">«</a></li>
-                            <li class="active"><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">1</a></li>
-                            <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">2</a></li>
-                            <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">3</a></li>
-                            <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">»</a></li>
+                            <li class="disabled"><a href="#">«</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">»</a></li>
                         </ul>
                     </div>
                 </div>

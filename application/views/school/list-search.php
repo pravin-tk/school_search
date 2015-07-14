@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0064)http://real-estate.aws.ipv4.ro/angular/index.html#/front/listing -->
-<html lang="en" data-ng-app="app" data-ng-controller="AppCtrl" class="ng-class:app.settings.htmlClass ng-scope st-effect-rxs-1 hide-sidebar top-navbar ls-bottom-footer-fixed"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link type="text/css" rel="stylesheet" href="./list search_files/css"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style><script src="./list search_files/markerclusterer.min.js"></script><script src="./list search_files/infobox_packed.js"></script><script src="./list search_files/jquery.ui.map.rdfa.js"></script><script src="./list search_files/jquery.ui.map.overlays.js"></script><script src="./list search_files/jquery.ui.map.microformat.js"></script><script src="./list search_files/jquery.ui.map.microdata.js"></script><script src="./list search_files/jquery.ui.map.services.js"></script><script src="./list search_files/jquery.ui.map.extensions.js"></script><script src="./list search_files/jquery.ui.map.js"></script><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+<html lang="en" class="st-effect-rxs-1 hide-sidebar top-navbar ls-bottom-footer-fixed"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,24 +8,10 @@
   <meta name="author" content="">
   <title>edbuddy</title>
 
-  <link href="./assets/css/all.css" rel="stylesheet">
-
-  <link href="./assets/css/app.css" rel="stylesheet">
-
-  <!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
-
-<style id="holderjs-style" type="text/css"></style><script type="text/javascript" charset="UTF-8" src="./home_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/map.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/onion.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/stats.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/controls.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/marker.js"></script><script type="text/javascript" charset="UTF-8" src="./home_files/overlay.js"></script></head>
-<!-- Custom Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" type="text/css" href="./assets/css/font-awesome/css/font-awesome.min.css">
-
 <body class="breakpoint-1024">
 
-  <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
+  <div data-ui-view="">
+  <div><!-- Fixed navbar -->
 <?php include 'header.php';?>
 <div id="content" class="ng-scope">
   <section class="cover overlay height-200 height-270-xs">
@@ -46,7 +32,13 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3" >
+        <div id="searchfilter">
+         <div class="panel panel-default"  style="">
+            <div class="panel-heading " >
+            <h4 class="panel-title"><strong><i class="fa fa-heart"></i> &nbsp &nbsp Favourites</strong></h4>
+          </div>
+          </div>
         <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
           <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse"  aria-expanded="true" style="">
             <h4 class="panel-title">Location</h4>
@@ -173,7 +165,7 @@
 
           </div></div></div>
 
-        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
+        <div class="panel panel-default" data-toggle="panel-collapse" data-open="false">
           <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#2577c4d2-088a-9d72-d555-13d644a5a25b" aria-expanded="true" style="">
             <h4 class="panel-title">More</h4>
           </div>
@@ -267,6 +259,7 @@
           </div>
         </div>
         <br>
+        </div>
       </div>
       <div class="col-md-9">
 
@@ -289,9 +282,8 @@
             </div>
             <div class="btn-group display-inline-block">
 
-              <a class="btn btn-primary active"  href="search"><i class="fa fa-list"></i></a>
-              <a class="btn btn-primary" href="grid"><i class="fa fa-th"></i></a>
-
+              <a class="btn btn-primary active" class="listlayout" href="#"><i class="fa fa-list"></i></a>
+              <a class="btn btn-primary gridlayout" ><i class="fa fa-th"></i></a>
             </div>
           </div>
         </div>
@@ -307,53 +299,18 @@
           </div>
           </div></div>
 		<!-- Map end -->
-        
-        <?php for ($i=0;$i<10;$i++){?>
-        
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="media media-clearfix-xs media-clearfix-sm">
-              <div class="media-left">
-                <p>
-                  <a  href="school-details.php">
-                    <img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="property" width="150" class="media-object">
-                  </a>
-                </p>
-                <div class="text-center small">
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                </div>
-              </div>
-              <div class="media-body">
-                <div class="pull-right">
-                  <a  class="text-primary" href=""><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
-                  <a  class="text-grey-400" href=""><i class="fa fa-star-o fa-fw"></i></a>
-                </div>
-                <h4 class="media-heading margin-v-0-10">
-                  <a  href="schoolDetailsTest">Dastur High School , Camp</a>
-                </h4>
-                <p>
-                  <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>Board : CBSE</span>
-                  <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> Medium :English</span>
-                  <span class="label label-grey-100"><i class="icon icon-shovel "></i> Category :none </span>
-                </p>
-                <p class="margin-none">The school boasts a fully equipped  ...</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-		<?php }?>
-
+		<!-- search layout -->
+		 <div id="search-layout">
+		<?php include 'pages/list.php';?>
+		 </div>
+		
+		<!-- end layour -->
         <ul class="pagination margin-top-none">
-          <li class="disabled"><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">«</a></li>
-          <li class="active"><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">1</a></li>
-          <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">2</a></li>
-          <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">3</a></li>
-          <li><a href="http://real-estate.aws.ipv4.ro/angular/index.html#">»</a></li>
+          <li class="disabled"><a href="">«</a></li>
+          <li class="active"><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">»</a></li>
         </ul>
       </div>
     </div>

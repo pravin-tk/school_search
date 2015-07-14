@@ -4,31 +4,38 @@
                     <h3 class="text-center"><strong>Facility </strong></h3>
                 </div>
                 <div class="panel-body">
-	                <div class="col-xs-8 col-md-8" >
-		                <div class="col-xs-3 col-md-3 text-center well well-sm">
+   <div class="panel-body">
+	 <div class="container">
+        <div class="col-md-8">
+          <section class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-xs-2 col-md-2 text-center btn btn-primary btn-sm">
 		                Basic
 		                </div>
-		                 <div class="col-xs-9 col-md-9 text-center">
-		                       <div class="col-md-3 " ><i class="fa fa-2x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                	                        <p class="page-scroll" >2 Buildings</p>
-	                	</div>
-	                	<div class="col-md-3 " ><i class="fa fa-2x fa-book wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                							<p class="page-scroll" >Library</p>
-	                	</div>
-	               		<div class="col-md-3 " ><i class="fa fa-2x fa-bed wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	               								<p class="page-scroll" >Hostel</p>
-	               		</div>
-	                	<div class="col-md-3 " ><i class="fa fa-2x fa-bus wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                							<p class="page-scroll" > Transport</p>
-	                	</div>
+		                 <div class="col-xs-6 col-md-6 text-center">
+			              	<div class="col-md-3 " ><i class="fa fa-2x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		                	                        <p class="page-scroll" >2 Buildings</p>
+		                	</div>
+		                	<div class="col-md-3 " ><i class="fa fa-2x fa-book wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		                							<p class="page-scroll" >Library</p>
+		                	</div>
+		               		<div class="col-md-3 " ><i class="fa fa-2x fa-bed wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		               								<p class="page-scroll" >Hostel</p>
+		               		</div>
+		                	<div class="col-md-3 " ><i class="fa fa-2x fa-bus wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		                							<p class="page-scroll" > Transport</p>
+		                	</div>
 		                    </div>
-		             </div> 
-		            <div class="col-xs-8 col-md-8">
-		                <div class="col-xs-3 col-md-3 text-center well well-sm">
-		               		  Hi-Tech
+            </div>
+          </section>
+          
+          <section class="panel panel-default">
+            <div class="panel-body">
+                          <div class="col-xs-2 col-md-2 text-center btn btn-primary btn-sm">
+		               		High Tech
 		                </div>  
-		                <div class="col-xs-9 col-md-9 text-center">
-		                	<div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		                <div class="col-xs-6 col-md-6 text-center">
+		                    <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
 	                		     <p class="page-scroll" >Robotics Lab</p>
 	                		</div>
 	                		<div class="col-md-3 " ><i class="fa fa-2x fa-book wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
@@ -41,13 +48,15 @@
 	                		                							<p class="page-scroll">GPS</p>
 	                		</div>
 		                </div>
-	                </div>
-	                <div class="col-xs-8 col-md-8">
-		                <div class="col-xs-3 col-md-3 text-center well well-sm">
+            </div>
+          </section>
+          <section class="panel panel-default">
+            <div class="panel-body">
+                              <div class="col-xs-2 col-md-2 text-center btn btn-primary btn-sm">
 		               		 Sports
 		                </div>  
-		                <div class="col-xs-9 col-md-9 text-center">
-		                	<div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+		                <div class="col-xs-6 col-md-6 text-center">
+		                    <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
 	                		    <p class="page-scroll">Cricket</p>
 	                		</div>
 	                		<div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
@@ -59,37 +68,44 @@
 	                		<div class="col-md-3 " ><i class="fa fa-2x fa-music wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
 	                		    <p class="page-scroll">FootBall</p>
 	                		</div>
-	                	
+		                     
 		                 </div>
-	                </div>
-	                <div class="col-xs-8 col-md-8">
-		                <div class="col-xs-3 col-md-3 text-center well well-sm">
-		               		 Culturals
-		                </div>  
-		                 <div class="col-xs-9 col-md-9 text-center">
-		                        <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                		        <p class="page-scroll" href="">Dance</p>
-	                		    </div>
-	                		    <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+            </div>
+          </section>
+          <section class="panel panel-default">
+            <div class="panel-body">
+                   <div class="col-xs-2 col-md-2 text-center btn btn-primary btn-sm">
+		            Culturals 
+		           </div>  
+		           <div class="col-xs-6 col-md-6 text-center">
+		             <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+	                  <p class="page-scroll" href="">Dance</p>
+	                 </div>
+	                 <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
 	                		        <p class="page-scroll" href="">Music</p>
-	                		    </div>
-		                    </div>
-	                </div>
-	                
-	                <div class="col-xs-8 col-md-8">
-		                <div class="col-xs-3 col-md-3 text-center well well-sm">
-		               		 Misceleaneous
-		                </div>  
-		                   <div class="col-xs-9 col-md-9 text-center">
-		                       <div class="col-md-3 " >
-		                       		<i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                		         <p class="page-scroll" href="">Internal Transport</p>
-	                		   </div>
-	                		   <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
-	                		        <p class="page-scroll" href="">Guest House</p>
-	                		   </div>
-		                    </div>
-	                </div>
+	              	 </div>
+		           </div>
+		    </div>              
+          </section>
+          <section class="panel panel-default">
+            <div class="panel-body">
+               <div class="col-xs-2 col-md-2 text-center btn btn-primary btn-sm">
+		       Misceleaneous
+		       </div>  
+		       <div class="col-xs-6 col-md-6 text-center">
+		          <div class="col-md-3 " >
+		           <i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+	                <p class="page-scroll" href="">Internal Transport</p>
+	              </div>
+	              <div class="col-md-3 " ><i class="fa fa-2x fa-camera wow bounceIn marginleft" data-wow-delay=".2s"></i><br/>
+	               <p class="page-scroll" href="">Guest House</p>
+	              </div>               
+		       </div>
+		    </div>
+            </div>
+        </div>
+    </div>
+	               
 	                
                 </div>
             </div>
