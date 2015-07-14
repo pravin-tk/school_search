@@ -82,7 +82,7 @@ class home extends CI_Controller {
             $map['infraId'] = $this->input->post('infraList');
             $map['latitude'] = "12.98642";
             $map['longitude'] = "23.97532";
-            $map['standardId'] = 1;
+            $map['standardId'] = 0;
             $sch_key = 'schoollist.json?'.http_build_query($map);
             $filter_key =  'schoolfilter.json';
             $apicalls = array($sch_key,$filter_key);
@@ -97,9 +97,10 @@ class home extends CI_Controller {
                     }
                       
                 }
-                $data['latitude'] = $map['latitude'];
-                $data['longitude'] = $map['longitude'];
-                $data['standardId'] = $map['standardId'];
+                $this->template->set('latitude',$map['latitude']);
+                $this->template->set('longitude',$map['longitude']);
+                $this->template->set('standardId',$map['standardId']);
+               
                 unset($apicalls);
                 }catch(EBDApiException $e) {
                     unset($apicalls);
@@ -117,10 +118,7 @@ class home extends CI_Controller {
                 unset($apicalls);
 		//$this->load->view('search/school_list.php',$data);
 	}
-	public function schoolDetails()
-	{
-		$this->load->view('search/testschooldetail.php');
-	}
+	
 
 	public function login()
 	{
@@ -191,31 +189,46 @@ class home extends CI_Controller {
         }
         
         public function schoolJSON() {
-            $map['boardId'] = $this->input->post('boardId');
-            $map['mediumId'] = $this->input->post('mediumId');
-            $map['typeId'] = $this->input->post('typeId');
-            $map['latitude'] = $this->input->post('latitude');
-            $map['longitude'] = $this->input->post('longitude');
-            $map['standardId'] = $this->input->post('standardId');
+//            $map['boardId'] = $this->input->post('boardId');
+//            $map['mediumId'] = $this->input->post('mediumId');
+//            $map['typeId'] = $this->input->post('typeId');
+//            $map['categoryId'] = $this->input->post('categoryId');
+//            $map['classificationId'] = $this->input->post('classificationId');
+//             
+//            $map['infraId'] = $this->input->post('infraId');
+//            $map['activityId'] = $this->input->post('activityId');
+//            $map['safetyId'] = $this->input->post('safetyId');
+            
+//            $map['latitude'] = $this->input->post('latitude');
+//            $map['longitude'] = $this->input->post('longitude');
+//            $map['standardId'] = $this->input->post('standardId');
+            $map['latitude'] = "12.98642";
+            $map['longitude'] = "23.97532";
+            $map['standardId'] = 0;
             $sch_key = 'schoollist.json?'.http_build_query($map);
          
             $apicalls = array($sch_key);
+            error_log('-------------');
+            error_log($sch_key);
             try {
                 $apioutput = $this->apiclient->process($apicalls);
-                error_log(json_encode($apioutput));
-                foreach($apioutput as $key =>$value){
-                    $data = $value;
+                foreach($apioutput as $key => $value ){
+                    if (strpos($key,'schoollist.json') !== false) 
+                         $this->template->set('schools',$value);
                 }
+              
                 $data['status'] = 1;
             }catch(EBDApiException $e) {
                     $data['status'] = 0;
-                    $data['data'] = $data;
+                    $data['data'] = $apioutput;
                     unset($apicalls);
                     unset($apioutput);
             }   
-            error_log('op-----');
-            error_log(json_encode($data));
+            $data['html'] =  $this->template
+            			 ->set_layout(false)
+            			 ->build('partials/search',true);
             echo json_encode($data);
+            
         }
         
        public function schoolDetail($id,$standardId) {
@@ -244,8 +257,14 @@ class home extends CI_Controller {
                     unset($apioutput);
             }   
             $data['data'] = $data;
-          
-            $this->load->view('search/school_detail1',$data);
+            $this->template
+                                ->set_layout('edbuddy')
+                                ->title('Search for finest schools near you: Edbuddy.in')
+                                ->set_partial('header','partials/header')
+                                ->set_partial('footer','partials/footer');
+               // ->set_partial('breadcrumb','../partials/breadcrumb';
+                $this->template->build('school/school-detail');
+            
         }
         
 }
