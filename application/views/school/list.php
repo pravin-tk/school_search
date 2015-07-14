@@ -7,35 +7,14 @@ $schoolCategory = $filtersList['categoryFilter'];
 $activities = $filtersList['activityFilter'];
 $safety = $filtersList['safetyFilter'];
 $infrastructure = $filtersList['infraFilter'];
+$classification = $filtersList['classificationFilter'];
 
-$safetyOptions = array();
-$i = 0;
-foreach ($safety as $key => $value) {
-    $safetyOptions[$value['categoryName']][$i]['itemId'] = $value['id'];
-    $safetyOptions[$value['categoryName']][$i]['itemName'] = $value['itemName'];
-    $i++;
-}
-
-$infraOptions = array();
-$i = 0;
-foreach ($infrastructure as $key => $value) {
-    $infraOptions[$value['categoryName']][$i]['itemId'] = $value['id'];
-    $infraOptions[$value['categoryName']][$i]['itemName'] = $value['itemName'];
-    $i++;
-}
-
-$activityOptions = array();
-$i = 0;
-foreach ($activities as $key => $value) {
-    $activityOptions[$value['categoryName']][$i]['itemId'] = $value['id'];
-    $activityOptions[$value['categoryName']][$i]['itemName'] = $value['itemName'];
-    $i++;
-}
 ?>
 
 
+<!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
         <?php //include 'header.php'; ?>
-        <div id="content" class="ng-scope">
+        <div id="content" >
             <section class="cover overlay height-200 height-270-xs">
                 <img src="<?php echo asset_url(); ?>img/school/photodune-186709-residential-street-m.jpg" alt="cover">
                 <div class="overlay overlay-full overlay-bg-black bg-transparent">
@@ -55,8 +34,8 @@ foreach ($activities as $key => $value) {
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <div id="searchfilter">
-                        <div class="panel panel-default"  style="">
+                      <form id="frmSch">
+                       <div class="panel panel-default"  style="">
 				            <div class="panel-heading " >
 				            <h4 class="panel-title"><strong><i class="fa fa-heart"></i> &nbsp &nbsp Favourites</strong></h4>
 				          	</div>
@@ -81,34 +60,7 @@ foreach ($activities as $key => $value) {
                                           <option value="OR">Oregon</option>
                                           <option value="WA">Washington</option>
                                         </optgroup>
-                                        <optgroup label="Mountain Time Zone">
-                                          <option value="AZ">Arizona</option>
-                                          <option value="CO">Colorado</option>
-                                          <option value="ID">Idaho</option>
-                                          <option value="MT">Montana</option>
-                                          <option value="NE">Nebraska</option>
-                                          <option value="NM">New Mexico</option>
-                                          <option value="ND">North Dakota</option>
-                                          <option value="UT">Utah</option>
-                                          <option value="WY">Wyoming</option>
-                                        </optgroup>
-                                        <optgroup label="Central Time Zone">
-                                          <option value="AL">Alabama</option>
-                                          <option value="AR">Arkansas</option>
-                                          <option value="IL">Illinois</option>
-                                          <option value="IA">Iowa</option>
-                                          <option value="KS">Kansas</option>
-                                          <option value="KY">Kentucky</option>
-                                          <option value="LA">Louisiana</option>
-                                          <option value="MN">Minnesota</option>
-                                          <option value="MS">Mississippi</option>
-                                          <option value="MO">Missouri</option>
-                                          <option value="OK">Oklahoma</option>
-                                          <option value="SD">South Dakota</option>
-                                          <option value="TX">Texas</option>
-                                          <option value="TN">Tennessee</option>
-                                          <option value="WI">Wisconsin</option>
-                                        </optgroup>
+                                        
                                        
                                       </select>
                                     </div>
@@ -120,48 +72,84 @@ foreach ($activities as $key => $value) {
                                   </div>
                                   </div>
                                   </div>-->
-
+                <input type ="hidden" name = "latitude" id ="latitude" value = "<?php echo $latitude;?>"/>
+            <input type ="hidden" name = "longitude" id ="longitude" value = "<?php echo $longitude;?>"/>       
+            <input type ="hidden" name = "standardId" id ="standardId" value = "<?php echo $standardId;?>"/>  
                         <div class="panel panel-default" data-toggle="panel-collapse" data-open="false">
                             <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#6d98aa69-0d44-7a1a-96d2-5bd350287a73" aria-expanded="true" style="">
-                                <h4 class="panel-title">School Type</h4>
+                                <h4 class="panel-title">Filter Schools By</h4>
                             </div>
 
                             <div id="6d98aa69-0d44-7a1a-96d2-5bd350287a73" class="collapse"><div class="panel-body">
-
-                                    <div class="form-group">
-                                        <label class="label-block" for="check-in">Board Type</label>
+                                     <div class="form-group margin-none">
+                                        <label class="label-block" for="check-out">Type</label>
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <select id="schooltypeselectbox" class="form-control multiselect"multiple="multiple">
+                                                <option value=""> -- Select -- </option>
+                                                <?php 
+                                                    if(isset($schoolType))
+                                                    foreach ($schoolType as $key => $value) { ?>
+
+                                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-none">
+                                        <label class="label-block" for="check-in">Board</label>
+                                        <div class="input-group">
                                             <select id="boardtypeselectbox"  class="form-control multiselect" multiple="multiple">
-                                                <?php foreach ($schoolBoard as $key => $value) { ?>
-                                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                                  <option value=""> -- Select -- </option>
+                                                <?php 
+                                                 if(isset($schoolBoard))   
+                                                    foreach ($schoolBoard as $key => $value) { ?>
+                                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+
+                                                    <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group margin-none">
+                                        <label class="label-block" for="check-out">Medium</label>
+                                        <div class="input-group">
+                                            <select id="mediumselectbox"  class="form-control multiselect"multiple="multiple">
+                                                  <option value=""> -- Select -- </option>
+                                                <?php 
+                                                if(isset($schoolMedium))
+                                                foreach ($schoolMedium as $key => $value) { ?>
+                                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
 
                                                 <?php } ?>
                                             </select>
                                         </div>
                                     </div>
+                                   
                                     <div class="form-group margin-none">
-                                        <label class="label-block" for="check-out">School Medium</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <select id="mediumselectbox"  class="form-control multiselect" multiple="multiple">
-                                                <?php foreach ($schoolMedium as $key => $value) { ?>
-                                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                        <label for="category">Category:</label>
+                                        <div class="input-group bootstrap-touchspin">
+                                            <select id="schoolcategoryselectbox" class="form-control multiselect"multiple="multiple">
+                                                <option value=""> -- Select -- </option>
+                                                <?php 
+                                                if(isset($schoolCategory))
+                                                    foreach ($schoolCategory as $key => $value) { ?>
+                                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
 
-                                                <?php } ?>
+                                                    <?php } ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="form-group margin-none">
-                                        <label class="label-block" for="check-out">School Type</label>
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                                            <select id="schooltypeselectbox" class="form-control multiselect" multiple="multiple">
-                                                <?php foreach ($schoolType as $key => $value) { ?>
+                                      <div class="form-group margin-none">
+                                        <label for="category">Classification:</label>
+                                        <div class="input-group bootstrap-touchspin">
+                                            <select id="classificationselectbox" class="form-control multiselect"multiple="multiple">
+                                                <option value=""> -- Select -- </option>
+                                                <?php 
+                                                if(isset($classification))
+                                                    foreach ($classification as $key => $value) { ?>
+                                                        <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
 
-                                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-
-                                                <?php } ?>
+                                                    <?php } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -170,37 +158,24 @@ foreach ($activities as $key => $value) {
 
                         <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
                             <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#2577c4d2-088a-9d72-d555-13d644a5a25b" aria-expanded="true" style="">
-                                <h4 class="panel-title">More</h4>
+                                <h4 class="panel-title">Facilities present</h4>
                             </div>
 
                             <div id="2577c4d2-088a-9d72-d555-13d644a5a25b" class="collapse in"><div class="panel-body">
-
-                                    <div class="form-group">
-                                        <label for="guests">Category:</label>
-                                        <div class="input-group bootstrap-touchspin">
-                                            <select id="schoolcategoryselectbox" class="form-control multiselect" multiple="multiple">
-                                                <?php foreach ($schoolCategory as $key => $value) { ?>
-                                                    <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-
-                                                <?php } ?></select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group margin-none">
-                                        <p class="help-block margin-none"><a href="#lodging" data-toggle="collapse" class="collapsed" aria-expanded="false">+ more</a></p>
-                                    </div>
-
-                                    <div class="collapse" id="lodging" aria-expanded="false">
-                                        <br>
-                                        <div class="form-group">
-                                            <label for="sports">Activities:</label>
+                                           <div class="form-group">
+                                            <label for="activities">Activities:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="activityselectbox" class="form-control multiselect" multiple="multiple">
+                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <select id="activityselectbox" class="form-control multiselect"multiple="multiple">
+                                                    
                                                     <option value=""> -- Select -- </option>
-                                                    <?php foreach ($activityOptions as $key => $items) { ?>
-                                                        <optgroup label="<?php echo $key; ?>">
-                                                        <?php foreach ($items as $key1 => $itemvalue) { ?>
-                                                                <option value="<?php echo $itemvalue['itemId'] ?>">
-                                                                <?php echo $itemvalue['itemName'] ?>
+                                                    <?php 
+                                                    if($activities)
+                                                    foreach ($activities as $key => $items) { ?>
+                                                        <optgroup label="<?php echo $items['categoryName']; ?>">
+                                                        <?php foreach ($items['filter'] as $key1 => $itemvalue) { ?>
+                                                                <option value="<?php echo $itemvalue['id']; ?>">
+                                                                <?php echo $itemvalue['name']; ?>
                                                                 </option>
                                                                 <?php } ?>
                                                         </optgroup>
@@ -209,15 +184,18 @@ foreach ($activities as $key => $value) {
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="arts">Infrastructure:</label>
+                                            <label for="infrastructure">Infrastructure:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="infraselectbox" class="form-control multiselect" multiple="multiple">
+                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <select id="infraselectbox" class="form-control multiselect"multiple="multiple">
                                                     <option value=""> -- Select -- </option>
-										<?php foreach ($infraOptions as $key => $items) { ?>
-                                                        <optgroup label="<?php echo $key; ?>">
-                                                        <?php foreach ($items as $key1 => $itemvalue) { ?>
-                                                                <option value="<?php echo $itemvalue['itemId'] ?>">
-                                                            <?php echo $itemvalue['itemName'] ?>
+                                        <?php 
+                                        if($infrastructure)
+                                        foreach ($infrastructure as $key => $items) { ?>
+                                                        <optgroup label="<?php echo $items['categoryName']; ?>">
+                                                        <?php foreach ($items['filter'] as $key1 => $itemvalue) { ?>
+                                                                <option value="<?php echo $itemvalue['id']; ?>">
+                                                            <?php echo $itemvalue['name']; ?>
                                                                 </option>
                                                             <?php } ?>
                                                         </optgroup>
@@ -226,64 +204,48 @@ foreach ($activities as $key => $value) {
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="bedrooms">Safety:</label>
+                                            <label for="safety">Safety:</label>
                                             <div class="input-group bootstrap-touchspin">
-                                                <select id="safetyselectbox" class="form-control multiselect" multiple="multiple">
+                                                <select id="safetyselectbox" class="form-control multiselect"multiple="multiple" >
                                                     <option value=""> -- Select -- </option>
-<?php foreach ($safetyOptions as $key => $items) { ?>
-                                                        <optgroup label="<?php echo $key; ?>">
-    <?php foreach ($items as $key1 => $itemvalue) { ?>
-                                                                <option value="<?php echo $itemvalue['itemId'] ?>">
-                                                            <?php echo $itemvalue['itemName'] ?>
-                                                                </option>
-                                                        <?php } ?>
-                                                        </optgroup>
+                                                    
+                                        <?php 
+                                        if($safety)
+                                            foreach ($safety as $key => $items) { ?>
+                                                            <optgroup label="<?php echo $items["categoryName"]; ?>">
+                                                        <?php foreach ($items["filter"] as $key1 => $itemvalue) { ?>
+                                                                    <option value="<?php echo $itemvalue['id']; ?>">
+                                                                <?php echo $itemvalue['name']; ?>
+                                                                    </option>
+                                                            <?php } ?>
+                                                            </optgroup>
 
-                                                        <?php } ?></select>
+                                        <?php } ?></select>
                                             </div>
                                         </div>
+                                    
+                                    <div class="form-group margin-none">
+                                        <p class="help-block margin-none"><a href="#lodging" data-toggle="collapse" class="collapsed" aria-expanded="false">+ more</a></p>
+                                    </div>
+
+                                    <div class="collapse" id="lodging" aria-expanded="false">
+                                        <br>
+                                 
                                     </div>
 
                                 </div></div></div>
 
-<!--                        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
-                            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#b7fc22f2-629a-83c9-b17e-dc65823a0d8e" aria-expanded="true" style="">
-                                <h4 class="panel-title">Fees</h4>
-                            </div>
-
-                            <div id="b7fc22f2-629a-83c9-b17e-dc65823a0d8e" class="collapse in">
-                                <div class="panel-body">
-
-                                    <div class="slider slider-horizontal">
-                                        <div class="slider-track">
-                                            <div class="slider-selection" style="left: 24.2424242424242%; width: 20.2020202020202%;"></div>
-                                            <div class="slider-handle min-slider-handle" tabindex="0" style="left: 24.2424242424242%;"></div>
-                                            <div class="slider-handle max-slider-handle" tabindex="0" style="left: 44.4444444444444%;"></div>
-                                        </div>
-                                        <div class="tooltip tooltip-main top" style="left: 34.3434343434343%; margin-left: -33px;">
-                                            <div class="tooltip-arrow"></div><div class="tooltip-inner">250 : 450</div>
-                                        </div>
-                                        <div class="tooltip tooltip-min top" style="left: 24.2424242424242%; margin-left: -18px;">
-                                            <div class="tooltip-arrow"></div><div class="tooltip-inner">250</div>
-                                        </div>
-                                        <div class="tooltip tooltip-max bottom" style="top: 18px; left: 44.4444444444444%; margin-left: -18px;">
-                                            <div class="tooltip-arrow"></div><div class="tooltip-inner">450</div>
-                                        </div>
-                                    </div>
-                                    <input data-slider="default" type="text" value="250,450" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]" data-slider-handle="square" data="value: &#39;250,450&#39;" style="">
-
-                                </div></div></div>-->
 
                         <div class="row text-center">
                             <div class="col-xs-6">
-                                <button class="btn btn-block btn-success">Search Now!</button>
+                                <input  type="button" class="btn btn-block btn-success" type = "button" name = "btnSch" id = "btnSch" value="Search Now!"/>
                             </div>
                             <div class="col-xs-6">
                                 <a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> reset filters</a>
                             </div>
                         </div>
                         <br>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-md-9">
 
@@ -324,10 +286,54 @@ foreach ($activities as $key => $value) {
                                 </div>
                             </div></div>
                         <!-- Map end -->
-						<div id="search-layout">
-						<?php include 'pages/list.php';?>
-		 				</div>
+                        <div id="schresult">
+                        <?php //for ($i = 0; $i < 10; $i++) {
+                            foreach($schools as $key => $school){
+                        
+                        ?>
 
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="media media-clearfix-xs media-clearfix-sm">
+                                        <div class="media-left">
+                                            <p>
+                                                <a  href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+                                                    <?php if($school['logo'] == ""){?>
+                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" class="media-object">
+                                                    <?php }else{?>
+                                                    <img src="<?php echo $school['logo'];?>" alt="property" width="150" class="media-object">
+                                                     <?php }?>
+                                                </a>
+                                            </p>
+                                            <div class="text-center small">
+                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                                <span class="fa fa-fw fa-star text-yellow-800"></span>
+                                                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                                                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
+                                            </div>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="pull-right">
+                                                <a  class="text-primary" href=""><i class="fa fa-comments fa-fw"></i> <strong>5</strong></a>
+                                                <a  class="text-grey-400" href=""><i class="fa fa-heart-o fa-fw"></i></a>
+                                            </div>
+                                            <h4 class="media-heading margin-v-0-10">
+                                                <a  href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>"><?php echo $school['name']?>,
+                                                    <?php echo $school['streetName']; ?>,<?php echo $school['localityName']?>,<?php echo $school['cityName']?></a>
+                                            </h4>
+                                            <p>
+                                                <span class="label label-grey-100"><i class="fa fa-home fa-fw"></i>Board : <?php echo $school['boardName']?></span>
+                                                <span class="label label-grey-100"><i class="fa fa-fw icon icon-toilet"></i> Medium :<?php echo $school['mediums']?></span>
+                                                <span class="label label-grey-100"><i class="icon icon-shovel "></i> Category :<?php echo $school['schoolCategory']?> </span>
+                                            </p>
+                                            <p class="margin-none"><?php echo $school['aboutSchool']; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <?php } ?></div>
 
                         <ul class="pagination margin-top-none">
                             <li class="disabled"><a href="#">«</a></li>
@@ -340,3 +346,97 @@ foreach ($activities as $key => $value) {
                 </div>
             </div>
         </div>
+         <script type="text/javascript">
+
+         var base_url = '<?php echo $base_url;?>'
+  //  (function() {
+        $("#btnSch").click(function(){
+
+            console.log('hiys');
+            var boardType = "";
+            var schoolType = "";
+            var mediumType = "";
+            var categoryType = "";
+            var activityType = "";
+            var infraType = "";
+            var safetyType = "";
+            var classificationType = "";
+            
+            $('#boardtypeselectbox option:selected').each(function() {
+                        boardType += $(this).val() + ",";
+            });
+            if(boardType !=""){
+                boardType = boardType.substring(0,boardType.lastIndexOf(",")) ;
+            }
+            $('#mediumselectbox option:selected').each(function() {
+                        mediumType += $(this).val() + ",";
+            });
+            if(mediumType !=""){
+                mediumType = mediumType.substring(0,mediumType.lastIndexOf(",")) ;
+            }
+            $('#schooltypeselectbox option:selected').each(function() {
+                        schoolType += $(this).val() + ",";
+            });
+            if(schoolType !=""){
+                schoolType = schoolType.substring(0,schoolType.lastIndexOf(",")) ;
+            }
+            $('#schoolcategoryselectbox option:selected').each(function() {
+                        categoryType += $(this).val() + ",";
+            });
+            if(categoryType !=""){
+                categoryType = categoryType.substring(0,categoryType.lastIndexOf(",")) ;
+            }
+            $('#activityselectbox option:selected').each(function() {
+                        activityType += $(this).val() + ",";
+            });
+            if(activityType !=""){
+                activityType = activityType.substring(0,activityType.lastIndexOf(",")) ;
+            }
+            $('#infraselectbox option:selected').each(function() {
+                        infraType += $(this).val() + ",";
+            });
+            if(infraType !=""){
+                infraType = infraType.substring(0,infraType.lastIndexOf(",")) ;
+            }
+            $('#safetyselectbox option:selected').each(function() {
+                        safetyType += $(this).val() + ",";
+            });
+            if(safetyType !=""){
+                safetyType = safetyType.substring(0,safetyType.lastIndexOf(",")) ;
+            }
+            $('#classificationselectbox option:selected').each(function() {
+                    classificationType += $(this).val() + ",";
+            });
+            if(classificationType !=""){
+                classificationType = classificationType.substring(0,classificationType.lastIndexOf(",")) ;
+            }
+   
+            var data = 'latitude='+$("#latitude").val()+'&longitude='+$("#longitude").val()+'&standardId='+$("#standardId").val();
+            data += '&boardId='+boardType;
+            data += '&mediumId='+mediumType;
+            data += '&typeId='+schoolType;
+            data += '&safetyId='+safetyType;
+            data += '&infraId='+infraType;
+            data += '&activityId='+activityType;
+            data += '&classificationId='+classificationType;
+            $.ajax({
+        type: "post",
+        url: base_url+"/index.php/home/schoolJSON",
+        dataType: "json",
+                data: data,
+        success: function(data){
+                  console.log('success') 
+                   $("#schresult").html(data);
+                  // $("#schresult").html('hii');
+                    console.log($("#schresult").html()) 
+                },
+                error: function(request, errorType, errorThrown){
+                }
+            });
+     
+   });
+
+$('#boardtypeselectbox').multiselect();
+
+    
+    </script>

@@ -45,7 +45,7 @@
 
         })
 
-        $("#searchfilter").affix({
+        $("#frmSch").affix({
         	offset:{
         		top:200,
         		}

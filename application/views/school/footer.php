@@ -1,7 +1,7 @@
 
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer"">
   <strong>eddbuddy </strong> v1.2.0 © Copyright 2015
 </footer>
 <!-- // Footer --></div></div>
