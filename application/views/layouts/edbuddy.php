@@ -44,23 +44,23 @@
                 <?php echo $template['partials']['footer']; ?>
 
  <script type="text/javascript" >
-            var base_url = '<?php echo $base_url; ?>';
-//            var global_url = '<?php echo $base_url . $_COOKIE['tkuserdefaultcity']; ?>/';
-//            var global_cityid = '<?php echo $_COOKIE['tkuserdefaultcityid']; ?>';
-//            var global_city = '<?php echo $_COOKIE['tkuserdefaultcity']; ?>';
-//            var global_assets = '<?php echo $assets; ?>';
-//            var global_cdn = '<?php echo $cdn; ?>';
-//            var js_cdn = '<?php echo $js_cdn; ?>';
-//            var live_chat = '<?php echo $live_chat; ?>';
-//            var page = '<?php echo $page; ?>';
+          var base_url = '<?php echo $base_url; ?>';
+             /* var global_url = '';
+            var global_cityid = '';
+            var global_city = '';
+            var global_assets = '';
+            var global_cdn = '';
+            var js_cdn = '';
+            var live_chat = '';
+            var page = '';
 //            var autoload = true;
-//            var orderid = '<?php echo $orderid; ?>';
+            var orderid = '';
 //            var local_js = '';
-//            var opt_page_url = '<?php echo $ga_uri; ?>?<?php echo $ga_step; ?>';
-//            var captcha = "<?php echo $captcha; ?>";
-//            var cookie_domain = "<?php echo $domain; ?>";
+            var opt_page_url = '';
+            var captcha = "";
+            var cookie_domain = "";
 //            var dslider = false;
 //            var rslider = false;
-//            var is_mobile = '<?php echo $mobile; ?>';
+            var is_mobile = '';*/
 
 </script>

@@ -80,9 +80,9 @@ class home extends CI_Controller {
             $map['standardId'] = $this->input->post('stdList');
             $map['mediumId'] = $this->input->post('mediumList');
             $map['infraId'] = $this->input->post('infraList');
-            $map['latitude'] = "12.98642";
-            $map['longitude'] = "23.97532";
-            $map['standardId'] = 0;
+//            $map['latitude'] = "12.98642";
+//            $map['longitude'] = "23.97532";
+//            $map['standardId'] = 0;
             $sch_key = 'schoollist.json?'.http_build_query($map);
             $filter_key =  'schoolfilter.json';
             $apicalls = array($sch_key,$filter_key);
@@ -209,20 +209,22 @@ class home extends CI_Controller {
             
         }
         
-       public function schoolDetail($id,$standardId) {
+       public function schoolDetail($id) {
             $map['standardId'] = $id;
             $school_basic_key = 'school/basic.json/'.$id;
             $school_other_key = 'school.json/'.$id.'?'.http_build_query($map);
-         
-            $apicalls = array($school_basic_key,$school_other_key);
+            $school_contact_key = 'school/contact.json/'.$id;
+            $apicalls = array($school_basic_key,$school_other_key,$school_contact_key);
             error_log(json_encode($apicalls));
             try {
                 $apioutput = $this->apiclient->process($apicalls);
                 foreach($apioutput as $key => $value ){
                     if (strpos($key,$school_basic_key) !== false) {
-                        $data['basicInfo'] = $value;
+                        $this->template->set('basicInfo',$value);
                     }elseif(strpos($key,$school_other_key)!== false) {
-                         $data['otherInfo'] = $value;
+                        $this->template->set('otherInfo',$value);
+                    }elseif(strpos($key,$school_contact_key)!== false) {
+                        $this->template->set('contactInfo',$value);
                          
                     }
                       
@@ -236,7 +238,7 @@ class home extends CI_Controller {
             }   
             $data['data'] = $data;
           
-            $this->load->view('school/school-details',$data);
+//            $this->load->view('school/school-details',$data);
             $this->template
                                 ->set_layout('edbuddy')
                                 ->title('Search for finest schools near you: Edbuddy.in')

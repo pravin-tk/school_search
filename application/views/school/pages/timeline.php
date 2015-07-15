@@ -1,4 +1,9 @@
-        <div class="col-md-12">
+<?php ;
+$i = 0;
+$timelineInfo = $otherInfo['schoolTimelineData'];
+?>        
+
+<div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="text-center"><strong>Overview </strong></h3>
@@ -7,7 +12,34 @@
 					<div class="container">
    
     <ul class="timeline">
-        <li>
+        <?php if(isset($timelineInfo))
+                foreach($timelineInfo as $key => $timeline) {
+                    $milestoneInfo = $timeline['milestones'];
+                    $i++;
+                    if($i%2 == 0) $class_inverted = "timeline-inverted" ; 
+                    else $class_inverted = "";
+                    
+        ?>
+      <li class="<?php echo $class_inverted; ?>">
+          <div class="timeline-badge"><?php echo $timeline['year'] ?></div>
+          <div class="timeline-panel">
+            <?php foreach($milestoneInfo as $key1 => $milestone){ ?>
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><?php echo $milestone['title'] ?></h4>
+              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
+            </div>
+            <div class="timeline-body">
+				<p><?php echo $milestone['milestoneDesc'] ?> </p>
+            </div>
+            <?php } ?>
+              <img src="<?php echo $timeline['image'] ?>" width="100%" height="70%">
+          </div>
+        </li>
+        
+        
+        <?php 
+          }?>
+        <!--<li>
           <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
@@ -96,7 +128,7 @@
 				<p>Started New English School </p>
                         </div>
           </div>
-        </li>
+        </li>-->
     </ul>
 </div>
 	             </div>

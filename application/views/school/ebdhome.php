@@ -1,8 +1,9 @@
  <?php
-
  
- foreach ($standards as $key=>$value)
-         $standard =    $value;  
+ $standard = "";
+ if(isset($standards))
+    foreach ($standards as $key=>$value)
+            $standard =    $value;  
  
   ?>
 <div id="carousel-example-generic" class="carousel slide cover overlay overflow-hidden max-height-600 cover-navbar-large-top margin-none" data-ride="carousel">
@@ -26,24 +27,19 @@
 		  <div class="container v-top">
 		      <div class="text-center col-lg-12" style="display:inline-block;">
 		       <div class="col-lg-3">
-                            <form name="searchform" id="searchform" action="index.php/home/search" method="post">
+                            <form name="searchform" id="searchform" action="<?php echo base_url();?>index.php/home/search" method="post">
 		          <select class="selectpicker form-control "style="float: left;" id="cboStd">
                                       <option value="">--Select--</option>
                                      
                                     <?php  foreach ($standard as $key=>$value) { ?>
                                              <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                     <?php  } ?>
-<!--				    <optgroup label="Day School" >
-				      <option>Day School</option>
-				    </optgroup>
-				    <optgroup label="Nursery">
-				      <option>Nursery</option>
-				    </optgroup>-->
+
 				  </select>
 				</div>
 				
 				  <div class="col-lg-3">
-		            <!--<input type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" id="searchtxt" >-->
+		            
                               <input type="hidden" id="latitude" name ="latitude" value="" />
                                 <input type="hidden" id="longitude" name ="longitude" value="" />
                                 <input type="hidden" id="address" name ="address" value="" />
@@ -51,7 +47,7 @@
                            placeholder="Search by School, Area, Location" 
                            name="searchtxt" class="form-control"  >
 		          </div>
-		          <!--<input type="submit" value="Find Out " class="btn btn-primary btn-xl page-scroll"/>-->
+		         
                                      <input type="button" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch"/>
 		        </form>
 		          </div>

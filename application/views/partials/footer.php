@@ -83,7 +83,7 @@
 
  <script src="<?php echo asset_url();?>js/jquery.js"></script>
  <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
-  <script src="<?php echo asset_url();?>js/forms/all.js"></script>
+<!--  <script src="<?php echo asset_url();?>js/forms/all.js"></script>-->
   <script src="<?php echo asset_url();?>js/home.js"></script>
     <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
     <script src="<?php echo asset_url();?>js/cobox.min.js"></script>

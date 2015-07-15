@@ -11,6 +11,15 @@ $classification = $filtersList['classificationFilter'];
 
 ?>
 
+<style>
+      #map-canvas {
+        width: 90%;
+        height: 350px;
+        margin-top:1%;
+        margin-bottom:2%;
+        position :absolute;
+      }
+    </style>
 
 <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
         <?php //include 'header.php'; ?>
@@ -238,7 +247,7 @@ $classification = $filtersList['classificationFilter'];
 
                         <div class="row text-center">
                             <div class="col-xs-6">
-                                <input  type="button" class="btn btn-block btn-success" type = "button" name = "btnSch" id = "btnSch" value="Search Now!"/>
+                                <input  type="button" class="btn btn-block btn-success" type = "button" name = "btnSch" id = "btnSch" value="Search Now!" onclick="filterResults()"/>
                             </div>
                             <div class="col-xs-6">
                                 <a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> reset filters</a>
@@ -277,17 +286,37 @@ $classification = $filtersList['classificationFilter'];
                         <br>
 
                         <!-- Map  -->
-                        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true">
-                            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#1e5da4fb-8e34-7fbb-2b79-e722a89153e4" aria-expanded="true" style="">
+                        <div class="panel panel-default" data-toggle="panel-collapse" data-open="true" >
+                            <div class="panel-heading panel-collapse-trigger collapse in" data-toggle="collapse" data-target="#1e5da4fb-8e34-7fbb-2b79-e722a89153e4" 
+                                 aria-expanded="true" >
                                 <h4 class="panel-title">Map View</h4>
                             </div>
 
-                            <div id="1e5da4fb-8e34-7fbb-2b79-e722a89153e4" class="collapse"><div class="panel-body relative height-350">
+                            <div id="1e5da4fb-8e34-7fbb-2b79-e722a89153e4" class="collapse" >
+                                <div class="panel-body relative height-400" style="width: 100%; height: 100%; position: absolute;">
+                                    <div style="clear:both;">  <div id="map-canvas" style="border: ridge #34C6C3; border-width:0 6px 6px 6px;"></div></div>
+                                        <div class="infobox-wrapper" id="infobox-wrapper" style="width:300px;">
+					    <div id="infobox" style="width:300px;">
+					    	<div id="infobox-text" style="color: #000000;text-align:center;" style="width:300px;">
+                                                    <span id="ins-drag">
+                                                         <div id='schoolimg' style='float:left;width:"200px;'></div>
+                                                        <div id='schooltext' style='float:right;width="100px;'></div><br></span>
+					    		<span id="err-text" style="font-weight: bold;"></span>
+					    		<br>
+					    		<a id="marker_link" class='btn-orange'  href="">
+                                                                View School
+				        	    </a>
+				        	    <br/>
+					    	</div>
+					        
+					    </div>
+					</div>
                                 </div>
                             </div></div>
                         <!-- Map end -->
                         <div id="schresult">
                         <?php //for ($i = 0; $i < 10; $i++) {
+                        if(isset($schools))
                             foreach($schools as $key => $school){
                         
                         ?>
@@ -346,12 +375,16 @@ $classification = $filtersList['classificationFilter'];
                 </div>
             </div>
         </div>
+       
          <script type="text/javascript">
-
+         //(function() {
+            initialize();
+            
+         //});   
          var base_url = '<?php echo $base_url;?>'
   //  (function() {
-        $("#btnSch").click(function(){
-
+        //$("#btnSch").click(function(){
+        function filterResults() {
             console.log('hiys');
             var boardType = "";
             var schoolType = "";
@@ -433,10 +466,98 @@ $classification = $filtersList['classificationFilter'];
                 error: function(request, errorType, errorThrown){
                 }
             });
-     
-   });
+        }
+   //});
 
-$('#boardtypeselectbox').multiselect();
 
+
+  function initialize() {
+   
+    var ulat = "18.5184";
+    var ulng = "73.8406";
+    var bounds = new google.maps.LatLngBounds();
+    var mapCanvas = document.getElementById('map-canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(ulat, ulng),
+      zoom: 14,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+     console.log(map);  
+     var icon_user = {
+       	     url: "//tkstatic.in/frontend/assets/images/user-marker.png", // url
+       	     size: new google.maps.Size(20, 40),
+       	     origin: new google.maps.Point(0, 0),
+       	     anchor: new google.maps.Point(15, 30),
+       	     scaledSize: new google.maps.Size(20,40)
+       	     
+       	};
+
+        infobox = new google.maps.InfoWindow({
+	     content: document.getElementById("infobox"),
+	     disableAutoPan: false,
+	     maxWidth: 300,
+	     minHight: 50,
+	     zIndex: null,	
+	     boxStyle: {
+	        width: "300px",
+	        height: "100px",
+	        padding: 0,
+	    },
+	    infoBoxClearance: new google.maps.Size(1, 1),
+	    buttons:{close:{show:4}}
+	});
+
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+       
+         <?php if(isset($schools))
+                  foreach($schools as $key => $school){
+                    
+        ?>
+        
+        var txt<?php echo $school['schoolId']?> =  "<?php echo $school['name']?> , <?php echo $school['streetName']?>,<?php echo $school['localityName']?>,<?php echo $school['cityName']?>      "; 
+          
+        var marker<?php echo $school['schoolId']?> = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+            position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
+            icon:icon_user
+        });
+        marker = marker<?php echo $school['schoolId']?>;
+        bounds.extend(marker.position);
+        google.maps.event.addListener(marker<?php echo $school['schoolId']?>, 'click', function(marker, i) {
+            document.getElementById('schooltext').innerHTML =   txt<?php echo $school['schoolId']?>; 
+            <?php if($school['logo']==""){?>
+                document.getElementById('schoolimg').innerHTML =  "<img src='http://localhost/school-proj/assets/img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
+            <?php } else {?>
+            document.getElementById('schoolimg').innerHTML =  "<img src='<?php echo $school['logo']?>' style='width:50px;height:50px;'>";
+            <?php }?>
+            document.getElementById('marker_link').href = base_url + "index.php/home/schoolDetail/<?php echo $school['schoolId']?>";
+            infobox.open(map,marker<?php echo $school['schoolId']?>);
+        });
+        
+        google.maps.event.addListener(marker<?php echo $school['schoolId']?>, 'mouseover', function(marker, i) {
+            document.getElementById('schooltext').innerHTML =   txt<?php echo $school['schoolId']?>; 
+            <?php if($school['logo']==""){?>
+                document.getElementById('schoolimg').innerHTML =  "<img src='http://localhost/school-proj/assets/img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
+            <?php } else {?>
+            document.getElementById('schoolimg').innerHTML =  "<img src='<?php echo $school['logo']?>' style='width:50px;height:50px;'>";
+            <?php }?>
+            document.getElementById('marker_link').href = base_url + "index.php/home/schoolDetail/<?php echo $school['schoolId']?>";
+            infobox.open(map,marker<?php echo $school['schoolId']?>);
+        });
+
+       <?php }?>
+       //now fit the map to the newly inclusive bounds
+        map.fitBounds(bounds);
+        document.getElementById('map-canvas').style = "border: ridge #34C6C3; border-width:0 6px 6px 6px;"
+        //(optional) restore the zoom level after the map is done scaling
+        var listener = google.maps.event.addListener(map, "idle", function () {
+         map.setZoom(14);
+         google.maps.event.removeListener(listener);
+});
+  }
+ google.maps.event.addDomListener(window, 'load', initialize);
     
-    </script>
+</script>
