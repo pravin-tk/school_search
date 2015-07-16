@@ -87,12 +87,12 @@ class Global_config {
 		}
 	}
 	
-//	function initilize_config() {
+	function initilize_config() {
 //		$this->CI->template->set('base_url',base_url());
 //// 		global $city_config_cityname;
 //// 		global $city_config_cityid;
-//		$this->CI->load->library('session');
-//		$this->CI->load->helper('cookie');
+		$this->CI->load->library('session');
+		$this->CI->load->helper('cookie');
 //  		$this->CI->template->set('cityid',$_COOKIE['tkuserdefaultcityid']);
 //  		$this->CI->template->set('cityname',$_COOKIE['tkuserdefaultcity']);
 // 		$this->CI->template->set('d_cityname',$_COOKIE['tkuserdefaultcity']);
@@ -266,7 +266,7 @@ class Global_config {
 //		$this->CI->template->set('places_api',$this->tk_config['places_api']);
 //		//$this->CI->template->set('ga_tracking',1,true);//SDA 12 June 2014 for dev ga testing
 //			
-//	}
+	}
 //	
 //	function ssl_check() {
 //		$isSecure = false;
