@@ -32,12 +32,12 @@ $("#sch").click(function () {
         $("#schbox").addClass('has-error');
         $("#schbox").focus();
     } else if( $("#standardId").val() == "") {
-        $("#standardId").addClass('has-error');
-        $("#standardId").focus();
+        $("#cboStd").addClass('has-error');
+        $("#cboStd").focus();
     } else {
 
-        $("#schbox").removeClass('has-error');
-        $("#standardId").addClass('has-error');
+        $("#cboStd").removeClass('has-error');
+        $("#cboStd").addClass('has-error');
         $("#searchform").submit();
     }
 });
@@ -55,6 +55,11 @@ $('#detailmenubar').affix({
 })
 
 $("#frmSch").affix({
+    offset: {
+        top: 200,
+    }
+})
+$("#search_header").affix({
     offset: {
         top: 200,
     }
