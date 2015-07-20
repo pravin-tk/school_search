@@ -16010,5 +16010,16 @@ table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active span.fan
   background-color: #428bca;
 }
 /*Custom */
-#frmSch.affix{top:70px;width:22%;}
+
+@media (max-width: 999px) {
+	.affix {
+	     position: static;
+	     width: auto;
+	     top: 0;
+	}
+}
+#frmSch.affix{width:100%;overflow:auto;height:100%;}
+@media (min-width: 1000px) {
+	#frmSch.affix{top:50px;width:22%;}
+}
 .fa-heart{color:#f05f40; }
