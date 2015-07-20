@@ -50,12 +50,14 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <strong>eddbuddy </strong> v1.2.0 © Copyright 2015
-</footer> </div>
-<!-- // Footer --></div></div>
-
-  <!-- Inline Script for colors and config objects; used by various external scripts; -->
-  <script>
+	<strong>eddbuddy </strong> v1.2.0 © Copyright 2015
+</footer>
+</div>
+<!-- // Footer -->
+</div>
+</div>
+<!-- Inline Script for colors and config objects; used by various external scripts; -->
+<script>
     var colors = {
       "danger-color": "#e74c3c",
       "success-color": "#81b53e",
@@ -79,17 +81,20 @@
     };
 
     
-  </script>
+</script>
 
- <script src="<?php echo asset_url();?>js/jquery.js"></script>
- <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
+<script src="<?php echo asset_url();?>js/bootstrap.js"></script>
 <!--  <script src="<?php echo asset_url();?>js/forms/all.js"></script>-->
-  <script src="<?php echo asset_url();?>js/home.js"></script>
-    <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
-    <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
-  <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
-    <script src="<?php echo asset_url();?>js/jquery.scrollNav.js"></script>
-    <script>
-     $('.multiselect').multiselect();
-    </script>
-  
+<script src="<?php echo asset_url();?>js/home.js"></script>
+<script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
+<script src="<?php echo asset_url();?>js/cobox.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.scrollNav.js"></script>
+<script>
+	$('.multiselect').multiselect(
+		{
+             enableFiltering: true,
+             numberDisplayed: 2,
+        }
+	);
+</script>
