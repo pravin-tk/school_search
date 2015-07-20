@@ -50,6 +50,7 @@ class home extends CI_Controller {
        	$map['standardId'] = $this->input->post('standardId');
         $map['mediumId'] = $this->input->post('mediumList');
         $map['infraId'] = $this->input->post('infraList');
+        $address = $this->input->post('address');
         $sch_key = 'schoollist.json?'.http_build_query($map);
         $filter_key =  'schoolfilter.json';
         $apicalls = array($sch_key,$filter_key);
