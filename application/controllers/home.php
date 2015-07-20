@@ -8,34 +8,13 @@ class home extends CI_Controller {
 		parent::__construct();
 		// To use site_url and redirect on this controller.
 		$this->load->helper('url');
-               
+                $this->load->helper('cookie');
                 $ebd_config = parse_ini_file(APPPATH."config/EBD.ini");
                 $this->api_url = $ebd_config['api_url'];
               
 	}
 	
-//	public function index()
-//	{
-//            
-//            $api_key = 'standardlist.json';
-//            $apicalls = array($api_key);
-//            try {
-//                $apioutput = $this->apiclient->process($apicalls);	
-//                $data = $apioutput;
-//                error_log(json_encode($apioutput));
-//
-//                unset($apicalls);
-//                }catch(EBDApiException $e) {
-//                    unset($apicalls);
-//                    unset($apioutput);
-//                   
-//                }	
-//                 $data['data'] = $data;
-//               //  $this->template->set('standardList',$apioutput);
-//                // $this->template->build('index');
-//                 
-//               $this->load->view('index',$data);
-//	}
+
         
         public function index() {
             header("Cache-Control: private, max-age=60");
@@ -76,13 +55,11 @@ class home extends CI_Controller {
 	{
             $map['latitude'] = $this->input->post('latitude');
             $map['longitude'] = $this->input->post('longitude');
-            //$address = $this->post('address');
+            $address = $this->input->post('address');
             $map['standardId'] = $this->input->post('stdList');
             $map['mediumId'] = $this->input->post('mediumList');
             $map['infraId'] = $this->input->post('infraList');
-//            $map['latitude'] = "12.98642";
-//            $map['longitude'] = "23.97532";
-//            $map['standardId'] = 0;
+
             $sch_key = 'schoollist.json?'.http_build_query($map);
             $filter_key =  'schoolfilter.json';
             $apicalls = array($sch_key,$filter_key);
@@ -97,6 +74,10 @@ class home extends CI_Controller {
                     }
                       
                 }
+                $this->input->set_cookie("ebdsearchgeocode",$map['latitude'].",".$map['longitude'], 60*60*24);
+                $this->input->set_cookie("ebdsearchgeoloc",$address, 60*60*24);
+                $this->input->set_cookie("ebdstdid",$map['standardId'], 60*60*24);
+
                 $this->template->set('latitude',$map['latitude']);
                 $this->template->set('longitude',$map['longitude']);
                 $this->template->set('standardId',$map['standardId']);
@@ -116,8 +97,12 @@ class home extends CI_Controller {
                // ->set_partial('breadcrumb','../partials/breadcrumb';
                 $this->template->build('school/list');
                 unset($apicalls);
-		//$this->load->view('search/school_list.php',$data);
+		
 	}
+        
+        /**
+         * Function name schoolDetails
+         */
 	public function schoolDetails()
 	{
 		$this->template
@@ -128,7 +113,10 @@ class home extends CI_Controller {
 		// ->set_partial('breadcrumb','../partials/breadcrumb';
 		$this->template->build('school/school-details.php');
 	}
-
+        
+        /**
+         * Function login
+         */
 	public function login()
 	{
 		
@@ -136,11 +124,18 @@ class home extends CI_Controller {
 		
 		//$this->load->view('search/login.php');
 	}
-
+        
+        /**
+         * Function logout
+         */
 	public function logout(){
 	
 		redirect('home/login');
 	}
+        
+        /**
+         * Function schoolContact
+         */
         
         public function schoolContact() {
             $school_id = 4;//$this->input->post('id');
@@ -149,7 +144,7 @@ class home extends CI_Controller {
             try {
                 $apioutput = $this->apiclient->process($apicalls);	
                 //$data = $apioutput;
-                error_log(json_encode($apioutput));
+//                error_log(json_encode($apioutput));
                
                 foreach($apioutput as $key =>$value){
                     $data = $value;
@@ -167,34 +162,36 @@ class home extends CI_Controller {
         }
         
         public function schoolJSON() {
-//            $map['boardId'] = $this->input->post('boardId');
-//            $map['mediumId'] = $this->input->post('mediumId');
-//            $map['typeId'] = $this->input->post('typeId');
-//            $map['categoryId'] = $this->input->post('categoryId');
-//            $map['classificationId'] = $this->input->post('classificationId');
-//             
-//            $map['infraId'] = $this->input->post('infraId');
-//            $map['activityId'] = $this->input->post('activityId');
-//            $map['safetyId'] = $this->input->post('safetyId');
+            $map['boardId'] = $this->input->post('boardId');
+            $map['mediumId'] = $this->input->post('mediumId');
+            $map['typeId'] = $this->input->post('typeId');
+            $map['categoryId'] = $this->input->post('categoryId');
+            $map['classificationId'] = $this->input->post('classificationId');
+
+            $map['infraId'] = $this->input->post('infraId');
+            $map['activityId'] = $this->input->post('activityId');
+            $map['safetyId'] = $this->input->post('safetyId');
+            $map['standardId'] = 1;
             
-//            $map['latitude'] = $this->input->post('latitude');
-//            $map['longitude'] = $this->input->post('longitude');
-//            $map['standardId'] = $this->input->post('standardId');
-            $map['latitude'] = "12.98642";
-            $map['longitude'] = "23.97532";
-            $map['standardId'] = 0;
+
+//            $map['latitude'] = "18.5463286";
+//            $map['longitude'] = "73.90331390000006";
+//            $map['standardId'] = 0;
+            $latlng = explode(",",$this->input->cookie('ebdsearchgeocode'));
+            $map['latitude']  = $latlng[0];
+            $map['longitude']  = $latlng[1];
+            $map['standardId']  = $this->input->cookie('ebdstdid');
             $sch_key = 'schoollist.json?'.http_build_query($map);
-         
-            $apicalls = array($sch_key);
-            error_log('-------------');
             error_log($sch_key);
+            $apicalls = array($sch_key);
+            
             try {
                 $apioutput = $this->apiclient->process($apicalls);
                 foreach($apioutput as $key => $value ){
                     if (strpos($key,'schoollist.json') !== false) 
                          $this->template->set('schools',$value);
                 }
-              
+               
                 $data['status'] = 1;
             }catch(EBDApiException $e) {
                     $data['status'] = 0;

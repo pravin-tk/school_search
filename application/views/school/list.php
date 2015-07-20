@@ -455,15 +455,19 @@ $classification = $filtersList['classificationFilter'];
             $.ajax({
         type: "post",
         url: base_url+"/index.php/home/schoolJSON",
-        dataType: "json",
-                data: data,
+        dataType: "html",
+        data: data,
         success: function(data){
-                  console.log('success') 
-                   $("#schresult").html(data);
+                  console.log(data) 
+                $("#schresult").html(data.html);
                   // $("#schresult").html('hii');
-                    console.log($("#schresult").html()) 
+                    //console.log($("#schresult").html()) 
                 },
-                error: function(request, errorType, errorThrown){
+        error: function(request, errorType, errorThrown){
+            console.log('error caughts= '+errorType);
+            console.log('error caughts= '+request);
+            console.log('error caughts= '+errorThrown);
+            console.log(data);
                 }
             });
         }

@@ -1,9 +1,6 @@
- <?php //for ($i = 0; $i < 10; $i++) {
-                            foreach($schools as $key => $school){
-                        
-                        ?>
-
-                            <div class="panel panel-default">
+ <?php if($schools) 
+ foreach($schools as $key => $school){ ?>
+<div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="media media-clearfix-xs media-clearfix-sm">
                                         <div class="media-left">
@@ -39,5 +36,4 @@
                                     </div>
                                 </div>
                             </div>
-
                                 <?php } ?>
