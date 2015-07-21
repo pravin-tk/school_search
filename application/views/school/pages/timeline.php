@@ -20,23 +20,26 @@ $timelineInfo = $otherInfo['schoolTimelineData'];
                     else $class_inverted = "";
                     
         ?>
+       <?php $milestoneCount = 0; foreach($milestoneInfo as $key1 => $milestone){ 
+       $milestoneCount ++;
+       	?>
+        
       <li class="<?php echo $class_inverted; ?>">
+          <?php if($milestoneCount ==1 ){ ?>
           <div class="timeline-badge"><?php echo $timeline['year'] ?></div>
+          <?php }?>
           <div class="timeline-panel">
-            <?php foreach($milestoneInfo as $key1 => $milestone){ ?>
             <div class="timeline-heading">
               <h4 class="timeline-title"><?php echo $milestone['title'] ?></h4>
-              <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></p>
             </div>
             <div class="timeline-body">
 				<p><?php echo $milestone['milestoneDesc'] ?> </p>
             </div>
-            <?php } ?>
-              <img src="<?php echo $timeline['image'] ?>" width="100%" height="70%">
+              <img src="<?php echo $timeline['image'] ?>" width="50%" height="50%">
           </div>
         </li>
-        
-        
+                           <?php } ?>
+               
         <?php 
           }?>
         <!--<li>

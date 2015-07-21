@@ -199,16 +199,24 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id) {
+public function schoolDetail($id) {
 		$map ['standardId'] = $id;
 		$school_basic_key = 'school/basic.json/' . $id;
 		$school_other_key = 'school.json/' . $id . '?' . http_build_query ( $map );
 		$school_contact_key = 'school/contact.json/' . $id;
-		$apicalls = array (
-				$school_basic_key,
-				$school_other_key,
-				$school_contact_key 
-		);
+		$school_gallery_key = 'school/gallery.json/'.$id;
+		$school_rating_key = 'school/rating.json/'.$id;
+		$school_review_key = 'school/review.json/'.$id;
+		$school_fee_key = 'school/fee.json/'.$id;
+		
+		$apicalls = array($school_basic_key,
+						  $school_other_key,
+						  $school_contact_key,
+				          $school_gallery_key,
+				          $school_rating_key,
+				          $school_review_key,
+						  $school_fee_key);
+		
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
@@ -218,7 +226,17 @@ class home extends CI_Controller {
 					$this->template->set ( 'otherInfo', $value );
 				} elseif (strpos ( $key, $school_contact_key ) !== false) {
 					$this->template->set ( 'contactInfo', $value );
-				}
+				} elseif(strpos($key,$school_contact_key)!== false) {
+                        $this->template->set('contactInfo',$value);
+                } elseif(strpos($key,$school_gallery_key)!==false){
+                    	$this->template->set('galleryinfo',$value);
+                } elseif(strpos($key,$school_rating_key)!==false){
+                    	$this->template->set('ratingInfo',$value);
+                } elseif(strpos($key,$school_review_key)!==false){
+                    	$this->template->set('reviewInfo',$value);
+                } elseif(strpos($key,$school_fee_key)!==false){
+                    	$this->template->set('feeInfo',$value);
+                }
 			}
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
@@ -229,8 +247,33 @@ class home extends CI_Controller {
 		}
 		$data ['data'] = $data;
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer' );
-		$this->template->build ( 'school/school-detail' );
+		//$this->template->build ( 'school/school-detail' );
+		$this->template->build ( 'school/onepage' );
 	}
 
+	public function rateSchool() {
+		$api_key = 'school/rate.json/';
+	
+		$data= $_POST;
+		$apicalls = array(array('url'=>'school/rate.json', 'params'=>http_build_query($data)));
+	
+		try {
+			$apioutput = $this->apiclient->process($apicalls,'POST');
+	
+			foreach($apioutput as $key => $value ){
+				if (strpos($key,'school/rate.json') !== false) {
+					$data['data'] = $value;
+				}
+					
+			}
+		}catch(EBDApiException $e) {
+			echo $e->getMessage();
+			unset($apicalls);
+			unset($apioutput);
+	
+		}
+		echo  json_encode($data);
+	
+	}
         
 }

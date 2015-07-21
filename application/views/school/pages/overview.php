@@ -2,19 +2,17 @@
 
 //echo "<pre>";
 //print_r($contactInfo);?>      
-
-<div class="col-md-8">
-
-          <h4>Description</h4>
-          <div >
-            <div >
-              <div >
-               <?php echo $basicInfo['aboutSchool'];?>
-              <div class="expandable-indicator"><i></i></div></div>
-            </div>
-          </div>
-
-
+<div class="col-md-12">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="text-center"><strong>Description </strong></h3>
+    </div>
+   <div class="panel-body">
+	 <div class="container">
+        <div class="col-md-8">
+     
+          <?php echo $basicInfo['aboutSchool'];?>
+         
         </div>
         <div class="col-md-4">
           <h4>Contact Information</h4>
@@ -30,8 +28,16 @@
                         <p><?php if(isset($value['email'])){ echo $value['email'] ;}?></p>
                         <p><?php if(isset($value['mobileNo'])){ echo $value['mobileNo'];} ?></p>
                     <?php }?>
-                <div class="expandable-indicator"><i></i></div></div>
               </div>
             </div>
           </div>
         </div>
+    </div>
+   </div>
+  </div>
+   
+</div>
+
+
+
+        

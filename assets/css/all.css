@@ -16018,8 +16018,69 @@ table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active span.fan
 	     top: 0;
 	}
 }
+#detailmenubar.affix {
+	top: 0px;
+	z-index: 1000;
+	width: 100%;
+}
 #frmSch.affix{width:100%;overflow:auto;height:100%;}
 @media (min-width: 1000px) {
 	#frmSch.affix{top:50px;width:22%;}
 }
 .fa-heart{color:#f05f40; }
+.flipster-nav  li{ 
+	list-style: none;
+	display: inline-block;
+	}
+.flipster-nav li a{
+	display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333333;
+  white-space: nowrap;
+}
+.flipster-nav > li > a{
+border:1px solid #e2e9e6;
+}
+.flipster-nav > li > a:hover,
+.flipster-nav > li > a:focus {
+  text-decoration: none;
+  color: #262626;
+  background-color: #f5f5f5;
+}
+.flipster-nav > .active > a,
+.flipster-nav > .active > a:hover,
+.flipster-nav > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #26a69a;
+}
+.flipster-nav >.flip-nav-current a{
+	background-color: #afafaf;
+}
+.flipto-next:after{
+	position:absolute;
+	right:50px;
+	top:50%;
+	font-family: FontAwesome;
+	font-size:2em;
+   content: "\f138";
+}
+.flipto-prev:after{
+	position:absolute;
+	left:50px;
+	top:50%;
+	font-family: FontAwesome;
+	font-size:2em;
+   content: "\f137";
+}
+.flipto-next a,
+.flipto-prev a
+{
+	color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #26a69a;}

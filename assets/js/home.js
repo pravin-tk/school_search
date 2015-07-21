@@ -49,7 +49,7 @@ $(document).ready(function () {
 
 $('#detailmenubar').affix({
     offset: {
-        top: 120,
+        top: $('#schoolheader').height(),
     }
 
 })
@@ -64,19 +64,7 @@ $("#search_header").affix({
         top: 200,
     }
 })
-//$('.demo').slick({
-//    infinite: true,
-//    slidesToShow: 6,
-//    slidesToScroll: 6,
-//    prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
-//    nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
-//    autoplay: true,
-//    autoplaySpeed: 3000,
-//    centerMode: false,
-//    centerPadding: '50px'
-//
-//
-//});
+
 $(".fa-heart-o").click(function (ev) {
     $(this).removeClass("fa-heart-o").addClass("fa-heart");
     ev.preventDefault();
@@ -88,12 +76,15 @@ $(".fa-heart").click(function (ev) {
 
 })
 
-$('a.page-scroll').bind('click', function (event) {
-    var $anchor = $(this);
-    $('html, body').stop().animate({
-        scrollTop: ($($anchor.attr('href')).offset().top - 150)
-    }, 1250, 'easeInOutExpo');
-    event.preventDefault();
+
+$(function() {
+    $('a.page-scroll').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top - 50
+        }, 500, 'easeInOutExpo');
+        event.preventDefault();
+    });
 });
 
 // Highlight the top nav as scrolling occurs
@@ -101,3 +92,59 @@ $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
 })
+//nearby slick
+$('.demo').slick({
+        	infinite: true,
+        	  slidesToShow: 6,
+        	  slidesToScroll: 6,
+        	  prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
+        	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
+        	  autoplay: true,
+        	  autoplaySpeed: 3000,
+        	  centerMode: false,
+        	  centerPadding: '50px'
+        	  
+        	  	  
+ });
+
+
+//fee flipster
+
+$('.flipster').flipster({
+	enableMousewheel:false,
+	enableNav:true,
+	enableNavButtons:true,
+	style:'carousel', // Switch between 'coverflow' or 'carousel' display styles
+	});
+
+
+//Rating 
+$('#rateusfrm').submit(function () {
+	 return false;
+	});
+$("#rateUs").click(function(){
+	  var rating_data = [];
+	  var ajax_data=[];
+	  ajax_data.push(schooldata);
+	  
+  	var rating = $("#rateusfrm").serializeArray();
+  	
+	jQuery.each(rating, function(index, itemData) {
+            rate = {catid : itemData.name,rating:itemData.value};
+            rating_data.push(rate);
+			});
+	  var schooldata ={schoolId : $("#schoolId").val(),userId:$("#schoolId").val(),ratings:rating_data};
+    
+    $.ajax({
+        type: "post",
+        url: base_url+"/index.php/home/rateSchool",
+        dataType: "json",
+        data: schooldata,
+        success: function(data){
+                  console.log('success') 
+                  alert('success');                       
+                  },
+                error: function(request, errorType, errorThrown){
+                }
+      });
+}); 

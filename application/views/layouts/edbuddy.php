@@ -13,6 +13,10 @@
 <link href="<?php echo asset_url();?>css/app.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/cobox.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/rating.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
+
+
 <!-- Custom Fonts -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
@@ -58,39 +62,15 @@
 	max-width: none
 }
 
-#detailmenubar.affix {
-	top: 50px;
-	z-index: 1000;
-	width: 100%;
-}
+
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
-    /* var global_url = '';
-     var global_cityid = '';
-     var global_city = '';
-     var global_assets = '';
-     var global_cdn = '';
-     var js_cdn = '';
-     var live_chat = '';
-     var page = '';
-     var autoload = true;
-     var orderid = '';
-     var local_js = '';
-     var opt_page_url = '';
-     var captcha = "";
-     var cookie_domain = "";
-     var dslider = false;
-     var rslider = false;
-     var is_mobile = '';*/
+    
 </script>
 </head>
-<body class="breakpoint-1024">
-	<!-- uiView:  -->
-	<div class="ui-view-main ">
-		<!-- uiView:  -->
-		<div class="ui-view-main">
-			<!-- Fixed navbar -->
+<body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+	
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
                 <!-- // END .bg-white -->

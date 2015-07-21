@@ -49,13 +49,10 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer"style="position:relative">
 	<strong>eddbuddy </strong> v1.2.0 © Copyright 2015
 </footer>
-</div>
-<!-- // Footer -->
-</div>
-</div>
+
 <!-- Inline Script for colors and config objects; used by various external scripts; -->
 <script>
     var colors = {
@@ -83,13 +80,16 @@
     
 </script>
 
+<script src="<?php echo asset_url();?>js/jquery.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
-<!--  <script src="<?php echo asset_url();?>js/forms/all.js"></script>-->
-<script src="<?php echo asset_url();?>js/home.js"></script>
+<script src="<?php echo asset_url();?>js/slick.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
+<script src="<?php echo asset_url();?>js/rating.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
 <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.scrollNav.js"></script>
+
+<script src="<?php echo asset_url();?>js/home.js"></script>
 <script>
 	$('.multiselect').multiselect(
 		{

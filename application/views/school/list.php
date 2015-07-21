@@ -70,16 +70,7 @@ $classification = $filtersList['classificationFilter'];
 	<div ui-view="" class="ui-view-main ng-scope">
 		<!-- Fixed navbar -->
 		<div id="content">
-			<section class="cover overlay height-200 height-270-xs">
-				<img
-					src="<?php echo asset_url(); ?>img/school/photodune-186709-residential-street-m.jpg"
-					alt="cover">
-				<div class="overlay overlay-full overlay-bg-black bg-transparent">
-					<div class="container">
-						<br/>
-						<h1 class="text-h1 text-overlay">School</h1>
-					</div>
-				</div>
+			<section class="cover overlay height-100 height-170-xs">
 				<div class="overlay overlay-bg-black">
 					<div class="v-bottom">
 						<div class="container">
