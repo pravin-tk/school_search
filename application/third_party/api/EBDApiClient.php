@@ -138,7 +138,7 @@ class EBDApiClient {
      * @return bool
      */
     public function request($url, $method = "GET", $post_data = null, $headers = null, $options = null) {
-        $this->requests[] = new SchoolApiRequest($url, $method, $post_data, $headers, $options);
+        $this->requests[] = new EBDApiRequest($url, $method, $post_data, $headers, $options);
         return true;
     }
 
@@ -150,7 +150,7 @@ class EBDApiClient {
      * @param  $options
      * @return bool
      */
-    public function get($url, $headers = null, $options = null) {
+    public function get($url, $headers = "application/x-www-form-urlencoded", $options = null) {
         return $this->request($url, "GET", null, $headers, $options);
     }
 
@@ -163,7 +163,7 @@ class EBDApiClient {
      * @param  $options
      * @return bool
      */
-    public function post($url, $post_data = null, $headers = null, $options = null) {
+    public function post($url, $post_data = null, $headers = "application/x-www-form-urlencoded", $options = null) {
         return $this->request($url, "POST", $post_data, $headers, $options);
     }
 
@@ -190,17 +190,36 @@ class EBDApiClient {
     private function single_curl() {
         $ch = curl_init();		
         $request = array_shift($this->requests);
+//        if($request->headers == ""){
+//            $request->headers = "application/x-www-form-urlencoded"; 
+//        }
      	if($request->method == 'GET') {
-           	$options = array(CURLOPT_RETURNTRANSFER =>true,CURLOPT_FOLLOWLOCATION => true,CURLOPT_MAXREDIRS => 5,CURLOPT_HTTPHEADER => array('EBD-API-KEY: '.$this->api_key));
+           	$options = array(
+                                 CURLOPT_RETURNTRANSFER =>true,
+                                 CURLOPT_FOLLOWLOCATION => true,
+                                 CURLOPT_MAXREDIRS => 5,
+                                 CURLOPT_HTTPHEADER => array(
+                                                            'EBD-API-KEY:'.$this->api_key)
+                                );
         }else {
-           	$options = array(CURLOPT_POST=>1,CURLOPT_POSTFIELDS=>$request->post_data,CURLOPT_RETURNTRANSFER =>true,CURLOPT_FOLLOWLOCATION => true,CURLOPT_MAXREDIRS => 5,CURLOPT_HTTPHEADER =>array('EBD-API-KEY: '.$this->api_key,'Content-Type: application/x-www-form-urlencoded'));
+           	$options = array(
+                                CURLOPT_POST=>1,
+                                CURLOPT_RETURNTRANSFER =>true,
+                                CURLOPT_FOLLOWLOCATION => true,
+                                CURLOPT_MAXREDIRS => 5,
+                                CURLOPT_POSTFIELDS=>$request->post_data,
+                                CURLOPT_HTTPHEADER =>array('EBD-API-KEY:'.$this->api_key,
+                                                           'Content-Type:'.$request->headers
+                                                          )
+                                );
         }
-        error_log($request->url);
+        
         $options[CURLOPT_URL] = $request->url;
+        
         curl_setopt_array($ch,$options);
         $output = curl_exec($ch);
         $info = curl_getinfo($ch);
-        error_log("---single curl op");
+        $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
         error_log(json_encode($output));
         // it's not neccesary to set a callback for one-off requests
         if ($this->callback) {
@@ -230,7 +249,9 @@ class EBDApiClient {
         // make sure the rolling window isn't greater than the # of urls
         if (sizeof($this->requests) < $this->window_size)
             $this->window_size = sizeof($this->requests);
-
+        
+//        if($request->headers == "")
+//            $request->headers = "application/x-www-form-urlencoded"; 
         $master = curl_multi_init();
 
         // start the first batch of requests
@@ -238,9 +259,19 @@ class EBDApiClient {
             $ch = curl_init();
 
             if($this->requests[$i]->method == 'GET') {
-            	$options = array(CURLOPT_RETURNTRANSFER =>true,CURLOPT_FOLLOWLOCATION => true,CURLOPT_MAXREDIRS => 5,CURLOPT_HTTPHEADER => array('EBD-API-KEY: '.$this->api_key));
+            	$options = array(CURLOPT_RETURNTRANSFER =>true,
+                                 CURLOPT_FOLLOWLOCATION => true,
+                                 CURLOPT_MAXREDIRS => 5,
+                                 CURLOPT_HTTPHEADER => array('EBD-API-KEY: '.$this->api_key));
             }else {
-            	$options = array(CURLOPT_POST=>1,CURLOPT_POSTFIELDS=>$this->requests[$i]->post_data,CURLOPT_RETURNTRANSFER =>true,CURLOPT_FOLLOWLOCATION => true,CURLOPT_MAXREDIRS => 5,CURLOPT_HTTPHEADER =>array('EBD-API-KEY: '.$this->api_key,'Content-Type: application/json'));
+            	$options = array(CURLOPT_POST=>1,
+                                CURLOPT_POSTFIELDS=>$this->requests[$i]->post_data,
+                                CURLOPT_RETURNTRANSFER =>true,
+                                CURLOPT_FOLLOWLOCATION => true,
+                                CURLOPT_MAXREDIRS => 5,
+                                CURLOPT_HTTPHEADER =>array(
+                                    'EBD-API-KEY: '.$this->api_key,
+                                    'Content-Type: '.$request->headers));
             }
             $options[CURLOPT_URL] = $this->requests[$i]->url;
             curl_setopt_array($ch, $options);
@@ -299,8 +330,7 @@ class EBDApiClient {
 
         } while ($running);
         curl_multi_close($master);
-        error_log("---multi curl op");
-        error_log(json_encode($this->output));
+        
         return $this->output;
     }
 
