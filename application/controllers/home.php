@@ -248,7 +248,7 @@ public function schoolDetail($id) {
 		$data ['data'] = $data;
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer' );
 		//$this->template->build ( 'school/school-detail' );
-		$this->template->build ( 'school/onepage' );
+		$this->template->build ( 'school/school-details' );
 	}
 
 	public function rateSchool() {
