@@ -142,7 +142,7 @@
 }
 
 .rating-xs {
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 
 /**
@@ -185,3 +185,4 @@
 .star-rating-rtl .caption {
     padding-right: 5px;
 }
+.rating{direction: ltr;}

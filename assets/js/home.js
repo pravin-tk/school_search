@@ -47,6 +47,12 @@ $(document).ready(function () {
     $("#cboStd").css("display", "block");
 });
 
+$('.detailmenubar').affix({
+    offset: {
+        top: 100,
+    }
+
+})
 $('#detailmenubar').affix({
     offset: {
         top: $('#schoolheader').height(),
@@ -65,6 +71,22 @@ $("#search_header").affix({
     }
 })
 
+$().timelinr({
+		autoPlayDirection: 'forward',
+		startAt: 4 ,
+		prevButton: '#prev',
+		 nextButton: '#next',
+      arrowKeys: 'false',
+      // value: true/false, default to false
+      startAt: 1,
+      // value: integer, default to 1 (first)
+      autoPlay: 'false',
+      // value: true | false, default to false
+      autoPlayDirection: 'forward',
+      // value: forward | backward, default to forward
+      autoPlayPause: 2000
+})
+
 $(".fa-heart-o").click(function (ev) {
     $(this).removeClass("fa-heart-o").addClass("fa-heart");
     ev.preventDefault();
@@ -81,7 +103,7 @@ $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - 50
+            scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
         }, 500, 'easeInOutExpo');
         event.preventDefault();
     });
@@ -116,6 +138,8 @@ $('.flipster').flipster({
 	enableNavButtons:true,
 	style:'carousel', // Switch between 'coverflow' or 'carousel' display styles
 	});
+
+$('#homeslider').height($( window ).height()-200);
 
 
 //Rating 

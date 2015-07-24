@@ -11072,7 +11072,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
 }
 .cover.overlay .overlay {
   position: absolute;
-  bottom: 0;
+  top: 50%;
   left: 0;
   right: 0;
   z-index: 3;

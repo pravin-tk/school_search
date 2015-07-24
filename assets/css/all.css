@@ -6237,10 +6237,11 @@ button.close {
 }
 .carousel-control {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   bottom: 0;
-  width: 15%;
+  width: 2%;
+  height:10px;
   opacity: 0.5;
   filter: alpha(opacity=50);
   font-size: 20px;
@@ -6275,7 +6276,7 @@ button.close {
 .carousel-control .glyphicon-chevron-left,
 .carousel-control .glyphicon-chevron-right {
   position: absolute;
-  top: 50%;
+  top: 90%;
   z-index: 5;
   display: inline-block;
 }
@@ -16020,7 +16021,12 @@ table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active span.fan
 }
 #detailmenubar.affix {
 	top: 0px;
-	z-index: 1000;
+	z-index: 100;
+	width: 100%;
+}
+.detailmenubar.affix {
+	top: 0px;
+	z-index: 10000;
 	width: 100%;
 }
 #frmSch.affix{width:100%;overflow:auto;height:100%;}
@@ -16084,3 +16090,132 @@ border:1px solid #e2e9e6;
   text-decoration: none;
   outline: 0;
   background-color: #26a69a;}
+  
+.property-meta-item a 
+{
+	font-size: 1.3em;
+}  
+
+.main-text
+{
+    position: absolute;
+    top: 10%;
+    width: 50%;
+    color: #FFF;
+}
+.btn-min-block
+{
+    min-width: 100px;
+    line-height: 26px;
+}
+.btn-clear
+{
+    color: #FFF;
+    background-color: transparent;
+    border-color: #FFF;
+    margin-right: 15px;
+}
+.btn-clear:hover
+{
+    color: #000;
+    background-color: #FFF;
+}
+.overlaysearch{
+	
+}
+#homeslider{
+max-height: 80%;
+height: 500px;
+overflow: hidden;
+}
+.main-text{
+	width:100%;
+	text-align:center;
+}
+.form-div{
+	width: 50%;
+    margin: 0 auto;
+    text-align:center;
+}
+@media screen and (max-width: 1200px) {
+    .main-text{
+		width:100%;
+		top:5%;
+		text-align:center;
+	}
+	.col-lg-3{
+		padding-bottom:2px;
+		margin-bottom:3px;
+	}
+	.col-lg-3 input{
+		width:100%;
+	}
+}
+
+@media (min-width: 1001px) and (max-width: 1199px) {
+	.form-div{
+		width: 50%;
+	    margin: 0 auto;
+	    text-align:center;
+	}
+    .main-text{
+		width:100%;
+		top:5%;
+		text-align:center;
+	}
+	.col-lg-3{
+		padding-bottom:2px;
+		margin-bottom:3px;
+		float:left;
+	}
+	.col-lg-3 input{
+		width:100%;
+	}
+	.searchheading{
+	font-size: 1.8em;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.form-div{
+		width: 40%;
+	    margin: 0 auto;
+	    text-align:center;
+	}
+    .main-text{
+		width:100%;
+		top:7%;
+		text-align:center;
+	}
+	.col-lg-3{
+		padding-bottom:2px;
+		margin-bottom:3px;
+	}
+	.col-lg-3 input{
+		width:100%;
+	}
+	.searchheading{
+	font-size: 1.6em;
+	}
+}
+@media screen and (max-width: 460px) {
+	.form-div{
+		width: 40%;
+	    margin: 0 auto;
+	    text-align:center;
+	}
+    .main-text{
+		width:100%;
+		top:3%;
+		text-align:center;
+	}
+	.col-lg-3{
+		padding-bottom:2px;
+		margin-bottom:3px;
+	}
+	.col-lg-3 input{
+		width:100%;
+	}
+	.searchheading{
+	font-size: 1.4em;
+	}

@@ -49,7 +49,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="footer"style="position:relative">
+<footer class="footer" style="position: relative;">
 	<strong>eddbuddy </strong> v1.2.0 © Copyright 2015
 </footer>
 
@@ -88,6 +88,7 @@
 <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
 <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.timelinr-0.9.54.js"></script>
 
 <script src="<?php echo asset_url();?>js/home.js"></script>
 <script>

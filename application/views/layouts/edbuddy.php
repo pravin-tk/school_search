@@ -11,7 +11,7 @@
 <title>School Search</title>
 <link href="<?php echo asset_url();?>css/all.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/app.css" rel="stylesheet">
-<link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/style.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/cobox.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/rating.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
