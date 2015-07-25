@@ -42,22 +42,37 @@
     </div>
 
   </div>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-  <div class="property-meta" id="detailmenubar">
-    <ul>
-      <a href="#overview" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building-o"></i> Overview</li></a>
-      <a href="#timeline" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building wow"></i> Timeline</li></a>
-      <a href="#facility" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-building-o"></i> Facility</li></a>
-      <a href="#gallery" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-camera"></i> Gallery</li></a>
-      <a href="#review" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-star"></i> Review</li></a>
-       <a href="#fees" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-inr"></i> Fees</li></a>
-      <a href="#contact" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw icon icon-toilet"></i> Contacts</li></a>
-      <a href="#share" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-star"></i> Share</li></a>
-       <a href="#nearby" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-inr"></i> Nearby</li></a>
-      <a href="#facility" class="page-scroll"><li class="property-meta-item"><i class="fa fa-fw fa-heart text-pink-500"></i> 35 loved this</li></a>
-    </ul>
-  </div>
-
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="main-nav1">
+	  <div class="property-meta" >
+	    <ul >
+	      <li class="property-meta-item "><a href="#overview" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
+	      <li class="property-meta-item"><a href="#timeline" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> Timeline</a></li>
+	      <li class="property-meta-item"><a href="#facility" class="page-scroll"><i class="fa fa-fw fa-building-o"></i> Facility</a></li>
+	      <li class="property-meta-item"><a href="#gallery" class="page-scroll"><i class="fa fa-fw fa-camera"></i> Gallery</a></li>
+	      <li class="property-meta-item "><a href="#review" ><i class="fa fa-fw fa-star"></i> Review </li></a>
+	      <li class="property-meta-item"> <a href="#fees" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Fees</a></li>
+	      <li class="property-meta-item"><a href="#contact" class="page-scroll"><i class="fa fa-fw icon icon-toilet"></i> Contacts</a></li>
+	      <li class="property-meta-item"><a href="#share" class="page-scroll"><i class="fa fa-fw fa-star"></i> Share</a></li>
+	       <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li>
+	      <li class="property-meta-item"><a href="#facility" class="page-scroll"><i class="fa fa-fw fa-heart text-pink-500"></i> 35 loved this</a></li>
+	    </ul>
+	  </div>
+	  </div>
+	</div>  
+</nav>
 	<section id="overview">
 		<?php include 'pages/overview.php';?>
 	</section>  
@@ -88,61 +103,9 @@
 	<section id="share">
     	<?php include 'pages/share.php';?>
 	</section>
-  <div class="page-section">
-
-    <div class="container">
-      <h4><i class="fa fa-fw fa-map-marker"></i> Location on map</h4>
-    </div>
-
-    <div class="panel height-600 relative">
-
-    </div>
     
 <!-- Near By -->
-  <div class="bg-white">
-    <div class="container">
-      <h3 class="page-section-heading">Related schools</h3>
-
-      <div class="demo">
-
-        
-       <?php for ($i=0;$i< 10 ;$i++) {?>
-        <div class="item" style="width: 222px; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-            <div class="panel panel-default relative">
-              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">State</div>
-              <div class="cover hover overlay margin-none" style="height: 147px;">
-                <img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="img-responsive">
-                <a  class="overlay overlay-full overlay-bg-black overlay-hover" href="schooldetailsTest" style="height: 147px;">
-                  <span class="v-center">
-                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
-                  </span>
-                </a>
-              </div>
-              <div class="panel-body">
-                <h4 class="margin-v-0-5">R.R Shinde Junior College</h4>
-                <p class="small">
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                  <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-                </p>
-                <p>R.R.Shinde junior college.</p>
-                <span class="label label-grey-100">Medium : English</span>
-                <i class="small fa fa-fw icon-user-1" data-toggle="tooltip" ></i>
-                <a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a>
-              </div>
-            </div>
-          </div>
-        <?php } ?>
-              </div>
-      <!-- // END .owl-basic -->
-
-      <br>
-    </div>
-  </div>
-<!-- Near By -->
   
-</div>
+
 
 <div id="ascrail2002" class="nicescroll-rails" style="width: 5px; z-index: auto; cursor: default; position: absolute; top: 0px; left: 1274px; height: 85px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2006" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 660px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2010" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 168px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2013" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2016" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 1274px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2020" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 180px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><div id="ascrail2024" class="nicescroll-rails" style="width: 5px; z-index: 99; cursor: default; position: absolute; top: 50px; left: 954px; height: 562px; display: none; opacity: 0;"><div style="position: relative; top: 0px; float: right; width: 5px; height: 0px; border: 0px; border-radius: 5px; background-color: rgb(22, 174, 159); background-clip: padding-box;"></div></div><span role="status" aria-live="polite" class="select2-hidden-accessible"></span></body></html>
