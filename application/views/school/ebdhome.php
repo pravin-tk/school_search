@@ -53,7 +53,7 @@
 								placeholder="Search by School, Area, Location" name="searchtxt"
 								class="form-control">
 						</div>
-					<input type="submit" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
+					<input type="button" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
 					</div>
 				</form>
 			</div>
@@ -245,46 +245,46 @@
         $( document ).ready(function() {
             
           //  $('[data-toggle="tooltip"]').tooltip()
-            $('#searchform').bootstrapValidator({
-            message: 'This value is not valid',
-            feedbackIcons: {
-                    valid: 'glyphicon glyphicon-ok',
-                    invalid: 'glyphicon glyphicon-remove',
-                    validating: 'glyphicon glyphicon-refresh'
-            },
-            submitHandler: function(validator, form, submitButton) {
-                   $('button[type="submit"]').prop('disabled', 'false')
-                    searchSch();
-             },
-            fields: {
-                    standardId: {
-                    message: 'Select  standard ',
-                        validators: {
-                                notEmpty: {
-                                        message: 'Standard cannot be empty.'
-                                },
-                                
-                        }   
-                    },
-                    schbox: {
-                    message: 'Select  location from dropdown ',
-                        validators: {
-                                notEmpty: {
-                                        message: 'Location cannot be empty.'
-                                },
-                                
-                        }   
-                    },
-                    
-            }//fields
-                     
-        }).on('error.field.bv', function(e, data) {
-            data.bv.disableSubmitButtons(true); // disable submit buttons on errors
-      
-        }).on('status.field.bv', function(e, data) {
-            data.bv.disableSubmitButtons(false); // enable submit buttons on valid
-        
-        });
+//            $('#searchform').bootstrapValidator({
+//            message: 'This value is not valid',
+//            feedbackIcons: {
+//                    valid: 'glyphicon glyphicon-ok',
+//                    invalid: 'glyphicon glyphicon-remove',
+//                    validating: 'glyphicon glyphicon-refresh'
+//            },
+//            submitHandler: function(validator, form, submitButton) {
+//                   $('button[type="submit"]').prop('disabled', 'false')
+//                    searchSch();
+//             },
+//            fields: {
+//                    standardId: {
+//                    message: 'Select  standard ',
+//                        validators: {
+//                                notEmpty: {
+//                                        message: 'Standard cannot be empty.'
+//                                },
+//                                
+//                        }   
+//                    },
+//                    schbox: {
+//                    message: 'Select  location from dropdown ',
+//                        validators: {
+//                                notEmpty: {
+//                                        message: 'Location cannot be empty.'
+//                                },
+//                                
+//                        }   
+//                    },
+//                    
+//            }//fields
+//                     
+//        }).on('error.field.bv', function(e, data) {
+//            data.bv.disableSubmitButtons(true); // disable submit buttons on errors
+//      
+//        }).on('status.field.bv', function(e, data) {
+//            data.bv.disableSubmitButtons(false); // enable submit buttons on valid
+//        
+//        });
 //         $('button[type="submit"]').prop('disabled', 'true');
 //     
 

@@ -27,24 +27,24 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
 });
 
-//$("#sch").click(function () {
-function searchSch() {
-    if ($("#latitude").val() == "" || $("#longitude").val() == "") {
+$("#sch").click(function () {
+//function searchSch() {
+    
+    if( $("#standardId").val() == "") {
+        $("#addClass").addClass('has-error');
+        $("#addClass").focus();
+    }else if ($("#latitude").val() == "" || $("#longitude").val() == "") {
         $("#schbox").addClass('has-error');
          $("#schbox").removeClass('has-success');
         $("#schbox").focus();
-    } else if( $("#standardId").val() == "") {
-        $("#addClass").addClass('has-error');
-        
-        $("#addClass").focus();
-    } else {
+    } else { 
 
-        $("#cboStd").removeClass('has-error');
-        $("#cboStd").addClass('has-error');
+        $("#standardId").removeClass('has-error');
+        $("#schbox").addClass('has-error');
         $("#searchform").submit();
     }
-}
-//});
+//}
+});
 
 // A $( document ).ready() block.
 $(document).ready(function () {
