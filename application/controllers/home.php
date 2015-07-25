@@ -26,7 +26,7 @@ class home extends CI_Controller {
 		);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
-			error_log ( json_encode ( $apioutput ), 0 );
+			error_log ( "School list=".json_encode( $apioutput ), 0 );
 			$data = $apioutput;
 		} catch ( EBDApiException $e ) {
 			echo $e->getMessage ();
@@ -56,6 +56,8 @@ class home extends CI_Controller {
         $apicalls = array($sch_key,$filter_key);
         try {
            	$apioutput = $this->apiclient->process($apicalls);
+                error_log('FILTERS');
+                error_log(json_encode($apioutput),0);
             foreach($apioutput as $key => $value ){
               	if (strpos($key,'schoollist.json') !== false) {
                   	$this->template->set('schoolList',$value);
@@ -102,17 +104,17 @@ class home extends CI_Controller {
         /**
          * Function login
          */
-	public function login()
-	{
-		$this->load->view('search/login.php');
-	}
+//	public function login()
+//	{
+//		$this->load->view('search/login.php');
+//	}
         
         /**
          * Function logout
          */
-	public function logout(){
-		redirect('home/login');
-	}
+//	public function logout(){
+//		redirect('home/login');
+//	}
         
         /**
          * Function schoolContact

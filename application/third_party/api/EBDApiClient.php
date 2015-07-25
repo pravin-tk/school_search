@@ -137,7 +137,7 @@ class EBDApiClient {
      * @param  $options
      * @return bool
      */
-    public function request($url, $method = "GET", $post_data = null, $headers = null, $options = null) {
+    public function request($url, $method = "GET", $post_data = null, $headers = "application/x-www-form-urlencoded", $options = null) {
         $this->requests[] = new EBDApiRequest($url, $method, $post_data, $headers, $options);
         return true;
     }
@@ -190,9 +190,7 @@ class EBDApiClient {
     private function single_curl() {
         $ch = curl_init();		
         $request = array_shift($this->requests);
-//        if($request->headers == ""){
-//            $request->headers = "application/x-www-form-urlencoded"; 
-//        }
+       
      	if($request->method == 'GET') {
            	$options = array(
                                  CURLOPT_RETURNTRANSFER =>true,

@@ -5,6 +5,14 @@
 			$standard = $value;
 	
 	?>
+<style>
+    
+    
+    .has-success .form-control {
+    background: none repeat scroll 0 0;
+}
+    
+</style>
 <div id="carousel-example-generic"
 	class="carousel slide cover overlay overflow-hidden max-height-600 cover-navbar-large-top margin-none"
 	data-ride="carousel">
@@ -25,10 +33,10 @@
 	<div class="overlay overlay-bg-black">
 		<div class="container v-top">
 			<div class="text-center col-lg-12" style="display: inline-block;">
-				<form name="searchform" id="searchform"  action="<?php echo base_url();?>index.php/home/search" method="post">
+				<form name="searchform" id="searchform"  action="<?php echo base_url();?>search" method="post">
 					<div class="form-group">
 						<div class="col-lg-3 selectContainer">
-							<select class="selectpicker form-control" id="cboStd" name="standardId">
+							<select class="selectpicker form-control" id="standardId" name="standardId" data-toggle="tooltip" data-placement="top" >
 								<option value="">--Select--</option>
 	                                     
 	                           	<?php  foreach ($standard as $key=>$value) { ?>
@@ -45,7 +53,7 @@
 								placeholder="Search by School, Area, Location" name="searchtxt"
 								class="form-control">
 						</div>
-					<input type="button" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
+					<input type="submit" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
 					</div>
 				</form>
 			</div>
@@ -216,7 +224,7 @@
 							<div class="media-body">
 								<p>eddbuddy helps me to search best school for me .</p>
 								<p>
-									<strong>Amruta Selamonkar. <span class="text-muted">@
+									<strong>contact <span class="text-muted">@
 											eddbuddy.com</span></strong>
 								</p>
 							</div>
@@ -231,3 +239,71 @@
 		<!-- // END .container -->
 
 	</div>
+    
+    <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+            
+          //  $('[data-toggle="tooltip"]').tooltip()
+            $('#searchform').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+            },
+            submitHandler: function(validator, form, submitButton) {
+                   $('button[type="submit"]').prop('disabled', 'false')
+                    searchSch();
+             },
+            fields: {
+                    standardId: {
+                    message: 'Select  standard ',
+                        validators: {
+                                notEmpty: {
+                                        message: 'Standard cannot be empty.'
+                                },
+                                
+                        }   
+                    },
+                    schbox: {
+                    message: 'Select  location from dropdown ',
+                        validators: {
+                                notEmpty: {
+                                        message: 'Location cannot be empty.'
+                                },
+                                
+                        }   
+                    },
+                    
+            }//fields
+                     
+        }).on('error.field.bv', function(e, data) {
+            data.bv.disableSubmitButtons(true); // disable submit buttons on errors
+      
+        }).on('status.field.bv', function(e, data) {
+            data.bv.disableSubmitButtons(false); // enable submit buttons on valid
+        
+        });
+//         $('button[type="submit"]').prop('disabled', 'true');
+//     
+
+
+
+
+//    $("#searchform").validate({
+//        rules: {
+//            standardId: {required: true},
+//            //example5: {required: true}
+//        },
+//        messages: {
+//            example5: "Just check the box<h5 class='text-error'>You aren't going to read the EULA</h5>"
+//        },
+//        tooltip_options: {
+//            standardId: {trigger:'focus'},
+//            //example5: {placement:'right',html:true}
+//        },
+//    });
+     }); // end doc ready
+
+          </script>
