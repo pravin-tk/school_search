@@ -16011,6 +16011,38 @@ table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-active span.fan
   background-color: #428bca;
 }
 /*Custom */
+#wrapper {
+  background: url("../img/panorma/UKG_B_pano.jpg") repeat-x 0 0;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0; 
+  -khtml-border-radius: 18px;
+  -o-border-radius: 18px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;    
+  background-size: cover;   
+}
+#main-nav1 li a
+{
+	color:#666;
+}
+#main-nav1 li a:hover
+{
+	color:#26a69a;
+}
+
+#main-nav1 li:first-child a , #main-nav1 li:first-child p
+{
+	color:#26a69a;
+	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+	font-weight: bolder;
+	width:100px;
+	height:0px;
+	overflow:hidden;
+}
 
 @media (max-width: 999px) {
 	.affix {
@@ -16219,3 +16251,72 @@ overflow: hidden;
 	.searchheading{
 	font-size: 1.4em;
 	}
+	
+/* //timeline
+ */
+.timeline-panel {
+  width: 46%;
+  float: left;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+.timeline-panel:before {
+  position: absolute;
+  top: 26px;
+  right: -15px;
+  display: inline-block;
+  border-top: 15px solid transparent;
+  border-left: 15px solid #ccc;
+  border-right: 0 solid #ccc;
+  border-bottom: 15px solid transparent;
+  content: " ";
+}
+.timeline-panel:after {
+  position: absolute;
+  top: 27px;
+  right: -14px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #fff;
+  border-right: 0 solid #fff;
+  border-bottom: 14px solid transparent;
+  content: " ";
+}
+.timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+.timeline-inverted > .timeline-panel {
+  float: right;
+}
+.timeline-inverted > .timeline-panel:before {
+  border-left-width: 0;
+  border-right-width: 15px;
+  left: -15px;
+  right: auto;
+}
+.timeline-inverted > .timeline-panel:after {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
+}	
+

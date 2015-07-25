@@ -1,16 +1,16 @@
 <div id="wrap">
 <div id="schoolheader" class="cover overlay overflow-hidden margin-bottom-none height-400 height-500-lg max-height-500" >
-      <div class="item active">
-          <?php if($basicInfo['homeImage'] == ""){?>
-        <img src="<?php echo asset_url();?>img/school/architectural_main_school_building_facade.jpg" alt="First slide" class="width-100pc" style="width: 903px; height: 582px;">
-          <?php }else{?>
-        <img src="<?php echo $basicInfo['homeImage'];?>" alt="First slide" class="width-100pc" style="height: 500px;">
-          <?php }?>
-  </div>
+        <div id="pan">
+	      <div id="wrapper"></div>
+	      <div id="mask">
+		<div class="bac"></div>
+		<div class="logo"></div>
+		<div class="remote stop"></div>
+	      </div>
+	    </div> 
     <div class="overlay overlay-bg-black overlay-full-xs">
       <div class="v-bottom v-top-xs">
         <div class="container">
-          <div class="page-section">
             <div class="text-h5 text-overlay">
               <span class="fa fa-fw fa-star text-yellow-800"></span>
               <span class="fa fa-fw fa-star text-yellow-800"></span>
@@ -18,11 +18,18 @@
               <span class="fa fa-fw fa-star text-yellow-800"></span>
               <span class="fa fa-fw fa-star-o"></span>
             </div>
-            <div class="detailmenubar">
-                <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
-                <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?>,<?php echo $basicInfo['localityName'];?>,<?php echo $basicInfo['cityName'];?></p>
+            <div class="col-lg-12">
+               <div class="col-lg-4">
+                  <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
+                  <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?>,<?php echo $basicInfo['localityName'];?>,<?php echo $basicInfo['cityName'];?></p>
+          	   </div>
+          	   <div style="float: right">                
+          	     <h4 class="text-h4 text-overlay"><img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png?>"></h4>
+          	   </div>
           	</div>
-          </div>
+          	<div >
+                <p class="text-subhead text-overlay"></p>
+          	</div>
         </div>
       </div>
     </div>
@@ -47,9 +54,9 @@
       <div class="collapse navbar-collapse" id="main-nav1">
 	  <div class="property-meta" >
 	    <ul >
-	   	  <li class="property-meta-item "><h4><a href="#overview" class="page-scroll" > <?php echo $basicInfo['name'];?> </a></h4>
-	   	     <br/>
-	   	     <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?>,<?php echo $basicInfo['localityName'];?>,<?php echo $basicInfo['cityName'];?></p>
+	   	  <li class="property-meta-item ">
+	   	  <a href="#overview" class="page-scroll" > <?php echo $basicInfo['name'];?> </a>
+	   	     <p class="text-subhead text-overlay"><?php echo $basicInfo['localityName'];?>,<?php echo $basicInfo['cityName'];?></p>
 	   	  </li>
 	      <li class="property-meta-item "><a href="#overview" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
 	      <li class="property-meta-item"><a href="#navtimeline" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> Timeline</a></li>

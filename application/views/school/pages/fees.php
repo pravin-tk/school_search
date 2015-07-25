@@ -6,7 +6,7 @@
     
    <div class="panel-body">
 	 <div class="container">
-	 <div class="flipster col-md-10">
+	 <div class="flipster col-md-12">
 	    <ul >
 	    <?php  
 	    if (isset($feeInfo))
@@ -17,7 +17,7 @@
             foreach($schoolFee['fees'] as $key => $fee) {?>
           <section class="panel panel-default">
             <div class="panel-body">
-                <div class="col-xs-5 col-md-5 text-center btn btn-primary btn-sm">
+                <div class="col-xs-7 col-md-7 text-center btn btn-primary btn-sm">
 		                <?php echo $fee['feeDesc']?>
 		                </div>
 		                 <div class="col-xs-4 col-md-4 text-center">

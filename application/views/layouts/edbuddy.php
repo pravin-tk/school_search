@@ -14,6 +14,8 @@
 <link href="<?php echo asset_url();?>css/style.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/cobox.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/rating.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
+
 <link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
 
 
@@ -62,7 +64,55 @@
 	max-width: none
 }
 
+#pan{
+  position:relative;
+  width:100%;
+  height:100%;
+  margin:20px auto;
+}
 
+#mask,#mask .bac,#mask .logo{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:40px;
+  z-index:2;
+}
+#mask .bac,#mask .logo{
+  position:absolute;
+  top:0;
+  left:0;
+  background:white;
+}
+#mask .logo{
+   background:url("./img/logo130is.png") no-repeat 20px 10px;
+}
+#mask .bac{
+  -webkit-opacity:.4; 
+  -o-opacity:.4;
+  -khtml-opacity:.4;      
+  -moz-opacity:.4;
+  opacity:.4;
+  z-index:-1;
+}
+#mask .remote{
+  position:absolute;
+  width:20px;
+  height:20px;
+  top:10px;
+  right:15px;
+  z-index:2;
+  cursor:pointer;
+}
+#mask .stop{
+  background:url("pause.png") no-repeat;
+}
+#mask .play{
+  background:url("play.png") no-repeat;
+}
+
+.v-bottom{position:absolute;bottom:30px;}
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';

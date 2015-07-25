@@ -95,7 +95,7 @@ h6 small,
   margin: 0;
 }
 .property-meta .property-meta-item {
-  padding: 16px;
+  padding: 9px;
 }
 @media (min-width: 992px) {
   .property-meta .property-meta-item {
@@ -11072,7 +11072,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
 }
 .cover.overlay .overlay {
   position: absolute;
-  top: 50%;
+  top: 0%;
   left: 0;
   right: 0;
   z-index: 3;
@@ -11080,6 +11080,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
   display: table;
   width: 100%;
   vertical-align: middle;
+  height:100%;
 }
 .cover.overlay .overlay:hover {
   text-decoration: none;

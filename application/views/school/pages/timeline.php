@@ -31,13 +31,27 @@ foreach($timelineInfo as $key=>$timeline )
 <?php 
 foreach($timelineInfo as $key=>$timeline )
 {
-	echo "<li id='".$timeline['year']."'>";
-	?><img src='<?php echo $timeline['image']; ?>' width='256' height='256' />
-	<h1><?php echo $timeline['title']; ?></h1>
-	   <?php foreach ($timeline['milestones'] as $key=>$milestone) {
- 		echo "<h2>".$milestone['title']."</h2>";	
- 		echo "<h4>".$milestone['milestoneDesc']."</h4>";
-	   }?>
+	echo "<li id='".$timeline['year']."' >";
+	?>
+	<div class="timeline">
+	<div>
+	<div class="timeline-panel"><img src='<?php echo $timeline['image']; ?>' width='150' height='150' /></div>
+	</div>
+	<?php foreach ($timeline['milestones'] as $key=>$milestone) {
+	   ?> 
+	<div class="timeline-inverted">
+	<div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><?php echo $milestone['title'];?></h4>
+            </div>
+            <div class="timeline-body">
+				<p><?php echo $milestone['milestoneDesc'];?> </p>
+                        </div>
+          </div>
+	</div>
+	 <?php }?>
+	   
+	  </div> 
 	</li>
 <?php } ?>
 
