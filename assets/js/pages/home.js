@@ -1,7 +1,7 @@
 var cookie_domain = 'edbuddy.in';
 var d = new Date();
 d.setTime(d.getTime()+(1*24*60*60*1000));
-var expires = "expires="+d.toGMTString();  
+var expires = "expires="+d.toGMTString();
 
 google.maps.event.addDomListener(window, 'load', function () {
     var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
@@ -57,11 +57,11 @@ $("#frmSch").affix({
         top: 200,
     }
 })
-$("#search_header").affix({
-    offset: {
-        top: 200,
-    }
-})
+//$("#search_header").affix({
+//    offset: {
+//        top: 200,
+//    }
+//})
 //$('.demo').slick({
 //    infinite: true,
 //    slidesToShow: 6,
@@ -75,16 +75,16 @@ $("#search_header").affix({
 //
 //
 //});
-$(".fa-heart-o").click(function (ev) {
-    $(this).removeClass("fa-heart-o").addClass("fa-heart");
-    ev.preventDefault();
-
-})
-$(".fa-heart").click(function (ev) {
-    $(this).removeClass("fa-heart").addClass("fa-heart-o");
-    ev.preventDefault();
-
-})
+//$(".fa-heart-o").click(function (ev) {
+//    $(this).removeClass("fa-heart-o").addClass("fa-heart");
+//    ev.preventDefault();
+//
+//})
+//$(".fa-heart").click(function (ev) {
+//    $(this).removeClass("fa-heart").addClass("fa-heart-o");
+//    ev.preventDefault();
+//
+//})
 
 $('a.page-scroll').bind('click', function (event) {
     var $anchor = $(this);
