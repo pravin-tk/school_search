@@ -33,11 +33,9 @@ foreach($timelineInfo as $key=>$timeline )
 {
 	echo "<li id='".$timeline['year']."' >";
 	?>
-	<div class="timeline">
-	<div>
-	<div class="timeline-panel"><img src='<?php echo $timeline['image']; ?>' width='150' height='150' /></div>
-	</div>
-	<?php foreach ($timeline['milestones'] as $key=>$milestone) {
+	<img src='<?php echo $timeline['image']; ?>' width='150' height='150' />
+	<h1>1900</h1>
+		<?php foreach ($timeline['milestones'] as $key=>$milestone) {
 	   ?> 
 	<div class="timeline-inverted">
 	<div class="timeline-panel">
@@ -50,8 +48,9 @@ foreach($timelineInfo as $key=>$timeline )
           </div>
 	</div>
 	 <?php }?>
-	   
-	  </div> 
+	
+	
+ 
 	</li>
 <?php } ?>
 

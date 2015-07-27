@@ -68,7 +68,7 @@
   position:relative;
   width:100%;
   height:100%;
-  margin:20px auto;
+  margin:0px auto;
 }
 
 #mask,#mask .bac,#mask .logo{
