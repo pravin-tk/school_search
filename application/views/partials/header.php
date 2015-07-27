@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-static-top" style="position: absolute;width:100%;"role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
@@ -13,14 +13,7 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav">
-        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid">
-          <div class="search-1">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-search"></i></span>
-              <input type="text" class="form-control form-control-w-150" placeholder="Search ..">
-            </div>
-          </div>
-        </form>
+        
         <ul class="nav navbar-nav navbar-right">
           <!-- Login -->
           <li class="dropdown">
@@ -50,11 +43,11 @@
           <!-- // END login -->
           <!-- Sign up -->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="<?php echo $base_url; ?>index.php/auth/signup" target="_blank" onclick="alert('hi')>
               <i class="fa fa-fw fa-plus"></i> Sign Up
             </a>
             <div class="dropdown-menu dropdown-size-280">
-              <form class="ng-pristine ng-valid">
+<!--              <form class="ng-pristine ng-valid">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group form-control-default">
@@ -78,7 +71,7 @@
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+              </form>-->
             </div>
           </li>
           <!-- // END sign up -->

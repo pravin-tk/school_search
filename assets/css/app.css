@@ -95,7 +95,7 @@ h6 small,
   margin: 0;
 }
 .property-meta .property-meta-item {
-  padding: 16px;
+  padding: 9px;
 }
 @media (min-width: 992px) {
   .property-meta .property-meta-item {
@@ -11072,7 +11072,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
 }
 .cover.overlay .overlay {
   position: absolute;
-  bottom: 0;
+  top: 0%;
   left: 0;
   right: 0;
   z-index: 3;
@@ -11080,6 +11080,7 @@ span.fancytree-node.fancytree-active .fancytree-expander {
   display: table;
   width: 100%;
   vertical-align: middle;
+  height:100%;
 }
 .cover.overlay .overlay:hover {
   text-decoration: none;
@@ -11268,8 +11269,8 @@ span.fancytree-node.fancytree-active .fancytree-expander {
   padding: 8px 16px;
 }
 .cover.overlay .overlay-bg-black {
-  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
 }
 .cover.overlay .overlay-bg-white {
   background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));

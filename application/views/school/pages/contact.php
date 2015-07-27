@@ -48,23 +48,30 @@
                 </form>
         </div>
         <div class="col-md-6">
-            <div>
-                <div class="panel panel-default">
+        <div id="map_canvas" style="width:100%; height:100% "></div>
+        <div class="panel panel-default">
                     <div class="text-center header">Our Office</div>
                     <div class="panel-body text-center">
                         <h4>Address</h4>
-                        <div>
-                        2217 Malwadi Hadpsar<br />
-                        Pune MH<br />
-                        #020 - 26981288<br />
-                        sadhanaschool@gmail.com<br />
+                        <div style="width: 30%;margin-left:30%;" class="text-center">
+                        <?php 
+                        echo "<br/>". $contactInfo['address'] . "<br/>";
+
+                        if(isset($contactInfo['contacts'][0])){ echo $contactInfo['contacts'][0]['mobileNo']."<br/>".$contactInfo['contacts'][0]['email'];?><br />
+                        <?php } ?>
                         </div>
                         <hr />
                         <div id="map1" class="map">
                         </div>
                     </div>
-                </div>
-            </div>
+         </div>
+         <div class="text-center center-block">
+            <br />
+                <a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-3x social-fb"></i></a>
+	            <a href="https://twitter.com/bootsnipp"><i id="social" class="fa fa-twitter-square fa-3x social-tw"></i></a>
+	            <a href="https://plus.google.com/+Bootsnipp-page"><i id="social" class="fa fa-google-plus-square fa-3x social-gp"></i></a>
+	            <a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-3x social-em"></i></a>
+		</div>
         </div>
     </div>
 </div>

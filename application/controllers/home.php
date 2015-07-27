@@ -8,12 +8,13 @@ class home extends CI_Controller {
 		parent::__construct();
 		// To use site_url and redirect on this controller.
 		$this->load->helper('url');
-               
+                $this->load->helper('cookie');
                 $ebd_config = parse_ini_file(APPPATH."config/EBD.ini");
                 $this->api_url = $ebd_config['api_url'];
               
 	}
 	
+
     public function index() {
 		header ( "Cache-Control: private, max-age=60" );
 		header ( "Expires: " . gmdate ( 'r', time () + 60 ) );
@@ -34,7 +35,9 @@ class home extends CI_Controller {
 		}
 		$this->template->set('page','home');
 		$this->template->set ( 'standards', $data );
-		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer' );
+		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer' );
 		$this->template->build ( 'school/ebdhome' );
 		unset ( $apicalls );
 	}
@@ -43,11 +46,13 @@ class home extends CI_Controller {
          */
 	public function search()
 	{
+
       	$map['latitude'] = $this->input->post('latitude');
         $map['longitude'] = $this->input->post('longitude');
        	$map['standardId'] = $this->input->post('standardId');
         $map['mediumId'] = $this->input->post('mediumList');
         $map['infraId'] = $this->input->post('infraList');
+        $address = $this->input->post('address');
         $sch_key = 'schoollist.json?'.http_build_query($map);
         $filter_key =  'schoolfilter.json';
         $api_key = 'standardlist.json';
@@ -62,8 +67,15 @@ class home extends CI_Controller {
                 }elseif (strpos($key,'standardlist.json')!== false) {
                     $this->template->set('standard',$value);
                 }
+
             }
+<<<<<<< HEAD
             $this->template->set('page','search');
+=======
+            $this->input->set_cookie("ebdsearchgeocode",$map['latitude'].",".$map['longitude'], 60*60*24);
+            $this->input->set_cookie("ebdsearchgeoloc",$address, 60*60*24);
+            $this->input->set_cookie("ebdstdid",$map['standardId'], 60*60*24);
+>>>>>>> b76a776a46d66e83c2ca1a901ad92a9c8bcbba02
             $this->template->set('latitude',$map['latitude']);
             $this->template->set('longitude',$map['longitude']);
             $this->template->set('standardId',$map['standardId']);
@@ -76,11 +88,20 @@ class home extends CI_Controller {
         $this->template
                    	->set_layout('edbuddy')
                    	->title('Search for finest schools near you: Edbuddy.in')
+<<<<<<< HEAD
                     ->set_partial('header','partials/searchheader')
+=======
+                        ->set_partial('header','partials/header')
+>>>>>>> b76a776a46d66e83c2ca1a901ad92a9c8bcbba02
                    	->set_partial('footer','partials/footer');
        	$this->template->build('school/list');
         unset($apicalls);
+        
 	}
+        
+        /**
+         * Function name schoolDetails
+         */
 	public function schoolDetails()
 	{
 		$this->template
@@ -90,16 +111,27 @@ class home extends CI_Controller {
 			->set_partial('footer','partials/footer');
 		$this->template->build('school/school-details.php');
 	}
-
+        
+        /**
+         * Function login
+         */
 	public function login()
 	{
 		$this->load->view('search/login.php');
 	}
-
+        
+        /**
+         * Function logout
+         */
 	public function logout(){
 		redirect('home/login');
 	}
         
+        /**
+         * Function schoolContact
+         */
+        
+
     public function schoolContact() {
 		$this->input->post('id');
 		$api_key = 'school/contact.json/' . $school_id;
@@ -122,7 +154,9 @@ class home extends CI_Controller {
 		}
 		echo json_encode ( $data );
 	}
+
         
+    
    	public function schoolJSON() {
    		if(!empty($this->input->post ( 'boardId' )))
 			$map ['boardId'] = $this->input->post ( 'boardId' );
@@ -184,16 +218,29 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id) {
+public function schoolDetail($id) {
 		$map ['standardId'] = $id;
 		$school_basic_key = 'school/basic.json/' . $id;
 		$school_other_key = 'school.json/' . $id . '?' . http_build_query ( $map );
 		$school_contact_key = 'school/contact.json/' . $id;
-		$apicalls = array (
-				$school_basic_key,
-				$school_other_key,
-				$school_contact_key 
-		);
+		$school_overview_key = 'school/highlight.json/' . $id;
+		$school_gallery_key = 'school/gallery.json/'.$id;
+		$school_rating_key = 'school/rating.json/'.$id;
+		$school_review_key = 'school/review.json/'.$id;
+		$school_fee_key = 'school/fee.json/'.$id;
+		$standard_key = 'standardlist.json';
+		
+		
+		$apicalls = array($school_basic_key,
+						  $school_other_key,
+						  $school_contact_key,
+						  $school_overview_key,
+				          $school_gallery_key,
+				          $school_rating_key,
+				          $school_review_key,
+						  $school_fee_key ,
+						  $standard_key);
+		
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
@@ -201,9 +248,21 @@ class home extends CI_Controller {
 					$this->template->set ( 'basicInfo', $value );
 				} elseif (strpos ( $key, $school_other_key ) !== false) {
 					$this->template->set ( 'otherInfo', $value );
-				} elseif (strpos ( $key, $school_contact_key ) !== false) {
-					$this->template->set ( 'contactInfo', $value );
-				}
+				} elseif (strpos ( $key, $school_overview_key ) !== false) {
+					$this->template->set ( 'overviewInfo', $value );
+				} elseif(strpos($key,$school_contact_key)!== false) {
+                        $this->template->set('contactInfo',$value);
+                } elseif(strpos($key,$school_gallery_key)!==false){
+                    	$this->template->set('galleryinfo',$value);
+                } elseif(strpos($key,$school_rating_key)!==false){
+                    	$this->template->set('ratingInfo',$value);
+                } elseif(strpos($key,$school_review_key)!==false){
+                    	$this->template->set('reviewInfo',$value);
+                } elseif(strpos($key,$school_fee_key)!==false){
+                    	$this->template->set('feeInfo',$value);
+                } elseif(strpos($key,$standard_key)!==false){
+                    	$this->template->set('standard',$value);
+                }
 			}
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
@@ -213,8 +272,34 @@ class home extends CI_Controller {
 			unset ( $apioutput );
 		}
 		$data ['data'] = $data;
-		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer' );
-		$this->template->build ( 'school/school-detail' );
+		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header_home' )->set_partial ( 'footer', 'partials/footer' );
+		//$this->template->build ( 'school/school-detail' );
+		$this->template->build ( 'school/school-details' );
+	}
+ 
+	public function rateSchool() {
+		$api_key = 'school/rate.json/';
+	
+		$data= $_POST;
+		$apicalls = array(array('url'=>'school/rate.json', 'params'=>http_build_query($data)));
+	
+		try {
+			$apioutput = $this->apiclient->process($apicalls,'POST');
+	
+			foreach($apioutput as $key => $value ){
+				if (strpos($key,'school/rate.json') !== false) {
+					$data['data'] = $value;
+				}
+					
+			}
+		}catch(EBDApiException $e) {
+			echo $e->getMessage();
+			unset($apicalls);
+			unset($apioutput);
+	
+		}
+		echo  json_encode($data);
+	
 	}
 	
 	public function testLogin(){

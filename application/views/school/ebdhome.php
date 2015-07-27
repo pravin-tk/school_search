@@ -1,69 +1,131 @@
- <?php
+<style>
+
+</style>
+<?php
 	$standard = "";
 	if (isset ( $standards ))
 		foreach ( $standards as $key => $value )
 			$standard = $value;
 	
 	?>
-<div id="carousel-example-generic"
-	class="carousel slide cover overlay overflow-hidden max-height-600 cover-navbar-large-top margin-none"
-	data-ride="carousel">
-	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-		<div class="item">
-			<img src="<?php echo asset_url();?>img/header2.jpg" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-		<div class="item">
-			<img src="<?php echo asset_url();?>img/header3.jpeg" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-	</div>
-	<div class="overlay overlay-bg-black">
-		<div class="container v-top">
-			<div class="text-center col-lg-12" style="display: inline-block;">
-				<form name="searchform" id="searchform"  action="<?php echo base_url();?>index.php/home/search" method="post">
-					<div class="form-group">
-						<div class="col-lg-3 selectContainer">
-							<select class="selectpicker form-control" id="cboStd" name="standardId">
-								<option value="">--Select--</option>
-	                                     
-	                           	<?php  foreach ($standard as $key=>$value) { ?>
-	                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-	                            <?php  } ?>
-					  		</select>
-						</div>
-	
-						<div class="col-lg-3">
-							<input type="hidden" id="latitude" name="latitude" value="" /> 
-							<input type="hidden" id="longitude" name="longitude" value="" /> 
-							<input type="hidden" id="address" name="address" value="" /> 
-							<input style="float: left; width: 450px;" id="schbox" type="text"
-								placeholder="Search by School, Area, Location" name="searchtxt"
-								class="form-control">
-						</div>
-					<input type="button" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<a class="left carousel-control" href="" role="button"
-		data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-		aria-hidden="true"></span> <span class="sr-only">Previous</span>
-	</a> <a class="right carousel-control" href="" role="button"
-		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
-		aria-hidden="true"></span> <span class="sr-only">Next</span>
-	</a>
+<div class="container" style="width: 100%;">
+    <div class="row">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<!--                 <ol class="carousel-indicators"> -->
+<!--                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
+<!--                     <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
+<!--                     <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+<!--                 </ol> -->
+                <div class="carousel-inner " id="homeslider">
+                    <div class="item active">
+                        <img src="<?php echo asset_url();?>img/header4.png"
+						  class="" style="width:100%;height: 80%;" alt="First slide">
+                        
+                    </div>
+                    <div class="item">
+                        <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
+							class="" style="width:100%;height: 80%;">
+                        
+                    </div>
+                    <div class="item">
+                        <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
+							 class="" style=" width:100%;height: 80%;">
+<!--                         <div class="carousel-caption"> -->
+<!--                             <h3> -->
+<!--                                 Third slide</h3> -->
+<!--                             <p> -->
+<!--                                 Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
+<!--                         </div> -->
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span></a><a class="right carousel-control"
+                        href="#carousel-example-generic" data-slide="next"><span class="glyphicon glyphicon-chevron-right">
+                        </span></a>
+                        
+            </div>
+            <div class="main-text overlaysearch text-center" style="display: inline-block;" >
+                    <h1 class="searchheading">
+                        Search School
+                    </h1>
+                  	<form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
+						<div class="form-group form-div">
+							<div class="col-lg-3 selectContainer">
+								<select class="selectpicker form-control" id="cboStd" name="standardId">
+									<option value="">--Select--</option>
+		                                     
+		                           	<?php  foreach ($standard as $key=>$value) { ?>
+		                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+		                            <?php  } ?>
+						  		</select>
+							</div>
+		
+							<div class="col-lg-3">
+								<input type="hidden" id="latitude" name="latitude" value="" /> 
+								<input type="hidden" id="longitude" name="longitude" value="" /> 
+								<input type="hidden" id="address" name="address" value="" /> 
+								<input  id="schbox" type="text"
+									placeholder="Search by School, Area, Location" name="searchtxt"
+									class="form-control">
+							</div>
+		                    <div class="col-lg-3">
+		                    	<input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+		                    </div>
+	                    </div>
+                    </form>
+                    
+            </div>
+            
+          
+    </div>
 </div>
+<div id="push">
 </div>
 
+                  
 <div id="content" class="ng-scope">
-
+<!-- 	<aside class="bg-purple" class="asidecategory"> -->
+<!--             <div class="row"> -->
+<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-diamond wow bounceIn "></i> -->
+<!--                         <a class="btn btn-clear btn-sm btn-min-block" href="http://www.jquery2dotnet.com/">Login</a> -->
+                        
+<!-- <!--                         <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+                    </div>--> 
+<!--                 </div> -->
+<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-paper-plane wow bounceIn " data-wow-delay=".1s"></i> -->
+<!--                         <h5>Primary Schools</h5> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
+<!--                         <h5>Secondary Schools</h5> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
+<!--                         <h5>High Schools</h5> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                  <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
+<!--                         <h5>Secondary High</h5> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
+<!--                     <div class="service-box"> -->
+<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
+<!--                         <h5>Colleges</h5> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!-- 	 </aside> -->
 	<div class="bg-white">
 		<div class="container">
 
@@ -75,45 +137,7 @@
 					<p class="lead">Check out the top schools.</p>
 				</div>
 				<br>
-				<div class="slider demo">
-					<?php for ($i=0 ; $i<10;$i++) { ?>
-          			<div class="item"
-						style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-						<div class="panel panel-default relative">
-							<div
-								class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">State</div>
-							<div class="cover hover overlay margin-none"
-								style="height: 147px;">
-								<img
-									src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg"
-									alt="location" class="img-responsive"> <a
-									class="overlay overlay-full overlay-bg-black overlay-hover"
-									href="schooldetailsTest" style="height: 147px;"> <span
-									class="v-center"> <span class="btn btn-circle btn-white"><i
-											class="fa fa-eye"></i></span>
-								</span>
-								</a>
-							</div>
-							<div class="panel-body">
-								<h4 class="margin-v-0-5">R.R Shinde Junior College</h4>
-								<p class="small">
-									<span class="fa fa-fw fa-star text-yellow-800"></span> <span
-										class="fa fa-fw fa-star text-yellow-800"></span> <span
-										class="fa fa-fw fa-star text-yellow-800"></span> <span
-										class="fa fa-fw fa-star-o text-yellow-800"></span> <span
-										class="fa fa-fw fa-star-o text-yellow-800"></span>
-								</p>
-								<p>R.R.Shinde junior college.</p>
-								<span class="label label-grey-100">Medium : English</span> <i
-									class="small fa fa-fw icon-user-1" data-toggle="tooltip"></i> <a
-									class="btn btn-primary btn-circle absolute bottom right"
-									href="schooldetailsTest"></a>
-							</div>
-						</div>
-					</div>
-          			<?php } ?>
-				</div>
-
+				
 
 				<!-- // END .owl-basic -->
 

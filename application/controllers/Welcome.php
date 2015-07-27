@@ -12,7 +12,7 @@ class Welcome extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('school/home.php');
+		$this->load->view('school/onepage.php');
 	}
 	public function search()
 	{
