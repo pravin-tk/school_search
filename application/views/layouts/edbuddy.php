@@ -35,6 +35,7 @@
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>
+<script src="<?php echo asset_url();?>js/bootstrap.js"></script>
 
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
@@ -125,6 +126,13 @@
 	</div>
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
+                <script src="<?php echo asset_url();?>js/slick.js"></script>
+				<script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
+				<script src="<?php echo asset_url();?>js/rating.js"></script>
+				<script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
+				<script src="<?php echo asset_url();?>js/cobox.min.js"></script>
+				<script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+                <script src="<?php echo asset_url();?>js/pages/common.js"></script>
                 <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
                 <!-- // END .bg-white -->
 				<!-- // END #content -->

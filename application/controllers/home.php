@@ -211,7 +211,7 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-public function schoolDetail($id) {
+	public function schoolDetail($id) {
 		$map ['standardId'] = $id;
 		$school_basic_key = 'school/basic.json/' . $id;
 		$school_other_key = 'school.json/' . $id . '?' . http_build_query ( $map );
@@ -265,6 +265,7 @@ public function schoolDetail($id) {
 			unset ( $apioutput );
 		}
 		$data ['data'] = $data;
+		$this->template->set('page','detail');
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header_home' )->set_partial ( 'footer', 'partials/footer' );
 		//$this->template->build ( 'school/school-detail' );
 		$this->template->build ( 'school/school-details' );

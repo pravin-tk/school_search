@@ -30,14 +30,6 @@
     
 </script>
 
-<script src="<?php echo asset_url();?>js/bootstrap.js"></script>
-<script src="<?php echo asset_url();?>js/slick.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
-<script src="<?php echo asset_url();?>js/rating.js"></script>
-<script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
-<script src="<?php echo asset_url();?>js/cobox.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
-<script src="<?php echo asset_url();?>js/jquery.timelinr-0.9.54.js"></script>
 <script>
 	$('.multiselect').multiselect(
 		{
