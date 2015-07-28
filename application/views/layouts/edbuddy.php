@@ -26,15 +26,16 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" wtype="text/css"
-	href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" wtype="text/css" href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
 <!-- jQuery -->
 <!--    <script src="<?php echo asset_url();?>js/all.js"></script>-->
 
 <!-- Bootstrap Core JavaScript -->
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
+<script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>
+
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
 	{
@@ -115,7 +116,7 @@
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
-    
+	var asset_url = '<?php echo asset_url();?>';
 </script>
 </head>
 <body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -124,6 +125,7 @@
 	</div>
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
+                <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
                 <!-- // END .bg-white -->
 				<!-- // END #content -->
                 <?php echo $template['partials']['footer']; ?>

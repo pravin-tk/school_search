@@ -1580,7 +1580,7 @@ return $.ui.position;
 
 }));
 
-/*!
+/**
  * jQuery UI Draggable 1.11.4
  * http://jqueryui.com
  *
@@ -2422,3 +2422,8 @@ $.ui.plugin.add( "draggable", "connectToSortable", {
 					$.each( draggable.sortables, function() {
 						this.refreshPositions();
 					});
+				}
+			}
+		});
+	}
+})
