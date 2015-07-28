@@ -69,13 +69,10 @@ class home extends CI_Controller {
                 }
 
             }
-<<<<<<< HEAD
             $this->template->set('page','search');
-=======
             $this->input->set_cookie("ebdsearchgeocode",$map['latitude'].",".$map['longitude'], 60*60*24);
             $this->input->set_cookie("ebdsearchgeoloc",$address, 60*60*24);
             $this->input->set_cookie("ebdstdid",$map['standardId'], 60*60*24);
->>>>>>> b76a776a46d66e83c2ca1a901ad92a9c8bcbba02
             $this->template->set('latitude',$map['latitude']);
             $this->template->set('longitude',$map['longitude']);
             $this->template->set('standardId',$map['standardId']);
@@ -88,11 +85,7 @@ class home extends CI_Controller {
         $this->template
                    	->set_layout('edbuddy')
                    	->title('Search for finest schools near you: Edbuddy.in')
-<<<<<<< HEAD
                     ->set_partial('header','partials/searchheader')
-=======
-                        ->set_partial('header','partials/header')
->>>>>>> b76a776a46d66e83c2ca1a901ad92a9c8bcbba02
                    	->set_partial('footer','partials/footer');
        	$this->template->build('school/list');
         unset($apicalls);

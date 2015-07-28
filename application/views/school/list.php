@@ -2,11 +2,7 @@
 $schools = $schoolList;
 $schoolMedium = $filtersList['mediumFilter'];
 $schoolBoard = $filtersList['boardFilter'];
-$schoolType = $filtersList['typeFilter'];
 $schoolCategory = $filtersList['categoryFilter'];
-$activities = $filtersList['activityFilter'];
-$safety = $filtersList['safetyFilter'];
-$infrastructure = $filtersList['infraFilter'];
 $classification = $filtersList['classificationFilter'];
 
 ?>

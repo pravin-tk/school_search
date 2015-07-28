@@ -49,13 +49,13 @@ function filterResults() {
 			categoryType += "," + $(this).val();
 		}
    	});
-    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-		if(schoolType == ""){
-			schoolType = $(this).val();
-		} else {
-			schoolType += "," + $(this).val();
-		}
-  	});
+//    $('input[name="schooltypecheckbox"]:checked').each(function() { 
+//		if(schoolType == ""){
+//			schoolType = $(this).val();
+//		} else {
+//			schoolType += "," + $(this).val();
+//		}
+//  	});
     $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
 		if(classificationType == ""){
 			classificationType = $(this).val();
@@ -63,27 +63,27 @@ function filterResults() {
 			classificationType += "," + $(this).val();
 		}
    	});
-    $('input[name="activitycheckbox"]:checked').each(function() { 
-		if(activityType == ""){
-			activityType = $(this).val();
-		} else {
-			activityType += "," + $(this).val();
-		}
-  	});
-    $('input[name="infracheckbox"]:checked').each(function() { 
-		if(infraType == ""){
-			infraType = $(this).val();
-		} else {
-			infraType += "," + $(this).val();
-		}
-   	});
-    $('input[name="safetycheckbox"]:checked').each(function() { 
-		if(safetyType == ""){
-			safetyType = $(this).val();
-		} else {
-			safetyType += "," + $(this).val();
-		}
-  	});
+//    $('input[name="activitycheckbox"]:checked').each(function() { 
+//		if(activityType == ""){
+//			activityType = $(this).val();
+//		} else {
+//			activityType += "," + $(this).val();
+//		}
+//  	});
+//    $('input[name="infracheckbox"]:checked').each(function() { 
+//		if(infraType == ""){
+//			infraType = $(this).val();
+//		} else {
+//			infraType += "," + $(this).val();
+//		}
+//   	});
+//    $('input[name="safetycheckbox"]:checked').each(function() { 
+//		if(safetyType == ""){
+//			safetyType = $(this).val();
+//		} else {
+//			safetyType += "," + $(this).val();
+//		}
+//  	});
     $('#sortFields option:selected').each(function() {
         schoolType += $(this).val() + ",";
 	});
@@ -192,13 +192,13 @@ function sortSchool(sortFilter) {
 			categoryType += "," + $(this).val();
 		}
    	});
-    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-		if(schoolType == ""){
-			schoolType = $(this).val();
-		} else {
-			schoolType += "," + $(this).val();
-		}
-  	});
+//    $('input[name="schooltypecheckbox"]:checked').each(function() { 
+//		if(schoolType == ""){
+//			schoolType = $(this).val();
+//		} else {
+//			schoolType += "," + $(this).val();
+//		}
+//  	});
     $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
 		if(classificationType == ""){
 			classificationType = $(this).val();
@@ -206,27 +206,27 @@ function sortSchool(sortFilter) {
 			classificationType += "," + $(this).val();
 		}
    	});
-    $('input[name="activitycheckbox"]:checked').each(function() { 
-		if(activityType == ""){
-			activityType = $(this).val();
-		} else {
-			activityType += "," + $(this).val();
-		}
-  	});
-    $('input[name="infracheckbox"]:checked').each(function() { 
-		if(infraType == ""){
-			infraType = $(this).val();
-		} else {
-			infraType += "," + $(this).val();
-		}
-   	});
-    $('input[name="safetycheckbox"]:checked').each(function() { 
-		if(safetyType == ""){
-			safetyType = $(this).val();
-		} else {
-			safetyType += "," + $(this).val();
-		}
-  	});
+//    $('input[name="activitycheckbox"]:checked').each(function() { 
+//		if(activityType == ""){
+//			activityType = $(this).val();
+//		} else {
+//			activityType += "," + $(this).val();
+//		}
+//  	});
+//    $('input[name="infracheckbox"]:checked').each(function() { 
+//		if(infraType == ""){
+//			infraType = $(this).val();
+//		} else {
+//			infraType += "," + $(this).val();
+//		}
+//   	});
+//    $('input[name="safetycheckbox"]:checked').each(function() { 
+//		if(safetyType == ""){
+//			safetyType = $(this).val();
+//		} else {
+//			safetyType += "," + $(this).val();
+//		}
+//  	});
    
     $.post(base_url+"index.php/home/schoolJSON",
     	{
@@ -371,7 +371,7 @@ $(document.body).on('click', '.sort-listed-map-schools' ,function(){
 });
 
 function addSortListedSchools(id){
-	if (typeof $("#map-search-result-"+id) != "undefined") {
+	if (typeof $("#map-search-result-"+id) != "undefined" && typeof $("#map-search-result-"+id).html() != "undefined") {
 		var html = $("#map-search-result-"+id).html();
 		var html = "<div class='panel panel-default' id=sort-map-search-result-"+id+"'>"+html+"</div>";
 		$("#sortList").append(html);
@@ -391,7 +391,7 @@ function updateSortListedSchools(){
 		for(var i=0; i < school_ids.length; i++){
 			$("#iconheartlist-"+school_ids[i]).html("<i class='fa fa-heart'></i>");
 			$("#sortlistedmaphearts-"+school_ids[i]).html("<i class='fa fa-heart'></i>");
-			if (typeof $("#map-search-result-"+school_ids[i]) != "undefined") {
+			if (typeof $("#map-search-result-"+school_ids[i]) != "undefined" && typeof $("#map-search-result-"+school_ids[i]).html() != "undefined") {
 				addSortListedSchools(school_ids[i]);
 				sortCount++;
 			}
