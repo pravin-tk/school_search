@@ -80,13 +80,14 @@
 	   	     <p class="text-subhead text-overlay"><?php echo $basicInfo['localityName'];?>,<?php echo $basicInfo['cityName'];?></p>
 	   	  </li>
 	      <li class="property-meta-item "><a href="#overview" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
-	      <li class="property-meta-item"><a href="#navtimeline" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
 	      <li class="property-meta-item"><a href="#facility" class="page-scroll"><i class="fa fa-fw fa-building-o"></i> Facility</a></li>
 	      <li class="property-meta-item"><a href="#gallery" class="page-scroll"><i class="fa fa-fw fa-camera"></i> Gallery</a></li>
 	      <li class="property-meta-item "><a href="#review" class="page-scroll"><i class="fa fa-fw fa-star"></i> Review </li></a>
 	      <li class="property-meta-item"> <a href="#fees" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Fees</a></li>
 	      <li class="property-meta-item"><a href="#contact" class="page-scroll"><i class="fa fa-fw icon icon-toilet"></i> Contacts</a></li>
 	       <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li>
+	       	      <li class="property-meta-item"><a href="#navtimeline" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
+	       
 <!-- 	      <li class="property-meta-item"><a href=""><i class="fa fa-fw fa-heart text-pink-500"></i> 35 loved this</a></li> -->
 	    </ul>
 	  </div>
@@ -98,12 +99,9 @@
 <div class="divider" id="overview"></div>
   <div class="row">
 		<?php include 'pages/overview.php';?>
-</div>
+		
+  </div>
 
-<div class="divider"></div>
-  <div class="row">
-		<?php include 'pages/timeline.php';?>
-</div>
 
 <div class="divider" id="facility"></div>
   <div class="row">

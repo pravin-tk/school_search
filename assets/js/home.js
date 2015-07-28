@@ -1,3 +1,7 @@
+$(window).load(function() {
+	// Animate loader off screen
+	$(".se-pre-con").fadeOut("slow");;
+});
 var cookie_domain = 'edbuddy.in';
 var d = new Date();
 d.setTime(d.getTime()+(1*24*60*60*1000));
@@ -71,21 +75,6 @@ $("#search_header").affix({
     }
 })
 
-$().timelinr({
-		autoPlayDirection: 'forward',
-		startAt: 4 ,
-		prevButton: '#prev',
-		 nextButton: '#next',
-      arrowKeys: 'false',
-      // value: true/false, default to false
-      startAt: 1,
-      // value: integer, default to 1 (first)
-      autoPlay: 'false',
-      // value: true | false, default to false
-      autoPlayDirection: 'forward',
-      // value: forward | backward, default to forward
-      autoPlayPause: 2000
-})
 
 $(".fa-heart-o").click(function (ev) {
     $(this).removeClass("fa-heart-o").addClass("fa-heart");
@@ -128,7 +117,42 @@ $('.demo').slick({
         	  
         	  	  
  });
+$('.timelineslider').slick({
+	  adaptiveHeight: true,
+//   	centerMode: true,
+//	  centerPadding: '50px',
+	  slidesToShow: 1,
+	  asNavFor: '.slider-nav',
 
+	  responsive: [
+	    {
+	      breakpoint: 1024,
+	      settings: {
+	        arrows: true,
+	        centerMode: true,
+	        slidesToShow: 3
+	      }
+	    },
+	    {
+	      breakpoint: 600,
+	      settings: {
+	        arrows: true,
+	        centerMode: true,
+	        slidesToShow: 1
+	      }
+	    }
+	  ]
+
+
+	});
+$('.slider-nav').slick({
+	  slidesToShow: 3,
+	  slidesToScroll: 1,
+	  asNavFor: '.timelineslider',
+	  dots: true,
+	  centerMode: true,
+	  focusOnSelect: true
+	});
 
 //fee flipster
 

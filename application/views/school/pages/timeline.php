@@ -12,21 +12,7 @@ $timelineInfo = $otherInfo['schoolTimelineData'];
 					<div class="container">
    
      <div id="timeline">
-<ul id="dates">
-<?php     
-foreach($timelineInfo as $key=>$timeline )
-{
-	echo "<li><a href='".$timeline['year']."'>".$timeline['year']."</a></li>";
-	
-}?>
-<!-- <li><a href="#1900">1900</a></li> -->
-<!-- <li><a href="#1944">1944</a></li> -->
-<!-- <li><a href="#1950">1950</a></li> -->
-<!-- <li><a href="#1971">1971</a></li> -->
-<!-- <li><a href="#1999">1999</a></li> -->
-<!-- <li><a href="#2001">2001</a></li> -->
-<!-- <li><a href="#2011">2011</a></li> -->
-</ul>
+
 <ul id="issues">
 <?php 
 foreach($timelineInfo as $key=>$timeline )
@@ -54,6 +40,21 @@ foreach($timelineInfo as $key=>$timeline )
 	</li>
 <?php } ?>
 
+</ul>
+<ul id="dates">
+<?php     
+foreach($timelineInfo as $key=>$timeline )
+{
+	echo "<li><a href='".$timeline['year']."'>".$timeline['year']."</a></li>";
+	
+}?>
+<!-- <li><a href="#1900">1900</a></li> -->
+<!-- <li><a href="#1944">1944</a></li> -->
+<!-- <li><a href="#1950">1950</a></li> -->
+<!-- <li><a href="#1971">1971</a></li> -->
+<!-- <li><a href="#1999">1999</a></li> -->
+<!-- <li><a href="#2001">2001</a></li> -->
+<!-- <li><a href="#2011">2011</a></li> -->
 </ul>
 <div id="grad_left"></div>
 <div id="grad_right"></div>

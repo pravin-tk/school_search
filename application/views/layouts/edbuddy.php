@@ -112,7 +112,6 @@
   background:url("play.png") no-repeat;
 }
 
-.v-bottom{position:absolute;bottom:30px;}
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
@@ -120,7 +119,9 @@
 </script>
 </head>
 <body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-	
+	<div class="se-pre-con">
+	<p class="text-center loadings" >Loading Schools </p>
+	</div>
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
                 <!-- // END .bg-white -->
