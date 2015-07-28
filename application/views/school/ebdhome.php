@@ -1,5 +1,53 @@
 <style>
-
+    .extra-search-div{
+        display:inline-block;
+    }
+    @media screen and (max-width:1000px){
+        .extra-search-div{
+            display:none;
+        }
+        .row [class*="col-"]{
+            padding-bottom: 5px;
+        }
+        .row .col-md-12{
+            
+            width: 100%;
+        }
+        .row .col-md-8{
+            
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-3{
+            float:left;
+            width: 20%;
+        }
+        .row .col-md-8 .col-md-6{
+            float:left;
+            width: 60%;
+        }
+    }
+    @media screen and (max-width:600px){
+        .extra-search-div{
+            display:none;
+        }
+        .row [class*="col-"]{
+            padding-bottom: 5px;
+        }
+        .row .col-md-12{
+            
+            width: 100%;
+        }
+        .row .col-md-8{
+            
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-3{
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-6{
+            width: 100%;
+        }
+    }
 </style>
 <?php
 	$standard = "";
@@ -11,11 +59,6 @@
 <div class="container" style="width: 100%;">
     <div class="row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-<!--                 <ol class="carousel-indicators"> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
-<!--                 </ol> -->
                 <div class="carousel-inner " id="homeslider">
                     <div class="item active">
                         <img src="<?php echo asset_url();?>img/header4.png"
@@ -30,12 +73,7 @@
                     <div class="item">
                         <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
 							 class="" style=" width:100%;height: 80%;">
-<!--                         <div class="carousel-caption"> -->
-<!--                             <h3> -->
-<!--                                 Third slide</h3> -->
-<!--                             <p> -->
-<!--                                 Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
-<!--                         </div> -->
+
                     </div>
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -44,102 +82,41 @@
                         </span></a>
                         
             </div>
-            <div class="main-text overlaysearch text-center" style="display: inline-block;" >
+            <div class="main-text overlaysearch text-center col-md-12" style="display: inline-block;" >
                     <h1 class="searchheading">
                         Search School
                     </h1>
-                  	<form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
-						<div class="form-group form-div">
-							<div class="col-lg-3 selectContainer">
-								<select class="selectpicker form-control" id="cboStd" name="standardId">
-									<option value="">--Select--</option>
-		                                     
-		                           	<?php  foreach ($standard as $key=>$value) { ?>
-		                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-		                            <?php  } ?>
-						  		</select>
-							</div>
-		
-							<div class="col-lg-3">
-								<input type="hidden" id="latitude" name="latitude" value="" /> 
-								<input type="hidden" id="longitude" name="longitude" value="" /> 
-								<input type="hidden" id="address" name="address" value="" /> 
-								<input  id="schbox" type="text"
-									placeholder="Search by School, Area, Location" name="searchtxt"
-									class="form-control">
-							</div>
-		                    <div class="col-lg-3">
-		                    	<input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
-		                    </div>
-	                    </div>
+                  <form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
+                      <div class="col-md-2 extra-search-div">&nbsp;</div>
+                      <div class="form-group col-md-8">
+                            <div class="col-md-3 selectContainer">
+                                <select class="selectpicker form-control" id="cboStd" name="standardId">
+                                        <option value="">--Select--</option>
+                                        <?php  foreach ($standard as $key=>$value) { ?>
+                                        <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                        <?php  } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="hidden" id="latitude" name="latitude" value="" /> 
+                                <input type="hidden" id="longitude" name="longitude" value="" /> 
+                                <input type="hidden" id="address" name="address" value="" /> 
+                                <input  id="schbox" type="text"
+                                        placeholder="Search by School, Area, Location" name="searchtxt"
+                                        class="form-control">
+                            </div>
+                        <div class="col-md-3">
+                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                        </div>
+                        </div>
+                        <div class="col-md-2 extra-search-div">&nbsp;</div>
                     </form>
                     
             </div>
             
           
     </div>
-<style>
-    
-    
-    .has-success .form-control {
-    background: none repeat scroll 0 0;
-}
-    
-</style>
-<div id="carousel-example-generic"
-	class="carousel slide cover overlay overflow-hidden max-height-600 cover-navbar-large-top margin-none"
-	data-ride="carousel">
-	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-		<div class="item">
-			<img src="<?php echo asset_url();?>img/header2.jpg" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-		<div class="item">
-			<img src="<?php echo asset_url();?>img/header3.jpeg" alt="Slider"
-				class="width-100pc" style="width: 1279px; height: 856px;">
-		</div>
-	</div>
-	<div class="overlay overlay-bg-black">
-		<div class="container v-top">
-			<div class="text-center col-lg-12" style="display: inline-block;">
-				<form name="searchform" id="searchform"  action="<?php echo base_url();?>search" method="post">
-					<div class="form-group">
-						<div class="col-lg-3 selectContainer">
-							<select class="selectpicker form-control" id="standardId" name="standardId" data-toggle="tooltip" data-placement="top" >
-								<option value="">--Select--</option>
-	                                     
-	                           	<?php  foreach ($standard as $key=>$value) { ?>
-	                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-	                            <?php  } ?>
-					  		</select>
-						</div>
-	
-						<div class="col-lg-3">
-							<input type="hidden" id="latitude" name="latitude" value="" /> 
-							<input type="hidden" id="longitude" name="longitude" value="" /> 
-							<input type="hidden" id="address" name="address" value="" /> 
-							<input style="float: left; width: 450px;" id="schbox" type="text"
-								placeholder="Search by School, Area, Location" name="searchtxt"
-								class="form-control">
-						</div>
-					<input type="button" value="Find Out " class="btn btn-primary btn-xl page-scroll" id="sch" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<a class="left carousel-control" href="" role="button"
-		data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
-		aria-hidden="true"></span> <span class="sr-only">Previous</span>
-	</a> <a class="right carousel-control" href="" role="button"
-		data-slide="next"> <span class="glyphicon glyphicon-chevron-right"
-		aria-hidden="true"></span> <span class="sr-only">Next</span>
-	</a>
 </div>
 <div id="push">
 </div>
@@ -302,7 +279,7 @@
 							<div class="media-body">
 								<p>eddbuddy helps me to search best school for me .</p>
 								<p>
-									<strong>contact <span class="text-muted">@
+									<strong>Amruta Selamonkar. <span class="text-muted">@
 											eddbuddy.com</span></strong>
 								</p>
 							</div>
@@ -317,71 +294,3 @@
 		<!-- // END .container -->
 
 	</div>
-    
-    <script src="<?php echo asset_url(); ?>js/bootstrap.min.js"></script>
-    <script>
-        $( document ).ready(function() {
-            
-          //  $('[data-toggle="tooltip"]').tooltip()
-//            $('#searchform').bootstrapValidator({
-//            message: 'This value is not valid',
-//            feedbackIcons: {
-//                    valid: 'glyphicon glyphicon-ok',
-//                    invalid: 'glyphicon glyphicon-remove',
-//                    validating: 'glyphicon glyphicon-refresh'
-//            },
-//            submitHandler: function(validator, form, submitButton) {
-//                   $('button[type="submit"]').prop('disabled', 'false')
-//                    searchSch();
-//             },
-//            fields: {
-//                    standardId: {
-//                    message: 'Select  standard ',
-//                        validators: {
-//                                notEmpty: {
-//                                        message: 'Standard cannot be empty.'
-//                                },
-//                                
-//                        }   
-//                    },
-//                    schbox: {
-//                    message: 'Select  location from dropdown ',
-//                        validators: {
-//                                notEmpty: {
-//                                        message: 'Location cannot be empty.'
-//                                },
-//                                
-//                        }   
-//                    },
-//                    
-//            }//fields
-//                     
-//        }).on('error.field.bv', function(e, data) {
-//            data.bv.disableSubmitButtons(true); // disable submit buttons on errors
-//      
-//        }).on('status.field.bv', function(e, data) {
-//            data.bv.disableSubmitButtons(false); // enable submit buttons on valid
-//        
-//        });
-//         $('button[type="submit"]').prop('disabled', 'true');
-//     
-
-
-
-
-//    $("#searchform").validate({
-//        rules: {
-//            standardId: {required: true},
-//            //example5: {required: true}
-//        },
-//        messages: {
-//            example5: "Just check the box<h5 class='text-error'>You aren't going to read the EULA</h5>"
-//        },
-//        tooltip_options: {
-//            standardId: {trigger:'focus'},
-//            //example5: {placement:'right',html:true}
-//        },
-//    });
-     }); // end doc ready
-
-          </script>

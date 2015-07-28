@@ -13,11 +13,11 @@
 <link href="<?php echo asset_url();?>css/app.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/style.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/cobox.css" rel="stylesheet">
-<link href="<?php echo asset_url();?>css/bootstrapValidator.min.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/rating.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
-<link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
 
+<link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/bootstrapValidator.min.css" rel="stylesheet">
 
 
 <!-- Custom Fonts -->
@@ -36,6 +36,10 @@
 <script type="text/javascript"
 	src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
+<!--<script src="<?php echo asset_url(); ?>js/bootstrapValidator.min.js"></script>-->
+
+
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
 	{
@@ -124,6 +128,18 @@
 	
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
-                <!-- // END .bg-white -->
-				<!-- // END #content -->
+        
                 <?php echo $template['partials']['footer']; ?>
+    
+<script src="<?php echo asset_url(); ?>js/auth.js"></script>
+
+
+    <?php if($page === 'profile') {?>
+	<script src="<?php echo asset_url();?>js/profile.js"></script>
+    <?php }elseif($page === 'search'){?>
+	<!-- script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places,drawing,geometry&client=gme-lieferheldgmbh&signature=a-SJMDXhmd24q12zmVXg8G-JxNo="></script-->
+    <?php }elseif($page === 'home'){?>
+	<script src="<?php echo asset_url();?>js/home.js"></script>
+    <?php }elseif($page === 'signup'){?>
+     <script src="<?php echo asset_url();?>js/home.js"></script>
+    <?php } ?>

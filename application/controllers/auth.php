@@ -28,12 +28,50 @@ class Auth extends CI_Controller {
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
                 ->set_partial('header', 'partials/header')
-                ->set_partial('footer', 'partials/footer');
+                ->set_partial('footer', 'partials/footer_links');
         // ->set_partial('breadcrumb','../partials/breadcrumb');
-
+        $this->template->set("page",'signup');
         $this->template->build('school/register');
     }
-
+    
+    public function userActivate() {
+        $emailId = ($this->session->userdata('sessEmailID') != '') ? $this->session->userdata('sessEmailID') : '';
+        $this->template
+                ->set_layout('edbuddy')
+                ->title('Search for finest schools near you: Edbuddy.in')
+                ->set_partial('header', 'partials/header')
+                ->set_partial('footer', 'partials/footer_links');
+        // ->set_partial('breadcrumb','../partials/breadcrumb');
+        $this->template->set("emailId1",$emailId);
+        $this->template->set("page",'profile');
+        $this->template->build('school/activate');
+    }
+    
+    public function activateProfile() {
+        $map['email'] =  $this->input->post('email');
+        $map['password'] = $this->input->post('password');
+        $apicalls = array(array('url' => 'user/activate.json',
+                                'params' => http_build_query($map),
+                                'headers' => 'application/x-www-form-urlencoded'));
+        try {
+            
+            $apioutput = $this->apiclient->process($apicalls, 'POST');
+            foreach ($apioutput as $key => $value) {
+                if (strpos($key, 'user/activate.json') !== false) {
+                    $activatedinfo = $value;
+                }
+            }
+            echo json_encode($activatedinfo,0);
+        }catch (EBDApiException $e) {
+            // echo json_encode($apioutput1,0);
+              echo "ERROR NO :".$e->getMessage();
+              unset($apicalls);
+              unset($apioutput);
+        }
+       
+    }
+    
+    
     public function forgot_password() {
         $map['email'] = $this->input->post('email');
         $apicalls = array(array('url' => 'user/forgot.json',
@@ -58,6 +96,7 @@ class Auth extends CI_Controller {
     }
 
     public function userlogin() {
+        $responsedata = new stdClass();
         $map['socialType'] = 0;
         $map['email'] = $this->input->post('uname');
         $map['password'] = $this->input->post('passwd');
@@ -67,37 +106,34 @@ class Auth extends CI_Controller {
                                 'headers' => 'multipart/form-data'));
         try {
             $apioutput = $this->apiclient->process($apicalls, 'POST');
+           
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, 'user/login.json') !== false && $apioutput[$key]['status'] == 1) {
                     $responsedata = json_decode(str_replace("'",'"',$value['data']));
+                     //error_log("USER activated status code=:".$responsedata->status);
+                   
+                     $responsedata->loginstatus=$apioutput[$key]['status'];
+                     $responsedata->message=$apioutput[$key]['message'];
                      
-                    if($responsedata->status == 0 ){
-                          $map1['email'] = $map['email'];
-                          $map1['password'] =  $map['password'];
-                          $apicalls1 = array(array('url' => 'user/activate.json',
-                                                  'params' => $map1,
-                                                  'headers' => 'application/x-www-form-urlencoded'));
-                          try {
-                            $apioutput1 = $this->apiclient->process($apicalls1, 'POST');
-                          }catch (EBDApiException $e) {
-                                echo $e->getMessage();
-                                unset($apicalls1);
-                                unset($apioutput1);
-                          }
-                    }
-                    
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
+                    $this->session->set_userdata('sessEmailID', $map['email']);
                     $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], 60 * 60 * 24);
                     $this->input->set_cookie("ebdusername",$responsedata->firstName, 60*60*24);
                     $this->input->set_cookie("ebdmypic",$responsedata->image, 60*60*24);
+                }else if(strpos($key, 'user/login.json') !== false ){
+                    
+                    $responsedata->loginstatus=0;
+                    $responsedata->message=$value['errors'][0];
+                   
                 }
+               
             }
         } catch (EBDApiException $e) {
             echo $e->getMessage();
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($apioutput);
+        echo json_encode($responsedata);
     }
 
     public function userLogout() {
@@ -111,7 +147,7 @@ class Auth extends CI_Controller {
     }
 
     public function userProfile() {
-        $userid = ($this->session->userdata('userID') != '') ? $this->session->userdata('userID') : $_COOKIE['ebduserid'];
+        $userid = ($this->session->userdata('sessuserID') != '') ? $this->session->userdata('sessuserID') : $_COOKIE['ebduserid'];
         $profile_key = 'user/profile.json/' . $userid;
         $apicalls = array($profile_key);
         try {
@@ -130,10 +166,11 @@ class Auth extends CI_Controller {
             unset($apioutput);
         }
         $data ['data'] = $data;
+        $this->template->set("page",'profile');
         $this->template->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
                 ->set_partial('header', 'partials/header')
-                ->set_partial('footer', 'partials/footer');
+                ->set_partial('footer', 'partials/ s');
         $this->template->build('school/profile');
     }
 
@@ -234,11 +271,12 @@ class Auth extends CI_Controller {
     public function testAPI() {
 
         $errmsg = "";
-        $url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/update.json";
+        $url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/activate.json";
         // $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=","Content-Type:multipart/form-data"); 
-        $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=", "Content-Type:application/x-www-form-urlencoded");
-        $postfields = array("email" => "er.pradeep007@gmail.com",
-            "mobile" => "8390822345",
+        $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=");
+        $postfields = array(
+            "email" => "briteny@mtv.com",
+            "password" => "7DB3PDT0",
         );
         $ch = curl_init();
         $options = array(
@@ -257,6 +295,41 @@ class Auth extends CI_Controller {
             var_dump($info);
             if ($info['http_code'] == 200)
                 $errmsg = "File uploaded successfully";
+        } else {
+            $errmsg = curl_error($ch);
+        }
+        curl_close($ch);
+        echo $errmsg;
+    }
+
+    public function testAPPI() {
+
+        $errmsg = "";
+        $url = "http://192.168.1.199:8080/edbuddy/webapi/api1.0/user/login.json";
+        // $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=","Content-Type:multipart/form-data"); 
+        $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=",
+             'headers' => 'multipart/form-data' );
+        $postfields = array(
+            "email" => "er.pradeep007@gmail.com",
+            "password" => "pradeep","socialType" =>0
+        );
+        $ch = curl_init();
+        $options = array(
+            CURLOPT_URL => $url,
+            CURLOPT_HEADER => true,
+            CURLOPT_POST => 1,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => $postfields,
+            // CURLOPT_INFILESIZE => $filesize,
+            CURLOPT_RETURNTRANSFER => true
+        ); // cURL options
+        curl_setopt_array($ch, $options);
+        $op=curl_exec($ch);
+        if (!curl_errno($ch)) {
+            $info = curl_getinfo($ch);
+            
+            if ($info['http_code'] == 200)
+                var_dump($op);
         } else {
             $errmsg = curl_error($ch);
         }

@@ -89,8 +89,10 @@
 <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.timelinr-0.9.54.js"></script>
-
+<script src="<?php echo asset_url(); ?>js/bootstrapValidator.min.js"></script>
+<!--<script src="<?php echo asset_url(); ?>js/auth.js"></script>
 <script src="<?php echo asset_url();?>js/home.js"></script>
+<script src="<?php echo asset_url();?>js/profile.js"></script>-->
 <script>
 	$('.multiselect').multiselect(
 		{

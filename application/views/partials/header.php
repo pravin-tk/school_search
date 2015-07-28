@@ -145,7 +145,7 @@
   </nav>
 
 <script src="<?php echo asset_url(); ?>js/bootstrapValidator.min.js"></script>
-<script>
+<!--<script>
              $( document ).ready(function() {
                 $('.form-control .form-group').css('width', '');
                function userLogin() {
@@ -315,4 +315,4 @@
          });
          $('button[type="submit"]').prop('disabled', 'true');
       }); // end doc ready
-          </script>
+          </script>-->

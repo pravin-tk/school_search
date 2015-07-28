@@ -58,3 +58,4 @@ $route['login'] = '';
 $route['logout'] = 'auth/userLogout';
 $route['user-profile'] = 'auth/userProfile';
 $route['search'] = 'home/search';
+$route['activate'] = 'auth/userActivate';
