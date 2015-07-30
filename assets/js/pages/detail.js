@@ -21,7 +21,7 @@ $('.timelineslider').slick({
 adaptiveHeight: true,
 //centerMode: true,
 //centerPadding: '50px',
-slidesToShow: 1,
+slidesToShow: 3,
 asNavFor: '.slider-nav',
 
 responsive: [
@@ -46,7 +46,7 @@ responsive: [
 
 });
 $('.slider-nav').slick({
-slidesToShow: 3,
+slidesToShow: 10,
 slidesToScroll: 1,
 asNavFor: '.timelineslider',
 dots: true,
@@ -102,7 +102,7 @@ window.onload=init;
 
 function init(){
 	document.getElementById("mask").getElementsByTagName("div")[2].onclick=function(){anim('',this)};
-	anim();
+	//anim();
 }
 
 var animace;
@@ -127,3 +127,5 @@ function anim(pos,t){
 	wrap.style.backgroundPosition = "-"+pos+"px 0";
 	animace = setTimeout(function(){anim((pos+.5))}, step);
 } 
+//
+//360
