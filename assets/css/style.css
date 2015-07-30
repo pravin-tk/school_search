@@ -21,5 +21,11 @@
 /*loading  end */
 
 .slider-nav{
-	background-image: url(../img/icons/dot.gif) center repeat-x;
+	background: url(../img/icons/dot.gif) center repeat-x;
+}
+.timelinebackground{
+	background: url(../img/icons/biggerdot.png) center no-repeat;
+}
+.ribbon-color{
+	background-color: #26a69a;
 }

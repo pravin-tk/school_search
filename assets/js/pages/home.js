@@ -50,19 +50,5 @@ $("#search_header").affix({
 //})
 
 
-$(function() {
-    $('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
-        }, 500, 'easeInOutExpo');
-        event.preventDefault();
-    });
-});
 
-// Highlight the top nav as scrolling occurs
-$('body').scrollspy({
-    target: '.navbar-fixed-top',
-    offset: 51
-})
 //nearby slick
