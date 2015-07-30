@@ -197,7 +197,7 @@ function init() {
 	
 	renderer = new THREE.WebGLRenderer();
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight - $(".overlay-gallery").height() );
+	renderer.setSize( window.innerWidth, 470 );
 	//alert( window.innerWidth+"-"+ window.innerHeight);
 	container.appendChild( renderer.domElement );
 
