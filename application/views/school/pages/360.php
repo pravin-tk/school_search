@@ -197,7 +197,7 @@ function init() {
 	
 	renderer = new THREE.WebGLRenderer();
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, window.innerHeight - $(".overlay-gallery").height() );
+	renderer.setSize( window.innerWidth, 470 );
 	//alert( window.innerWidth+"-"+ window.innerHeight);
 	container.appendChild( renderer.domElement );
 
@@ -223,7 +223,9 @@ $(".pano-next").click(function(){
 	mesh1 = new THREE.Mesh( geometry, image1 );
 	scene.remove(mesh1);
   	scene.add(mesh1);
-	
+  	$('html, body').stop().animate({
+        scrollTop: $("#container").offset().top - $("#detailmenubar").height()
+    }, 500, 'easeInOutExpo');	
 })
 	document.addEventListener( 'dragover', function ( event ) {
 
