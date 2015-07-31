@@ -10,7 +10,8 @@ class Global_config {
                 $this->CI->template->set('global_url',site_url());
                 $this->CI->template->set('base_url',base_url());
                 $this->CI->template->set('current_url',current_url());
-                error_log('baseee=');
+                $this->CI->template->set('home_url',"http://localhost/edbuddy-proj");
+               
 		//$this->tk_config = parse_ini_file("./config/EBD.ini");
 		//$this->version = parse_ini_file("/etc/php5/fpm/version.ini");
 //		if ( (empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'com.android.browser' )
@@ -247,6 +248,7 @@ class Global_config {
 //			$this->CI->template->set('ssl_base_url',base_url());
 //		}
 //	
+                
 //		$this->CI->template->set('global_url',site_url());
 //		$this->CI->template->set('base_url',base_url());
 //		$this->CI->template->set('current_url',current_url());

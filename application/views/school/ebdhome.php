@@ -1,5 +1,53 @@
 <style>
-
+    .extra-search-div{
+        display:inline-block;
+    }
+    @media screen and (max-width:1000px){
+        .extra-search-div{
+            display:none;
+        }
+        .row [class*="col-"]{
+            padding-bottom: 5px;
+        }
+        .row .col-md-12{
+            
+            width: 100%;
+        }
+        .row .col-md-8{
+            
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-3{
+            float:left;
+            width: 20%;
+        }
+        .row .col-md-8 .col-md-6{
+            float:left;
+            width: 60%;
+        }
+    }
+    @media screen and (max-width:600px){
+        .extra-search-div{
+            display:none;
+        }
+        .row [class*="col-"]{
+            padding-bottom: 5px;
+        }
+        .row .col-md-12{
+            
+            width: 100%;
+        }
+        .row .col-md-8{
+            
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-3{
+            width: 100%;
+        }
+        .row .col-md-8 .col-md-6{
+            width: 100%;
+        }
+    }
 </style>
 <?php
 	$standard = "";
@@ -11,11 +59,6 @@
 <div class="container" style="width: 100%;">
     <div class="row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-<!--                 <ol class="carousel-indicators"> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
-<!--                     <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
-<!--                 </ol> -->
                 <div class="carousel-inner " id="homeslider">
                     <div class="item active">
                         <img src="<?php echo asset_url();?>img/header4.png"
@@ -30,12 +73,7 @@
                     <div class="item">
                         <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
 							 class="" style=" width:100%;height: 80%;">
-<!--                         <div class="carousel-caption"> -->
-<!--                             <h3> -->
-<!--                                 Third slide</h3> -->
-<!--                             <p> -->
-<!--                                 Nulla vitae elit libero, a pharetra augue mollis interdum.</p> -->
-<!--                         </div> -->
+
                     </div>
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -44,34 +82,39 @@
                         </span></a>
                         
             </div>
-            <div class="main-text overlaysearch text-center" style="display: inline-block;" >
+            <div class="main-text overlaysearch text-center col-md-12" style="display: inline-block;" >
                     <h1 class="searchheading">
                         Search School
                     </h1>
-                  	<form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
-						<div class="form-group form-div">
-							<div class="col-lg-3 selectContainer">
-								<select class="selectpicker form-control" id="cboStd" name="standardId">
-									<option value="">--Select--</option>
-		                                     
-		                           	<?php  foreach ($standard as $key=>$value) { ?>
-		                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-		                            <?php  } ?>
-						  		</select>
-							</div>
-		
-							<div class="col-lg-3">
-								<input type="hidden" id="latitude" name="latitude" value="" /> 
-								<input type="hidden" id="longitude" name="longitude" value="" /> 
-								<input type="hidden" id="address" name="address" value="" /> 
-								<input  id="schbox" type="text"
-									placeholder="Search by School, Area, Location" name="searchtxt"
-									class="form-control">
-							</div>
-		                    <div class="col-lg-3">
-		                    	<input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
-		                    </div>
-	                    </div>
+                  <form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
+                      <input type="text" id="notify_message" value="" style="display:none" />
+                      <div class="col-md-2 extra-search-div">&nbsp;</div>
+                      <div class="form-group col-md-8">
+                            <div class="col-md-3 selectContainer">
+                                <select class="selectpicker form-control" id="cboStd" name="standardId" required>
+                                        <option value="">--Select--</option>
+                                        <?php  
+                                        if(isset($standard))
+                                            foreach ($standard as $key=>$value) { ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                            <?php  } ?>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="hidden" id="latitude" name="latitude" value="" /> 
+                                <input type="hidden" id="longitude" name="longitude" value="" /> 
+                                <input type="hidden" id="address" name="address" value="" /> 
+                                <input  id="schbox" type="text"  required
+                                        placeholder="Search by School, Area, Location" name="searchtxt"
+                                        class="form-control">
+                            </div>
+                        <div class="col-md-3">
+                        <input type="submit" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                       
+                        </div>
+                        </div>
+                        <div class="col-md-2 extra-search-div">&nbsp;</div>
                     </form>
                     
             </div>
@@ -84,48 +127,7 @@
 
                   
 <div id="content" class="ng-scope">
-<!-- 	<aside class="bg-purple" class="asidecategory"> -->
-<!--             <div class="row"> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-diamond wow bounceIn "></i> -->
-<!--                         <a class="btn btn-clear btn-sm btn-min-block" href="http://www.jquery2dotnet.com/">Login</a> -->
-                        
-<!-- <!--                         <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>--> 
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-paper-plane wow bounceIn " data-wow-delay=".1s"></i> -->
-<!--                         <h5>Primary Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
-<!--                         <h5>Secondary Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
-<!--                         <h5>High Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                  <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
-<!--                         <h5>Secondary High</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
-<!--                         <h5>Colleges</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!-- 	 </aside> -->
+
 	<div class="bg-white">
 		<div class="container">
 
