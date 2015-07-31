@@ -2,24 +2,248 @@
 $schools = $schoolList;
 $schoolMedium = $filtersList['mediumFilter'];
 $schoolBoard = $filtersList['boardFilter'];
-$schoolType = $filtersList['typeFilter'];
 $schoolCategory = $filtersList['categoryFilter'];
-$activities = $filtersList['activityFilter'];
-$safety = $filtersList['safetyFilter'];
-$infrastructure = $filtersList['infraFilter'];
 $classification = $filtersList['classificationFilter'];
 
 ?>
-
 <style>
+html, body {height: 100%;}
+
 #map-canvas {
-	width: 90%;
-	height: 350px;
-	margin-top: 1%;
-	margin-bottom: 2%;
-	position: absolute;
+	float:left;
+	width:75%;
+    height:100%;
+    overflow-y:auto;
+    min-height: 100%;
+    display: block;
+    background: #fff;
+    z-index: 1;
+}
+#map-tabs {
+	float:right;
+	width:25%;
+    height:100%;
+    overflow-y:auto;
+    min-height: 100%;
+    display: block;
+    background: #f4f4f4;
+    z-index: 2;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,.1);
+    box-sizing: border-box;
 }
 
+#map-tabs .col-md-6{
+	padding-left:0px;
+	padding-right:0px;
+	height:100%;
+    overflow-y:auto;
+    min-height: 100%;
+	background: #f4f4f4;
+    cursor: pointer;
+    color: #2e2e32;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.map-view{
+	position:absolute;
+	top:90px;
+	width: 100%;
+    height: auto;
+    min-height:auto;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    font-family: din,Calibri,Cantarell,sans-serif;
+}
+.schoollistTab, .sortlistTab{
+	width:50%;
+	color: #2e2e32;
+}
+
+.schoollistTab, .sortlistTab .summary{
+    line-height: 50px;
+    font-weight: 700;
+}
+.schoollistTab, .sortlistTab .summary-list{
+	line-height: 50px;
+    font-weight: 700;
+}
+.schoollistTab, .sortlistTab .text {
+    font-size: 14px;
+    display: inline;
+    line-height: 20px;
+    font-weight: 400;
+}
+#map-tabs .tab-content{
+	position:relative;
+	height:100%;
+    overflow-y:auto;
+    min-height: 100%;
+    padding:0px;
+}
+.tab-content #schoolList, #sortList, #sortListRight {
+    height:100%;
+    overflow-y:auto;
+    min-height: 100%;
+}
+.tab-content .media-left, .media > .pull-left {
+    padding-right: 5px;
+}
+.tab-content .media-left p a img{
+    border:1px solid #f2f2f2;
+}
+.tab-content .media-body{
+	text-align:left;
+}
+.tab-content #schoolList .panel{
+	margin-bottom:0px;
+	border-bottom:0px;
+	border-left:0px;
+}
+.tab-content #schoolList .panel-body{
+	padding-bottom:2px;
+	padding-right:0px;
+}
+
+.tab-content .media-body .fee {
+	color: #2e2e32;
+	font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.nav-tab-map-list{
+	position: relative;
+	width:100%;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: 0 0;
+}
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fa-heart{
+	color: #D41464;
+}
+
+.map-view {
+	display:block;
+}
+
+#list-searchresult{
+	display:none;
+}
+.container {
+	position:relative;
+	top:70px;
+}
+.container .row [class*="col-"] {
+    padding: 0px;
+    margin:0px;
+}
+.container .panel-default .col-md-9, .col-md-3{
+	padding-left:0px;
+	padding-right:0px;
+}
+#schresult .panel{
+	border-top:0px;
+	border-left:0px;
+	border-right:0px;
+	margin-bottom:0px;
+}
+.detail-label {
+    color: #000;
+    display: inline-block;
+    opacity: .5;
+}
+.detail-value {
+    color: #000;
+    padding-bottom:5px;
+}
+.share-school{
+	min-height:48px;
+}
+.share-school .padding-top-05{
+	margin-top:5px;
+}
+.list-primary-button{
+	width:80%;
+}
+.col-sm-3 .btn {
+	font-weight:600;
+}
+#padding-left-08 {
+	padding-left:8px;
+}
+.street-locality {
+    opacity: .5;
+    display: table-cell;
+    max-width: 165px;
+    padding-left: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.school-name-text {
+	font-weight:700;
+    max-width: 165px;
+    padding-left: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.school-name-text-marker{
+	font-weight:700;
+	font-size:16px;
+	font-weight:normal;
+	text-transform: capitalize;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:left;
+    padding-left:5px;
+}
+.street-locality-marker {
+    opacity: .5;
+    display: block-line;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:left;
+    padding-left:5px;
+    font-weight:normal;
+}
+.school-fee-marker {
+    display: block-line;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align:left;
+    padding-left:5px;
+    font-size:16px;
+}
+.list-top-line{
+	min-height:57px;
+}
+.container .panel .panel-body .media .media-left p{
+	margin-bottom:8px;
+}
 .dropdown-menu {
 	max-height: 200px;
 	overflow-y: auto;
@@ -32,394 +256,199 @@ $classification = $filtersList['classificationFilter'];
 	overflow-y: auto;
 	overflow-x: hidden;
 }
-#search_header.affix{
-	width:74%;
-	top:50px;
+#search_header{
+	width:100%;
+	top:52px;
 	z-index:10000;
 }
-@media (min-width: 999px) and (max-width: 1050px){
-	#search_header.affix{
-		width:75%;
-		top:50px;
-		z-index:10000;
+.map-gradient {
+  margin-top: 20px;
+  background-image: linear-gradient(90deg, #FF0000, #00FFFF);
+}
+.legend{
+	background-color:#f2f2f2;
+	color:#000;
+	font-weight:bold;
+	margin: 5px 5px 5px 5px;
+	padding: 3px 3px 3px 3px;
+}
+.footer{
+	display:none;
+}
+.nav > .sort-field-list{
+    display: block;
+}
+.nav > .sort-field-dropdown{
+	display:none;
+}
+.filter-text-bar{
+	display:true;
+}
+@media screen and (max-width:1040px){
+	.nav > .sort-field-list{
+		display:none;
+	}
+	.nav > .sort-field-dropdown{
+		display:block;
+	}
+	.filter-toggle-icon{
+		padding-top:4px;
+		padding-bottom:4px;
+		margin-top:5px;
+		margin-bottom:5px;
+		font-size:14px;
 	}
 }
-@media (min-width: 1051px) and (max-width: 1100px){
-	#search_header.affix{
-		width:74%;
-		top:50px;
-		z-index:10000;
+@media screen and (max-width:825px){
+	.filter-text-bar{
+		display:none;
 	}
 }
-@media (min-width: 1101px) and (max-width: 1200px){
-	#search_header.affix{
-		width:72%;
-		top:50px;
-		z-index:10000;
+.container .row .col-md-3 .right-side-fav-button{
+	padding:10px;
+	border:1px solid transparent;
+}
+#listFavButton a{
+	border:1px solid #e2e9e6;
+	background-color:#fff;
+}
+.container .row .col-md-3{
+	height:auto;
+	min-height:100%;
+	border-left:1px solid transparent;
+}
+.container .row .col-md-3 .right-side-bar{
+	height:100%;
+	min-height:100%;
+}
+.listFavButton{
+	width:100%;
+	color: #2e2e32;
+}
+
+.listFavButton .summary {
+    line-height: 50px;
+    font-weight: 700;
+}
+.listFavButton .summary-list {
+    line-height: 50px;
+    font-weight: 700;
+}
+.listFavButton .text {
+    font-size: 14px;
+    display: inline;
+    line-height: 20px;
+    font-weight: 400;
+}
+.container .row .col-md-3 .col-md-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 100%;
+    overflow-y: auto;
+    min-height: 100%;
+    background: #f4f4f4;
+    cursor: pointer;
+    color: #2e2e32;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+#right-col-md-3{
+	height:100%;
+	min-height:100%;
+}
+#list-image{
+	position:relative;
+}
+.icon-heart-list {
+	position: absolute;
+    right: 4px;
+    top: 5px;
+    z-index:1;
+    font-size:16px;
+}
+.right-main-content-inner{
+	position:fixed;
+	top:90px;
+	left:inherit;
+	width:inherit;
+	padding-right:15px;
+}
+.right-main-content-inner .nav{
+	background-color:#fff;
+}
+#list-searchresult{
+	width:100%;
+}
+.search-list-row{
+	width:100%;
+	height:auto;
+	overflow:auto;
+}
+@media screen and (max-width:991px){
+	.right-main-content-inner{
+		position:relative;
+		top:0px;
+		left:inherit;
+		width:inherit;
+		padding-right:15px;
 	}
 }
-#sortFields checkbox {
-	border:1px solid green;
-	background-color:green;
+.title-h1{
+	padding-left:15px;
+	font-size:12px;
+	border-bottom:1px solid #e2e9e6;
+}
+.title-h1 h1{
+	font-size:22px;
+}
+#listFavButton{
+	padding-top:5px;
 }
 </style>
 
-<!-- uiView:  -->
-<div data-ui-view="" class="ui-view-main ng-scope">
-	<!-- uiView:  -->
-	<div ui-view="" class="ui-view-main ng-scope">
-		<!-- Fixed navbar -->
 		<div id="content">
-			<section class="cover overlay height-100 height-170-xs">
-				<div class="overlay overlay-bg-black">
-					<div class="v-bottom">
-						<div class="container">
-							<p class="text-overlay">
-								You searched for school near <?php echo $location; ?>. <span
-									class="hidden-sm hidden-xs"></span>
-							</p>
-						</div>
+			<div id="mav-view-layout" class="map-view">
+				<div id="map-canvas"></div>
+				<div class="infobox-wrapper" id="infobox-wrapper" style="width: 300px;">
+					<div id="infobox" style="width: 300px;">
 					</div>
 				</div>
-			</section>
-
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<form id="frmSch">
-							<input type="hidden" name="latitude" id="latitude"
-								value="<?php echo $latitude;?>" /> <input type="hidden"
-								name="longitude" id="longitude" value="<?php echo $longitude;?>" />
-							<input type="hidden" name="standardId" id="standardId"
-								value="<?php echo $standardId;?>" />
-							<div class="panel panel-default" data-toggle="panel-collapse"
-								data-open="false">
-								<div class="panel-heading panel-collapse-trigger collapse in"
-									data-toggle="collapse"
-									data-target="#6d98aa69-0d44-7a1a-96d2-5bd350287a73"
-									aria-expanded="true" style="">
-									<h4 class="panel-title">
-										<i class="text-success fa fa-filter"></i> Search Filters
-									</h4>
-								</div>
-
-								<div id="6d98aa69-0d44-7a1a-96d2-5bd350287a73" class="">
-									<div class="panel-body">
-										<div class="form-group margin-none">
-											<label class="label-block" for="check-out"><i
-												class="fa fa-graduation-cap"></i> School Board</label>
-											<div class="input-group">
-                                        	<?php 
-                                            if(isset($schoolBoard)) {  
-                                              	foreach ($schoolBoard as $key => $value) { ?>
-                                                	<div class="col-sm-6">
-													<input type="checkbox" name="schoolboardcheckbox"
-														value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-                                                    </div>
-                                          	<?php 
-                                            	}
-                                            }
-                                            ?>
-                                        </div>
-										</div>
-										<div class="form-group margin-none">
-											<label class="label-block" for="check-out"><i
-												class="fa fa-language"></i> Teaching Medium</label>
-											<div class="input-group">
-                                        	<?php 
-                                            if(isset($schoolMedium)){
-                                              	foreach ($schoolMedium as $key => $value) { ?>
-	                                              	<div class="col-sm-6">
-													<input type="checkbox" name="schoolmediumcheckbox"
-														value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-	                                                </div>
-                                            <?php
-                                             	} 
-                                            }
-                                          	?>
-                                        </div>
-										</div>
-
-										<div class="form-group margin-none">
-											<label for="category"><i class="fa fa-mercury"></i> School
-												Type:</label>
-											<div class="input-group bootstrap-touchspin">
-                                          	<?php 
-                                            if(isset($schoolCategory)) {
-                                              	foreach ($schoolCategory as $key => $value) { ?>
-                                                	<div class="col-sm-6">
-													<input type="checkbox" name="schoolcategorycheckbox"
-														value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-                                                    </div>
-                                          	<?php 
-                                              	}
-                                            } 
-                                           	?>
-                                        </div>
-										</div>
-
-										<div class="form-group margin-none">
-											<label for="check-out"><i class="fa fa-users"></i> School
-												Management</label>
-											<div class="input-group">
-                                         	<?php 
-                                            if(isset($schoolType)) {
-                                          		foreach ($schoolType as $key => $value) { ?>
-                                                    <div
-													class="col-sm-6">
-													<input type="checkbox" name="schooltypecheckbox"
-														value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-                                                    </div>
-                                           	<?php 
-                                            	}
-                                            }
-                                            ?>
-                                        </div>
-										</div>
-										<div class="form-group margin-none">
-											<label for="category"><i class="fa fa-tags"></i> School
-												Category:</label>
-											<div class="input-group bootstrap-touchspin">
-                                        	<?php 
-                                            if(isset($classification)) {
-                                            	foreach ($classification as $key => $value) { ?>
-                                                    <div
-													class="col-sm-6">
-													<input type="checkbox" name="schoolclassificationcheckbox"
-														value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-                                                    </div>
-                                         	<?php 
-                                            	}
-                                            } 
-                                            ?>
-                                        </div>
-										</div>
-										
-<!-- 										<div class="col-xs-6"> -->
-<!-- 											<input type="button" class="btn btn-block btn-success" -->
-<!-- 												type="button" name="btnSch" id="btnSch" value="Search Now!" onclick="filterResults()" /> -->
-<!-- 										</div> -->
-<!-- 										<div class="col-xs-6"> -->
-<!-- 											<a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> -->
-<!-- 												reset filters</a> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-
-<!-- 							<div class="panel panel-default" data-toggle="panel-collapse" -->
-<!-- 								data-open="true"> -->
-<!-- 								<div class="panel-heading panel-collapse-trigger collapse in" -->
-<!-- 									data-toggle="collapse" -->
-<!-- 									data-target="#2577c4d2-088a-9d72-d555-13d644a5a25b" aria-expanded="true" style="">  -->
-<!-- 									<h4 class="panel-title"> -->
-<!-- 										<i class="text-success fa fa-filter"></i> .. More Filters -->
-<!-- 									</h4> -->
-<!-- 								</div> -->
-
-<!-- 								<div id="2577c4d2-088a-9d72-d555-13d644a5a25b" -->
-<!-- 									class="collapse in"> -->
-<!-- 									<div class="panel-body"> -->
-										<div id="moreFilters-panel" style="display:none;">
-										<div class="form-group">
-											<div class="input-group bootstrap-touchspin">
-                                            	<?php 
-                                                if($activities){
-	                                              	foreach ($activities as $key => $items) { ?>
-	                                              		<div class="col-sm-12">
-													<label for="activities"><?php echo $items['categoryName']; ?></label>
-												</div>
-	                                                    <?php foreach ($items['filter'] as $key1 => $itemvalue) { ?>
-	                                                      	<div
-													class="col-sm-12">
-													<input type="checkbox" name="activitycheckbox"
-														value="<?php echo $itemvalue['id']; ?>" /> <?php echo $itemvalue['name']; ?>
-					                                       	</div>
-	                                                    <?php } ?>
-	                                           	<?php 
-	                                             	}
-	                                            } 
-	                                           	?>
-                                            </div>
-										</div>
-										<div class="form-group">
-											<div class="input-group bootstrap-touchspin">
-			                                  	<?php 
-				                                if($infrastructure) {
-					                             	foreach ($infrastructure as $key => $items) { ?>
-					                             	<div class="col-sm-12">
-													<label for="activities"><?php echo $items['categoryName']; ?></label>
-												</div>
-	                                                	<?php foreach ($items['filter'] as $key1 => $itemvalue) { ?>
-	                                                        <div
-													class="col-sm-12">
-													<input type="checkbox" name="infracheckbox"
-														value="<?php echo $itemvalue['id']; ?>" /> <?php echo $itemvalue['name']; ?>
-					                                       	</div>
-	                                                    <?php } ?>
-                                               	<?php 
-				                                  	}
-				                                }
-				                                ?>
-                                            </div>
-										</div>
-										<div class="form-group">
-											<div class="input-group bootstrap-touchspin">
-                                        	<?php 
-                                        	if($safety) {
-                                            	foreach ($safety as $key => $items) { ?>
-                                                <div class="col-sm-12">
-													<label for="activities"><?php echo $items['categoryName']; ?></label>
-												</div>
-                                                    <?php foreach ($items["filter"] as $key1 => $itemvalue) { ?>
-                                                        <div
-													class="col-sm-12">
-													<input type="checkbox" name="safetycheckbox"
-														value="<?php echo $itemvalue['id']; ?>" /> <?php echo $itemvalue['name']; ?>
-					                                   	</div>
-                                                    <?php } ?>
-
-                                        	<?php 
-                                            	}
-                                        	} 
-                                        	?>
-                                            </div>
-                                            </div>
-                                            </div>
-                                            <br/><br/>
-											<div class="col-xs-6">
-												<input type="button" class="btn btn-block btn-success"
-													type="button" name="btnSch" id="btnSch" value="Search Now!"
-													onclick="filterResults()" />
-											</div>
-											<div class="col-xs-6">
-												<a href="javascript:resetFilters();" class="btn btn-link"><i class="fa fa-fw fa-times"></i>
-													reset filters</a>
-											</div>
-											<div class="col-xs-6" id="moreFilters">
-												<a href="javascript:moreFilters()" class="btn btn-link"><i class="fa fa-fw fa-ellipsis-h"></i>
-													More filters</a>
-											</div>
-											<br>
-											<br>
-										<div class="collapse" id="lodging" aria-expanded="false">
-											<br>
-										</div>
-										<br/><br/>
-									</div>
-								</div>
-							</div>
-							<br/><br/>
-							<br/>
-
-<!-- 							<div class="row text-center"> -->
-<!-- 								<div class="col-xs-6"> -->
-<!-- 									<input type="button" class="btn btn-block btn-success" -->
-<!-- 										type="button" name="btnSch" id="btnSch" value="Search Now!" onclick="filterResults()" /> -->
-<!-- 								</div> -->
-<!-- 								<div class="col-xs-6"> -->
-<!-- 									<a href="" class="btn btn-link"><i class="fa fa-fw fa-times"></i> -->
-<!-- 										reset filters</a> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-							<br>
-						</form>
-					</div>
-					<div class="col-md-9 panel panel-default">
-
-						<div class="row panel-heading" id="search_header">
-							<div class="col-xs-4">
-								<h4>
-									<span class="text-primary"><?php if(isset($schools)){echo count($schools);}?></span>
-									Results
-								</h4>
-							</div>
-							<input type="hidden" name="classFee" id="classFee" value=""/>
-							<input type="hidden" name="distance" id="distance" value=""/>
-							<input type="hidden" name="rating" id="rating" value=""/>
-							<input type="hidden" name="seats" id="seats" value=""/>
-							<div class="col-xs-8 text-right">
-								<span class="btn btn-primary" onclick="sortSchool('classFee');" id="classFee-button">
-									Fee <i class="fa fa-sort-amount-asc"></i>
-								</span>
-								<span class="btn btn-primary" onclick="sortSchool('distance');" id="distance-button">
-									Distance <i class="fa fa-sort-amount-asc"></i>
-								</span>
-								<span class="btn btn-primary" onclick="sortSchool('rating');" id="rating-button">
-									Rating <i class="fa fa-sort-amount-asc"></i>
-								</span>
-								<span class="btn btn-primary" onclick="sortSchool('seats');" id="seats-button">
-									Seats <i class="fa fa-sort-amount-asc"></i>
-								</span>
-								<span class="btn btn-primary" onclick="sortClear();" id="seats-button">
-									Clear <i class="fa fa-times-circle"></i>
-								</span>
-								<div class="btn-group display-inline-block">
-
-									<a class="btn btn-primary active" href="search"><i
-										class="fa fa-list"></i></a> <a class="btn btn-primary"
-										href="grid"><i class="fa fa-th"></i></a>
-
-								</div>
-							</div>
-						</div>
-						<br>
-
-						<!-- Map  -->
-						<div class="panel panel-default" data-toggle="panel-collapse"
-							data-open="true" id="map_window">
-							<div class="panel-heading panel-collapse-trigger collapse in"
-								data-toggle="collapse"
-								data-target="#1e5da4fb-8e34-7fbb-2b79-e722a89153e4"
-								aria-expanded="true">
-								<h4 class="panel-title">Map View</h4>
-							</div>
-
-							<div id="1e5da4fb-8e34-7fbb-2b79-e722a89153e4" class="collapse">
-								<div class="panel-body relative height-400"
-									style="width: 100%; height: 100%; position: absolute;">
-									<div style="clear: both;">
-										<div id="map-canvas"
-											style="border: ridge #34C6C3; border-width: 0 6px 6px 6px;"></div>
-									</div>
-									<div class="infobox-wrapper" id="infobox-wrapper"
-										style="width: 300px;">
-										<div id="infobox" style="width: 300px;">
-											<div id="infobox-text"
-												style="color: #000000; text-align: center;"
-												style="width:300px;">
-												<span id="ins-drag">
-													<div id='schoolimg' style='float: left; width: "200px;'></div>
-													<div id='schooltext' style='float: right;width="100px;'></div>
-													<br>
-												</span> <span id="err-text" style="font-weight: bold;"></span>
-												<br> <a id="marker_link" class='btn-orange' href=""> View
-													School </a> <br />
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Map end -->
-						<div id="schresult">
-                        <?php 
-                        if(isset($schools)) {
-                            foreach($schools as $key => $school){
-                        
-                        ?>
-
-                            <div class="panel panel-default">
+				<div id="map-tabs">
+					<ul class="nav nav-tabs nav-tab-map-list" role="tablist">
+    					<li role="presentation" class="active col-md-6" id="schoollistTab">
+    						<a href="#schoolList" aria-controls="schoolList" role="tab" data-toggle="tab">
+								<i class="fa fa-list"></i> 
+								<span class="summary-list"><?php echo count($schools);?></span> <span class="text">Schools</span>
+							</a>
+    					</li>
+    					<li role="presentation" class="col-md-6" id="sortlistTab">
+    						<a href="#sortList" aria-controls="sortList" role="tab" data-toggle="tab">
+								<i class="fa fa-heart"></i> 
+								<span class="summary">0</span> <span class="text">Sortlist</span>
+							</a>
+    					</li>
+    				</ul>
+    				<div class="tab-content" id="tab-map-list-content">
+					    <div role="tabpanel" class="tab-pane active" id="schoolList">
+					    	<div id="schresult-map">
+	                        <?php 
+	                        if(isset($schools)) {
+	                            foreach($schools as $key => $school){
+	                        
+	                        ?>
+                            <div class="panel panel-default" id="map-search-result-<?php echo $school['schoolId']?>">
 								<div class="panel-body">
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
 											<p>
 												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
                                                     <?php if($school['logo'] == ""){?>
-                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" class="media-object">
+                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                                                     <?php }else{?>
-                                                    <img src="<?php echo $school['logo'];?>" alt="property" width="150" class="media-object">
+                                                    <img src="<?php echo $school['logo'];?>" alt="property" width="120" height="100" class="media-object">
                                                      <?php }?>
                                                 </a>
 											</p>
@@ -445,45 +474,25 @@ $classification = $filtersList['classificationFilter'];
 										</div>
 										<div class="media-body">
 											<div class="pull-right">
-												<a class="text-primary" href=""><i class="fa fa-star text-yellow"></i> <strong><?php echo $school['rating'];?></strong></a> 
-												<a class="text-grey-400" href=""><i class="fa fa-heart-o fa-fw"></i></a>
+												<span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
 											</div>
 											<h4 class="media-heading margin-v-0-10">
 												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>"><?php echo $school['name']?>
                                                     </a>
 											</h4>
-											<h5 class="margin-title"><?php echo ucwords($school['streetName'].", ".$school['localityName'].", ".$school['cityName']);?></h5>
+											<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
 											<p>
-												<span class="label label-grey-100"><i
-													class="fa fa-graduation-cap fa-fw"></i>Board : <?php echo $school['boardName']?></span>
-												<span class="label label-grey-100"><i
-													class="fa fa-fw icon fa-language"></i> Medium :<?php echo $school['mediums']?></span>
-												<span class="label label-grey-100"><i
-													class="fa fa-mercury "></i> Category :<?php echo $school['schoolCategory']?> </span>
+												<span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
 											</p>
 											<p>
-												<span class="label label-grey-100">
-													<i class="fa fa-money"></i>  <i class="fa fa-rupee"></i> 
+												<span class="fee label-100">
+													<i class="fa fa-rupee"></i> 
 													<?php 
-													if($school['totalFee'] > 100000)
-														echo round($school['totalFee']/100000,3)." LPA";
+													if($school['totalFee'] > 1000)
+														echo round($school['totalFee']/1000,2)."K PA";
 													else 
 														echo $school['totalFee']." PA";
 													?>
-												</span>
-												<span class="label label-grey-100">
-													<i class="fa fa-road"></i> <?php echo round($school['distance'],2)?> Kms
-												</span>
-												<span class="label label-grey-100">
-													<i class="fa fa-user-secret"></i> <?php echo $school['seats'];?> seats available
-												</span>
-											</p>
-											<p>
-												<span class="label label-grey-100">
-													<i class="fa fa-picture-o"></i> Gallery(<?php echo $school['galeryImages']?> Photos)
-												</span>
-												<span class="label label-grey-100">
-													<i class="fa fa-comments"></i> Review(<?php echo $school['reviews']?> Reviews)
 												</span>
 											</p>
 										</div>
@@ -494,374 +503,359 @@ $classification = $filtersList['classificationFilter'];
                             }
                       	} 
                       	?>
+						</div>
+						</div>
+					    <div role="tabpanel" class="tab-pane" id="sortList">
+					    
+					    </div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="container" id="list-searchresult">
+				<div class="search-list-row">
+					<div class="col-md-9 panel panel-default">
+						<div class="title-h1 padding-left-05">
+						<h1><?php echo count($schools);?> Schools in <?php echo $location;?></h1> 
+						</div>
+						<div id="schresult">
+                        <?php 
+                        if(isset($schools)) {
+                            foreach($schools as $key => $school){
+                        
+                        ?>
+
+                            <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId']?>">
+								<div class="panel-body">
+									<div class="media media-clearfix-xs media-clearfix-sm">
+										<div class="media-left">
+											<p id="list-image">
+												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+                                                    <?php if($school['logo'] == ""){?>
+                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
+                                                    <?php }else{?>
+                                                    <img src="<?php echo $school['logo'];?>" alt="property" width="150" height="135" class="media-object">
+                                                     <?php }?>
+                                                </a>
+                                                <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']?>">
+													<i class="fa fa-heart-o"></i> 
+												</span>
+											</p>
+										</div>
+										<div class="media-body">
+											<div class="col-sm-3" id="padding-left-08">
+												<div class="list-top-line">
+													<div class="school-name-text margin-title text-capitalize">
+														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>">
+															<?php echo $school['name']?>
+			                                            </a>
+		                                            </div>
+		                                            <div class="street-locality">
+		                                            	<i class="fa fa-map-marker"></i> <?php echo ucwords($school['localityName'].", ".$school['cityName']);?>
+		                                            </div>
+	                                            </div>
+	                                            <div class="detail-label">
+	                                            	Category
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['schoolClassification']?>
+	                                            </div>
+	                                            <div class="detail-label">
+	                                            	Board
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['boardName']?>
+	                                            </div>
+												<a class="btn btn-primary list-primary-button" href="">
+													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']?>)
+	                                            </a>
+											</div>
+											<div class="col-sm-3" id="padding-left-08">
+												<div class="list-top-line">
+													<div class="detail-label">
+														Play Group
+		                                            </div>
+		                                            <div>
+		                                            (<i class="fa fa-user-plus"></i> <?php echo $school['seats'];?> available)
+		                                            </div>
+		                                        </div>
+	                                            <div class="detail-label">
+	                                            	Medium
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['mediums']?>
+	                                            </div>
+	                                            <div class="detail-label">
+	                                            	Type
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['schoolCategory']?>
+	                                            </div>
+	                                            <a class="btn btn-primary list-primary-button" href="">
+													<i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
+	                                            </a>
+											</div>
+											<div class="col-sm-3" id="padding-left-08">
+												<div class="list-top-line">
+													<div>
+														<span class="label label-grey-100">
+															<i class="fa fa-road"></i> <?php echo round($school['distance'],2)?> Kms
+														</span>
+		                                            </div>
+		                                        </div>
+		                                        <div class="detail-label">
+	                                            	Management
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['schoolCategory']?>
+	                                            </div>
+	                                            <div class="detail-label">
+	                                            	Fee(Per Annum)
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<i class="fa fa-rupee"></i>
+		                                            <?php 
+														if($school['totalFee'] > 1000)
+															echo round($school['totalFee']/1000,2)."K PA";
+														else 
+															echo $school['totalFee']." PA";
+													?> (approx.)
+	                                            </div>
+	                                            <a class="btn btn-primary list-primary-button" href="">
+													<i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews']?>)
+	                                            </a>
+											</div>
+											<div class="col-sm-3">
+												<div class="list-top-line text-center">
+													<div class="margin-title btn btn-primary">
+														<?php echo number_format((float)$school['rating'], 1, '.', '');?>
+													</div>
+													<div class="text-center">
+													<?php 
+														$ratingNumber = round($school['rating']);
+														$decimal = $school['rating'] - $ratingNumber;
+														$unratedStars = 5 - $ratingNumber;
+														if($decimal >= 0.5){
+															$unratedStars = $unratedStars - 1;
+														}
+														for ($i=0; $i < $ratingNumber; $i++){
+													?>
+														<span class="fa fa-fw fa-star text-yellow-800"></span>
+													<?php }?>
+													<?php if($decimal >= 0.5) { ?>
+													 	<span class="fa fa-fw fa-star-half-o text-yellow-800"></span> 
+													<?php }?>
+													<?php for ($i=0; $i < $unratedStars; $i++) {?>
+													 	<span class="fa fa-fw fa-star-o text-yellow-800"></span>
+													<?php }?>
+													</div>
+													<div class="text-center">(0 votes)</div>
+												</div>
+												<div class="text-center">
+													&nbsp;
+												</div>
+												<div class="share-school">
+													<div class="text-center detail-value padding-top-05">
+														<i class="fa fa-share-alt fa-2x"></i>
+													</div>
+												</div>
+												<div class="text-center">
+													<a class="btn btn-primary list-primary-button" href="">
+														<i class="fa fa-phone"></i> Contact
+		                                            </a>
+	                                            </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                       	<?php 
+                            }
+                      	} 
+                      	?>
                       	</div>
-						<br/><br/>
+					</div>
+					<div class="col-md-3 panel panel-default" id="right-main-content">
+						<div class="right-main-content-inner">
+							<ul class="nav nav-tabs right-side-fav-button" role="tablist">
+		    					<li role="presentation" class="col-md-12 active" id="listFavButton">
+		    						<a href="#sortListRight" aria-controls="sortListRight" role="tab" data-toggle="tab">
+										<i class="fa fa-heart"></i> 
+										<span class="summary">0</span> <span class="text">Sortlisted Schools</span>
+									</a>
+		    					</li>
+		    				</ul>
+							<div class="tab-content" id="right-side-bar">
+							    <div role="tabpanel" class="tab-pane active" id="sortListRight">
+							    </div>
+						    </div>
+					    </div>
 					</div>
 				</div>
 			</div>
 		</div>
 <script type="text/javascript">
-$("#map_window").click(function() {
-   	initialize();
-});   
-var base_url = '<?php echo $base_url;?>'
-function filterResults() {
-  	var boardType = "";
-    var schoolType = "";
-    var mediumType = "";
-    var categoryType = "";
-    var activityType = "";
-    var infraType = "";
-    var safetyType = "";
-    var classificationType = "";
-    $('input[name="schoolboardcheckbox"]:checked').each(function() { 
-		if(boardType == ""){
-			boardType = $(this).val();
-		} else {
-			boardType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schoolmediumcheckbox"]:checked').each(function() { 
-		if(mediumType == ""){
-			mediumType = $(this).val();
-		} else {
-			mediumType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schoolcategorycheckbox"]:checked').each(function() { 
-		if(categoryType == ""){
-			categoryType = $(this).val();
-		} else {
-			categoryType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-		if(schoolType == ""){
-			schoolType = $(this).val();
-		} else {
-			schoolType += "," + $(this).val();
-		}
-  	});
-    $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
-		if(classificationType == ""){
-			classificationType = $(this).val();
-		} else {
-			classificationType += "," + $(this).val();
-		}
-   	});
-    $('input[name="activitycheckbox"]:checked').each(function() { 
-		if(activityType == ""){
-			activityType = $(this).val();
-		} else {
-			activityType += "," + $(this).val();
-		}
-  	});
-    $('input[name="infracheckbox"]:checked').each(function() { 
-		if(infraType == ""){
-			infraType = $(this).val();
-		} else {
-			infraType += "," + $(this).val();
-		}
-   	});
-    $('input[name="safetycheckbox"]:checked').each(function() { 
-		if(safetyType == ""){
-			safetyType = $(this).val();
-		} else {
-			safetyType += "," + $(this).val();
-		}
-  	});
-    $('#sortFields option:selected').each(function() {
-        schoolType += $(this).val() + ",";
-	});
-   
-    $.post(base_url+"index.php/home/schoolJSON",
-    	{
-        	latitude: $("#latitude").val(),
-        	longitude: $("#longitude").val(),
-        	standardId: $("#standardId").val(),
-        	boardId: boardType,
-        	mediumId: mediumType,
-        	typeId: schoolType,
-        	safetyId: safetyType,
-        	infraId: infraType,
-        	activityId: activityType,
-        	classificationId: classificationType	
-        },function(response){
-        	$("#schresult").html(response.html);
-        },
-        'json'
-    );
-}
+dataArr = <?php echo json_encode($schools); ?>;
+var markers = [];
+$(document).ready(function(){
+	dataArr = <?php echo json_encode($schools); ?>;
+    $('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
+    $('#tab-map-list-content').height(($(window).height() - $(".navbar-fixed-top").height() - $(".nav-tab-map-list").height()));
+    $("#right-side-bar").height(($(window).height() - $(".navbar-fixed-top").height()));
+    $(window).resize(function(){
+    	$('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
+    	$('#tab-map-list-content').height(($(window).height() - $(".navbar-fixed-top").height() - $(".nav-tab-map-list").height()));
+    	$("#right-side-bar").height(($(window).height() - $(".navbar-fixed-top").height()));
+    });
+});
 
-function sortSchool(sortFilter) {
-	var boardType = "";
-    var schoolType = "";
-    var mediumType = "";
-    var categoryType = "";
-    var activityType = "";
-    var infraType = "";
-    var safetyType = "";
-    var classificationType = "";
-    var classFee = "";
-    var rating = "";
-    var distance = "";
-    var seats = "";
-    
-	$("#"+sortFilter+"-button").addClass("active");
-	
-	if (parseInt($("#classFee").val()) == 0) {
-		classFee = "desc";
-	} else if (parseInt($("#classFee").val()) == 1) {
-		classFee = "asc";
-	}
-	if (parseInt($("#distance").val()) == 0) {
-		distance = "desc";
-	} else if (parseInt($("#distance").val()) == 1) {
-		distance = "asc";
-	}
-	if (parseInt($("#rating").val()) == 0) {
-		rating = "desc";
-	} else if (parseInt($("#rating").val()) == 1) {
-		rating = "asc";
-	}
-	if (parseInt($("#seats").val()) == 0) {
-		seats = "desc";
-	} else if (parseInt($("#seats").val()) == 1) {
-		seats = "asc";
-	}
-	
-	if (sortFilter == "classFee") {
-		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Fee <i class='fa fa-sort-amount-asc'></i>");
-			$("#"+sortFilter).val("1");
-			classFee = "asc";
-		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Fee <i class='fa fa-sort-amount-desc'></i>");
-			$("#"+sortFilter).val("0");
-			classFee = "desc";
-		}
-	} else if(sortFilter == "distance") {
-		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-asc'></i>");
-			$("#"+sortFilter).val("1");
-			distance = "asc";
-		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-desc'></i>");
-			$("#"+sortFilter).val("0");
-			distance = "desc";
-		}
-	} else if(sortFilter == "rating") {
-		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-asc'></i>");
-			$("#"+sortFilter).val("1");
-			rating = "asc";
-		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-desc'></i>");
-			$("#"+sortFilter).val("0");
-			rating = "desc";
-		}
-	} else if(sortFilter == "seats") {
-		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-asc'></i>");
-			$("#"+sortFilter).val("1");
-			seats = "asc";
-		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-desc'></i>");
-			$("#"+sortFilter).val("0");
-			seats = "desc";
-		}
-	}
-	
-    $('input[name="schoolboardcheckbox"]:checked').each(function() { 
-		if(boardType == ""){
-			boardType = $(this).val();
-		} else {
-			boardType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schoolmediumcheckbox"]:checked').each(function() { 
-		if(mediumType == ""){
-			mediumType = $(this).val();
-		} else {
-			mediumType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schoolcategorycheckbox"]:checked').each(function() { 
-		if(categoryType == ""){
-			categoryType = $(this).val();
-		} else {
-			categoryType += "," + $(this).val();
-		}
-   	});
-    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-		if(schoolType == ""){
-			schoolType = $(this).val();
-		} else {
-			schoolType += "," + $(this).val();
-		}
-  	});
-    $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
-		if(classificationType == ""){
-			classificationType = $(this).val();
-		} else {
-			classificationType += "," + $(this).val();
-		}
-   	});
-    $('input[name="activitycheckbox"]:checked').each(function() { 
-		if(activityType == ""){
-			activityType = $(this).val();
-		} else {
-			activityType += "," + $(this).val();
-		}
-  	});
-    $('input[name="infracheckbox"]:checked').each(function() { 
-		if(infraType == ""){
-			infraType = $(this).val();
-		} else {
-			infraType += "," + $(this).val();
-		}
-   	});
-    $('input[name="safetycheckbox"]:checked').each(function() { 
-		if(safetyType == ""){
-			safetyType = $(this).val();
-		} else {
-			safetyType += "," + $(this).val();
-		}
-  	});
-   
-    $.post(base_url+"index.php/home/schoolJSON",
-    	{
-        	latitude: $("#latitude").val(),
-        	longitude: $("#longitude").val(),
-        	standardId: $("#standardId").val(),
-        	boardId: boardType,
-        	mediumId: mediumType,
-        	typeId: schoolType,
-        	safetyId: safetyType,
-        	infraId: infraType,
-        	activityId: activityType,
-        	classificationId: classificationType,
-        	classFee: classFee,
-        	distance: distance,
-        	rating: rating,
-        	seats: seats	
-        },function(response){
-        	$("#schresult").html(response.html);
-        },
-        'json'
-    );
-}
 
-function sortClear(){
-	$("#classFee").val("");
-	$("#distance").val("");
-	$("#rating").val("");
-	$("#seats").val("");
-	$("#classFee-button").html("Fees <i class='fa fa-sort-amount-asc'></i>");
-	$("#rating-button").html("Rating <i class='fa fa-sort-amount-asc'></i>");
-	$("#distance-button").html("Distance <i class='fa fa-sort-amount-asc'></i>");
-	$("#seats-button").html("Seats <i class='fa fa-sort-amount-asc'></i>");
-	filterResults();
-}
-
-function moreFilters(){
-	$("#moreFilters-panel").show();
-	$("#moreFilters").html("<a href='javascript:lessFilters()' class='btn btn-link'><i class='fa fa-fw fa-ellipsis-h'></i> Less filters</a>");
-}
-
-function lessFilters(){
-	$("#moreFilters-panel").hide();
-	$("#moreFilters").html("<a href='javascript:moreFilters()' class='btn btn-link'><i class='fa fa-fw fa-ellipsis-h'></i> More filters</a>");
-}
-
-function resetFilters(){
-	$('input:checkbox').removeAttr('checked');
-	filterResults();
-}
-
-  function initialize() {
-   
+function initialize() {
+	updateSortListedSchools();
+	dataArr = <?php echo json_encode($schools); ?>;
     var ulat = $("#latitude").val();
     var ulng = $("#longitude").val();
-    var bounds = new google.maps.LatLngBounds();
+    var minSort = 0;
+    var maxSort = 0;
     var mapCanvas = document.getElementById('map-canvas');
     var mapOptions = {
       center: new google.maps.LatLng(ulat, ulng),
-      zoom: 12,
+      zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-  	var map = new google.maps.Map(mapCanvas, mapOptions);
-    var icon_user = {
-    	url: "//tkstatic.in/frontend/assets/images/user-marker.png", // url
-       	size: new google.maps.Size(20, 40),
-       	origin: new google.maps.Point(0, 0),
-       	anchor: new google.maps.Point(15, 30),
-       	scaledSize: new google.maps.Size(20,40)
-  	};
-
-    infobox = new google.maps.InfoWindow({
-	   	content: document.getElementById("infobox"),
-	    disableAutoPan: false,
-	    maxWidth: 300,
-	    minHight: 50,
-	    zIndex: null,	
-	    boxStyle: {
-	        width: "300px",
-	        height: "100px",
-	        padding: 0,
-	    },
-	    infoBoxClearance: new google.maps.Size(1, 1),
-	    buttons:{close:{show:4}}
-	});
-
-   	<?php 
-    if(isset($schools)) {
-      	foreach($schools as $key => $school){
-    ?>
-        var txt<?php echo $school['schoolId']?> =  "<?php echo $school['name']?> , <?php echo $school['streetName']?>,<?php echo $school['localityName']?>,<?php echo $school['cityName']?>      "; 
-        var marker<?php echo $school['schoolId']?> = new google.maps.Marker({
-            map: map,
-            draggable: false,
-            animation: google.maps.Animation.DROP,
-            position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
-            icon:icon_user
-        });
-        marker = marker<?php echo $school['schoolId']?>;
-        bounds.extend(marker.position);
-        google.maps.event.addListener(marker<?php echo $school['schoolId']?>, 'click', function(marker, i) {
-            document.getElementById('schooltext').innerHTML =   txt<?php echo $school['schoolId']?>; 
+  	map = new google.maps.Map(mapCanvas, mapOptions);
+    var legendDiv = document.createElement('DIV');
+    var legend = new Legend(legendDiv, map);
+    legendDiv.index = 1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+    <?php 
+        	$minColor = 0;
+        	$maxColor = 0;
+        	
+        	    if(isset($schools)) {
+        	      	foreach($schools as $key => $school){
+        	      		if($minColor > $school['totalFee']){
+        	      			$minColor = $school['totalFee'];
+        	      		}
+        	      		if($maxColor < $school['totalFee']){
+        	      			$maxColor = $school['totalFee'];
+        	      		}
+        	      	}
+        	    }
+       	?>
+       	<?php 
+        if(isset($schools)) {
+          	foreach($schools as $key => $school){
+        ?>
+        	var hexMarkerColor = getColourTemp(<?php echo $maxColor; ?>,<?php echo $minColor; ?>,<?php echo $school['totalFee']; ?>);
+            var schoolText =  "<?php echo $school['name'];?>"; 
+            var localityText = "<?php echo $school['localityName'];?>";
+            <?php 
+				if ($school['totalFee'] > 1000) {
+			?>
+					var schoolFeeMarker = "<?php echo round($school['totalFee']/1000,2)."K PA";?>";
+			<?php
+				} else {
+			?>
+					var schoolFeeMarker = "<?php  echo $school['totalFee']." PA";?>";
+			<?php 
+				}
+			?>
+			var schoolBoards = "<?php echo $school['boardName']?>,<?php echo $school['mediums']?>";
+            var marker<?php echo $school['schoolId']?> = new google.maps.Marker({
+                map: map,
+                draggable: false,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
+                icon: {
+                    path: fontawesome.markers.MAP_MARKER,
+                    scale: 0.6,
+                    strokeWeight: 0.2,
+                    strokeColor: 'black',
+                    strokeOpacity: 1,
+                    fillColor: '#FE7569',
+                    fillOpacity: 0.9
+                }
+            });
+            marker = marker<?php echo $school['schoolId']?>;
+            var school_img = "";
             <?php if($school['logo']==""){?>
-                document.getElementById('schoolimg').innerHTML =  "<img src='http://localhost/school-proj/assets/img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
-            <?php } else {?>
-            document.getElementById('schoolimg').innerHTML =  "<img src='<?php echo $school['logo']?>' style='width:50px;height:50px;'>";
-            <?php }?>
-            document.getElementById('marker_link').href = base_url + "index.php/home/schoolDetail/<?php echo $school['schoolId']?>";
-            infobox.open(map,marker<?php echo $school['schoolId']?>);
+            	school_img =  "<img src='<?php echo asset_url()?>img/vector-school-house-28931692.jpg' style='width:90px;height:90px;'>";
+        	<?php } else {?>
+        		school_img =  "<img src='<?php echo $school['logo']?>' style='width:90px;height:90px;'>";
+        	<?php }?>
+            var infoContent = "<div id='infobox' style='width: 300px;'>"
+    						 +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
+    						 +"<span id='ins-drag'>"
+    						 +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
+    						 +"<div id='schooltext' style='float: right;width:210px;'>"
+    						 +"<div class='school-name-text-marker'>"
+    						 +schoolText
+    						 +"</div>"
+    						 +"<div class='street-locality-marker'>"
+    						 +localityText
+    						 +"</div>"
+    						 +"<div class='street-locality-marker'>"
+    						 +"<span class='label-100'>"
+    						 +schoolBoards
+    						 +"</span>"
+    						 +"</div>"
+    						 +"<div class='school-fee-marker'>"
+    						 +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
+    						 +schoolFeeMarker
+							 +"</span>"
+							 +"</div>"
+    						 +"</div>"
+    						 +"</span> "
+    						 +"<span id='err-text' style='font-weight: bold;'></span>"
+    						 +"</div></div>";
+    			var infowindow = new google.maps.InfoWindow();
+                google.maps.event.addListener(marker,'mouseover', (function(marker,infoContent,infowindow){ 
+                    return function() {
+                        infowindow.setContent(infoContent);
+                        infowindow.open(map,marker);
+                    };
+                })(marker,infoContent,infowindow)); 
+                google.maps.event.addListener(marker, 'mouseout', function() {
+                    infowindow.close(map,marker);
+                });
+                markers.push(marker);
+       	<?php 
+    		}
+    	}
+       	?>
+        var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var address = place.formatted_address;
+            var latitude = place.geometry.location.A;
+            var longitude = place.geometry.location.F;
+            var i = latitude+","+longitude;
+            var a = address;
+            var mesg = "Address: " + address;
+            mesg += "\nLatitude: " + latitude;
+            mesg += "\nLongitude: " + longitude;
+            $("#latitude").val(latitude);
+            $("#longitude").val(longitude);
+            $("#address").val(address);
+            $.cookie("ebdsearchgeocode",i, { expires: 180, path: '/' });
+            $.cookie("ebdsearchgeoloc",a, { expires: 180, path: '/' });
+			for (var i = 0; i < markers.length; i++) {
+			    markers[i].setMap(null);
+			}
+			markers.length = 0;
+			map.panTo(new google.maps.LatLng(i));
+            filterResults();
         });
-        
-        google.maps.event.addListener(marker<?php echo $school['schoolId']?>, 'mouseover', function(marker, i) {
-            document.getElementById('schooltext').innerHTML =   txt<?php echo $school['schoolId']?>; 
-            <?php if($school['logo']==""){?>
-                document.getElementById('schoolimg').innerHTML =  "<img src='http://localhost/school-proj/assets/img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
-            <?php } else {?>
-            document.getElementById('schoolimg').innerHTML =  "<img src='<?php echo $school['logo']?>' style='width:50px;height:50px;'>";
-            <?php }?>
-            document.getElementById('marker_link').href = base_url + "index.php/home/schoolDetail/<?php echo $school['schoolId']?>";
-            infobox.open(map,marker<?php echo $school['schoolId']?>);
-        });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
 
-   	<?php 
-		}
+$("#standardId").change(function() {
+	for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(null);
 	}
-   	?>
-        map.fitBounds(bounds);
-        document.getElementById('map-canvas').style = "border: ridge #34C6C3; border-width:6px 6px 6px 6px;"
-        var listener = google.maps.event.addListener(map, "idle", function () {
-         	map.setZoom(14);
-         	google.maps.event.removeListener(listener);
-		});
-        map.setCenter(new google.maps.LatLng(ulat, ulng));
-  	}
- 	//google.maps.event.addDomListener(window, 'load', initialize);
+	markers.length = 0;
+    filterResults();
+});
     
 </script>

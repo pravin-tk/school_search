@@ -1,43 +1,81 @@
-<?php 
-
-//echo "<pre>";
-//print_r($contactInfo);?>      
-<div class="col-md-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="text-center"><strong>Description </strong></h3>
+      <h3 class="text-left"><strong>Highlights </strong></h3>
     </div>
-   <div class="panel-body">
-	 <div class="container">
-        <div class="col-md-8">
+   <div class="panel-body"style="width: 50%;">
      
-          <?php echo $basicInfo['aboutSchool'];?>
+          <?php foreach ($overviewInfo as $key => $value){
+          ?>
+          	<section class="panel panel-default text-left"style="border-radius:30;">
+               
+                <div class="panel-body">
+					<?php echo $value['name']?>
+                </div>
+            </section> 
+          	<?php
+          } ?>
          
-        </div>
-        <div class="col-md-4">
-          <h4>Contact Information</h4>
-          <div class="media media-clearfix-xs-min">
-            <div class="media-left text-center">
-              <img class="thumbnail media-object" src="<?php echo $basicInfo['logo'];?>" alt="people">
-              <a class="btn btn-primary btn-sm" href="">Contact Host</a>
-            </div>
-            <div class="media-body">
-              <div class="expandable expandable-trigger">
-                <div class="expandable-content expandable-content-medium">
-                    <?php foreach($contactInfo as $key =>$value){?>
-                        <p><?php if(isset($value['email'])){ echo $value['email'] ;}?></p>
-                        <p><?php if(isset($value['mobileNo'])){ echo $value['mobileNo'];} ?></p>
-                    <?php }?>
+  </div>
+
+  <div class="panel-heading"style="border-bottom:none; ">
+	 <h3 class="text-left"><strong>Timeline </strong></h3>
+	</div>
+  <div class="container">
+	
+   <?php 
+	$i = 0;	
+	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
+				
+	<div class="timelineslider">
+       <?php foreach($timelineInfo as $key=>$timeline)
+       {?>
+        <div class="item" style="width: 222px; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
+            <div class="panel panel-default relative">
+              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
+                 <?php 	echo $timeline['year'];?>
+              </div>
+              <div class="cover hover overlay margin-none" style="height: 147px;">
+                <img src="<?php $timeline['year'] ?>"  alt="location" class="img-responsive">
+              </div>
+              <div class="panel-body">
+                <h4 class="margin-v-0-5"><?php echo $timeline['year'];?></h4>
+                <p>R.R.Shinde junior college.</p>
+                <?php foreach ($timeline['milestones'] as $key=>$milestone) {
+	   			?> 
+	   			<h4 class="label-grey-100"><?php echo $milestone['title'];?></h4>
+                <span class="label-black"><?php echo $milestone['milestoneDesc'];?></span>
+                <?php } ?>
+<!--                 <a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a> -->
               </div>
             </div>
           </div>
-        </div>
-    </div>
-   </div>
-  </div>
-   
+        <?php } ?>
+              </div>
+              
+      <?php 
+	$i = 0;	
+	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
+				
+	<div class="slider-nav" >
+       <?php foreach($timelineInfo as $key=>$timeline)
+       {?>
+            <div class=" relative">
+              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
+                 <?php 	echo $timeline['year'];?>
+              </div>
+              <div class="panel-body">
+                <h4 class="margin-v-0-5"><?php echo $timeline['year'];?></h4>
+                </div>
+            </div>
+        <?php } ?>
+      </div>
+              
+
 </div>
-
-
-
+</div>
+  <!--  timeline  -->
+  
         
+<!-- timeline -->
+
+<!-- end of timeline -->

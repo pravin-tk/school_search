@@ -27,18 +27,16 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" wtype="text/css"
-	href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" wtype="text/css" href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
 <!-- jQuery -->
 <!--    <script src="<?php echo asset_url();?>js/all.js"></script>-->
 
 <!-- Bootstrap Core JavaScript -->
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
-<!--<script src="<?php echo asset_url(); ?>js/bootstrapValidator.min.js"></script>-->
-
+<script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
+<script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>
+<script src="<?php echo asset_url();?>js/bootstrap.js"></script>
 
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
@@ -73,7 +71,7 @@
   position:relative;
   width:100%;
   height:100%;
-  margin:20px auto;
+  margin:0px auto;
 }
 
 #mask,#mask .bac,#mask .logo{
@@ -117,29 +115,26 @@
   background:url("play.png") no-repeat;
 }
 
-.v-bottom{position:absolute;bottom:30px;}
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
-    
+	var asset_url = '<?php echo asset_url();?>';
 </script>
 </head>
 <body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-	
+	<div class="se-pre-con">
+	<p class="text-center loadings" >Loading Schools </p>
+	</div>
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
-        
+                <script src="<?php echo asset_url();?>js/slick.js"></script>
+				<script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
+				<script src="<?php echo asset_url();?>js/rating.js"></script>
+				<script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
+				<script src="<?php echo asset_url();?>js/cobox.min.js"></script>
+				<script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+                <script src="<?php echo asset_url();?>js/pages/common.js"></script>
+                <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
+                <!-- // END .bg-white -->
+				<!-- // END #content -->
                 <?php echo $template['partials']['footer']; ?>
-    
-<script src="<?php echo asset_url(); ?>js/auth.js"></script>
-
-
-    <?php if($page === 'profile') {?>
-	<script src="<?php echo asset_url();?>js/profile.js"></script>
-    <?php }elseif($page === 'search'){?>
-	<!-- script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places,drawing,geometry&client=gme-lieferheldgmbh&signature=a-SJMDXhmd24q12zmVXg8G-JxNo="></script-->
-    <?php }elseif($page === 'home'){?>
-	<script src="<?php echo asset_url();?>js/home.js"></script>
-    <?php }elseif($page === 'signup'){?>
-     <script src="<?php echo asset_url();?>js/home.js"></script>
-    <?php } ?>

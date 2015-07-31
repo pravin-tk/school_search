@@ -12,6 +12,35 @@ $timelineInfo = $otherInfo['schoolTimelineData'];
 					<div class="container">
    
      <div id="timeline">
+
+<ul id="issues">
+<?php 
+foreach($timelineInfo as $key=>$timeline )
+{
+	echo "<li id='".$timeline['year']."' >";
+	?>
+	<img src='<?php echo $timeline['image']; ?>' width='150' height='150' />
+	<h1>1900</h1>
+		<?php foreach ($timeline['milestones'] as $key=>$milestone) {
+	   ?> 
+	<div class="timeline-inverted">
+	<div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title"><?php echo $milestone['title'];?></h4>
+            </div>
+            <div class="timeline-body">
+				<p><?php echo $milestone['milestoneDesc'];?> </p>
+                        </div>
+          </div>
+	</div>
+	 <?php }?>
+	
+	
+ 
+	</li>
+<?php } ?>
+
+</ul>
 <ul id="dates">
 <?php     
 foreach($timelineInfo as $key=>$timeline )
@@ -26,35 +55,6 @@ foreach($timelineInfo as $key=>$timeline )
 <!-- <li><a href="#1999">1999</a></li> -->
 <!-- <li><a href="#2001">2001</a></li> -->
 <!-- <li><a href="#2011">2011</a></li> -->
-</ul>
-<ul id="issues">
-<?php 
-foreach($timelineInfo as $key=>$timeline )
-{
-	echo "<li id='".$timeline['year']."' >";
-	?>
-	<div class="timeline">
-	<div>
-	<div class="timeline-panel"><img src='<?php echo $timeline['image']; ?>' width='150' height='150' /></div>
-	</div>
-	<?php foreach ($timeline['milestones'] as $key=>$milestone) {
-	   ?> 
-	<div class="timeline-inverted">
-	<div class="timeline-panel">
-            <div class="timeline-heading">
-              <h4 class="timeline-title"><?php echo $milestone['title'];?></h4>
-            </div>
-            <div class="timeline-body">
-				<p><?php echo $milestone['milestoneDesc'];?> </p>
-                        </div>
-          </div>
-	</div>
-	 <?php }?>
-	   
-	  </div> 
-	</li>
-<?php } ?>
-
 </ul>
 <div id="grad_left"></div>
 <div id="grad_right"></div>
