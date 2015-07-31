@@ -104,7 +104,8 @@
                     <div class="form-group">
                        
                         <input type="submit" id="profile_save" class="btn btn-primary" value="Save" />
-<!--                        <input type="reset" id="btnreset" class="btn btn-default" value="Cancel"/>-->
+                        <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
+                               onclick="location.href = '<?php echo $base_url;?>';" />
                     </div>
                     </form>
                     </div>

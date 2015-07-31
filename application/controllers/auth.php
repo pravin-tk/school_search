@@ -30,7 +30,7 @@ class Auth extends CI_Controller {
                 ->set_partial('header', 'partials/header')
                 ->set_partial('footer', 'partials/footer_links');
         // ->set_partial('breadcrumb','../partials/breadcrumb');
-        $this->template->set("page",'signup');
+        $this->template->set("page",'auth');
         $this->template->build('school/register');
     }
     
@@ -63,8 +63,8 @@ class Auth extends CI_Controller {
             }
             echo json_encode($activatedinfo,0);
         }catch (EBDApiException $e) {
-            // echo json_encode($apioutput1,0);
-              echo "ERROR NO :".$e->getMessage();
+            
+              echo $e->getMessage();
               unset($apicalls);
               unset($apioutput);
         }
@@ -152,7 +152,7 @@ class Auth extends CI_Controller {
         $apicalls = array($profile_key);
         try {
             $apioutput = $this->apiclient->process($apicalls);
-            error_log('PROF=' . json_encode($apioutput, 0));
+           
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, $profile_key) !== false) {
                     $this->template->set('profileInfo', $value);
@@ -170,7 +170,7 @@ class Auth extends CI_Controller {
         $this->template->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
                 ->set_partial('header', 'partials/header')
-                ->set_partial('footer', 'partials/ s');
+                ->set_partial('footer', 'partials/footer');
         $this->template->build('school/profile');
     }
 
@@ -213,8 +213,8 @@ class Auth extends CI_Controller {
         $map['firstName'] = $this->input->post('firstName');
         $map['lastName'] = $this->input->post('lastName');
         $map['mobile'] = $this->input->post('mobileNo');
-        $map['email'] = 'er.pradeep007@gmail.com';
-        $map['id'] = 1;
+        $map['email'] = $this->input->post('email');
+        $map['id'] = $userid;
         $map['image'] = '';
         if ($_FILES['file']['size'] > 0)
             $map['image'] = new CurlFile($_FILES['file']['tmp_name'], 'file/exgpd', $_FILES['file']['name']);

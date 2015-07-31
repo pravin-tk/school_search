@@ -87,14 +87,17 @@
                         Search School
                     </h1>
                   <form name="searchform" id="searchform"  class="" action="<?php echo base_url();?>index.php/home/search" method="post">
+                      <input type="text" id="notify_message" value="" style="display:none" />
                       <div class="col-md-2 extra-search-div">&nbsp;</div>
                       <div class="form-group col-md-8">
                             <div class="col-md-3 selectContainer">
-                                <select class="selectpicker form-control" id="cboStd" name="standardId">
+                                <select class="selectpicker form-control" id="cboStd" name="standardId" required>
                                         <option value="">--Select--</option>
-                                        <?php  foreach ($standard as $key=>$value) { ?>
-                                        <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
-                                        <?php  } ?>
+                                        <?php  
+                                        if(isset($standard))
+                                            foreach ($standard as $key=>$value) { ?>
+                                            <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
+                                            <?php  } ?>
                                 </select>
                             </div>
 
@@ -102,12 +105,13 @@
                                 <input type="hidden" id="latitude" name="latitude" value="" /> 
                                 <input type="hidden" id="longitude" name="longitude" value="" /> 
                                 <input type="hidden" id="address" name="address" value="" /> 
-                                <input  id="schbox" type="text"
+                                <input  id="schbox" type="text"  required
                                         placeholder="Search by School, Area, Location" name="searchtxt"
                                         class="form-control">
                             </div>
                         <div class="col-md-3">
-                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                        <input type="submit" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                       
                         </div>
                         </div>
                         <div class="col-md-2 extra-search-div">&nbsp;</div>
@@ -123,48 +127,7 @@
 
                   
 <div id="content" class="ng-scope">
-<!-- 	<aside class="bg-purple" class="asidecategory"> -->
-<!--             <div class="row"> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-diamond wow bounceIn "></i> -->
-<!--                         <a class="btn btn-clear btn-sm btn-min-block" href="http://www.jquery2dotnet.com/">Login</a> -->
-                        
-<!-- <!--                         <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>--> 
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-paper-plane wow bounceIn " data-wow-delay=".1s"></i> -->
-<!--                         <h5>Primary Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
-<!--                         <h5>Secondary Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
-<!--                         <h5>High Schools</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                  <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-newspaper-o wow bounceIn " data-wow-delay=".2s"></i> -->
-<!--                         <h5>Secondary High</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-2 col-md-6 text-center"> -->
-<!--                     <div class="service-box"> -->
-<!--                         <i class="fa fa-4x fa-heart wow bounceIn " data-wow-delay=".3s"></i> -->
-<!--                         <h5>Colleges</h5> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!-- 	 </aside> -->
+
 	<div class="bg-white">
 		<div class="container">
 

@@ -135,7 +135,8 @@
                                                 <div class="form-group">
                                                      <input type="button" id="editProfile" class="btn btn-primary" value="Edit Profile"/>
                                                     <input type="button" id="changePwd" class="btn btn-primary" value="Change Password"/>
-                                                    
+                                                     <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
+                               onclick="location.href = '<?php echo $base_url;?>';" />
                                                    
                                                 </div>
                                             </form>
@@ -192,7 +193,8 @@
                                                 
                                                     <input type="submit" id="profile_update" class="btn btn-primary" value="Update" />
                                                   <input type="button" id="changePwd" class="btn btn-primary" value="Change Password"/>
-                                                   
+                                                   <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
+                               onclick="location.href = '<?php echo $base_url;?>';" /> 
                                                 </div>
                                             </form>
                                         </div>
@@ -222,7 +224,8 @@
                             <div class="form-group">
 
                                 <input type="submit" id="btnchangePwd" class="btn btn-primary" value="Change Password" />
-<!--                                <input type="button" id="btnCancelPwd" class="btn btn-default" value="Cancel"/>-->
+ <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
+                               onclick="location.href = '<?php echo $base_url;?>';" />
                             </div>
                         </form>
                     </div>
