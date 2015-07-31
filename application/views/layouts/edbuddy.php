@@ -17,6 +17,7 @@
 <link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
 
 <link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/bootstrapValidator.min.css" rel="stylesheet">
 
 
 <!-- Custom Fonts -->
@@ -127,11 +128,12 @@
                 <?php echo $template['partials']['header']; ?>
                 <?php echo $template['body']; ?>
                 <script src="<?php echo asset_url();?>js/slick.js"></script>
-				<script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
-				<script src="<?php echo asset_url();?>js/rating.js"></script>
-				<script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
-				<script src="<?php echo asset_url();?>js/cobox.min.js"></script>
-				<script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
+                <script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
+                <script src="<?php echo asset_url();?>js/rating.js"></script>
+                <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
+                  <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
+                <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
+                <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
                 <script src="<?php echo asset_url();?>js/pages/common.js"></script>
                 <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
                 <!-- // END .bg-white -->

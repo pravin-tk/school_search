@@ -10,13 +10,14 @@ $('.demo').slick({
 	  slidesToScroll: 6,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
 	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
-	  autoplay: true,
-	  autoplaySpeed: 3000,
-	  centerMode: false,
+	 // autoplay: true,
+	  //autoplaySpeed: 3000,
+	  centerMode: true,
 	  centerPadding: '50px'
 	  
 	  	  
 });
+
 $('.timelineslider').slick({
 	infinite: true,
 	  slidesToShow: 3,
@@ -115,7 +116,7 @@ window.onload=init;
 
 function init(){
 	document.getElementById("mask").getElementsByTagName("div")[2].onclick=function(){anim('',this)};
-	anim();
+	//anim();
 }
 
 var animace;

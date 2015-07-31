@@ -437,14 +437,21 @@ html, body {height: 100%;}
 	                        <?php 
 	                        if(isset($schools)) {
 	                            foreach($schools as $key => $school){
-	                        
+                                        $url = $permlink; 
+                                        $schoolName = strtolower($school['name']);
+                                        $schoolName = str_replace(" ", "-",$schoolName);
+                                        $schoolName = str_replace("'", "",$schoolName);
+                                        $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+                                        $urllink = $base_url.$url ."/".$schoolName;
+                                        
+                                        $rawUrl = $base_url."index.php/home/schoolDetail/". $school['schoolId']."/".$standardId;
 	                        ?>
                             <div class="panel panel-default" id="map-search-result-<?php echo $school['schoolId']?>">
 								<div class="panel-body">
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
 											<p>
-												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+                                                                                            <a href="<?php echo $urllink;?>">
                                                     <?php if($school['logo'] == ""){?>
                                                     <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                                                     <?php }else{?>
@@ -473,29 +480,29 @@ html, body {height: 100%;}
 											</div>
 										</div>
 										<div class="media-body">
-											<div class="pull-right">
-												<span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
-											</div>
-											<h4 class="media-heading margin-v-0-10">
-												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>"><?php echo $school['name']?>
-                                                    </a>
-											</h4>
-											<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
-											<p>
-												<span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
-											</p>
-											<p>
-												<span class="fee label-100">
-													<i class="fa fa-rupee"></i> 
-													<?php 
-													if($school['totalFee'] > 1000)
-														echo round($school['totalFee']/1000,2)."K PA";
-													else 
-														echo $school['totalFee']." PA";
-													?>
-												</span>
-											</p>
-										</div>
+                                <div class="pull-right">
+                                        <span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
+                                </div>
+                                <h4 class="media-heading margin-v-0-10">
+                                        <a href="<?php echo $urllink;?>"><?php echo $school['name']?>
+</a>
+                                </h4>
+                                <h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
+                                <p>
+                                        <span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
+                                </p>
+                                <p>
+                                        <span class="fee label-100">
+                                                <i class="fa fa-rupee"></i> 
+                                                <?php 
+                                                if($school['totalFee'] > 1000)
+                                                        echo round($school['totalFee']/1000,2)."K PA";
+                                                else 
+                                                        echo $school['totalFee']." PA";
+                                                ?>
+                                        </span>
+                                </p>
+                        </div>
 									</div>
 								</div>
 							</div>

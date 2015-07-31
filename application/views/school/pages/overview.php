@@ -1,4 +1,4 @@
-  <<style>
+ <style>
 <!--
 .highlight-panel-body {
     padding-top:10px;
@@ -159,34 +159,11 @@
 		              </div>
 		              <div class="panel-body">
 		                <h4 class="margin-v-0-5"><?php echo $timeline['title'];?></h4>
-<!-- 		                <p>R.R.Shinde junior college.</p> -->
-		                <?php foreach ($timeline['milestones'] as $key=>$milestone) {
-			   			?> 
-<!--			   			<h4 class="label-grey-100"><?php echo $milestone['title'];?></h4>
-		                <span class="label-black"><?php echo $milestone['milestoneDesc'];?></span> -->
-		                <?php } ?>
-		<!--                 <a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a> -->
 		              </div>
 		            </div>
 		          </div>
 		        <?php } ?>
 		  	</div>
-		              
-		      <?php 
-			$i = 0;	
-			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
-						
-<!-- 			<div class="slider-nav text-center" > -->
-		       <?php foreach($timelineInfo as $key=>$timeline) {?>
-<!-- 		            <div class="relative"> -->
-<!-- 		              <div class="panel-body text-center timeline-slider-nav"> -->
-<!--		                <h4 class="btn btn-primary btn-circle absolute bottom right"><?php echo $timeline['year'];?></h4> -->
-<!-- 		                </div> -->
-<!-- 		            </div> -->
-		        <?php } ?>
-		      </div>
-		              
-		
 		</div>
 		</div>
 	</div>

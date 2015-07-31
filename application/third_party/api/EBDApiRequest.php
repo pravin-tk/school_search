@@ -12,7 +12,10 @@ class EBDApiRequest {
     public $headers = null;
     public $options = null;
    
-    private $api_url = "http://localhost:8080/edbuddy/webapi/api1.0/";
+    //private $api_url = "http://localhost:8080/edbuddy/webapi/api1.0/";
+    private $api_url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/";
+    //private $api_url = "http://192.168.1.202:8080/edbuddy/webapi/api1.0/";
+    //private $api_url = "http://192.168.1.110:8080/edbuddy/webapi/api1.0/";
     /**
      * @param string $url
      * @param string $method

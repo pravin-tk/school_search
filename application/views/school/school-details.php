@@ -291,7 +291,7 @@
 <!--         		</p> -->
 <!--           	   </div> -->
           	   <div style="float: right">                
-          	     <h4 class="text-h4 text-overlay"><img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png?>"></h4>
+          	     <h4 class="text-h4 text-overlay"<a href="#visualtour"><img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png"></a></h4>
           	   </div>
           	</div>
           	<div >
@@ -330,8 +330,8 @@
 	      <li class="property-meta-item "><a href="#review" class="page-scroll"><i class="fa fa-fw fa-star"></i> Review </li></a>
 	      <li class="property-meta-item"> <a href="#fees" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Fees</a></li>
 	      <li class="property-meta-item"><a href="#contact" class="page-scroll"><i class="fa fa-fw icon icon-toilet"></i> Contacts</a></li>
-	       <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li>
-	       	      <li class="property-meta-item"><a href="#navtimeline" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
+	      <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li>
+	      <li class="property-meta-item"><a href="#visualtour" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
 	       
 <!-- 	      <li class="property-meta-item"><a href=""><i class="fa fa-fw fa-heart text-pink-500"></i> 35 loved this</a></li> -->
 	    </ul>
@@ -375,11 +375,18 @@
   <?php include 'pages/fees.php';?>
 
 </div>
+<div class="divider" id="visualtour"></div>  
+<div class="row">
+  
+  <?php include 'pages/360.php';?>
+
+</div>
     
 <div class="divider" id="contact"></div>
 <div class="row">
   <?php include 'pages/contact.php';?>
 </div>
+
 
 
 <div class="divider" id="nearby"></div>
@@ -396,4 +403,8 @@
   <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
 </ul>
 
-
+<<script type="text/javascript">
+<!--
+$("#nearby").focus();
+//-->
+</script>>

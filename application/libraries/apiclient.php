@@ -11,6 +11,8 @@ class Apiclient
 	
 	private $api;
 	private $api_url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/";
+        //private $api_url = "http://192.168.1.202:8080/edbuddy/webapi/api1.0/";
+       //private $api_url = "http://192.168.1.110:8080/edbuddy/webapi/api1.0/";
 	private $userid;
 	public $expire = 86400;
 	private $output = array();
@@ -20,7 +22,7 @@ class Apiclient
 		$this->CI = get_instance();
 		//$tk_config = parse_ini_file("/etc/php5/fpm/tastykhana.ini");
 		//$this->api_url = $tk_config['api_url_v2'];
-                $this->api_url = 'http://localhost/school-search/';
+                $this->api_url = 'http://localhost/edbuddy-proj/';
 	}
 	
 	public function process( $apicall, $method = 'GET', $user_name_space = null) {
@@ -28,29 +30,25 @@ class Apiclient
 		$this->api->window_size = 20;
 		switch($method) {
 			case 'GET':
+                                     
                                    /* cache request in redis */
                                    // $key = substr($apicall,strlen($this->api_url));
-                                  
                                     foreach ($apicall as $url) 
-                                       
-                                        {
+                                    {
                                             $request = new EBDApiRequest($url);
                                             $this->api->add($request);
-                                        }
-                                  
-                                            
+                                    }
                                     break;
 			case 'POST':
                                     foreach ($apicall as $url) 
                                     {
-                                        $request = new EBDApiRequest($url['url'],'POST', $url['params']);
+                                        $request = new EBDApiRequest($url['url'],'POST', $url['params'],$url['headers']);
                                         $this->api->add($request);
                                     }
                                     break;
 				
 		}
-                error_log("in api client");
-                error_log(json_encode($request));
+                
 		$this->api->execute();
 		return $this->output;
 	}
@@ -77,6 +75,7 @@ class Apiclient
 	}
 	
 	protected function show_400($key,$response,$request) {
+                $error['error'] = 400;
 		if($request->method == 'GET') 
 		{
 			$this->output[$key] = json_decode($response,true);
@@ -84,11 +83,13 @@ class Apiclient
 		else
 		{
 			$this->output[$key] = json_decode($response,true);
+                         error_log("PANKS RESP=".$this->output[$key]);
 			throw new EBDApiException($error['error']);
 		}
 	}
 	
 	protected function show_404($key,$response,$request) {
+                $error['error'] = 404;
 		if($request->method == 'GET') 
 		{
 			$this->output[$key] = json_decode($response,true);
@@ -96,11 +97,13 @@ class Apiclient
 		else
 		{
 			$this->output[$key] = json_decode($response,true);
+                        error_log("PANKS RESP=".$this->output[$key]);
 			throw new EBDApiException($error['error']);
 		}
 	}
 	
 	protected function show_500($key,$response,$request) {
+                $error['error'] = 500;
 		if($request->method == 'GET') 
 		{
 			$this->output[$key] = json_decode($response,true);
@@ -113,6 +116,7 @@ class Apiclient
 	}
 	
 	protected function show_0($key,$response,$request) {
+                $error['error'] = 0;
 		if($request->method == 'GET') 
 		{
 			$this->output[$key] = json_decode($response,true);

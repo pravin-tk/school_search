@@ -1,4 +1,65 @@
+<style>
+    .has-error .form-control {
+        border-color: #a94442;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        background: #efefef; 
+    }
+     .has-error .input-group-addon {
+        background-color: #f2dede;
+        border-color: #a94442;
+        color: #a94442;
+    }
+    .forgot_password {
+        font-size:10px;
+        padding-left: 12px;
+    }
+    
+    .help-block-success {
+        color: #00994C ;
+        display: block;
+        margin-left: 15px;
+        margin-bottom: 3px;
+        margin-top: 3px;
+    }
+    
+    .help-block-error {
+        color: #D00000 ;
+        display: block;
+        margin-left: 15px;
+        margin-bottom: 3px;
+        margin-top: 3px;
+    }
+    
+   .form-control {
+       width:'';
+    }
+    
+    .class_hand a {
+        cursor: hand;
+        color :#000;
+    }
+        
+</style>
+<script type="text/javascript">
+        var logged_in = null;
+        var url = '<?php echo $base_url;?>';
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+        logged_in = readCookie('ebduserid');
+        logged_in_as = readCookie('ebdusername');
+        logged_pic = readCookie('ebdmypic');
+        
+</script>
 <nav class="navbar navbar-default navbar-static-top" style="position: absolute;width:100%;"role="navigation">
+
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
@@ -11,85 +72,72 @@
         <a class="navbar-brand"  href="<?php echo $base_url; ?>"> Edbuddy</a>
       </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav">
-        
+
         <ul class="nav navbar-nav navbar-right">
-          <!-- Login -->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-fw fa-lock"></i> Login
-            </a>
-            <div class="dropdown-menu dropdown-size-280">
-              <form class="ng-pristine ng-valid">
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" placeholder="Username">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-shield"></i></span>
-                    <input type="password" class="form-control" placeholder="Password">
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in"></i></button>
-                </div>
-              </form>
-            </div>
-          </li>
-          <!-- // END login -->
-          <!-- Sign up -->
-          <li class="dropdown">
-              <a href="<?php echo $base_url; ?>index.php/auth/signup" target="_blank" onclick="alert('hi')>
-              <i class="fa fa-fw fa-plus"></i> Sign Up
-            </a>
-            <div class="dropdown-menu dropdown-size-280">
-<!--              <form class="ng-pristine ng-valid">
-                <div class="row">
-                  <div class="col-md-6">
-                    <div class="form-group form-control-default">
-                      <label for="exampleInputFirstName">First name</label>
-                      <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Your first name">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group form-control-default">
-                      <label for="exampleInputLastName">Last name</label>
-                      <input type="email" class="form-control" id="exampleInputLastName" placeholder="Your last name">
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group form-control-default required">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-                <div class="form-group form-control-default required">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </form>-->
-            </div>
-          </li>
-          <!-- // END sign up -->
-          <!-- user -->
-          <li class="dropdown user">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo asset_url();?>img/users/guy-6.jpg" alt="" class="img-circle"> Bill<span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#"><i class="fa fa-user"></i>Profile</a></li>
-              <li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>
-              <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
-            </ul>
-          </li>
-          <!-- // END user -->
+            <script>
+                if(logged_in == null) { //not logged in
+                    var public_data = '<li class="dropdown">';
+                    public_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="alogin">';
+                    public_data += '<i class="fa fa-fw fa-lock"></i> Login</a>';
+                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divlogin">';
+                    public_data += '<div class="dropdown-toggle" style ="float:right;" data-toggle="collapse" id="" onclick=""><a style="color:#000;" href=""> <i class="fa fa-close"></i></a></div>';
+                    public_data += '<div id="derr" class="help-block"></div>';
+                    public_data += '<form class="ng-pristine ng-valid" id = "flogin">';
+                    public_data += '<div class="form-group" id="divname">';
+                    //public_data += '<div class="input-group">';
+                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
+                    public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="tusername" name="tusername" />';
+                    public_data += '</div>'; //</div>
+                    public_data += '<div class="form-group" id="divpwd">';
+                    //public_data += '<div class="input-group">';
+                    //public_data += '<span class="input-group-addon"><i class="fa fa-shield"></i></span>';
+                    public_data += '<input type="password" class="form-control" placeholder="PASSWORD" id="tpassword" name="tpassword" >';
+                    public_data += '</div>'; //</div>
+                    public_data += '<div class="text-center">';
+                    public_data += '<input type="submit" name="blogin" id="blogin" value="Login" class="btn btn-primary" />';
+                    public_data += '<a href="#" class="forgot_password" >Forgot Password?</a></label>'; 
+                    public_data += '</div></form></div>';
+                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divforgotp" style="display:none">';
+                    public_data += '<div  style ="float:right;" data-toggle="collapse" id="" onclick=""> <a style="color:#000;" href=""><i class="fa fa-close"></i> </a></div>';
+                    public_data += '<div id="dpwerr" class="help-block"></div>';
+                    public_data += '<form class="ng-pristine ng-valid" id="frmpwd">';
+                    public_data += '<div class="form-group" id="divfpwd">';
+                    //public_data += '<div class="input-group">';
+                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
+                    public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="temail" name="temail" />';
+                    public_data += '</div>'; //</div>
+                    public_data += '<div class="text-center">';
+                    public_data += '<input type="submit" name="btnfpwd" id="btnfpwd" value="Submit" class="btn btn-primary" />';
+                    public_data += '</div>';
+                    public_data += '</form></div>';
+                    public_data += '</li>';
+                    document.write(public_data);
+              }
+              if(logged_in == null) { // not logged in
+                var public_data = '<li class="dropdown">';
+                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" >';
+                    public_data += '<i class="fa fa-fw fa-plus"></i> Sign Up</a>';
+                    public_data += '<div class="dropdown-menu dropdown-size-280"></div>'
+                    public_data += '</li>';
+                    document.write(public_data);
+              }  
+             
+             
+              if(logged_in != null) { // logged in
+                    var private_data = '<li class="dropdown user">';
+                    private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+                    private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
+                    private_data += '<ul class="dropdown-menu" role="menu">';
+                    private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
+//                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
+                    private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
+                    private_data += '</ul></li>';
+                    document.write(private_data);
+              }
+           </script>   
         </ul>
       </div>
       <!-- /.navbar-collapse -->
-
     </div>
   </nav>
