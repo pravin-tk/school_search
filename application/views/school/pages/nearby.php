@@ -1,6 +1,6 @@
 <div class="bg-white">
     <div class="container">
-      <h3 class="page-section-heading">Related schools</h3>
+      <h3 class="page-section-heading">NearBy schools</h3>
 
       <div class="demo">
 

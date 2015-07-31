@@ -10,18 +10,19 @@ $('.demo').slick({
 	  slidesToScroll: 6,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
 	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
-	  autoplay: true,
-	  autoplaySpeed: 3000,
-	  centerMode: false,
+	 // autoplay: true,
+	  //autoplaySpeed: 3000,
+	  centerMode: true,
 	  centerPadding: '50px'
 	  
 	  	  
 });
+
 $('.timelineslider').slick({
 adaptiveHeight: true,
 //centerMode: true,
 //centerPadding: '50px',
-slidesToShow: 1,
+slidesToShow: 3,
 asNavFor: '.slider-nav',
 
 responsive: [
@@ -46,7 +47,7 @@ responsive: [
 
 });
 $('.slider-nav').slick({
-slidesToShow: 3,
+slidesToShow: 10,
 slidesToScroll: 1,
 asNavFor: '.timelineslider',
 dots: true,
@@ -102,7 +103,7 @@ window.onload=init;
 
 function init(){
 	document.getElementById("mask").getElementsByTagName("div")[2].onclick=function(){anim('',this)};
-	anim();
+	//anim();
 }
 
 var animace;
@@ -127,3 +128,5 @@ function anim(pos,t){
 	wrap.style.backgroundPosition = "-"+pos+"px 0";
 	animace = setTimeout(function(){anim((pos+.5))}, step);
 } 
+//
+//360

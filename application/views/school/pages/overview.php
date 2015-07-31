@@ -1,6 +1,9 @@
-  <div class="panel panel-default">
+ <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="text-left"><strong>Highlights </strong></h3>
+      <h3 class="text-center"><strong>Overview </strong></h3>
+    </div>
+    <div class="panel-heading">
+      <h5 class="text-left"><strong>Highlights </strong></h5>
     </div>
    <div class="panel-body"style="width: 50%;">
      
@@ -15,16 +18,17 @@
           	<?php
           } ?>
          
-  </div>
-
-  <div class="panel-heading"style="border-bottom:none; ">
-	 <h3 class="text-left"><strong>Timeline </strong></h3>
-	</div>
+   </div>
+  <!--  timeline  -->
+  
+	  <div class="panel-heading"style="border-bottom:none; ">
+		 <h5 class="text-left"><strong>Timeline </strong></h5>
+	  </div>
   <div class="container">
 	
-   <?php 
-	$i = 0;	
-	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
+	   <?php 
+		$i = 0;	
+		$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 				
 	<div class="timelineslider">
        <?php foreach($timelineInfo as $key=>$timeline)
@@ -50,32 +54,29 @@
             </div>
           </div>
         <?php } ?>
-              </div>
+      </div>
               
       <?php 
 	$i = 0;	
 	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 				
-	<div class="slider-nav" >
+	<div class="slider-nav">
        <?php foreach($timelineInfo as $key=>$timeline)
        {?>
-            <div class=" relative">
-              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
+            <div class="relative timelinebackground">
+              <div class="ribbon-heading text-h5 ribbon-color btn-circle absolute bottom right">
                  <?php 	echo $timeline['year'];?>
               </div>
               <div class="panel-body">
-                <h4 class="margin-v-0-5"><?php echo $timeline['year'];?></h4>
-                </div>
+              </div>
             </div>
         <?php } ?>
       </div>
               
 
+	</div>
+	<!-- timeline -->
+	
 </div>
-</div>
-  <!--  timeline  -->
-  
-        
-<!-- timeline -->
 
-<!-- end of timeline -->
+<!-- end of highlights -->

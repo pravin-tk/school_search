@@ -1,5 +1,4 @@
 
-
 $( document ).ready(function() {
                 $('.form-control .form-group').css('width', '');
                function userLogin() {
@@ -174,6 +173,23 @@ $( document ).ready(function() {
 
 //end login js
 
+$(function() {
+    $('a.page-scroll').bind('click', function(event) {
+        var $anchor = $(this);
+        $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
+        }, 500, 'easeInOutExpo');
+        event.preventDefault();
+    });
+});
+
+// Highlight the top nav as scrolling occurs
+$('body').scrollspy({
+    target: '.navbar-fixed-top',
+    offset: 51
+})
+
+
 
 $(window).load(function() {
 	// Animate loader off screen
@@ -208,5 +224,5 @@ google.maps.event.addDomListener(window, 'load', function () {
        
     });
 });
-//login.js
+
 
