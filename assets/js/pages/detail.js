@@ -18,49 +18,62 @@ $('.demo').slick({
 	  	  
 });
 $('.timelineslider').slick({
-adaptiveHeight: true,
+	infinite: true,
+	  slidesToShow: 3,
+	  slidesToScroll: 3,
+	  prevArrow: '<button type="button" data-role="none" class="slick-prev"><img src="'+asset_url+'img/icons/arrow_left.svg"></button>',
+	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
+	  autoplay: true,
+	  autoplaySpeed: 3000,
+	  centerMode: false,
+	  centerPadding: '50px'
+	  
+	  	  
+});
+//$('.timelineslider').slick({
+//adaptiveHeight: true,
+////centerMode: true,
+////centerPadding: '50px',
+//slidesToShow: 3,
+//asNavFor: '.slider-nav',
+//
+//responsive: [
+//{
+//  breakpoint: 1024,
+//  settings: {
+//    arrows: true,
+//    centerMode: true,
+//    slidesToShow: 3
+//  }
+//},
+//{
+//  breakpoint: 600,
+//  settings: {
+//    arrows: true,
+//    centerMode: true,
+//    slidesToShow: 1
+//  }
+//}
+//]
+//
+//
+//});
+//$('.slider-nav').slick({
+//slidesToShow: 3,
+//slidesToScroll: 1,
+//asNavFor: '.timelineslider',
+//dots: true,
 //centerMode: true,
-//centerPadding: '50px',
-slidesToShow: 1,
-asNavFor: '.slider-nav',
-
-responsive: [
-{
-  breakpoint: 1024,
-  settings: {
-    arrows: true,
-    centerMode: true,
-    slidesToShow: 3
-  }
-},
-{
-  breakpoint: 600,
-  settings: {
-    arrows: true,
-    centerMode: true,
-    slidesToShow: 1
-  }
-}
-]
-
-
-});
-$('.slider-nav').slick({
-slidesToShow: 3,
-slidesToScroll: 1,
-asNavFor: '.timelineslider',
-dots: true,
-centerMode: true,
-focusOnSelect: true
-});
+//focusOnSelect: true
+//});
 
 //fee flipster
 
 $('.flipster').flipster({
-enableMousewheel:false,
-enableNav:true,
-enableNavButtons:true,
-style:'carousel', // Switch between 'coverflow' or 'carousel' display styles
+	enableMousewheel:false,
+	enableNav:true,
+	enableNavButtons:true,
+	style:'carousel', // Switch between 'coverflow' or 'carousel' display styles
 });
 
 $('#homeslider').height($( window ).height()-200);
@@ -127,3 +140,39 @@ function anim(pos,t){
 	wrap.style.backgroundPosition = "-"+pos+"px 0";
 	animace = setTimeout(function(){anim((pos+.5))}, step);
 } 
+
+$(document.body).on('change', '#standardId' ,function(){
+	$.get(base_url+"/index.php/home/get_vaccant_seats/"+$("#schoolId").val()+"/"+$(this).val(),{},function(data){
+		if(data["data"][0].vacantSeat > 0){
+			$("#school-vaccant-seats-info").html(data["data"][0].vacantSeat+" Available");
+		}
+	},'json');
+});
+
+function initialize() {
+    var ulat = $("#latitude").val();
+    var ulng = $("#longitude").val();
+    var mapCanvas = document.getElementById('map_canvas');
+    var mapOptions = {
+      center: new google.maps.LatLng(ulat, ulng),
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+  	map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP,
+        position: new google.maps.LatLng(ulat, ulng),
+        icon: {
+            path: fontawesome.markers.MAP_MARKER,
+            scale: 0.6,
+            strokeWeight: 0.2,
+            strokeColor: 'black',
+            strokeOpacity: 1,
+            fillColor: '#FE7569',
+            fillOpacity: 0.9
+        }
+    });
+}
+google.maps.event.addDomListener(window, 'load', initialize);

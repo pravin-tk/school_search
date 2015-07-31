@@ -1,81 +1,194 @@
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="text-left"><strong>Highlights </strong></h3>
+  <<style>
+<!--
+.highlight-panel-body {
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:0px;
+    padding-right:0px;
+    background-color:#fff;
+    font-size:14px;
+}
+.highlight-panel-body .col-md-6{
+	margin-top:5px;
+	margin-bottom:0px;
+}
+.panel-col-6-section{
+	margin-right:5px;
+	margin-bottom:5px;
+}
+.timelineslider .slide-bar .panel{
+}
+.timelineslider{
+	padding-bottom:10px;
+}
+.slider-nav {
+    background-image: url(../img/icons/dot.gif) center repeat-x;
+}
+-->
+</style>
+<div class="panel panel-default">
+  	<div class="panel-heading">
+       	<h3 class="text-center"><strong>Overview </strong></h3>
     </div>
-   <div class="panel-body"style="width: 50%;">
-     
-          <?php foreach ($overviewInfo as $key => $value){
-          ?>
-          	<section class="panel panel-default text-left"style="border-radius:30;">
-               
-                <div class="panel-body">
-					<?php echo $value['name']?>
-                </div>
-            </section> 
-          	<?php
-          } ?>
-         
-  </div>
-
-  <div class="panel-heading"style="border-bottom:none; ">
-	 <h3 class="text-left"><strong>Timeline </strong></h3>
+    <div class="panel-body" style="padding-bottom:0px;">
+		<div class="container">
+		  	<div class="panel">
+		  		<div class="overview-heading">
+		      		<h4 class="text-left">Basic Information</h4>
+		    	</div>
+		    	<div class="panel-body highlight-panel-body col-md-12" style="margin-left:50px;">
+			  		<div class="overview-heading-title">
+			  			<div class="col-md-3 text-left">
+		  					Category
+		  				</div>
+		  				<div class="col-md-3">
+		  					Medium
+		  				</div>
+		  				<div class="col-md-3">
+		  					Type
+		  				</div>
+		  				<div class="col-md-3 text-left">
+		  					Board
+		  				</div>
+			  		</div>
+			  		<div class="highlight-panel-body-title col-md-12" style="padding-bottom:10px;">
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['schoolClassification']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['mediums']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['schoolCategory']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['boardName']?>
+			  				</div>
+			  			</div>
+			  		</div>
+			  		<div class="overview-heading-title">
+		  				<div class="col-md-3">
+		  					Management
+		  				</div>
+		  				<div class="col-md-3">
+		  					Fee
+		  				</div>
+		  				<div class="col-md-3">
+		  					Management
+		  				</div>
+		  				<div class="col-md-3">
+		  					Fee
+		  				</div>
+			  		</div>
+			  		<div class="highlight-panel-body-title col-md-12">
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['mediums']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<i class="fa fa-rupee"></i> <?php echo $basicInfo['totalFee']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<?php echo $basicInfo['mediums']?>
+			  				</div>
+			  			</div>
+			  			<div class="col-md-3">
+			  				<div>
+			  					<i class="fa fa-rupee"></i> <?php echo $basicInfo['totalFee']?>
+			  				</div>
+			  			</div>
+			  		</div>
+			  	</div>
+		  	</div>
+		</div>
 	</div>
-  <div class="container">
-	
-   <?php 
-	$i = 0;	
-	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
-				
-	<div class="timelineslider">
-       <?php foreach($timelineInfo as $key=>$timeline)
-       {?>
-        <div class="item" style="width: 222px; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-            <div class="panel panel-default relative">
-              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
-                 <?php 	echo $timeline['year'];?>
-              </div>
-              <div class="cover hover overlay margin-none" style="height: 147px;">
-                <img src="<?php $timeline['year'] ?>"  alt="location" class="img-responsive">
-              </div>
-              <div class="panel-body">
-                <h4 class="margin-v-0-5"><?php echo $timeline['year'];?></h4>
-                <p>R.R.Shinde junior college.</p>
-                <?php foreach ($timeline['milestones'] as $key=>$milestone) {
-	   			?> 
-	   			<h4 class="label-grey-100"><?php echo $milestone['title'];?></h4>
-                <span class="label-black"><?php echo $milestone['milestoneDesc'];?></span>
-                <?php } ?>
-<!--                 <a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a> -->
-              </div>
-            </div>
-          </div>
-        <?php } ?>
-              </div>
-              
-      <?php 
-	$i = 0;	
-	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
-				
-	<div class="slider-nav" >
-       <?php foreach($timelineInfo as $key=>$timeline)
-       {?>
-            <div class=" relative">
-              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
-                 <?php 	echo $timeline['year'];?>
-              </div>
-              <div class="panel-body">
-                <h4 class="margin-v-0-5"><?php echo $timeline['year'];?></h4>
-                </div>
-            </div>
-        <?php } ?>
-      </div>
-              
-
+	<div class="panel-body" style="padding-top:10px;">
+		<div class="container">
+		  	<div class="panel">
+		   		<div class="overview-heading">
+		      		<h4 class="text-left">Highlights</h4>
+		    	</div>
+		   		<div class="panel-body highlight-panel-body col-md-12">
+		     
+		          <?php foreach ($overviewInfo as $key => $value){
+		          ?>
+		          	<div class="col-md-6">
+			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
+			                <li class="">
+								<?php echo $value['name']?>
+			                </li>
+			            </section> 
+		            </div>
+		          	<?php
+		          } ?>
+		         
+		  		</div>
+		  	</div>
+		</div>
+		<div class="container">
+			<div class="panel">
+			<div class="overview-heading">
+			 	<h4 class="text-left">Timeline </h4>
+			</div>
+			</div>
+		   <?php 
+			$i = 0;	
+			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
+						
+			<div class="timelineslider col-md-12">
+		       <?php foreach($timelineInfo as $key=>$timeline)
+		       {?>
+		        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">
+		            <div class="panel panel-default relative">
+		              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
+		                 <?php 	echo $timeline['year'];?>
+		              </div>
+		              <div class="cover hover overlay margin-none" style="height: 240px;">
+		                <img src="<?php echo $timeline['image'] ?>"  alt="location" class="img-responsive" style="height:230px;width:100%;">
+		              </div>
+		              <div class="panel-body">
+		                <h4 class="margin-v-0-5"><?php echo $timeline['title'];?></h4>
+<!-- 		                <p>R.R.Shinde junior college.</p> -->
+		                <?php foreach ($timeline['milestones'] as $key=>$milestone) {
+			   			?> 
+<!--			   			<h4 class="label-grey-100"><?php echo $milestone['title'];?></h4>
+		                <span class="label-black"><?php echo $milestone['milestoneDesc'];?></span> -->
+		                <?php } ?>
+		<!--                 <a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a> -->
+		              </div>
+		            </div>
+		          </div>
+		        <?php } ?>
+		  	</div>
+		              
+		      <?php 
+			$i = 0;	
+			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
+						
+<!-- 			<div class="slider-nav text-center" > -->
+		       <?php foreach($timelineInfo as $key=>$timeline) {?>
+<!-- 		            <div class="relative"> -->
+<!-- 		              <div class="panel-body text-center timeline-slider-nav"> -->
+<!--		                <h4 class="btn btn-primary btn-circle absolute bottom right"><?php echo $timeline['year'];?></h4> -->
+<!-- 		                </div> -->
+<!-- 		            </div> -->
+		        <?php } ?>
+		      </div>
+		              
+		
+		</div>
+		</div>
+	</div>
 </div>
-</div>
-  <!--  timeline  -->
-  
-        
-<!-- timeline -->
-
 <!-- end of timeline -->

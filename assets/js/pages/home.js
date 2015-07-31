@@ -14,41 +14,20 @@ $("#sch").click(function () {
     }
 });
 
-// A $( document ).ready() block.
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
 });
-
-//$('.detailmenubar').affix({
-//    offset: {
-//        top: 100,
-//    }
-//
-//})
 
 $("#frmSch").affix({
     offset: {
         top: 200,
     }
-})
+});
 $("#search_header").affix({
     offset: {
         top: 200,
     }
-})
-
-
-//$(".fa-heart-o").click(function (ev) {
-//    $(this).removeClass("fa-heart-o").addClass("fa-heart");
-//    ev.preventDefault();
-//
-//})
-//$(".fa-heart").click(function (ev) {
-//    $(this).removeClass("fa-heart").addClass("fa-heart-o");
-//    ev.preventDefault();
-//
-//})
-
+});
 
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
@@ -60,9 +39,7 @@ $(function() {
     });
 });
 
-// Highlight the top nav as scrolling occurs
 $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
-})
-//nearby slick
+});

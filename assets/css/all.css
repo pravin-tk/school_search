@@ -16260,21 +16260,15 @@ border:1px solid #e2e9e6;
 .flipster-nav >.flip-nav-current a{
 	background-color: #afafaf;
 }
-.flipto-next:after{
+.flipto-next{
 	position:absolute;
 	right:50px;
 	top:50%;
-	font-family: FontAwesome;
-	font-size:2em;
-   content: "\f138";
 }
-.flipto-prev:after{
+.flipto-prev{
 	position:absolute;
 	left:50px;
 	top:50%;
-	font-family: FontAwesome;
-	font-size:2em;
-   content: "\f137";
 }
 .flipto-next a,
 .flipto-prev a

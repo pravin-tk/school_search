@@ -211,29 +211,30 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id) {
-		$map ['standardId'] = $id;
-		$school_basic_key = 'school/basic.json/' . $id;
-		$school_other_key = 'school.json/' . $id . '?' . http_build_query ( $map );
-		$school_contact_key = 'school/contact.json/' . $id;
-		$school_overview_key = 'school/highlight.json/' . $id;
-		$school_gallery_key = 'school/gallery.json/'.$id;
-		$school_rating_key = 'school/rating.json/'.$id;
-		$school_review_key = 'school/review.json/'.$id;
-		$school_fee_key = 'school/fee.json/'.$id;
+	public function schoolDetail($id,$standardId) {
+		$map ['standardId'] = $standardId;
+		$school_basic_key = 'school/basiclist.json/' . $id.'/'.$standardId;
+		$school_other_key = 'school.json/' . $id;
+		//$school_contact_key = 'school/contact.json/' . $id;
+		//$school_overview_key = 'school/highlight.json/' . $id;
+		//$school_gallery_key = 'school/gallery.json/'.$id;
+		//$school_rating_key = 'school/rating.json/'.$id;
+		//$school_review_key = 'school/reviews.json/'.$id;
+		//$school_fee_key = 'school/fee.json/'.$id;
 		$standard_key = 'standardlist.json';
 		
 		
 		$apicalls = array($school_basic_key,
 						  $school_other_key,
-						  $school_contact_key,
-						  $school_overview_key,
-				          $school_gallery_key,
-				          $school_rating_key,
-				          $school_review_key,
-						  $school_fee_key ,
+						  //$school_contact_key,
+						  //$school_overview_key,
+				          //$school_gallery_key,
+				          //$school_rating_key,
+				          //$school_review_key,
+						  //$school_fee_key ,
 						  $standard_key);
 		
+		$schoolInfo = null;
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
@@ -241,22 +242,18 @@ class home extends CI_Controller {
 					$this->template->set ( 'basicInfo', $value );
 				} elseif (strpos ( $key, $school_other_key ) !== false) {
 					$this->template->set ( 'otherInfo', $value );
-				} elseif (strpos ( $key, $school_overview_key ) !== false) {
-					$this->template->set ( 'overviewInfo', $value );
-				} elseif(strpos($key,$school_contact_key)!== false) {
-                        $this->template->set('contactInfo',$value);
-                } elseif(strpos($key,$school_gallery_key)!==false){
-                    	$this->template->set('galleryinfo',$value);
-                } elseif(strpos($key,$school_rating_key)!==false){
-                    	$this->template->set('ratingInfo',$value);
-                } elseif(strpos($key,$school_review_key)!==false){
-                    	$this->template->set('reviewInfo',$value);
-                } elseif(strpos($key,$school_fee_key)!==false){
-                    	$this->template->set('feeInfo',$value);
+					$schoolInfo = $value;
                 } elseif(strpos($key,$standard_key)!==false){
                     	$this->template->set('standard',$value);
                 }
 			}
+			$this->template->set('overviewInfo',$schoolInfo['highlights']);
+			$this->template->set('contactInfo',$schoolInfo['contacts']);
+			$this->template->set('galleryinfo',$schoolInfo['images']);
+			$this->template->set('ratingInfo',$schoolInfo['rating']);
+			$this->template->set('reviewInfo',$schoolInfo['reviews']);
+			$this->template->set('feeInfo',$schoolInfo['fees']);
+			$this->template->set('standardId',$standardId);
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;
@@ -267,7 +264,6 @@ class home extends CI_Controller {
 		$data ['data'] = $data;
 		$this->template->set('page','detail');
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header_home' )->set_partial ( 'footer', 'partials/footer' );
-		//$this->template->build ( 'school/school-detail' );
 		$this->template->build ( 'school/school-details' );
 	}
  
@@ -294,6 +290,30 @@ class home extends CI_Controller {
 		}
 		echo  json_encode($data);
 	
+	}
+	
+	public function get_vaccant_seats($schoolId,$standardId){
+		$api_key = 'school/vacantseats.json/' . $schoolId.'/'.$standardId;
+		$apicalls = array (
+				$api_key
+		);
+		try {
+			$apioutput = $this->apiclient->process ( $apicalls );
+			foreach ( $apioutput as $key => $value ) {
+				if (strpos ( $key, $api_key ) !== false) {
+					$schooldata = $value;
+				}
+			}
+			$data ['data'] = $schooldata;
+			$data ['status'] = 1;
+			unset ( $apicalls );
+		} catch ( EBDApiException $e ) {
+			$data ['status'] = 0;
+			$data ['data'] = $data;
+			unset ( $apicalls );
+			unset ( $apioutput );
+		}
+		echo json_encode ( $data );
 	}
 	
 	public function testLogin(){
