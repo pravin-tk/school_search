@@ -8,7 +8,9 @@ $classification = $filtersList['classificationFilter'];
 ?>
 <<style>
 <!--
-
+#alogin{
+	color:#ffffff;
+}
 .filters .fa-angle-down {
   color: #7f7f7f;
   margin-left: 6px;
@@ -66,23 +68,48 @@ $classification = $filtersList['classificationFilter'];
 	    border-radius: 0;
 	}
 	.navbar-form{
-		width:550px;
+		min-width:450px;
+		padding-left:0px;
+		padding-right:0px;
 	}
 	.navbar-form .search-1{
-		width:100%;
+		width:95%;
 	}
 	.navbar-form .search-1 .input-group{
-		width:100%;
+		width:95%;
 	}
 	.navbar-form .search-1 .input-group{
-		width:100%;
+		width:95%;
 	}
 	.navbar-form .search-1 .input-group #schbox{
-		width:100%;
+		width:95%;
+	}
+}
+@media screen and (min-width: 1000px){
+	.navbar-form{
+		min-width:550px;
+		padding-left:0px;
+		padding-right:0px;
 	}
 }
 .pac-container {
   	z-index: 10000 !important;
+}
+@media (min-width:767px) and (max-width:1199px){
+	.col-lg-12{
+		width:100%;
+		float:left;
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.col-lg-4{
+		width:30%;
+		float:left;
+	}
+	.col-lg-8{
+		width:70%;
+		float:left;
+	}
 }
 -->
 </style>
@@ -105,16 +132,16 @@ $classification = $filtersList['classificationFilter'];
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
+    <div class="container-fluid" style="background-color:#212121;">
+      <div class="navbar-header" style="color:white;">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" style="color:white;">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php echo $base_url; ?>"> Edbuddy</a>
+        <a class="navbar-brand" href="<?php echo $base_url; ?>" style="color:white;border-right: #c2c2c2;"> Edbuddy</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -124,7 +151,7 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
 						<div class="col-lg-4 selectContainer">
-							<select class="selectpicker form-control" id="standardId" name="standardId">
+							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;">
 								<option value="">--Select--</option>
 		                        <?php  
                                         if($standard)
@@ -134,7 +161,7 @@ $classification = $filtersList['classificationFilter'];
 					  		</select>
 						</div>
 						<div class="col-lg-8">
-							<input id="schbox" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control">
+							<input id="schbox" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
 						</div>
 					</div>
 	          	</div>
@@ -146,9 +173,9 @@ $classification = $filtersList['classificationFilter'];
             <script>
             
                 if(logged_in == null) { //not logged in
-                    var public_data = '<li class="dropdown">';
-                    public_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="alogin">';
-                    public_data += '<i class="fa fa-fw fa-lock"></i> Login</a>';
+                    var public_data = '<li class="dropdown" style="background-color:#212121;">';
+                    public_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="alogin" style="background-color:#212121;">';
+                    public_data += '<i class="fa fa-fw fa-lock white"></i> Login</a>';
                     public_data += '<div class="dropdown-menu dropdown-size-280" id="divlogin">';
                     public_data += '<div class="dropdown-toggle" style ="float:right;" data-toggle="collapse" id="" onclick=""> <a style="color:#000;" href=""><i class="fa fa-close"></i></a> </div>';
                     public_data += '<div id="derr" class="help-block"></div>';
@@ -165,9 +192,9 @@ $classification = $filtersList['classificationFilter'];
                     public_data += '</div>'; //</div>
                     public_data += '<div class="text-center">';
                     public_data += '<input type="submit" name="blogin" id="blogin" value="Login" class="btn btn-primary" />';
-                    public_data += '<a href="#" class="forgot_password" >Forgot Password?</a></label>'; 
+                    public_data += '<a href="#" class="forgot_password">Forgot Password?</a></label>'; 
                     public_data += '</div></form></div>';
-                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divforgotp" style="display:none">';
+                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divforgotp" style="display:none;">';
                     public_data += '<div  style ="float:right;" data-toggle="collapse" id="" onclick=""><a style="color:#000;" href=""> <i class="fa fa-close"></i></a> </div>';
                     public_data += '<div id="dpwerr" class="help-block"></div>';
                     public_data += '<form class="ng-pristine ng-valid" id="frmpwd">';
@@ -184,10 +211,10 @@ $classification = $filtersList['classificationFilter'];
                     document.write(public_data);
               }
               if(logged_in == null) { // not logged in
-                var public_data = '<li class="dropdown">';
-                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" >';
+                var public_data = '<li class="dropdown" style="background-color:#212121;color:#ffffff;">';
+                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" style="background-color:#212121;color:#ffffff;">';
                     public_data += '<i class="fa fa-fw fa-plus"></i> Sign Up</a>';
-                    public_data += '<div class="dropdown-menu dropdown-size-280"></div>'
+                    public_data += '<div class="dropdown-menu dropdown-size-280" style="background-color:#212121;color:#ffffff;"></div>'
                     public_data += '</li>';
                     document.write(public_data);
               }  

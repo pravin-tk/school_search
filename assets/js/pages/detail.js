@@ -8,9 +8,9 @@ $('.demo').slick({
 	infinite: true,
 	  slidesToShow: 6,
 	  slidesToScroll: 6,
-	  prevArrow: '<button type="button" data-role="none" class="slick-prev">Previous</button>',
-	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
-	 // autoplay: true,
+	  prevArrow: '<button type="button" data-role="none" class="slick-prev"><img src="'+asset_url+'img/icons/arrow_left.svg"></button>',
+	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
+	  autoplay: false,
 	  //autoplaySpeed: 3000,
 	  centerMode: true,
 	  centerPadding: '50px'
@@ -24,7 +24,7 @@ $('.timelineslider').slick({
 	  slidesToScroll: 3,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev"><img src="'+asset_url+'img/icons/arrow_left.svg"></button>',
 	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
-	  autoplay: true,
+	  autoplay: false,
 	  autoplaySpeed: 3000,
 	  centerMode: false,
 	  centerPadding: '50px'
