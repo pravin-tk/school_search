@@ -79,7 +79,7 @@
                 </div>
                     <div class="form-group">
                         <label for="emailId" class="control-label">Email Id</label>
-                            <input type="text"  maxlength="25" 
+                            <input type="text"  maxlength="50" 
                                    class="form-control" id="emailId" name="emailId" value="">
                        
                         <span class="help-block with-errors"></span>

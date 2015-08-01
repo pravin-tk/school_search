@@ -35,16 +35,46 @@ class Auth extends CI_Controller {
     }
     
     public function userActivate() {
-        $emailId = ($this->session->userdata('sessEmailID') != '') ? $this->session->userdata('sessEmailID') : '';
-        $this->template
+        $userid = ($this->session->userdata('sessuserID') != '') ? $this->session->userdata('sessuserID') : $_COOKIE['ebduserid'];
+        $activateUser = 0;
+        if($userid >0) { $activateUser =1;}
+        $profile_key = 'user/profile.json/' . $userid;
+        $apicalls = array($profile_key);
+        try {
+            $apioutput = $this->apiclient->process($apicalls);
+            foreach ($apioutput as $key => $value) {
+                if (strpos($key, $profile_key) !== false) {
+                    if($value['status']<1){
+                        echo "in active";
+                       $activateUser =1;
+                    }  else{
+                        $activateUser =0;
+                       
+                    }
+                }
+            }
+        } catch (EBDApiException $e) {
+            $data ['status'] = 0;
+            $data ['data'] = $data;
+            unset($apicalls);
+            unset($apioutput);
+        }
+        
+        if($activateUser > 0) { 
+         $emailId = ($this->session->userdata('sessEmailID') != '') ? $this->session->userdata('sessEmailID') : '';
+            $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
                 ->set_partial('header', 'partials/header')
                 ->set_partial('footer', 'partials/footer_links');
-        // ->set_partial('breadcrumb','../partials/breadcrumb');
-        $this->template->set("emailId1",$emailId);
-        $this->template->set("page",'profile');
-        $this->template->build('school/activate');
+                // ->set_partial('breadcrumb','../partials/breadcrumb');
+                $this->template->set("emailId1",$emailId);
+                $this->template->set("page",'profile');
+                $this->template->build('school/activate');
+        }else{
+            //redirect to homepage in case user not logged or status is 0
+            redirect(site_url());
+        }
     }
     
     public function activateProfile() {
@@ -140,7 +170,7 @@ class Auth extends CI_Controller {
         $city = $this->uri->segment(1);
         $this->input->set_cookie("ebduserid", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("ebdusername", null, time() - 60 * 60 * 24 * 30);
-
+        $this->input->set_cookie("edbmypic", null, time() - 60 * 60 * 24 * 30);
         $this->session->sess_destroy();
         $this->input->set_cookie($cookie);
         redirect(site_url());

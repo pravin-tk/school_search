@@ -71,7 +71,7 @@
                                                 <div class="form-group">
 
                                                     <input type="submit" id="btnchangePwd" class="btn btn-primary" value="Change Password" />
-                                                    <input type="button" id="btnCancelPwd" class="btn btn-default" value="Cancel"/>
+                              <input type="button" id="btncancel" class="btn btn-default" value="Cancel" onclick="location.href = '<?php echo $base_url;?>';" />  
                                                 </div>
                                             </form>
                                         </div>
@@ -96,76 +96,3 @@
         </div>
     </div>
 
-    <script>
-        // A $( document ).ready() block.
-        
-//
-//    //    $("#activate_user").on("click", "#btnchangePwd", function () {
-//    function activateProfile() {
-//                $.post(base_url + "index.php/auth/activateProfile",
-//                        {
-//                            email: $("#activate_profile_form input[name=emailid]").val(),
-//                            password: $("#activate_profile_form input[name=newPassword]").val()
-//                        }, function (response) {
-//                        $.each(response, function (key, value) {
-//                       // $.each(v, function (key, value) {
-//                             //console.log(key +"---"+value);
-//                            if (key == "id")
-//                                id = value;
-//                            else if (key == "message")
-//                                messg = value;
-//                            else if (key == "status")
-//                                status = value;
-//                            else if (key == "errors")
-//                                errors = value;
-//                        //});
-//
-//                    });
-//                    if (status == 0) {
-//                        $("#pwd_form_error").html(errors);
-//                        $("#pwd_form_error").addClass('help-block-error');
-//                    } else {
-//                        $("#pwd_form_error").html(messg);
-//                        $("#pwd_form_error").addClass('help-block-success');
-//                    }
-//                }, 'json'
-//                        );
-//
-//            
-//    }
-//    
-//    $('#activate_profile_form').bootstrapValidator({
-//            message: 'This value is not valid',
-//            feedbackIcons: {
-//                    valid: 'glyphicon glyphicon-ok',
-//                    invalid: 'glyphicon glyphicon-remove',
-//                    validating: 'glyphicon glyphicon-refresh'
-//            },
-//            submitHandler: function(validator, form, submitButton) {
-//                   activateProfile();
-//                 
-//             },
-//            fields: {
-//                    newPassword: {
-//                    message: 'password is not valid',
-//                        validators: {
-//                                notEmpty: {
-//                                        message: 'new password required and cannot be empty'
-//                                },
-//                                stringLength: {
-//                                        min: 8,
-//                                        max: 8,
-//                                        message: 'password length should be 8 characters'
-//                                },
-//                               
-//                        },
-////                       
-//                    },
-//                    
-//            },
-//               
-//        });
-
-
-
-    </script>                               
