@@ -43,7 +43,7 @@ if (isset ( $schools )) {
 						id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i
 						class="fa fa-heart-o fa-fw"></i></span>
 				</div>
-				<h4 class="media-heading margin-v-0-10">
+				<h4 class="school-name-text media-heading margin-v-0-10">
 					<a
 						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank"><?php echo $school['name']?>
                                                     </a>
