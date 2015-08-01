@@ -9,14 +9,16 @@ error_log(json_encode($safety),0);
 $arractivity = array();
 $arrsafety = array();
 $arrinfra =  array();
-foreach($activity as $activitykey => $activityvalue){
-    $i = 0;
-    foreach($activityvalue['items'] as $key=>$value ){
-        $arractivity[$activityvalue['name']][$i]['id'] = $value['id'];
-        $arractivity[$activityvalue['name']][$i]['name'] = $value['name'];
-        $i++;
+if(isset($activity))
+    foreach($activity as $activitykey => $activityvalue){
+        $i = 0;
+        foreach($activityvalue['items'] as $key=>$value ){
+            $arractivity[$activityvalue['name']][$i]['id'] = $value['id'];
+            $arractivity[$activityvalue['name']][$i]['name'] = $value['name'];
+            $i++;
+        }
     }
-}
+if(isset($safety))    
 foreach($safety as $safetykey => $safetyvalue){
     $i = 0;
     foreach($safetyvalue['items'] as $key=>$value ){
@@ -25,6 +27,7 @@ foreach($safety as $safetykey => $safetyvalue){
         $i++;
     }
 }
+if(isset($safety)) 
 foreach($infra as $infrakey => $infravalue){
     $i = 0;
     foreach($infravalue['items'] as $key=>$value ){

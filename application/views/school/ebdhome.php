@@ -48,6 +48,11 @@
             width: 100%;
         }
     }
+    .alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    }
 </style>
 <?php
 	$standard = "";
@@ -110,7 +115,7 @@
                                         class="form-control">
                             </div>
                         <div class="col-md-3">
-                        <input type="submit" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
                        
                         </div>
                         </div>

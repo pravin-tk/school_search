@@ -3,6 +3,7 @@ $i = 0;
 $timelineInfo = $otherInfo['schoolTimelineData'];
 ?>        
 
+
 <div class="col-md-12" id="navtimeline">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -13,8 +14,10 @@ $timelineInfo = $otherInfo['schoolTimelineData'];
    
      <div id="timeline">
 
+
 <ul id="issues">
 <?php 
+if(isset($timelineInfo))
 foreach($timelineInfo as $key=>$timeline )
 {
 	echo "<li id='".$timeline['year']."' >";
@@ -42,7 +45,8 @@ foreach($timelineInfo as $key=>$timeline )
 
 </ul>
 <ul id="dates">
-<?php     
+<?php 
+if(isset($timelineInfo))
 foreach($timelineInfo as $key=>$timeline )
 {
 	echo "<li><a href='".$timeline['year']."'>".$timeline['year']."</a></li>";
@@ -66,3 +70,4 @@ foreach($timelineInfo as $key=>$timeline )
 	             </div>
             </div>
          </div>
+

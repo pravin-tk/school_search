@@ -131,7 +131,8 @@
                 <script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
                 <script src="<?php echo asset_url();?>js/rating.js"></script>
                 <script src="<?php echo asset_url();?>js/bootstrap-multiselect.js"></script>
-                  <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
+                <script src="<?php echo asset_url();?>js/bootstrapValidator.min.js"></script>
+                <script src="<?php echo asset_url();?>js/jquery.bootstrap-growl.min.js"></script>
                 <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
                 <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
                 <script src="<?php echo asset_url();?>js/pages/common.js"></script>

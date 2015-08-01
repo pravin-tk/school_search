@@ -1,4 +1,5 @@
 <div class="col-md-12">
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="text-center"><strong>Rating </strong></h3>
@@ -16,6 +17,7 @@
 		          	      <?php echo $schoolRating['name']?>
 		                </div>
 		                 <div class="col-xs-4 col-md-4 text-center">
+
 		                        <div class="rating">
 		                        
 		                        <?php 
@@ -32,6 +34,7 @@
 		                            <span class="fa fa-user"></span>125888 total votes
 		                        </div>
 		                    </div>
+
 		                    
             </div>
           </section>
@@ -78,5 +81,6 @@
    
   </div><!--  -->
    
+
 </div>
 

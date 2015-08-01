@@ -533,11 +533,10 @@ html, body {height: 100%;}
                         ?>
 
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId']?>">
-								<div class="panel-body">
-									<div class="media media-clearfix-xs media-clearfix-sm">
-										<div class="media-left">
-											<p id="list-image">
-												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+                                <div class="panel-body">
+                                    <div class="media media-clearfix-xs media-clearfix-sm">
+                             <div class="media-left">
+                                            <p id="list-image">  <a href="<?php echo $urllink;?>" >
                                                     <?php if($school['logo'] == ""){?>
                                                     <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
                                                     <?php }else{?>

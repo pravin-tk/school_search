@@ -7,7 +7,9 @@
     </div>
    <div class="panel-body"style="width: 50%;">
      
-          <?php foreach ($overviewInfo as $key => $value){
+          <?php 
+          if(isset($overviewInfo))
+          foreach ($overviewInfo as $key => $value){
           ?>
           	<section class="panel panel-default text-left"style="border-radius:30;">
                
@@ -31,8 +33,10 @@
 		$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 				
 	<div class="timelineslider">
-       <?php foreach($timelineInfo as $key=>$timeline)
-       {?>
+       <?php
+       if(isset($timelineInfo))
+         foreach($timelineInfo as $key=>$timeline)
+             {?>
         <div class="item" style="width: 222px; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
             <div class="panel panel-default relative">
               <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
@@ -61,8 +65,10 @@
 	$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 				
 	<div class="slider-nav">
-       <?php foreach($timelineInfo as $key=>$timeline)
-       {?>
+       <?php
+            if(isset($timelineInfo))
+            foreach($timelineInfo as $key=>$timeline)
+                {?>
             <div class="relative timelinebackground">
               <div class="ribbon-heading text-h5 ribbon-color btn-circle absolute bottom right">
                  <?php 	echo $timeline['year'];?>
@@ -75,8 +81,10 @@
               
 
 	</div>
+
 	<!-- timeline -->
 	
+
 </div>
 
 <!-- end of highlights -->
