@@ -9,7 +9,7 @@ if (isset ( $schools )) {
 		<div class="media media-clearfix-xs media-clearfix-sm">
 			<div class="media-left">
 				<p>
-					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
                    	<?php if($school['logo'] == ""){?>
                         <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                   	<?php }else{?>
@@ -45,7 +45,7 @@ if (isset ( $schools )) {
 				</div>
 				<h4 class="media-heading margin-v-0-10">
 					<a
-						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>"><?php echo $school['name']?>
+						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank"><?php echo $school['name']?>
                                                     </a>
 				</h4>
 				<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>

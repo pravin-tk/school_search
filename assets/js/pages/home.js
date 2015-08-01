@@ -1,5 +1,6 @@
 
 $("#sch").click(function () {
+
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
@@ -40,7 +41,8 @@ $("#sch").click(function () {
     
         }
     }
-  });
+
+});
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
@@ -86,4 +88,3 @@ $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
 });
-

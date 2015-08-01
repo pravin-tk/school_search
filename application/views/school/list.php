@@ -451,13 +451,13 @@ html, body {height: 100%;}
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
 											<p>
-                                                                                            <a href="<?php echo $urllink;?>">
-                                                    <?php if($school['logo'] == ""){?>
-                                                    <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
-                                                    <?php }else{?>
-                                                    <img src="<?php echo $school['logo'];?>" alt="property" width="120" height="100" class="media-object">
-                                                     <?php }?>
-                                                </a>
+                                                                                            <a href="<?php echo $urllink;?>" target="_blank">
+                                                                                                <?php if($school['logo'] == ""){?>
+                                                                                                <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
+                                                                                                <?php }else{?>
+                                                                                                <img src="<?php echo $school['logo'];?>" alt="property" width="120" height="100" class="media-object">
+                                                                                                 <?php }?>
+                                                                                            </a>
 											</p>
 											<div class="text-center small">
 											<?php 
@@ -480,29 +480,28 @@ html, body {height: 100%;}
 											</div>
 										</div>
 										<div class="media-body">
-                                <div class="pull-right">
-                                        <span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
-                                </div>
-                                <h4 class="media-heading margin-v-0-10">
-                                        <a href="<?php echo $urllink;?>"><?php echo $school['name']?>
-</a>
-                                </h4>
-                                <h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
-                                <p>
-                                        <span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
-                                </p>
-                                <p>
-                                        <span class="fee label-100">
-                                                <i class="fa fa-rupee"></i> 
-                                                <?php 
-                                                if($school['totalFee'] > 1000)
-                                                        echo round($school['totalFee']/1000,2)."K PA";
-                                                else 
-                                                        echo $school['totalFee']." PA";
-                                                ?>
-                                        </span>
-                                </p>
-                        </div>
+                                                                                    <div class="pull-right">
+                                                                                            <span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
+                                                                                    </div>
+                                                                                    <h4 class="media-heading margin-v-0-10">
+                                                                                            <a href="<?php echo $urllink;?>" target="_blank"><?php echo $school['name']?></a>
+                                                                                    </h4>
+                                                                                    <h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
+                                                                                    <p>
+                                                                                            <span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
+                                                                                    </p>
+                                                                                    <p>
+                                                                                            <span class="fee label-100">
+                                                                                                    <i class="fa fa-rupee"></i> 
+                                                                                                    <?php 
+                                                                                                    if($school['totalFee'] > 1000)
+                                                                                                            echo round($school['totalFee']/1000,2)."K PA";
+                                                                                                    else 
+                                                                                                            echo $school['totalFee']." PA";
+                                                                                                    ?>
+                                                                                            </span>
+                                                                                    </p>
+                                                                            </div>
 									</div>
 								</div>
 							</div>
@@ -531,12 +530,13 @@ html, body {height: 100%;}
                             foreach($schools as $key => $school){
                         
                         ?>
-
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId']?>">
-                                <div class="panel-body">
-                                    <div class="media media-clearfix-xs media-clearfix-sm">
-                             <div class="media-left">
-                                            <p id="list-image">  <a href="<?php echo $urllink;?>" >
+
+                                                            <div class="panel-body">
+                                                                    <div class="media media-clearfix-xs media-clearfix-sm">
+                                                                            <div class="media-left">
+                                                                                    <p id="list-image">
+                                                                                            <a href="<?php echo $urllink;?>" target="_blank">
                                                     <?php if($school['logo'] == ""){?>
                                                     <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
                                                     <?php }else{?>
@@ -552,7 +552,7 @@ html, body {height: 100%;}
 											<div class="col-sm-3" id="padding-left-08">
 												<div class="list-top-line">
 													<div class="school-name-text margin-title text-capitalize">
-														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>">
+														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank">
 															<?php echo $school['name']?>
 			                                            </a>
 		                                            </div>
@@ -701,8 +701,10 @@ html, body {height: 100%;}
 			</div>
 		</div>
 <script type="text/javascript">
+var infowindow = new google.maps.InfoWindow();
 dataArr = <?php echo json_encode($schools); ?>;
 var markers = [];
+//var infowindow = null;
 $(document).ready(function(){
 	dataArr = <?php echo json_encode($schools); ?>;
     $('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
@@ -767,10 +769,12 @@ function initialize() {
 			<?php 
 				}
 			?>
+			var marker_url = "<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>";
 			var schoolBoards = "<?php echo $school['boardName']?>,<?php echo $school['mediums']?>";
             var marker<?php echo $school['schoolId']?> = new google.maps.Marker({
                 map: map,
                 draggable: false,
+                url: marker_url,
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
                 icon: {
@@ -815,7 +819,6 @@ function initialize() {
     						 +"</span> "
     						 +"<span id='err-text' style='font-weight: bold;'></span>"
     						 +"</div></div>";
-    			var infowindow = new google.maps.InfoWindow();
                 google.maps.event.addListener(marker,'mouseover', (function(marker,infoContent,infowindow){ 
                     return function() {
                         infowindow.setContent(infoContent);
@@ -824,6 +827,9 @@ function initialize() {
                 })(marker,infoContent,infowindow)); 
                 google.maps.event.addListener(marker, 'mouseout', function() {
                     infowindow.close(map,marker);
+                });
+                google.maps.event.addListener(marker, 'click', function() { 
+                	window.open(this.url, '_blank');
                 });
                 markers.push(marker);
        	<?php 

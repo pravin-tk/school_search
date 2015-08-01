@@ -189,7 +189,7 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
 .slick-prev:hover {
     position: absolute;
@@ -199,7 +199,7 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
 .slick-prev:before{
 	font-size:12px;
@@ -213,7 +213,7 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
 .slick-next:hover {
     position: absolute;
@@ -223,11 +223,61 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
 .slick-next:before{
 	font-size:12px;
 	content:"";
+}
+
+.demo .slick-prev {
+    position: absolute;
+    left: -35px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+.demo .slick-prev:hover {
+    position: absolute;
+    left: -35px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+.demo .slick-next {
+    position: absolute;
+    right: 3px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+
+.demo .slick-next:hover {
+    position: absolute;
+    right: 3px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+.demo .slick-next img{
+	width:50px;
+	height:100%;
+}
+.demo .slick-prev img{
+	width:50px;
+	height:100%;
 }
 -->
 </style>

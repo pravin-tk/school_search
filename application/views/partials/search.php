@@ -9,7 +9,7 @@
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
 											<p id="list-image">
-												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
                                                     <?php if($school['logo'] == ""){?>
                                                     <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
                                                     <?php }else{?>
@@ -25,7 +25,7 @@
 											<div class="col-sm-3" id="padding-left-08">
 												<div class="list-top-line">
 													<div class="school-name-text margin-title text-capitalize">
-														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>">
+														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank">
 															<?php echo $school['name']?>
 			                                            </a>
 		                                            </div>
