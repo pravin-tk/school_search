@@ -206,8 +206,8 @@ google.maps.event.addDomListener(window, 'load', function () {
     google.maps.event.addListener(places, 'place_changed', function () {
         var place = places.getPlace();
         var address = place.formatted_address;
-        var latitude = place.geometry.location.lat();//place.geometry.location.A;
-        var longitude = place.geometry.location.lng();//place.geometry.location.F;
+        var latitude = place.geometry.location.lat();
+        var longitude = place.geometry.location.lng();
         var i = latitude+","+longitude;
         var a = address;
         var mesg = "Address: " + address;
@@ -216,12 +216,8 @@ google.maps.event.addDomListener(window, 'load', function () {
         $("#latitude").val(latitude);
         $("#longitude").val(longitude);
         $("#address").val(address);
-        //$.cookie("ebdsearchgeocode",latitude+","+longitude,{expires:60*60*24*30,path:"/",domain:cookie_domain});
-	//$.cookie("ebdsearchgeoloc",address,{expires:60*60*24*30,path:"/",domain:cookie_domain});    
         document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;domain=edbuddy.in";
         document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
-        console.log(mesg);
-       
     });
 });
 

@@ -73,7 +73,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
         <a class="navbar-brand"  href="<?php echo $base_url; ?>"> EdBuddy</a>
+
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
