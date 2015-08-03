@@ -29,22 +29,27 @@
 	padding:5px;
 }
 .fee-panel-box{
-	border:1px solid #e2e9e6;
+	border:0px;
 	box-sizing: border-box;
 	margin-left:20px;
 	padding-top:5px;
 	width:600px;
 }
-
+.fee-panel-box .flip-content{
+	border:0px;
+}
+.fee-panel-box .flip-content .panel-heading{
+	border-bottom:1px solid #e2e9e6;
+}
 .fee-panel-box .flip-content .panel{
+	border:1px solid #e2e9e6;
 	padding-top:0px;
 	padding-bottom:5px; 
 	margin-top:0px;
 	margin-bottom:5px;
 }
 .fee-panel-box .flip-content .panel-default{
-	border:0px;
-	border-bottom:1px solid #e2e9e6;
+	border:1px solid #e2e9e6;
 	padding-top:0px;
 	padding-bottom:5px; 
 }
