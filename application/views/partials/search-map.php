@@ -50,7 +50,7 @@ if (isset ( $schools )) {
 				</h4>
 				<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
 				<p>
-					<span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
+					<span class="label-100"><?php if(strtolower($school['boardName']) != "na"){echo $school['boardName'];}else{echo $school['teachingApproach'];}?>,<?php echo $school['mediums']?></span>
 				</p>
 				<p>
 					<span class="fee label-100"> <i class="fa fa-rupee"></i> 

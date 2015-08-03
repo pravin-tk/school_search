@@ -488,7 +488,7 @@ html, body {height: 100%;}
                                             </h4>
                                             <h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
                                             <p>
-                                                <span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
+                                                <span class="label-100"><?php if(strtolower($school['boardName']) != "na"){echo $school['boardName'];}else{echo $school['teachingApproach'];}?>,<?php echo $school['mediums']?></span>
                                             </p>
                                             <p>
                                                	<span class="fee label-100">
@@ -543,7 +543,7 @@ html, body {height: 100%;}
                                                     <img src="<?php echo $school['logo'];?>" alt="property" width="150" height="135" class="media-object">
                                                      <?php }?>
                                                 </a>
-                                                <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']?>">
+                                                <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId'];?>">
 													<i class="fa fa-heart-o"></i> 
 												</span>
 											</p>
@@ -564,16 +564,25 @@ html, body {height: 100%;}
 	                                            	Category
 	                                            </div>
 	                                            <div class="detail-value">
-	                                            	<?php echo $school['schoolClassification']?>
+	                                            	<?php echo $school['schoolClassification'];?>
 	                                            </div>
+	                                            <?php if (strtolower($school['boardName']) != "na") {?>
 	                                            <div class="detail-label">
 	                                            	Board
 	                                            </div>
 	                                            <div class="detail-value">
-	                                            	<?php echo $school['boardName']?>
+	                                            	<?php echo $school['boardName'];?>
 	                                            </div>
+	                                            <?php } else {?>
+	                                            <div class="detail-label">
+	                                            	Teaching Approach
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['teachingApproach'];?>
+	                                            </div>
+	                                            <?php }?>
 												<a class="btn btn-primary list-primary-button" href="">
-													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']?>)
+													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages'];?>)
 	                                            </a>
 											</div>
 											<div class="col-sm-3" id="padding-left-08">

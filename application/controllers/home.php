@@ -206,8 +206,8 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id) {
-		$standardId = $_COOKIE['ebdstdid'];
+	public function schoolDetail($id,$standardId) {
+		//$standardId = $_COOKIE['ebdstdid'];
 		$school_basic_key = 'school/basiclist.json/' . $id.'/'.$standardId;
 		$school_other_key = 'school.json/' . $id;
 		$standard_key = 'standardlist.json';

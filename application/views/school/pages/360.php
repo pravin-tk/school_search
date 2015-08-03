@@ -109,7 +109,7 @@
 						
 						</div>					 
 					</div>
-					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:50px;margin-right:50px;">
+					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
 						<div class="float-left">
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/campus_new.jpg"  src="<?php echo asset_url();?>img/panorma/campus_new.jpg" />
 			               <h4><a> Campus</a> </h4>
@@ -147,17 +147,11 @@
 		            </div>
            		 </div>
                 </div>
-       
-            </div>
-        </div>
 		<div id="info">
 		</div>
 		
-				<script src="<?php echo asset_url();?>js/360.js"></script>
-		
+<script src="<?php echo asset_url();?>js/360.js"></script>
 <script>
-		
-
 var camera, scene, renderer;
 var imagecount = 'panorama4.jpg';
 
@@ -184,7 +178,7 @@ function init() {
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture( '/../../edbuddy/assets/img/panorma/campus_new.jpg' )
+		map: THREE.ImageUtils.loadTexture( asset_url+'img/panorma/campus_new.jpg' )
 	} );
 
 	
