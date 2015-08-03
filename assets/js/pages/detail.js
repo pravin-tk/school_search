@@ -12,8 +12,8 @@ $('.demo').slick({
 	  nextArrow: '<button type="button" data-role="none" class="slick-next">Next</button>',
 	 // autoplay: true,
 	  //autoplaySpeed: 3000,
-	  centerMode: true,
-	  centerPadding: '50px'
+	  //centerMode: true,
+	  //centerPadding: '50px'
 	  
 	  	  
 });

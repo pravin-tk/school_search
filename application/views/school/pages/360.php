@@ -144,6 +144,10 @@
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  src="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>
+			              <div class="float-left" >    
+			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
+			             	<h4><a>Hostel bedroom</a></h4>
+			            </div>  
 		            </div>
            		 </div>
                 </div>
@@ -184,7 +188,7 @@ function init() {
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture( '/../../edbuddy/assets/img/panorma/campus_new.jpg' )
+		map: THREE.ImageUtils.loadTexture( asset_url+'img/panorma/campus_new.jpg' )
 	} );
 
 	
