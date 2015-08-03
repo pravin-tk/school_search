@@ -146,7 +146,7 @@
 			$i = 0;	
 			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 						
-			<div class="timelineslider col-md-12">
+			<div class="timelineslider col-md-12" id="timelineslider">
 		       <?php foreach($timelineInfo as $key=>$timeline)
 		       {?>
 		        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">

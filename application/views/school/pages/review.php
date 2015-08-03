@@ -6,7 +6,7 @@
 				<span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
 			</h3>
 	    </div>
-   		<div class="panel-body address-bar-main">
+   		<div class="panel-body">
 	 		<div class="container">
         		<div class="col-md-6">
         		<?php 

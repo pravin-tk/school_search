@@ -31,8 +31,6 @@
 .fee-panel-box{
 	border:1px solid #e2e9e6;
 	box-sizing: border-box;
-	height:auto;
-	min-height:300px;
 	margin-left:20px;
 	padding-top:5px;
 	width:600px;
@@ -181,7 +179,7 @@
 .timelineslider{
 	position:relative;
 }
-.slick-prev {
+#timelineslider .slick-prev {
     position: absolute;
     left: -35px;
     top: 10px;
@@ -189,9 +187,9 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
-.slick-prev:hover {
+#timelineslider .slick-prev:hover {
     position: absolute;
     left: -35px;
     top: 10px;
@@ -199,13 +197,13 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
-.slick-prev:before{
+#timelineslider .slick-prev:before{
 	font-size:12px;
 	content:"";
 }
-.slick-next {
+#timelineslider .slick-next {
     position: absolute;
     right: 3px;
     top: 10px;
@@ -213,9 +211,9 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
-.slick-next:hover {
+#timelineslider .slick-next:hover {
     position: absolute;
     right: 3px;
     top: 10px;
@@ -223,11 +221,72 @@
     height:auto;
     min-height:296px;
     width:50px;
-    opacity:0.4;
+    opacity:0.9;
 }
-.slick-next:before{
+#timelineslider .slick-next:before{
 	font-size:12px;
 	content:"";
+}
+
+#pan-slider .slick-prev {
+    position: absolute;
+    left: -50px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+#pan-slider .slick-prev:hover {
+    position: absolute;
+    left: -50px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+#pan-slider .slick-next {
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+
+#pan-slider .slick-next:hover {
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    font-size: 24px;
+    height:auto;
+    min-height:140px;
+    width:50px;
+    opacity:0.9;
+}
+#pan-slider .slick-next img{
+	width:50px;
+	height:100%;
+}
+#pan-slider .slick-prev img{
+	width:50px;
+	height:100%;
+}
+#pan-slider .slick-prev:before{
+	font-size:12px;
+	content:"";
+}
+#pan-slider .slick-next:before{
+	font-size:12px;
+	content:"";
+}
+.school-fee-detail{
+	padding-left:10px;
 }
 -->
 </style>
@@ -285,11 +344,6 @@
                   <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
                   <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?> ,<?php echo $basicInfo['localityName'];?> ,<?php echo $basicInfo['cityName'];?></p>
           	   </div>
-<!--           	   <div class="col-lg-6"> -->
-<!--                   <h3 class="text-center text-h3 text-overlay">Seats Available</h3> -->
-<!--                   <p class="text-subhead text-overlay"> -->
-<!--         		</p> -->
-<!--           	   </div> -->
           	   <div style="float: right">                
           	     <h4 class="text-h4 text-overlay"<a href="#visualtour"><img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png"></a></h4>
           	   </div>
@@ -403,8 +457,8 @@
   <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
 </ul>
 
-<<script type="text/javascript">
+<script type="text/javascript">
 <!--
 $("#nearby").focus();
 //-->
-</script>>
+</script>

@@ -9,7 +9,7 @@ if (isset ( $schools )) {
 		<div class="media media-clearfix-xs media-clearfix-sm">
 			<div class="media-left">
 				<p>
-					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>">
+					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
                    	<?php if($school['logo'] == ""){?>
                         <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                   	<?php }else{?>
@@ -43,14 +43,14 @@ if (isset ( $schools )) {
 						id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i
 						class="fa fa-heart-o fa-fw"></i></span>
 				</div>
-				<h4 class="media-heading margin-v-0-10">
+				<h4 class="school-name-text media-heading margin-v-0-10">
 					<a
-						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>"><?php echo $school['name']?>
+						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank"><?php echo $school['name']?>
                                                     </a>
 				</h4>
 				<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>
 				<p>
-					<span class="label-100"><?php echo $school['boardName']?>,<?php echo $school['mediums']?></span>
+					<span class="label-100"><?php if(strtolower($school['boardName']) != "na"){echo $school['boardName'];}else{echo $school['teachingApproach'];}?>,<?php echo $school['mediums']?></span>
 				</p>
 				<p>
 					<span class="fee label-100"> <i class="fa fa-rupee"></i> 

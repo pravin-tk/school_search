@@ -165,8 +165,3 @@
 
     </div>
   </nav>
-   
-
-<script>
-             
-          </script>

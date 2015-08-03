@@ -2,15 +2,31 @@
 $("#sch").click(function () {
 //function geoSearch() {
     if( $("#cboStd").val() == "") {
-        console.log('8');
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
-       // $('#cboStd').tooltip('show');
+        $.bootstrapGrowl("Please select standard from dropdown!!", {
+            ele: 'body', // which element to append to
+             type: 'danger', // (null, 'info', 'danger', 'success')
+            offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+            align: 'center', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
     }else if ($("#latitude").val() == "" || $("#longitude").val() == "") {
-      console.log('4');
         $("#schbox").addClass('has-error');
         $("#schbox").focus();
-      // $('#schbox').tooltip('show');
+        $.bootstrapGrowl("Please select location from dropdown!!", {
+            ele: 'body', // which element to append to
+             type: 'danger', // (null, 'info', 'danger', 'success')
+            offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+            align: 'center', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+          });
     }  else {
         
         address = $('#address').val();
@@ -26,6 +42,8 @@ $("#sch").click(function () {
         }
     }
 //}
+});
+
 });
 
 $(document).ready(function () {
@@ -44,12 +62,15 @@ function getPermlink(strAddress,stdname){
     for(i=0;i<arrStr.length;i++){
         console.log(arrStr[i]);
     }
-    city = arrStr[1];
+    city = arrStr[1].trim().replace(" ","-");
     locality = arrStr[0].replace(" ","-");
+    locality = arrStr[0].replace(".","-");
     stdname = stdname.replace(" ","-");
+    stdname = stdname.replace(".","-");
     permlink = city+"/"+locality+"/"+stdname;
     permlink =permlink.toLowerCase();
-    return permlink.trim();
+    return permlink.replace(/\s/g, '-').trim();
+   
 }
 
 
@@ -63,6 +84,7 @@ $("#search_header").affix({
         top: 200,
     }
 });
+
 
 $('body').scrollspy({
     target: '.navbar-fixed-top',

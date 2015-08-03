@@ -506,10 +506,12 @@ function sortMarkers(sortitem){
 			} else {
 			var hexMarkerColor = '#FE7569';
 			}
+			var marker_url = base_url+"index.php/home/schoolDetail/"+item.schoolId+"/"+$("#standardId").val();
         var marker = new google.maps.Marker({
             map: map,
             draggable: false,
             animation: google.maps.Animation.DROP,
+            url: marker_url,
             position: new google.maps.LatLng(item.latitude, item.longitude),
             icon: {
                 path: fontawesome.markers.MAP_MARKER,
@@ -523,7 +525,7 @@ function sortMarkers(sortitem){
         });
         var school_img = "";
         if (item.logo=="") {
-        	school_img =  "<img src='http://localhost/school-proj/assets/img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
+        	school_img =  "<img src='"+asset_url+"img/vector-school-house-28931692.jpg' style='width:50px;height:50px;'>";
     	} else {
     		school_img =  "<img src='"+item.logo+"' style='width:50px;height:50px;'>";
     	}
@@ -572,6 +574,9 @@ function sortMarkers(sortitem){
         })(marker,infoContent,infowindow)); 
         google.maps.event.addListener(marker, 'mouseout', function() {
             infowindow.close(map,marker);
+        });
+        google.maps.event.addListener(marker, 'click', function() { 
+        	window.open(this.url, '_blank');
         });
         markers.push(marker);
 	});

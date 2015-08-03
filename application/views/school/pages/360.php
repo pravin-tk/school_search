@@ -109,7 +109,7 @@
 						
 						</div>					 
 					</div>
-					<div class="col-md-10 overlay-gallery text-center demo">
+					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
 						<div class="float-left">
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/campus_new.jpg"  src="<?php echo asset_url();?>img/panorma/campus_new.jpg" />
 			               <h4><a> Campus</a> </h4>
@@ -151,17 +151,11 @@
 		            </div>
            		 </div>
                 </div>
-       
-            </div>
-        </div>
 		<div id="info">
 		</div>
 		
-				<script src="<?php echo asset_url();?>js/360.js"></script>
-		
+<script src="<?php echo asset_url();?>js/360.js"></script>
 <script>
-		
-
 var camera, scene, renderer;
 var imagecount = 'panorama4.jpg';
 
