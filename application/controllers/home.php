@@ -365,10 +365,10 @@ class home extends CI_Controller {
         
 	public function testLogin(){
 		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
+		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/post/requirement.json";
 		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
 		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("email" => "er.pradeep007@gmail.com");
+		$postfields = array("name" => "shinee","mobile" =>'8490766234',"requirement" => "cccc");
 		$postfields = http_build_query($postfields);
 		$ch = curl_init();
 		$options = array(
