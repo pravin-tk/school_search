@@ -1,6 +1,6 @@
 
 $("#sch").click(function () {
-
+//function geoSearch() {
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
@@ -41,8 +41,9 @@ $("#sch").click(function () {
     
         }
     }
-
+//}
 });
+
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
@@ -88,3 +89,55 @@ $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
 });
+//nearby slick
+//$('#searchform').bootstrapValidator({
+//            message: 'Please select location from dropdown',
+//            feedbackIcons: {
+//                    valid: 'glyphicon glyphicon-ok',
+//                    invalid: 'glyphicon glyphicon-remove',
+//                    validating: 'glyphicon glyphicon-refresh'
+//            },
+//            submitHandler: function(validator, form, submitButton) {
+//                   $('button[type="submit"]').prop('disabled', 'false')
+//                    geoSearch();
+//             },
+//            fields: {
+//                    cboStd: {
+//                    message: 'Please select standard from dropdown',
+//                        validators: {
+//                                notEmpty: {
+//                                        message: 'Please select standard from dropdown'
+//                                },
+//                          }   
+//                    },
+//                   schbox: {
+//                    message: 'Please select location from dropdown',
+//                        validators: {
+//                                notEmpty: {
+//                                        message: 'Please select location from dropdown'
+//                                },
+//                          }   
+//                    },
+//                },
+//                showErrors: function(errorMap, errorList) {
+//                        $.each(this.successList, function(index, value) {
+//                          return $(value).popover("hide");
+//                        });
+//                        return $.each(errorList, function(index, value) {
+//                          var _popover;
+//                          _popover = $(value.element).popover({
+//                            trigger: "manual",
+//                            placement: "top",
+//                            content: value.message,
+//                            template: "<div class=\"popover\"><div class=\"arrow\"></div><div class=\"popover-inner\"><div class=\"popover-content\"><p></p></div></div></div>"
+//                          });
+//                          // Bootstrap 3.x :      
+//                          //_popover.data("bs.popover").options.content = value.message;
+//                          // Bootstrap 2.x :
+//                          _popover.data("popover").options.content = value.message;
+//                          return $(value.element).popover("show");
+//                        });
+//                      }
+//                     
+//        });
+     
