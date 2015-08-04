@@ -71,12 +71,12 @@
                         
                     </div>
                     <div class="item">
-                        <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
+                        <img src="<?php echo asset_url();?>img/school/schoolbus.jpg" alt="Slider"
 							class="" style="width:100%;height: 80%;">
                         
                     </div>
                     <div class="item">
-                        <img src="<?php echo asset_url();?>img/header4.png" alt="Slider"
+                        <img src="<?php echo asset_url();?>img/header6.jpg" alt="Slider"
 							 class="" style=" width:100%;height: 80%;">
 
                     </div>
