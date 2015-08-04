@@ -6,7 +6,7 @@
 		<div class="panel-body">
 		   <div class="container">
 				<div class="flipster col-md-12">
-				    <ul style="width:100%;" class="fee-panel-ul">
+				    <ul style="width:100%;height:100%;" class="fee-panel-ul">
 					    <?php  
 					    if (isset($feeInfo))
 					    foreach($feeInfo as $key => $schoolFee) {
@@ -31,7 +31,9 @@
 				            		<strong>Eligibility Criteria</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo $schoolFee['eligibilityCriteria'];?>
+			               			<?php 
+			               		 if (isset($schoolFee['eligibilityCriteria']))
+			               			echo $schoolFee['eligibilityCriteria'];?>
 				          		</div>
 				          	</section>
 				          	<section class="panel panel-default">
@@ -39,7 +41,9 @@
 				            		<strong>Admission Process</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo $schoolFee['admissionProcess'];?>
+			               			<?php 
+			               			if (isset($schoolFee['admissionProcess']))
+			               			echo $schoolFee['admissionProcess'];?>
 				          		</div>
 				          	</section>
 				          	<section class="panel panel-default">
@@ -47,7 +51,9 @@
 				            		<strong>How To Apply</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo $schoolFee['howToApply'];?>
+			               			<?php 
+			               			if (isset($schoolFee['howToApply']))
+			               			echo $schoolFee['howToApply'];?>
 				          		</div>
 				          	</section>
 				          	<section class="panel panel-default">
@@ -55,7 +61,9 @@
 				            		<strong>Admission Starts From</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo date_format(new DateTime($schoolFee['admissionFrom']),'j M Y');?>
+			               			<?php 
+			               			if (isset($schoolFee['admissionFrom']))
+			               			echo date_format(new DateTime($schoolFee['admissionFrom']),'j M Y');?>
 				          		</div>
 				          	</section>
 				          	<section class="panel panel-default">
@@ -63,7 +71,9 @@
 				            		<strong>Admission Deadline</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo date_format(new DateTime($schoolFee['admissionDeadline']),'j M Y');?>
+			               			<?php 
+			               			if (isset($schoolFee['admissionDeadline']))
+			               			echo date_format(new DateTime($schoolFee['admissionDeadline']),'j M Y');?>
 				          		</div>
 				          	</section>
 				          	<section class="panel panel-default">
@@ -71,7 +81,9 @@
 				            		<strong>Fee Payment Terms</strong>
 					        	</div>
 			                 	<div class="text-left school-fee-detail">
-			               			<?php echo $schoolFee['feesPaymentTerm'];?>
+			               			<?php 
+			               			if (isset($schoolFee['feesPaymentTerm']))
+			               			echo $schoolFee['feesPaymentTerm'];?>
 				          		</div>
 				          	</section>
 					    </li>

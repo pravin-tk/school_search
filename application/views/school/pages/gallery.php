@@ -5,7 +5,7 @@
 	    </div>
 	    <div class="panel-body">
 			<?php 
-		    if(isset($galleryinfo))
+		    if(isset($galleryinfo)){
             foreach($galleryinfo as $key => $schoolGallery){
 	    	?>
 	      	<div class="col-md-4">
@@ -15,7 +15,15 @@
                    	</a>
                 </div>
             </div>
-            <?php } ?>
+            <?php } }else{
+            	?>
+            	<section class="panel panel-default">
+						<div class="panel-body">
+						 Data Not Available 		
+		            	</div>
+		       </section>
+            	<?php 
+            } ?>
         </div>
   	</div>
 </div>

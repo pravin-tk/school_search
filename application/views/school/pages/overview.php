@@ -121,18 +121,25 @@
 		    	</div>
 		   		<div class="panel-body highlight-panel-body col-md-12">
 		     
-		          <?php foreach ($overviewInfo as $key => $value){
-		          ?>
-		          	<div class="col-md-6">
-			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
-			                <li class="">
-								<?php echo $value['name']?>
-			                </li>
-			            </section> 
-		            </div>
-		          	<?php
-		          } ?>
-		         
+		          <?php 
+		          if(isset($overviewInfo)){
+			          foreach ($overviewInfo as $key => $value){
+			          ?>
+			          	<div class="col-md-6">
+				          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
+				                <li class="">
+									<?php echo $value['name']?>
+				                </li>
+				            </section> 
+			            </div>
+			          	<?php
+			          } }else{ ?>
+		               <section class="panel panel-default">
+						<div class="panel-body">
+						 Highlights Not Available 		
+		            	</div>
+		           </section>
+		           <?php } ?>
 		  		</div>
 		  	</div>
 		</div>
@@ -147,22 +154,32 @@
 			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 						
 			<div class="timelineslider col-md-12" id="timelineslider">
-		       <?php foreach($timelineInfo as $key=>$timeline)
-		       {?>
-		        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">
-		            <div class="panel panel-default relative">
-		              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
-		                 <?php 	echo $timeline['year'];?>
-		              </div>
-		              <div class="cover hover overlay margin-none" style="height: 240px;">
-		                <img src="<?php echo $timeline['image'] ?>"  alt="location" class="img-responsive" style="height:230px;width:100%;">
-		              </div>
-		              <div class="panel-body">
-		                <h4 class="margin-v-0-5"><?php echo $timeline['title'];?></h4>
-		              </div>
-		            </div>
-		          </div>
-		        <?php } ?>
+		       <?php 
+		       if(isset($timelineInfo)){
+			       foreach($timelineInfo as $key=>$timeline)
+			       {?>
+			        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">
+			            <div class="panel panel-default relative">
+			              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
+			                 <?php 	echo $timeline['year'];?>
+			              </div>
+			              <div class="cover hover overlay margin-none" style="height: 240px;">
+			                <img src="<?php echo $timeline['image'] ?>"  alt="location" class="img-responsive" style="height:230px;width:100%;">
+			              </div>
+			              <div class="panel-body">
+			                <h4 class="margin-v-0-5"><?php echo $timeline['title'];?></h4>
+			              </div>
+			            </div>
+			          </div>
+			        <?php } 
+			       }else{
+			       	?>
+			       	<section class="panel panel-default">
+						<div class="panel-body">
+						 Data Not Available 		
+		            	</div>
+		           </section>
+			      <?php } ?>
 		  	</div>
 		</div>
 		</div>

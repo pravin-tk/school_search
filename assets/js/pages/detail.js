@@ -166,6 +166,7 @@ $(document.body).on('change', '#standardId' ,function(){
 	},'json');
 });
 
+
 function initialize() {
     var ulat = $("#latitude").val();
     var ulng = $("#longitude").val();

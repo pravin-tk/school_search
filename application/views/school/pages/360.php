@@ -1,88 +1,3 @@
-		<style>
-			
-			#info {
-				position: absolute;
-				top: 0px; width: 100%;
-				color: #ffffff;
-				padding: 5px;
-				font-family:Monospace;
-				font-size:13px;
-				font-weight: bold;
-				text-align:center;
-			}
-			#pano-controls{
-			position:absolute;
-			z-index:1;
-			background:rgba(31,31,31,0.8);
-			color:silver;
-			top:100px;
-			border-radius:2px;
-			box-sizing:border-box;
-			text-align: center;
-			padding:30px 20px;
-			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
-			min-width:250px;
-			overflow:hidden;
-			}
-			.overlay-gallery{
-/* 			position:absolute; */
-			z-index:1;
-/* 			background:rgba(31,31,31,0.8); */
-			color:silver;
-/* 			top:100px; */
-/* 			right:20px; */
-			border-radius:2px;
-			box-sizing:border-box;
-			text-align: center;
-			padding:30px 20px;
-			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
-/* 			overflow:hidden; */
-			}
-			li{
-			list-style: none;}
-			.overlay-gallery img{
-			height:80px;
-			width:160px;
-			background:rgba(31,31,31,0.2); 
-			border-radius:2px;
-			box-sizing:border-box;
-			text-align: center;
-			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
-			margin-top: 20px;
-			
-			}
-			#pano-position{
-			font-size:20px;
-			text-align: center;
-			padding:0px 0 20px;
-			}
-			#pano-btn{
-			margin-left:5px;
-			background: transparent;
-			color:silver;
-			text-transform: uppercase;
-			min-width:50px;
-			}
-			.btn {
-		    -webkit-transition: 0.2s;
-		    -o-transition: 0.2s;
-		    transition: 0.2s;
-		    -webkit-box-sizing: border-box;
-		    -moz-box-sizing: border-box;
-		    box-sizing: border-box;
-		    cursor: pointer;
-		    display: inline-block;
-		    height: auto;
-		    line-height: 40px;
-		    outline: none;
-		    padding: 0 15px;
-		    text-align: center;
-		    white-space: nowrap;
-		    font-size: 14px;
-		    border-radius: 2px;
-		    border: 1px solid #cdcdcd;
-		    }
-		</style>
         <div class="col-md-12">
             <div class="panel panel-default text-center">
                 <div class="panel-heading">
@@ -92,18 +7,7 @@
 					<div class="container" id="container"style="overflow:hidden;width:100%;">
 					   <div id="pano-controls" style="left: 135px;">
 							<div class="pano-position">
-							<span class="value">1</span>
-							<span>of 6 Views</span>
-							</div>
-							<div class="btn pano-btn pano-play" style="display: inline-block;">
-							<i class="icon icon-play-video" >Play</i>
-							</div>
-							<div class="btn pano-btn pano-pause" style="display: none;">
-							<span class="icon">||</span>
-							</div>
-							<div class="btn pano-btn pano-next">
-							<span class="text">Next View</span>
-							<i class="icon icon-arrow-right"></i>
+							<span>Campus</span>
 							</div>
 						</div>  
 						

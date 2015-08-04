@@ -391,5 +391,37 @@ class home extends CI_Controller {
 		$this->load->view('school/pages/360.php');
 		
 	}
+	public function postRequirement()
+	{
+		$this->template->set('page','auth');
+		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/post-requirement.php' );
+	}
+	public function addRequirement() {
+		$data = "";
+		$map['name'] = $this->input->post('firstName');
+		$map['mobile'] = $this->input->post('mobileNo');
+		$map['requirement'] = $this->input->post('requirement');
+		$profile_key = 'post/requirement.json';
+		$apicalls = array(array('url' => 'post/requirement.json',
+				'params' => http_build_query($map),
+				'headers' => 'application/x-www-form-urlencoded'
+		)
+		);
+		try {
+			$apioutput = $this->apiclient->process($apicalls, 'POST');
+			error_log(json_encode($apioutput), 0);
+			foreach ($apioutput as $key => $value) {
+				if (strpos($key, $profile_key) !== false) {
+					$data = $value;
+				}
+			}
+		} catch (EBDApiException $e) {
+			error_log($e);
+			unset($apicalls);
+			unset($apioutput);
+		}
+		echo json_encode($data);
+	}
 	
 }

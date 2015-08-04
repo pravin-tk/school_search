@@ -2,9 +2,6 @@
 $activity= $otherInfo['facility']['activity'];
 $infra= $otherInfo['facility']['infra'];
 $safety= $otherInfo['facility']['safety'];
-error_log(json_encode($activity),0);
-error_log(json_encode($infra),0);
-error_log(json_encode($safety),0);
 
 $arractivity = array();
 $arrsafety = array();
