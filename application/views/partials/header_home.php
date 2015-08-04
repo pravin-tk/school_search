@@ -81,7 +81,7 @@
         
         <ul class="nav navbar-nav navbar-right">
            <li class="dropdown">
-              <a href="#" class="btn-clear">
+              <a href="<?php echo $base_url; ?>download" class="btn-clear">
               <i class="fa fa-fw fa-mobile "></i> Download App
             </a>
             
