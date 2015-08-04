@@ -61,3 +61,4 @@ $route['search'] = 'home/search';
 $route['activate'] = 'auth/userActivate';
 $route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z-]+)'] = 'home/search';
 $route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z-]+)/([a-z-]+)'] = 'home/schoolDetail/$1';
+$route['download'] = 'download/downloadApp';
