@@ -25,13 +25,13 @@ class home extends CI_Controller {
 		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
-                        foreach($apioutput as $key => $value ){
-                            if (strpos($key,$standard_key) !== false) {
-                                    $this->template->set('standardlist',$value);
-                            }elseif(strpos($key,$top_school_key)!== false) {
-                                    $this->template->set('topschools',$value);
-                            }
-                        }
+            foreach($apioutput as $key => $value ){
+            	if (strpos($key,$standard_key) !== false) {
+                 	$this->template->set('standards',$value);
+                }elseif(strpos($key,$top_school_key)!== false) {
+                    $this->template->set('topschools',$value);
+                }
+            }
 			$data = $apioutput;
                         
 		} catch ( EBDApiException $e ) {
@@ -178,25 +178,24 @@ class home extends CI_Controller {
 		);
 		
 		try {
-                        $permlink =$this->session->userdata('permlink');
+            $permlink =$this->session->userdata('permlink');
 			$apioutput = $this->apiclient->process ( $apicalls );
-
 			foreach($apioutput as $key => $value ){
 				if (strpos($key,'schoollist.json') !== false) {
 					$schoollist = $value;
 				}
 			}
-                        $output = $this->template->set ( 'schools', $schoollist)
-                                                ->set('standardId',$map['standardId'])
-                                                ->set('permlink',$permlink)
-                                                ->set_layout ( false )
-                                                ->build ( 'partials/search','', true );
+            $output = $this->template->set ( 'schools', $schoollist)
+                                     ->set('standardId',$map['standardId'])
+                                     ->set('permlink',$permlink)
+                                     ->set_layout ( false )
+                                     ->build ( 'partials/search','', true );
 			$outputMin = $this->template->set ( 'schools', $schoollist)
-                                                    ->set('standardId',$map['standardId'])
-                                                    ->set('permlink',$permlink)
-                                                    ->set_layout ( false )
-                                                    ->build ( 'partials/search-map','', true );
-                        foreach ( $apioutput as $key => $value ) 
+                                        ->set('standardId',$map['standardId'])
+                                        ->set('permlink',$permlink)
+                                        ->set_layout ( false )
+                                        ->build ( 'partials/search-map','', true );
+            foreach ( $apioutput as $key => $value ) 
 				if (strpos ( $key, $sch_key ) !== false) 
 					$data ['jsondata'] =  $value ;
                                 
