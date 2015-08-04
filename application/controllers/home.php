@@ -16,25 +16,22 @@ class home extends CI_Controller {
 	
 
     public function index() {
-		header ( "Cache-Control: private, max-age=60" );
-		header ( "Expires: " . gmdate ( 'r', time () + 60 ) );
-		header ( "Content-Type: text/html" );
+// 		header ( "Cache-Control: private, max-age=60" );
+// 		header ( "Expires: " . gmdate ( 'r', time () + 60 ) );
+// 		header ( "Content-Type: text/html" );
 		
 		$standard_key = 'standardlist.json';
-                $top_school_key = 'topschools.json';
-		$apicalls = array (
-				$standard_key,
-                                $top_school_key
-		);
+        $top_school_key = 'topschools.json';
+		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
-                        foreach($apioutput as $key => $value ){
-                            if (strpos($key,$standard_key) !== false) {
-                                    $this->template->set('standardlist',$value);
-                            }elseif(strpos($key,$top_school_key)!== false) {
-                                    $this->template->set('topschools',$value);
-                            }
-                        }
+            	foreach($apioutput as $key => $value ){
+                	if (strpos($key,$standard_key) !== false) {
+                     	$this->template->set('standards',$value);
+                    }elseif(strpos($key,$top_school_key)!== false) {
+                       	$this->template->set('topschools',$value);
+                    }
+                }
 			$data = $apioutput;
                         
 		} catch ( EBDApiException $e ) {
@@ -43,7 +40,7 @@ class home extends CI_Controller {
 			unset ( $apioutput );
 		}
 		$this->template->set('page','home');
-		$this->template->set ( 'standards', $data );
+		//$this->template->set ( 'standards', $data );
 		$this->template->set_layout ( 'edbuddy' )
                                 ->title ( 'Search for finest schools near you: Edbuddy.in' )
                                 ->set_partial ( 'header', 'partials/header_home' )
@@ -185,8 +182,12 @@ class home extends CI_Controller {
                 }
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
-			
-        		$output = $this->template->set ( 'schools', $schoollist)
+			foreach($apioutput as $key => $value ){
+				if (strpos($key,'schoollist.json') !== false) {
+					$schoollist = $value;
+				}
+			}
+        	$output = $this->template->set ( 'schools', $schoollist)
                                                 ->set('standardId',$map['standardId'])
                                                 ->set_layout ( false )
                                                 ->build ( 'partials/search','', true );
@@ -196,7 +197,7 @@ class home extends CI_Controller {
                                                     ->build ( 'partials/search-map','', true );
 			$data ['html'] = $output;
 			$data ['htmlmap'] = $outputMin;
-			$data ['jsondata'] = $apioutput['y/webapi/api1.0/'.$sch_key];
+			$data ['jsondata'] = $schoollist;
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;

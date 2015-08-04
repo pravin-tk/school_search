@@ -182,7 +182,7 @@ $classification = $filtersList['classificationFilter'];
 					  		</select>
 						</div>
 						<div class="col-lg-8">
-							<input id="schbox" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
+							<input id="search_location" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
 						</div>
 					</div>
 	          	</div>

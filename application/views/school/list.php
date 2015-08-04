@@ -710,12 +710,14 @@ html, body {height: 100%;}
 			</div>
 		</div>
 <script type="text/javascript">
+var map;
+var dataArr = null;
 var infowindow = new google.maps.InfoWindow();
 dataArr = <?php echo json_encode($schools); ?>;
 var markers = [];
 //var infowindow = null;
 $(document).ready(function(){
-	dataArr = <?php echo json_encode($schools); ?>;
+	
     $('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
     $('#tab-map-list-content').height(($(window).height() - $(".navbar-fixed-top").height() - $(".nav-tab-map-list").height()));
     $("#right-side-bar").height(($(window).height() - $(".navbar-fixed-top").height()));
@@ -784,7 +786,6 @@ function initialize() {
                 map: map,
                 draggable: false,
                 url: marker_url,
-                animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
                 icon: {
                     path: fontawesome.markers.MAP_MARKER,
@@ -845,12 +846,12 @@ function initialize() {
     		}
     	}
        	?>
-        var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
+        var places = new google.maps.places.Autocomplete(document.getElementById('search_location'));
         google.maps.event.addListener(places, 'place_changed', function () {
             var place = places.getPlace();
             var address = place.formatted_address;
-            var latitude = place.geometry.location.A;
-            var longitude = place.geometry.location.F;
+            var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
             var i = latitude+","+longitude;
             var a = address;
             var mesg = "Address: " + address;
@@ -864,8 +865,8 @@ function initialize() {
 			for (var i = 0; i < markers.length; i++) {
 			    markers[i].setMap(null);
 			}
-			markers.length = 0;
-			map.panTo(new google.maps.LatLng(i));
+			markers = [];
+			map.setCenter(place.geometry.location);
             filterResults();
         });
 }

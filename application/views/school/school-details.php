@@ -63,7 +63,7 @@
 	width:100%;
 }
 .fee-desc-panel{
-	color: #26a69a;
+	/*color: #26a69a;*/
 }
 .flipster-nav{
 	text-align:center;
@@ -235,52 +235,54 @@
 
 #pan-slider .slick-prev {
     position: absolute;
-    left: -50px;
+    left: -40px;
     top: 10px;
     font-size: 24px;
     height:auto;
-    min-height:140px;
+    min-height:132px;
     width:50px;
     opacity:0.9;
 }
 #pan-slider .slick-prev:hover {
     position: absolute;
-    left: -50px;
+    left: -40px;
     top: 10px;
     font-size: 24px;
     height:auto;
-    min-height:140px;
+    min-height:132px;
     width:50px;
     opacity:0.9;
 }
 #pan-slider .slick-next {
     position: absolute;
-    right: -15px;
+    right: -40px;
     top: 10px;
     font-size: 24px;
     height:auto;
-    min-height:140px;
+    min-height:132px;
     width:50px;
     opacity:0.9;
 }
 
 #pan-slider .slick-next:hover {
     position: absolute;
-    right: -15px;
+    right: -40px;
     top: 10px;
     font-size: 24px;
     height:auto;
-    min-height:140px;
+    min-height:132px;
     width:50px;
     opacity:0.9;
 }
 #pan-slider .slick-next img{
 	width:50px;
 	height:100%;
+	background:transparent;
 }
 #pan-slider .slick-prev img{
 	width:50px;
 	height:100%;
+	background:transparent;
 }
 #pan-slider .slick-prev:before{
 	font-size:12px;
@@ -292,6 +294,13 @@
 }
 .school-fee-detail{
 	padding-left:10px;
+}
+#pan-slider .float-left{
+	border:1px solid #e5e5e5;
+}
+#pan-slider .float-left img{
+	margin:10px auto;
+	border:1px solid #e5e5e5;
 }
 -->
 </style>
@@ -383,14 +392,14 @@
 	   	  <li class="property-meta-item ">
 	   	  	<a href="#overview" class="page-scroll" > <?php echo $basicInfo['name'];?> </a>
 	   	  </li>
-	      <li class="property-meta-item "><a href="#overview" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
+	      <li class="property-meta-item "><a href="#overview1" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
 	      <li class="property-meta-item"><a href="#facility" class="page-scroll"><i class="fa fa-fw fa-building-o"></i> Facility</a></li>
+	      <li class="property-meta-item"><a href="#visualtour" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
 	      <li class="property-meta-item"><a href="#gallery" class="page-scroll"><i class="fa fa-fw fa-camera"></i> Gallery</a></li>
 	      <li class="property-meta-item "><a href="#review" class="page-scroll"><i class="fa fa-fw fa-star"></i> Review </li></a>
 	      <li class="property-meta-item"> <a href="#fees" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Fees</a></li>
 	      <li class="property-meta-item"><a href="#contact" class="page-scroll"><i class="fa fa-fw icon icon-toilet"></i> Contacts</a></li>
-	      <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li>
-	      <li class="property-meta-item"><a href="#visualtour" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
+<!-- 	      <li class="property-meta-item"><a href="#nearby" class="page-scroll"><i class="fa fa-fw fa-inr"></i> Nearby</a></li> -->
 	       
 <!-- 	      <li class="property-meta-item"><a href=""><i class="fa fa-fw fa-heart text-pink-500"></i> 35 loved this</a></li> -->
 	    </ul>
@@ -400,16 +409,20 @@
 </nav>
   
 <!-- Begin page content -->
-<div class="divider" id="overview"></div>
-  <div class="row">
-		<?php include 'pages/overview.php';?>
-		
-  </div>
+<div class="divider" id="overview1"></div>
+<div class="row">
+	<?php include 'pages/overview.php';?>
+</div>
 
 
 <div class="divider" id="facility"></div>
   <div class="row">
 		<?php include 'pages/facility.php';?>
+</div>
+
+<div class="divider" id="visualtour"></div>  
+<div class="row">
+  <?php include 'pages/360.php';?>
 </div>
 
 <div class="divider" id="gallery"></div>
@@ -421,12 +434,6 @@
 <div class="row">
   <?php include 'pages/review.php';?>
 </div>
-<!-- 
-<div class="divider" id="comments"></div>
-<div class="row">
-  <?php include 'pages/comments.php';?>
-  
-</div> -->
 
 <div class="divider" id="fees"></div>  
 <div class="row">
@@ -434,19 +441,11 @@
   <?php include 'pages/fees.php';?>
 
 </div>
-<div class="divider" id="visualtour"></div>  
-<div class="row">
-  
-  <?php include 'pages/360.php';?>
-
-</div>
     
 <div class="divider" id="contact"></div>
 <div class="row">
   <?php include 'pages/contact.php';?>
 </div>
-
-
 
 <div class="divider" id="nearby"></div>
 <div class="row">
