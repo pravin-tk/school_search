@@ -1,4 +1,3 @@
-
 $( document ).ready(function() {
                 $('.form-control .form-group').css('width', '');
                function userLogin() {
@@ -170,9 +169,7 @@ $( document ).ready(function() {
          $('button[type="submit"]').prop('disabled', 'true');
       }); // end doc ready
 
-
 //end login js
-
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
@@ -187,9 +184,7 @@ $(function() {
 $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
-})
-
-
+});
 
 $(window).load(function() {
 	// Animate loader off screen

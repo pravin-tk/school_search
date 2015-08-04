@@ -1,13 +1,12 @@
 $("#sch").click(function () {
-//function geoSearch() {
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
         $.bootstrapGrowl("Please select standard from dropdown!!", {
             ele: 'body', // which element to append to
              type: 'danger', // (null, 'info', 'danger', 'success')
-            offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
-            align: 'center', // ('left', 'right', or 'center')
+            offset: {from: 'top', amount: 175}, // 'top', or 'bottom'
+            align: 'left', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')
             delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
             allow_dismiss: true, // If true then will display a cross to close the popup.
@@ -31,16 +30,12 @@ $("#sch").click(function () {
         address = $('#address').val();
         var permlink = getPermlink(address,$("#cboStd option:selected").text());
         console.log("perm="+permlink);
-	if($("#cboStd").val() != "" && $("#latitude").val() != "" && $("#longitude").val() != ""){
-            //document.getElementById('global_search_form').setAttribute('action',base_url+request.cityname+'/'+request.permlink);
+        if($("#cboStd").val() != "" && $("#latitude").val() != "" && $("#longitude").val() != ""){
             document.getElementById('searchform').setAttribute('action',base_url+permlink);
             $("#address").val(permlink);
-//            alert($("#address").val());
             $('#searchform').submit();
-    
         }
     }
-//}
 });
 
 
@@ -70,7 +65,6 @@ function getPermlink(strAddress,stdname){
     return permlink.replace(/\s/g, '-').trim();
    
 }
-
 
 $("#frmSch").affix({
     offset: {
@@ -114,3 +108,10 @@ google.maps.event.addDomListener(window, 'load', function () {
         document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
     });
 });
+
+$('#globalSearch').on('keydown', '#searchform', function(evt) {
+	  if ( evt.which === 13)  {			 
+		  $("#sch").click();         
+	  }
+});
+

@@ -32,7 +32,7 @@
 <!--    <script src="<?php echo asset_url();?>js/all.js"></script>-->
 
 <!-- Bootstrap Core JavaScript -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing"></script>
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>

@@ -25,13 +25,13 @@ class home extends CI_Controller {
 		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
-            	foreach($apioutput as $key => $value ){
-                	if (strpos($key,$standard_key) !== false) {
-                     	$this->template->set('standards',$value);
-                    }elseif(strpos($key,$top_school_key)!== false) {
-                       	$this->template->set('topschools',$value);
-                    }
-                }
+                        foreach($apioutput as $key => $value ){
+                            if (strpos($key,$standard_key) !== false) {
+                                    $this->template->set('standardlist',$value);
+                            }elseif(strpos($key,$top_school_key)!== false) {
+                                    $this->template->set('topschools',$value);
+                            }
+                        }
 			$data = $apioutput;
                         
 		} catch ( EBDApiException $e ) {
@@ -176,21 +176,30 @@ class home extends CI_Controller {
 		$apicalls = array (
 				$sch_key 
 		);
+		
 		try {
+                        $permlink =$this->session->userdata('permlink');
 			$apioutput = $this->apiclient->process ( $apicalls );
+
 			foreach($apioutput as $key => $value ){
 				if (strpos($key,'schoollist.json') !== false) {
 					$schoollist = $value;
 				}
 			}
-        	$output = $this->template->set ( 'schools', $schoollist)
+                        $output = $this->template->set ( 'schools', $schoollist)
                                                 ->set('standardId',$map['standardId'])
+                                                ->set('permlink',$permlink)
                                                 ->set_layout ( false )
                                                 ->build ( 'partials/search','', true );
 			$outputMin = $this->template->set ( 'schools', $schoollist)
                                                     ->set('standardId',$map['standardId'])
+                                                    ->set('permlink',$permlink)
                                                     ->set_layout ( false )
                                                     ->build ( 'partials/search-map','', true );
+                        foreach ( $apioutput as $key => $value ) 
+				if (strpos ( $key, $sch_key ) !== false) 
+					$data ['jsondata'] =  $value ;
+                                
 			$data ['html'] = $output;
 			$data ['htmlmap'] = $outputMin;
 			$data ['jsondata'] = $schoollist;
@@ -352,10 +361,10 @@ class home extends CI_Controller {
         
 	public function testLogin(){
 		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
+		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/post/requirement.json";
 		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
 		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("email" => "er.pradeep007@gmail.com");
+		$postfields = array("name" => "shinee","mobile" =>'8490766234',"requirement" => "cccc");
 		$postfields = http_build_query($postfields);
 		$ch = curl_init();
 		$options = array(
@@ -388,5 +397,14 @@ class home extends CI_Controller {
 		$this->load->view('school/pages/360.php');
 		
 	}
+        
+        public function testFence(){
+            $this->template->set_layout ( 'edbuddy' )
+                ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                ->set_partial ( 'header', 'partials/header' )
+		->set_partial ( 'footer', 'partials/footer' );
+		//$this->template->build ( 'school/school-detail' );
+		$this->template->build ( 'school/pages/test' );
+        }
 	
 }
