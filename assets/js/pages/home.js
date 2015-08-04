@@ -44,7 +44,6 @@ $("#sch").click(function () {
 //}
 });
 
-});
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
