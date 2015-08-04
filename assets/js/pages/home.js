@@ -7,8 +7,8 @@ $("#sch").click(function () {
         $.bootstrapGrowl("Please select standard from dropdown!!", {
             ele: 'body', // which element to append to
              type: 'danger', // (null, 'info', 'danger', 'success')
-            offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
-            align: 'center', // ('left', 'right', or 'center')
+            offset: {from: 'top', amount: 175}, // 'top', or 'bottom'
+            align: 'left', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')
             delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
             allow_dismiss: true, // If true then will display a cross to close the popup.
@@ -87,4 +87,38 @@ $("#search_header").affix({
 $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
+});
+google.maps.event.addDomListener(window, 'load', function () {
+    var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
+    console.log('189');
+    google.maps.event.addListener(places, 'place_changed', function () {
+        var place = places.getPlace();
+        var address = place.formatted_address;
+        var latitude = place.geometry.location.lat();
+        var longitude = place.geometry.location.lng();
+        var i = latitude+","+longitude;
+        var a = address;
+        var mesg = "Address: " + address;
+        mesg += "\nLatitude: " + latitude;
+        mesg += "\nLongitude: " + longitude;
+        $("#latitude").val(latitude);
+        $("#longitude").val(longitude);
+        $("#address").val(address);
+        document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;domain=edbuddy.in";
+        document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
+    });
+});
+
+
+
+$('#globalSearch').on('keydown', '#searchform', function(evt) {
+          console.log('inside 115');
+	  // if the user hits enter AND if the chosen dropdown is NOT in view
+	  // note @BMorearty's example is checking for existence. 
+	  // It seems the element is always there, just negatively positioned when not in use.
+	  if ( evt.which === 13)  {			 
+			//  evt.preventDefault();
+               $("#sch").click();         
+	  }
+		
 });

@@ -1,6 +1,12 @@
 <?php 
                         if(isset($schools)) {
                             foreach($schools as $key => $school){
+                                $url = $permlink; 
+                                $schoolName = strtolower($school['name']);
+                                $schoolName = str_replace(" ", "-",$schoolName);
+                                $schoolName = str_replace("'", "",$schoolName);
+                                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+                                $urllink = $base_url.$url ."/".$schoolName;
                         
                         ?>
 
