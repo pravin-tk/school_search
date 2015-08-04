@@ -148,7 +148,7 @@ html, body {height: 100%;}
 }
 .container {
 	position:relative;
-	top:70px;
+	top:80px;
 }
 .container .row [class*="col-"] {
     padding: 0px;
@@ -362,10 +362,27 @@ html, body {height: 100%;}
 #list-image{
 	position:relative;
 }
+#map-image{
+	position:relative;
+}
+#map-image .fa-heart{
+	background-color:rgba(255, 255, 255, 0.4);
+}
+#map-image .fa-heart-o{
+	background-color:rgba(255, 255, 255, 0.4);
+}
 .icon-heart-list {
 	position: absolute;
     right: 4px;
     top: 5px;
+    z-index:1;
+    font-size:16px;
+}
+
+.sort-listed-map-schools{
+	position: absolute;
+    right: 4px;
+    top: 3px;
     z-index:1;
     font-size:16px;
 }
@@ -450,7 +467,7 @@ html, body {height: 100%;}
 								<div class="panel-body">
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
-											<p>
+											<p id="map-image">
                                               	<a href="<?php echo $urllink;?>" target="_blank">
                                                 <?php if($school['logo'] == ""){?>
                                                 	<img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
@@ -458,6 +475,9 @@ html, body {height: 100%;}
                                                    	<img src="<?php echo $school['logo'];?>" alt="property" width="120" height="100" class="media-object">
                                                 <?php }?>
                                                 </a>
+                                                <span class="sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId'];?>">
+													<i class="fa fa-heart-o"></i> 
+												</span>
 											</p>
 											<div class="text-center small">
 											<?php 
@@ -481,7 +501,7 @@ html, body {height: 100%;}
 										</div>
 										<div class="media-body">
                                          	<div class="pull-right">
-                                                 <span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span>
+                                                 <!-- span class="text-grey-400 sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i class="fa fa-heart-o fa-fw"></i></span-->
                                             </div>
                                             <h4 class="school-name-text media-heading margin-v-0-10">
                                                	<a href="<?php echo $urllink;?>" target="_blank"><?php echo $school['name']?></a>
@@ -701,7 +721,7 @@ html, body {height: 100%;}
 		    					</li>
 		    				</ul>
 							<div class="tab-content" id="right-side-bar">
-							    <div role="tabpanel" class="tab-pane active" id="sortListRight">
+							    <div role="tabpanel" class="tab-pane active" id="sortListRight" style="padding-bottom:40px;">
 							    </div>
 						    </div>
 					    </div>

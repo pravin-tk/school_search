@@ -108,7 +108,7 @@
                                         class="form-control">
                             </div>
                         <div class="col-md-3">
-                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" />
+                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" style="background:#26a69a;font-weight:700;"/>
                        
                         </div>
                         </div>

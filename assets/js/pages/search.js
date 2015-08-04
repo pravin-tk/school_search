@@ -1,3 +1,5 @@
+var map;
+var dataArr = null;
 var mapLoaded = 0;
 function viewMap(){
 	$("#mav-view-layout").show();

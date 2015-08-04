@@ -48,71 +48,71 @@ foreach($infra as $infrakey => $infravalue){
 				   	<div class="panel-body">
 					 	<div class="container">
 				        	<div class="col-md-12">
-					            <?php if($arractivity)
-					             	foreach($arractivity as $key => $value) {
-					            ?>
-				            	<section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
+				            	<section class="panel panel-default col-md-12" style="margin-right:10px;">
 					                <div class="panel-heading">
-								      	<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
+								      	<h4 class="text-left infra-heading"><?php //echo $key;?>School Activity </h4>
 								    </div>
 					                <div class="panel-body">
 					                    <div class="col-sm-12">
+					                    <?php if($arractivity)
+							             	foreach($arractivity as $key => $value) {
+							            ?>
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
-						                    <div class="col-sm-4 text-center">
+						                    <div class="col-sm-2 text-center">
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
+					                    <?php }?>
 					                    </div>
 					                </div>
 				            	</section> 
-				            	<?php }?>
 				            
 				            
-					            <?php if($arrsafety)
-					               	foreach($arrsafety as $key => $value) {
-					            ?>
-					            <section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
+					            <section class="panel panel-default col-md-12" style="margin-right:10px;">
 					               	<div class="panel-heading">
-								      	<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
+								      	<h4 class="text-left infra-heading"><?php //echo $key;?>School Safety </h4>
 								    </div>
 					                <div class="panel-body">
 					                    <div class="col-sm-12">
+					                    <?php if($arrsafety)
+							               	foreach($arrsafety as $key => $value) {
+							            ?>
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
-						                    <div class="col-sm-4 text-center">
+						                    <div class="col-sm-2 text-center">
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
+					                    <?php }?>
 					                    <?php }?>
 					                    </div>
 					                </div>
 					            </section> 
-					       		<?php }?>
-				            	<?php if($arrinfra)
-				                    foreach($arrinfra as $key => $value) {
-				                ?>
-				            	<section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
+				            	<section class="panel panel-default col-md-12" style="margin-right:10px;">
 				               		<div class="panel-heading">
-							      		<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
+							      		<h4 class="text-left infra-heading"><?php //echo $key;?>School Infrastructure </h4>
 							    	</div>
 				                	<div class="panel-body">
 					                    <div class="col-sm-12">
+					                    <?php if($arrinfra)
+						                    foreach($arrinfra as $key => $value) {
+						                ?>
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
-						                    <div class="col-sm-4 text-center">
+						                    <div class="col-sm-2 text-center">
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
+					                    <?php }?>
 					                    </div>
 				                	</div>
 				            	</section> 
-				            	<?php }?>
 				          
 				          	</div>
 				     	</div>

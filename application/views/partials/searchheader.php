@@ -172,7 +172,7 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
 						<div class="col-lg-4 selectContainer">
-							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;">
+							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
 								<option value="">--Select--</option>
 		                        <?php  
                                         if($standard)
@@ -182,7 +182,7 @@ $classification = $filtersList['classificationFilter'];
 					  		</select>
 						</div>
 						<div class="col-lg-8">
-							<input id="search_location" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
+							<input id="search_location" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;height: 35px;width: 270px;ß">
 						</div>
 					</div>
 	          	</div>
