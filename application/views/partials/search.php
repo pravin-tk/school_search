@@ -45,12 +45,21 @@
 	                                            <div class="detail-value">
 	                                            	<?php echo $school['schoolClassification']?>
 	                                            </div>
+	                                            <?php if (strtolower($school['boardName']) != "na") {?>
 	                                            <div class="detail-label">
 	                                            	Board
 	                                            </div>
 	                                            <div class="detail-value">
-	                                            	<?php echo $school['boardName']?>
+	                                            	<?php echo $school['boardName'];?>
 	                                            </div>
+	                                            <?php } else {?>
+	                                            <div class="detail-label">
+	                                            	Teaching Approach
+	                                            </div>
+	                                            <div class="detail-value">
+	                                            	<?php echo $school['teachingApproach'];?>
+	                                            </div>
+	                                            <?php }?>
 												<a class="btn btn-primary list-primary-button" href="">
 													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']?>)
 	                                            </a>

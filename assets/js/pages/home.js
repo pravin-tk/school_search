@@ -1,6 +1,6 @@
 
 $("#sch").click(function () {
-
+//function geoSearch() {
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
@@ -41,8 +41,9 @@ $("#sch").click(function () {
     
         }
     }
-
+//}
 });
+
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
@@ -88,6 +89,7 @@ $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
 });
+
 google.maps.event.addDomListener(window, 'load', function () {
     var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
     console.log('189');
@@ -122,3 +124,4 @@ $('#globalSearch').on('keydown', '#searchform', function(evt) {
 	  }
 		
 });
+

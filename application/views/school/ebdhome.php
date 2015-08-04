@@ -54,13 +54,6 @@
     color: #a94442;
     }
 </style>
-<?php
-	$standard = "";
-	if (isset ( $standards ))
-		foreach ( $standards as $key => $value )
-			$standard = $value;
-	
-	?>
 <div class="container" style="width: 100%;">
     <div class="row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -99,8 +92,8 @@
                                 <select class="selectpicker form-control" id="cboStd" name="standardId" required>
                                         <option value="">--Select--</option>
                                         <?php  
-                                        if(isset($standard))
-                                            foreach ($standard as $key=>$value) { ?>
+                                        if(isset($standards))
+                                            foreach ($standards as $key=>$value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                             <?php  } ?>
                                 </select>

@@ -44,14 +44,14 @@ foreach($infra as $infrakey => $infravalue){
                 <div class="panel-heading">
                     <h3 class="text-center"><strong>Facility </strong></h3>
                 </div>
-                <div class="panel-body address-bar-main">
+                <div class="panel-body">
 				   	<div class="panel-body">
 					 	<div class="container">
 				        	<div class="col-md-12">
 					            <?php if($arractivity)
 					             	foreach($arractivity as $key => $value) {
 					            ?>
-				            	<section class="panel panel-default col-md-6 infra-col-md-6 card" style="margin-right:10px;">
+				            	<section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
 					                <div class="panel-heading">
 								      	<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
 								    </div>
@@ -74,7 +74,7 @@ foreach($infra as $infrakey => $infravalue){
 					            <?php if($arrsafety)
 					               	foreach($arrsafety as $key => $value) {
 					            ?>
-					            <section class="panel panel-default col-md-6 infra-col-md-6 card" style="margin-right:10px;">
+					            <section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
 					               	<div class="panel-heading">
 								      	<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
 								    </div>
@@ -95,7 +95,7 @@ foreach($infra as $infrakey => $infravalue){
 				            	<?php if($arrinfra)
 				                    foreach($arrinfra as $key => $value) {
 				                ?>
-				            	<section class="panel panel-default col-md-6 infra-col-md-6 card" style="margin-right:10px;">
+				            	<section class="panel panel-default col-md-6 infra-col-md-6" style="margin-right:10px;">
 				               		<div class="panel-heading">
 							      		<h4 class="text-left infra-heading"><?php echo $key;?> </h4>
 							    	</div>

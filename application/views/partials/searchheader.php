@@ -11,6 +11,21 @@ $classification = $filtersList['classificationFilter'];
 #alogin{
 	color:#ffffff;
 }
+#alogin .fa-lock{
+	color:#ffffff;
+}
+#alogin:hover{
+	color:#26a69a;
+}
+#header-signup-btn{
+	color:#ffffff;
+}
+#header-signup-btn:hover{
+	color:#26a69a;
+}
+#header-signup-btn .fa-plus{
+	color:#ffffff;
+}
 .filters .fa-angle-down {
   color: #7f7f7f;
   margin-left: 6px;
@@ -111,6 +126,12 @@ $classification = $filtersList['classificationFilter'];
 		float:left;
 	}
 }
+.search-bar-login:hover{
+	color:#26a69a;
+}
+.search-bar-login i:hover{
+	color:#26a69a;
+}
 -->
 </style>
 <script type="text/javascript">
@@ -174,8 +195,8 @@ $classification = $filtersList['classificationFilter'];
             
                 if(logged_in == null) { //not logged in
                     var public_data = '<li class="dropdown" style="background-color:#212121;">';
-                    public_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="alogin" style="background-color:#212121;">';
-                    public_data += '<i class="fa fa-fw fa-lock white"></i> Login</a>';
+                    public_data += '<a href="#" class="dropdown-toggle search-bar-login" data-toggle="dropdown" id="alogin" style="background-color:#212121;">';
+                    public_data += '<i class="fa fa-fw fa-lock"></i> Login</a>';
                     public_data += '<div class="dropdown-menu dropdown-size-280" id="divlogin">';
                     public_data += '<div class="dropdown-toggle" style ="float:right;" data-toggle="collapse" id="" onclick=""> <a style="color:#000;" href=""><i class="fa fa-close"></i></a> </div>';
                     public_data += '<div id="derr" class="help-block"></div>';
@@ -212,7 +233,7 @@ $classification = $filtersList['classificationFilter'];
               }
               if(logged_in == null) { // not logged in
                 var public_data = '<li class="dropdown" style="background-color:#212121;color:#ffffff;">';
-                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" style="background-color:#212121;color:#ffffff;">';
+                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" id="header-signup-btn" style="background-color:#212121;">';
                     public_data += '<i class="fa fa-fw fa-plus"></i> Sign Up</a>';
                     public_data += '<div class="dropdown-menu dropdown-size-280" style="background-color:#212121;color:#ffffff;"></div>'
                     public_data += '</li>';

@@ -12,10 +12,26 @@ $('.demo').slick({
 	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
 	  autoplay: false,
 	  //autoplaySpeed: 3000,
-	  centerMode: true,
-	  centerPadding: '50px'
-	  
-	  	  
+	  //centerMode: true,
+	  //centerPadding: '50px'
+	  responsive: [
+		{
+		breakpoint: 1024,
+		settings: {
+		  arrows: true,
+		 // centerMode: true,
+		  slidesToShow: 3
+		}
+		},
+		{
+		breakpoint: 600,
+		settings: {
+		  arrows: true,
+		 // centerMode: true,
+		  slidesToShow: 1
+		}
+		}
+	]
 });
 
 $('.timelineslider').slick({
@@ -25,9 +41,9 @@ $('.timelineslider').slick({
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev"><img src="'+asset_url+'img/icons/arrow_left.svg"></button>',
 	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
 	  autoplay: false,
-	  autoplaySpeed: 3000,
-	  centerMode: false,
-	  centerPadding: '50px'
+	  //autoplaySpeed: 3000,
+	  //centerMode: false,
+	  //centerPadding: '50px'
 	  
 	  	  
 });
