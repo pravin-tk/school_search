@@ -166,8 +166,8 @@ $classification = $filtersList['classificationFilter'];
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="main-nav">
-        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid">
+      <div class="collapse navbar-collapse" id="main-nav" id="searchInner">
+        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid" id="frmsearchInner">
           	<div class="search-1">
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
@@ -182,7 +182,7 @@ $classification = $filtersList['classificationFilter'];
 					  		</select>
 						</div>
 						<div class="col-lg-8">
-							<input id="search_location" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
+							<input id="schbox_inner" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
 						</div>
 					</div>
 	          	</div>
@@ -284,11 +284,11 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
 	                <?php 
-	                	if(isset($classification)) {
+                            if(isset($classification)) {
 	                     	foreach ($classification as $key => $value) { ?>
 	                        	<div class="form-group">
 	                             	<div class="input-group">
-										<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+					<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
 									</div>
 	                            </div>
 	                <?php 

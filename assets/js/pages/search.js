@@ -485,30 +485,30 @@ function sortMarkers(sortitem){
         	schoolFeeMarker = item.totalFee+" PA";
         }
         var infoContent = "<div id='infobox' style='width: 300px;'>"
-						 +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
-						 +"<span id='ins-drag'>"
-						 +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
-						 +"<div id='schooltext' style='float: right;width:210px;'>"
-						 +"<div class='school-name-text-marker'>"
-						 +schoolText
-						 +"</div>"
-						 +"<div class='street-locality-marker'>"
-						 +localityText
-						 +"</div>"
-						 +"<div class='street-locality-marker'>"
-						 +"<span class='label-100'>"
-						 +schoolBoards
-						 +"</span>"
-						 +"</div>"
-						 +"<div class='school-fee-marker'>"
-						 +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
-						 +schoolFeeMarker
-						 +"</span>"
-						 +"</div>"
-						 +"</div>"
-						 +"</span> "
-						 +"<span id='err-text' style='font-weight: bold;'></span>"
-						 +"</div></div>";
+                +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
+                +"<span id='ins-drag'>"
+                +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
+                +"<div id='schooltext' style='float: right;width:210px;'>"
+                +"<div class='school-name-text-marker'>"
+                +schoolText
+                +"</div>"
+                +"<div class='street-locality-marker'>"
+                +localityText
+                +"</div>"
+                +"<div class='street-locality-marker'>"
+                +"<span class='label-100'>"
+                +schoolBoards
+                +"</span>"
+                +"</div>"
+                +"<div class='school-fee-marker'>"
+                +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
+                +schoolFeeMarker
+                +"</span>"
+                +"</div>"
+                +"</div>"
+                +"</span> "
+                +"<span id='err-text' style='font-weight: bold;'></span>"
+                +"</div></div>";
 		var infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker,'mouseover', (function(marker,infoContent,infowindow){ 
             return function() {

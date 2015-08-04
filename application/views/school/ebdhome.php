@@ -80,7 +80,7 @@
                         </span></a>
                         
             </div>
-            <div class="main-text overlaysearch text-center col-md-12" style="display: inline-block;" >
+            <div class="main-text overlaysearch text-center col-md-12" style="display: inline-block;" id="globalSearch">
                     <h1 class="searchheading">
                         Search School
                     </h1>
