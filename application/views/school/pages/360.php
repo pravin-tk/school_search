@@ -144,6 +144,10 @@
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  src="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>
+			              <div class="float-left" >    
+			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
+			             	<h4><a>Hostel bedroom</a></h4>
+			            </div>  
 		            </div>
            		 </div>
                 </div>

@@ -461,8 +461,8 @@
   <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
 </ul>
 
-<<script type="text/javascript">
+<script type="text/javascript">
 <!--
 $("#nearby").focus();
 //-->
-</script>>
+</script>

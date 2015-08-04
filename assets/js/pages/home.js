@@ -1,6 +1,5 @@
-
 $("#sch").click(function () {
-
+//function geoSearch() {
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
@@ -41,8 +40,9 @@ $("#sch").click(function () {
     
         }
     }
-
+//}
 });
+
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");

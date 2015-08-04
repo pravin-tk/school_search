@@ -14,8 +14,24 @@ $('.demo').slick({
 	  //autoplaySpeed: 3000,
 	  //centerMode: true,
 	  //centerPadding: '50px'
-	  
-	  	  
+	  responsive: [
+		{
+		breakpoint: 1024,
+		settings: {
+		  arrows: true,
+		 // centerMode: true,
+		  slidesToShow: 3
+		}
+		},
+		{
+		breakpoint: 600,
+		settings: {
+		  arrows: true,
+		 // centerMode: true,
+		  slidesToShow: 1
+		}
+		}
+	]
 });
 
 $('.timelineslider').slick({

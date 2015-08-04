@@ -143,7 +143,7 @@ class home extends CI_Controller {
         
     
    	public function schoolJSON() {
-                $schoollist ="";
+        $schoollist = "";
    		if(!empty($this->input->post ( 'boardId' )))
 			$map ['boardId'] = $this->input->post ( 'boardId' );
 		if(!empty($this->input->post ( 'mediumId' )))
@@ -176,10 +176,6 @@ class home extends CI_Controller {
 		$apicalls = array (
 				$sch_key 
 		);
-                
-                if(isset($apioutput['y/webapi/api1.0/'.$sch_key])){
-                    $schoollist = $apioutput['y/webapi/api1.0/'.$sch_key];
-                }
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach($apioutput as $key => $value ){
@@ -222,13 +218,13 @@ class home extends CI_Controller {
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
-				if (strpos ( $key, $school_basic_key ) !== false) {
+				if (strpos($key,'basiclist.json') !== false) {
 					$this->template->set ( 'basicInfo', $value );
-				} elseif (strpos ( $key, $school_other_key ) !== false) {
-					$this->template->set ( 'otherInfo', $value );
+				} elseif (strpos($key,$school_other_key) !== false) {
+					$this->template->set ('otherInfo', $value);
 					$schoolInfo = $value;
-                } elseif(strpos($key,$standard_key)!==false){
-                    	$this->template->set('standard',$value);
+                } elseif (strpos($key,$standard_key) !==false){
+                    $this->template->set('standard',$value);
                 }
 			}
 			$this->template->set('overviewInfo',$schoolInfo['highlights']);
