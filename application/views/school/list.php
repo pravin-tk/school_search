@@ -407,6 +407,11 @@ html, body {height: 100%;}
 #listFavButton{
 	padding-top:5px;
 }
+
+
+#schbox_inner{
+    width:250px;
+}
 </style>
 
 		<div id="content">
@@ -710,12 +715,14 @@ html, body {height: 100%;}
 			</div>
 		</div>
 <script type="text/javascript">
+var map;
+var dataArr = null;
 var infowindow = new google.maps.InfoWindow();
 dataArr = <?php echo json_encode($schools); ?>;
 var markers = [];
 //var infowindow = null;
 $(document).ready(function(){
-	dataArr = <?php echo json_encode($schools); ?>;
+	
     $('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
     $('#tab-map-list-content').height(($(window).height() - $(".navbar-fixed-top").height() - $(".nav-tab-map-list").height()));
     $("#right-side-bar").height(($(window).height() - $(".navbar-fixed-top").height()));
@@ -726,25 +733,30 @@ $(document).ready(function(){
     });
 });
 
-
+ var locCircle, locCircle1;
+ var myMarker ,myMarkernew;
+ var flagAutoComplete =0 ;
 function initialize() {
-	updateSortListedSchools();
-	dataArr = <?php echo json_encode($schools); ?>;
+    updateSortListedSchools();
+    console.log('728');
+    dataArr = <?php echo json_encode($schools); ?>;
     var ulat = $("#latitude").val();
     var ulng = $("#longitude").val();
     var minSort = 0;
     var maxSort = 0;
     var mapCanvas = document.getElementById('map-canvas');
+   
     var mapOptions = {
       center: new google.maps.LatLng(ulat, ulng),
       zoom: 16,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-  	map = new google.maps.Map(mapCanvas, mapOptions);
+    map = new google.maps.Map(mapCanvas, mapOptions);
     var legendDiv = document.createElement('DIV');
     var legend = new Legend(legendDiv, map);
     legendDiv.index = 1;
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
+    
     <?php 
         	$minColor = 0;
         	$maxColor = 0;
@@ -764,27 +776,22 @@ function initialize() {
         if(isset($schools)) {
           	foreach($schools as $key => $school){
         ?>
-        	var hexMarkerColor = getColourTemp(<?php echo $maxColor; ?>,<?php echo $minColor; ?>,<?php echo $school['totalFee']; ?>);
+            var hexMarkerColor = getColourTemp(<?php echo $maxColor; ?>,<?php echo $minColor; ?>,<?php echo $school['totalFee']; ?>);
             var schoolText =  "<?php echo $school['name'];?>"; 
             var localityText = "<?php echo $school['localityName'];?>";
             <?php 
-				if ($school['totalFee'] > 1000) {
-			?>
-					var schoolFeeMarker = "<?php echo round($school['totalFee']/1000,2)."K PA";?>";
-			<?php
-				} else {
-			?>
-					var schoolFeeMarker = "<?php  echo $school['totalFee']." PA";?>";
-			<?php 
-				}
-			?>
+		if ($school['totalFee'] > 1000) {?>
+                    var schoolFeeMarker = "<?php echo round($school['totalFee']/1000,2)."K PA";?>";
+                    <?php } else {?>
+			var schoolFeeMarker = "<?php  echo $school['totalFee']." PA";?>";
+		   <?php }?>
 			var marker_url = "<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>";
 			var schoolBoards = "<?php echo $school['boardName']?>,<?php echo $school['mediums']?>";
+
             var marker<?php echo $school['schoolId']?> = new google.maps.Marker({
                 map: map,
                 draggable: false,
                 url: marker_url,
-                animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(<?php echo $school['latitude']?>, <?php echo $school['longitude']?>),
                 icon: {
                     path: fontawesome.markers.MAP_MARKER,
@@ -804,30 +811,30 @@ function initialize() {
         		school_img =  "<img src='<?php echo $school['logo']?>' style='width:90px;height:90px;'>";
         	<?php }?>
             var infoContent = "<div id='infobox' style='width: 300px;'>"
-    						 +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
-    						 +"<span id='ins-drag'>"
-    						 +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
-    						 +"<div id='schooltext' style='float: right;width:210px;'>"
-    						 +"<div class='school-name-text-marker'>"
-    						 +schoolText
-    						 +"</div>"
-    						 +"<div class='street-locality-marker'>"
-    						 +localityText
-    						 +"</div>"
-    						 +"<div class='street-locality-marker'>"
-    						 +"<span class='label-100'>"
-    						 +schoolBoards
-    						 +"</span>"
-    						 +"</div>"
-    						 +"<div class='school-fee-marker'>"
-    						 +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
-    						 +schoolFeeMarker
-							 +"</span>"
-							 +"</div>"
-    						 +"</div>"
-    						 +"</span> "
-    						 +"<span id='err-text' style='font-weight: bold;'></span>"
-    						 +"</div></div>";
+                                +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
+                                +"<span id='ins-drag'>"
+                                +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
+                                +"<div id='schooltext' style='float: right;width:210px;'>"
+                                +"<div class='school-name-text-marker'>"
+                                +schoolText
+                                +"</div>"
+                                +"<div class='street-locality-marker'>"
+                                +localityText
+                                +"</div>"
+                                +"<div class='street-locality-marker'>"
+                                +"<span class='label-100'>"
+                                +schoolBoards
+                                +"</span>"
+                                +"</div>"
+                                +"<div class='school-fee-marker'>"
+                                +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
+                                +schoolFeeMarker
+                                +"</span>"
+                                +"</div>"
+                                +"</div>"
+                                +"</span> "
+                                +"<span id='err-text' style='font-weight: bold;'></span>"
+                                +"</div></div>";
                 google.maps.event.addListener(marker,'mouseover', (function(marker,infoContent,infowindow){ 
                     return function() {
                         infowindow.setContent(infoContent);
@@ -841,34 +848,115 @@ function initialize() {
                 	window.open(this.url, '_blank');
                 });
                 markers.push(marker);
+                
        	<?php 
-    		}
-    	}
+    		}//foreach school
+    	}//if schools
        	?>
-        var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
-        google.maps.event.addListener(places, 'place_changed', function () {
-            var place = places.getPlace();
+
+        //~~~~~~~~~~ map circle ~~~~~~~~~~
+        var myLatlng = new google.maps.LatLng(ulat,ulng);
+        myMarker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'My location!',
+            });
+        // Define a symbol using SVG path notation, with an opacity of 1.
+        var lineSymbol = {
+                path: 'M 0,-1 0,1',
+                strokeOpacity: 1,
+                scale: 4
+        };
+        var mapCircle = {
+            strokeColor: "#c3fc49",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#1E90FF",
+            fillOpacity: 0.35,
+             icons: [{
+                icon: lineSymbol,
+                offset: '0',
+                repeat: '20px'
+             }],
+            map: map,
+            center: myLatlng,
+            radius: 500 // in meters
+        };
+        locCircle = new google.maps.Circle(mapCircle)
+        locCircle.bindTo('center', myMarker, 'position');
+        var places_inner = new google.maps.places.Autocomplete(document.getElementById('schbox_inner'));
+        
+        google.maps.event.addListener(places_inner, 'place_changed', function () {
+            console.log('883');
+           
+             map.clearOverlays();
+             console.log("888" +map.clearOverlays());
+            var place = places_inner.getPlace();
             var address = place.formatted_address;
-            var latitude = place.geometry.location.A;
-            var longitude = place.geometry.location.F;
+            var latitude = place.geometry.location.lat();
+            var longitude = place.geometry.location.lng();
             var i = latitude+","+longitude;
             var a = address;
+            console.log('#886');
             var mesg = "Address: " + address;
             mesg += "\nLatitude: " + latitude;
             mesg += "\nLongitude: " + longitude;
             $("#latitude").val(latitude);
             $("#longitude").val(longitude);
             $("#address").val(address);
+              console.log('#892');
             $.cookie("ebdsearchgeocode",i, { expires: 180, path: '/' });
             $.cookie("ebdsearchgeoloc",a, { expires: 180, path: '/' });
-			for (var i = 0; i < markers.length; i++) {
-			    markers[i].setMap(null);
-			}
-			markers.length = 0;
-			map.panTo(new google.maps.LatLng(i));
+            /******/
+            var d = new Date();
+            d.setTime(d.getTime()+(1*24*60*60*1000));
+            var expires = "expires="+d.toGMTString();         
+            document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;";
+            document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;";
+            console.log('cookie set');
+            
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers.length = 0;
+            //map.panTo(new google.maps.LatLng(i));
+            map.setCenter(place.geometry.location);
+           //~~~~~~~~~~ map circle ~~~~~~~~~~
+            var myLatlng = new google.maps.LatLng(latitude,longitude);
+            myMarkernew = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: 'My location!',
+            });
+        // Define a symbol using SVG path notation, with an opacity of 1.
+        var lineSymbol = {
+                path: 'M 0,-1 0,1',
+                strokeOpacity: 1,
+                scale: 4
+        };
+        var mapCircle = {
+            strokeColor: "#c3fc49",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#1E90FF",
+            fillOpacity: 0.35,
+             icons: [{
+                icon: lineSymbol,
+                offset: '0',
+                repeat: '20px'
+             }],
+            map: map,
+            center: myLatlng,
+            radius: 500 // in meters
+        };
+        locCircle1 = new google.maps.Circle(mapCircle)
+        locCircle1.bindTo('center', myMarkernew, 'position');
+         flagAutoComplete =1;
+            //~~~~~~~~~map circle ~~~~~~~~~~~
             filterResults();
+            
         });
-}
+} //end initialize
 google.maps.event.addDomListener(window, 'load', initialize);
 
 $("#standardId").change(function() {
@@ -878,5 +966,33 @@ $("#standardId").change(function() {
 	markers.length = 0;
     filterResults();
 });
-    
+
+google.maps.Map.prototype.clearOverlays = function() {
+    console.log('clear overlays')
+  for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(null);
+	}
+        myMarker.setMap(null);      
+	markers.length = 0;
+        locCircle.setMap(null);
+        if(flagAutoComplete == 1){
+            locCircle1.setMap(null);
+             myMarkernew.setMap(null); 
+        }
+        //locCircle1.setMap(null);
+}
+
+
+$('#main-nav').on('keydown', '#frmsearchInner', function(evt) {
+          console.log('inside 115');
+	  // if the user hits enter AND if the chosen dropdown is NOT in view
+	  // note @BMorearty's example is checking for existence. 
+	  // It seems the element is always there, just negatively positioned when not in use.
+	  if ( evt.which === 13)  {			 
+                evt.preventDefault();
+                      
+	  }
+		
+});
+/**** del marker functions ****/
 </script>

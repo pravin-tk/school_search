@@ -1,6 +1,3 @@
-var map;
-markers = [];
-var dataArr = null;
 var mapLoaded = 0;
 function viewMap(){
 	$("#mav-view-layout").show();
@@ -49,13 +46,6 @@ function filterResults() {
 			categoryType += "," + $(this).val();
 		}
    	});
-//    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-//		if(schoolType == ""){
-//			schoolType = $(this).val();
-//		} else {
-//			schoolType += "," + $(this).val();
-//		}
-//  	});
     $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
 		if(classificationType == ""){
 			classificationType = $(this).val();
@@ -63,27 +53,6 @@ function filterResults() {
 			classificationType += "," + $(this).val();
 		}
    	});
-//    $('input[name="activitycheckbox"]:checked').each(function() { 
-//		if(activityType == ""){
-//			activityType = $(this).val();
-//		} else {
-//			activityType += "," + $(this).val();
-//		}
-//  	});
-//    $('input[name="infracheckbox"]:checked').each(function() { 
-//		if(infraType == ""){
-//			infraType = $(this).val();
-//		} else {
-//			infraType += "," + $(this).val();
-//		}
-//   	});
-//    $('input[name="safetycheckbox"]:checked').each(function() { 
-//		if(safetyType == ""){
-//			safetyType = $(this).val();
-//		} else {
-//			safetyType += "," + $(this).val();
-//		}
-//  	});
     $('#sortFields option:selected').each(function() {
         schoolType += $(this).val() + ",";
 	});
@@ -192,13 +161,6 @@ function sortSchool(sortFilter) {
 			categoryType += "," + $(this).val();
 		}
    	});
-//    $('input[name="schooltypecheckbox"]:checked').each(function() { 
-//		if(schoolType == ""){
-//			schoolType = $(this).val();
-//		} else {
-//			schoolType += "," + $(this).val();
-//		}
-//  	});
     $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
 		if(classificationType == ""){
 			classificationType = $(this).val();
@@ -206,27 +168,6 @@ function sortSchool(sortFilter) {
 			classificationType += "," + $(this).val();
 		}
    	});
-//    $('input[name="activitycheckbox"]:checked').each(function() { 
-//		if(activityType == ""){
-//			activityType = $(this).val();
-//		} else {
-//			activityType += "," + $(this).val();
-//		}
-//  	});
-//    $('input[name="infracheckbox"]:checked').each(function() { 
-//		if(infraType == ""){
-//			infraType = $(this).val();
-//		} else {
-//			infraType += "," + $(this).val();
-//		}
-//   	});
-//    $('input[name="safetycheckbox"]:checked').each(function() { 
-//		if(safetyType == ""){
-//			safetyType = $(this).val();
-//		} else {
-//			safetyType += "," + $(this).val();
-//		}
-//  	});
    
     $.post(base_url+"index.php/home/schoolJSON",
     	{
@@ -455,6 +396,10 @@ function Legend(controlDiv, map) {
 }
 
 function sortMarkers(sortitem){
+	for (var i = 0; i < markers.length; i++) {
+	    markers[i].setMap(null);
+	}
+	markers = [];
 	var minColor = 0;
 	var maxColor = 0;
 	$.each(dataArr, function(key, item) 
@@ -510,7 +455,6 @@ function sortMarkers(sortitem){
         var marker = new google.maps.Marker({
             map: map,
             draggable: false,
-            animation: google.maps.Animation.DROP,
             url: marker_url,
             position: new google.maps.LatLng(item.latitude, item.longitude),
             icon: {
@@ -541,30 +485,30 @@ function sortMarkers(sortitem){
         	schoolFeeMarker = item.totalFee+" PA";
         }
         var infoContent = "<div id='infobox' style='width: 300px;'>"
-						 +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
-						 +"<span id='ins-drag'>"
-						 +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
-						 +"<div id='schooltext' style='float: right;width:210px;'>"
-						 +"<div class='school-name-text-marker'>"
-						 +schoolText
-						 +"</div>"
-						 +"<div class='street-locality-marker'>"
-						 +localityText
-						 +"</div>"
-						 +"<div class='street-locality-marker'>"
-						 +"<span class='label-100'>"
-						 +schoolBoards
-						 +"</span>"
-						 +"</div>"
-						 +"<div class='school-fee-marker'>"
-						 +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
-						 +schoolFeeMarker
-						 +"</span>"
-						 +"</div>"
-						 +"</div>"
-						 +"</span> "
-						 +"<span id='err-text' style='font-weight: bold;'></span>"
-						 +"</div></div>";
+                +"<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
+                +"<span id='ins-drag'>"
+                +"<div id='schoolimg' style='float: left; width:90px;'>"+school_img+"</div>"
+                +"<div id='schooltext' style='float: right;width:210px;'>"
+                +"<div class='school-name-text-marker'>"
+                +schoolText
+                +"</div>"
+                +"<div class='street-locality-marker'>"
+                +localityText
+                +"</div>"
+                +"<div class='street-locality-marker'>"
+                +"<span class='label-100'>"
+                +schoolBoards
+                +"</span>"
+                +"</div>"
+                +"<div class='school-fee-marker'>"
+                +"<span class='fee label-100'><i class='fa fa-rupee'></i> "
+                +schoolFeeMarker
+                +"</span>"
+                +"</div>"
+                +"</div>"
+                +"</span> "
+                +"<span id='err-text' style='font-weight: bold;'></span>"
+                +"</div></div>";
 		var infowindow = new google.maps.InfoWindow();
         google.maps.event.addListener(marker,'mouseover', (function(marker,infoContent,infowindow){ 
             return function() {

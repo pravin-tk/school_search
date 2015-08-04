@@ -16,16 +16,13 @@ class home extends CI_Controller {
 	
 
     public function index() {
-		header ( "Cache-Control: private, max-age=60" );
-		header ( "Expires: " . gmdate ( 'r', time () + 60 ) );
-		header ( "Content-Type: text/html" );
+// 		header ( "Cache-Control: private, max-age=60" );
+// 		header ( "Expires: " . gmdate ( 'r', time () + 60 ) );
+// 		header ( "Content-Type: text/html" );
 		
 		$standard_key = 'standardlist.json';
-                $top_school_key = 'topschools.json';
-		$apicalls = array (
-				$standard_key,
-                                $top_school_key
-		);
+        $top_school_key = 'topschools.json';
+		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
                         foreach($apioutput as $key => $value ){
@@ -43,7 +40,7 @@ class home extends CI_Controller {
 			unset ( $apioutput );
 		}
 		$this->template->set('page','home');
-		$this->template->set ( 'standards', $data );
+		//$this->template->set ( 'standards', $data );
 		$this->template->set_layout ( 'edbuddy' )
                                 ->title ( 'Search for finest schools near you: Edbuddy.in' )
                                 ->set_partial ( 'header', 'partials/header_home' )
@@ -180,23 +177,33 @@ class home extends CI_Controller {
 				$sch_key 
 		);
                 
-                if(isset($apioutput['y/webapi/api1.0/'.$sch_key])){
-                    $schoollist = $apioutput['y/webapi/api1.0/'.$sch_key];
-                }
+                    
 		try {
+                        $permlink =$this->session->userdata('permlink');
 			$apioutput = $this->apiclient->process ( $apicalls );
-			
-        		$output = $this->template->set ( 'schools', $schoollist)
+
+			foreach($apioutput as $key => $value ){
+				if (strpos($key,'schoollist.json') !== false) {
+					$schoollist = $value;
+				}
+			}
+                        $output = $this->template->set ( 'schools', $schoollist)
                                                 ->set('standardId',$map['standardId'])
+                                                ->set('permlink',$permlink)
                                                 ->set_layout ( false )
                                                 ->build ( 'partials/search','', true );
 			$outputMin = $this->template->set ( 'schools', $schoollist)
                                                     ->set('standardId',$map['standardId'])
+                                                    ->set('permlink',$permlink)
                                                     ->set_layout ( false )
                                                     ->build ( 'partials/search-map','', true );
+                        foreach ( $apioutput as $key => $value ) 
+				if (strpos ( $key, $sch_key ) !== false) 
+					$data ['jsondata'] =  $value ;
+                                
 			$data ['html'] = $output;
 			$data ['htmlmap'] = $outputMin;
-			$data ['jsondata'] = $apioutput['y/webapi/api1.0/'.$sch_key];
+			$data ['jsondata'] = $schoollist;
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;
@@ -355,10 +362,10 @@ class home extends CI_Controller {
         
 	public function testLogin(){
 		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
+		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/post/requirement.json";
 		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
 		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("email" => "er.pradeep007@gmail.com");
+		$postfields = array("name" => "shinee","mobile" =>'8490766234',"requirement" => "cccc");
 		$postfields = http_build_query($postfields);
 		$ch = curl_init();
 		$options = array(
@@ -391,5 +398,14 @@ class home extends CI_Controller {
 		$this->load->view('school/pages/360.php');
 		
 	}
+        
+        public function testFence(){
+            $this->template->set_layout ( 'edbuddy' )
+                ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                ->set_partial ( 'header', 'partials/header' )
+		->set_partial ( 'footer', 'partials/footer' );
+		//$this->template->build ( 'school/school-detail' );
+		$this->template->build ( 'school/pages/test' );
+        }
 	
 }

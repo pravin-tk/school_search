@@ -165,7 +165,35 @@
 		        <?php } ?>
 		  	</div>
 		</div>
+		<div class="container">
+		  	<div class="panel">
+		   		<div class="overview-heading">
+		      		<h4 class="text-left">School & Student Achievements</h4>
+		    	</div>
+		   		<div class="panel-body highlight-panel-body col-md-12">
+		     
+		          <?php foreach ($otherInfo['schoolAchievements'] as $key => $value){
+		          ?>
+		          	<div class="col-md-12">
+			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
+			          		<div class="col-md-1">
+				                <div><?php echo $value['batch']?></div>
+			                </div>
+			                <!-- div class="col-md-2" style="text-transform:capitalize;">
+								<?php echo $value['name']?>
+			                </div> -->
+			                <div class="col-md-11" style="text-transform:capitalize;">
+			                	<i class="fa fa-user"></i> <strong><?php echo $value['name']?></strong> - <?php echo $value['achievements']?>
+			                </div>
+			            </section> 
+		            </div>
+		          	<?php
+		          } ?>
+		         
+		  		</div>
+		  	</div>
 		</div>
+	</div>
 	</div>
 </div>
 <!-- end of timeline -->

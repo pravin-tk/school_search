@@ -16,12 +16,12 @@
                     foreach($ratingInfo as $key => $schoolRating){
 	    				$totalRatingCount++;
 	    		?>
-          			<section class="panel panel-default">
+          			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
             			<div class="panel-body">
 	                		<div class="col-xs-3 col-md-3 text-center">
 			          	      <i class="fa fa-building-o fa-2x"></i>
 			          	      <div class="infra-name">
-			          	      <?php echo $schoolRating['name']?>
+			          	      	<strong><?php echo $schoolRating['name']?></strong>
 			          	      </div>
 			                </div>
 		                 	<div class="col-xs-4 col-md-4 text-center">
