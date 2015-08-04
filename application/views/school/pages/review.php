@@ -66,6 +66,7 @@
         		<div class="col-md-6">
 					<div class="panel panel-default">
 						<?php
+						if(isset($reviewInfo)){
 						foreach($reviewInfo as $key => $schoolReview){
 						?>
 						<div class="panel panel-default review-panel">
@@ -84,6 +85,15 @@
 						</div>
 		           		<?php 
 						}
+					 }else{
+					 	?>
+					 	<section class="panel panel-default">
+						<div class="panel-body">
+						 0 Review  		
+		            	</div>
+		           </section>
+					 	<?php
+					 }	
 						?>
 					</div>
 					<!-- div>

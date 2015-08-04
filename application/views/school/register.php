@@ -28,8 +28,9 @@
     }
 </style>
 
-<!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
-        <?php //include 'header.php';  ?>
+<!-- uiView:  --><div class="ui-view-main"><!-- uiView:  -->
+<div  class="ui-view-main"><!-- Fixed navbar -->
+        
         <div id="content" >
             <section class="cover overlay height-70 height-270-xs">
 <!--                <img src="<?php echo asset_url(); ?>img/school/photodune-186709-residential-street-m.jpg" alt="cover">-->
@@ -61,7 +62,7 @@
                                         <h4> Registration </h4>
                                         <hr/>
                 <div class="media-body">
-                    <form method="post"   id="profile_form" action="javascript:;" enctype="multipart/form-data">
+                    <form method="post"   id="profile_form" class="profile_form" action="javascript:;" enctype="multipart/form-data">
                         <div id="profile_form_error"></div>
                 <div class="form-group">
                     <label for="firstName" class="control-label">First Name</label>
