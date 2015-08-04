@@ -361,10 +361,10 @@ class home extends CI_Controller {
         
 	public function testLogin(){
 		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/post/requirement.json";
+		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
 		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
 		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("name" => "shinee","mobile" =>'8490766234',"requirement" => "cccc");
+		$postfields = array("email" => "er.pradeep007@gmail.com");
 		$postfields = http_build_query($postfields);
 		$ch = curl_init();
 		$options = array(
@@ -397,14 +397,37 @@ class home extends CI_Controller {
 		$this->load->view('school/pages/360.php');
 		
 	}
-        
-        public function testFence(){
-            $this->template->set_layout ( 'edbuddy' )
-                ->title ( 'Search for finest schools near you: Edbuddy.in' )
-                ->set_partial ( 'header', 'partials/header' )
-		->set_partial ( 'footer', 'partials/footer' );
-		//$this->template->build ( 'school/school-detail' );
-		$this->template->build ( 'school/pages/test' );
-        }
+	public function postRequirement()
+	{
+		$this->template->set('page','auth');
+		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/post-requirement.php' );
+	}
+	public function addRequirement() {
+		$data = "";
+		$map['name'] = $this->input->post('firstName');
+		$map['mobile'] = $this->input->post('mobileNo');
+		$map['requirement'] = $this->input->post('requirement');
+		$profile_key = 'post/requirement.json';
+		$apicalls = array(array('url' => 'post/requirement.json',
+				'params' => http_build_query($map),
+				'headers' => 'application/x-www-form-urlencoded'
+		)
+		);
+		try {
+			$apioutput = $this->apiclient->process($apicalls, 'POST');
+			error_log(json_encode($apioutput), 0);
+			foreach ($apioutput as $key => $value) {
+				if (strpos($key, $profile_key) !== false) {
+					$data = $value;
+				}
+			}
+		} catch (EBDApiException $e) {
+			error_log($e);
+			unset($apicalls);
+			unset($apioutput);
+		}
+		echo json_encode($data);
+	}
 	
 }
