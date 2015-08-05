@@ -15,7 +15,7 @@ if (isset ( $schools )) {
 	<div class="panel-body">
 		<div class="media media-clearfix-xs media-clearfix-sm">
 			<div class="media-left">
-				<p>
+				<p id="map-image">
 					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
                    	<?php if($school['logo'] == ""){?>
                         <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
@@ -23,6 +23,9 @@ if (isset ( $schools )) {
                         <img src="<?php echo $school['logo'];?>" alt="property" width="120" height="100" class="media-object">
                     <?php }?>
                     </a>
+                    <span class="sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId'];?>">
+						<i class="fa fa-heart-o"></i> 
+					</span>
 				</p>
 				<div class="text-center small">
 				<?php
@@ -46,9 +49,9 @@ if (isset ( $schools )) {
 			</div>
 			<div class="media-body">
 				<div class="pull-right">
-					<span class="text-grey-400 sort-listed-map-schools"
-						id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i
-						class="fa fa-heart-o fa-fw"></i></span>
+<!-- 					<span class="text-grey-400 sort-listed-map-schools" 
+						id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>"><i-->
+<!-- 						class="fa fa-heart-o fa-fw"></i></span> -->
 				</div>
 				<h4 class="school-name-text media-heading margin-v-0-10">
 					<a

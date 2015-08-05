@@ -1,6 +1,4 @@
-
 $("#sch").click(function () {
-//function geoSearch() {
     if( $("#cboStd").val() == "") {
         $("#cboStd").addClass('has-error');
         $("#cboStd").focus();
@@ -32,16 +30,12 @@ $("#sch").click(function () {
         address = $('#address').val();
         var permlink = getPermlink(address,$("#cboStd option:selected").text());
         console.log("perm="+permlink);
-	if($("#cboStd").val() != "" && $("#latitude").val() != "" && $("#longitude").val() != ""){
-            //document.getElementById('global_search_form').setAttribute('action',base_url+request.cityname+'/'+request.permlink);
+        if($("#cboStd").val() != "" && $("#latitude").val() != "" && $("#longitude").val() != ""){
             document.getElementById('searchform').setAttribute('action',base_url+permlink);
             $("#address").val(permlink);
-//            alert($("#address").val());
             $('#searchform').submit();
-    
         }
     }
-//}
 });
 
 
@@ -72,7 +66,6 @@ function getPermlink(strAddress,stdname){
    
 }
 
-
 $("#frmSch").affix({
     offset: {
         top: 200,
@@ -89,6 +82,11 @@ $('body').scrollspy({
     target: '.navbar-fixed-top',
     offset: 51
 });
+
+var cookie_domain = 'edbuddy.in';
+var d = new Date();
+d.setTime(d.getTime()+(1*24*60*60*1000));
+var expires = "expires="+d.toGMTString();
 
 google.maps.event.addDomListener(window, 'load', function () {
     var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
@@ -111,17 +109,9 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
 });
 
-
-
 $('#globalSearch').on('keydown', '#searchform', function(evt) {
-          console.log('inside 115');
-	  // if the user hits enter AND if the chosen dropdown is NOT in view
-	  // note @BMorearty's example is checking for existence. 
-	  // It seems the element is always there, just negatively positioned when not in use.
 	  if ( evt.which === 13)  {			 
-			//  evt.preventDefault();
-               $("#sch").click();         
+		  $("#sch").click();         
 	  }
-		
 });
 

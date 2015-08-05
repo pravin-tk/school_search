@@ -26,7 +26,6 @@
 	                	<p>R.R.Shinde junior college.</p>
 	                	<span class="label label-grey-100">Medium : English</span>
 	                	<i class="small fa fa-fw icon-user-1" data-toggle="tooltip" ></i>
-<!-- 	                	<a  class="btn btn-primary btn-circle absolute bottom right" href="schooldetailsTest"></a> -->
 	              	</div>
          		</div>
        		</div>

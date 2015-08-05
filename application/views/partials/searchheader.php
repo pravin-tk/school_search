@@ -172,7 +172,7 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
 						<div class="col-lg-4 selectContainer">
-							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;">
+							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
 								<option value="">--Select--</option>
 		                        <?php  
                                         if($standard)
@@ -189,7 +189,6 @@ $classification = $filtersList['classificationFilter'];
 	     	</div>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <!-- Login -->
            <!-- Login -->
             <script>
             
@@ -253,7 +252,6 @@ $classification = $filtersList['classificationFilter'];
                     document.write(private_data);
               }
            </script>   
-          <!-- // END login -->
           <!-- // END sign up -->
          
         </ul>
