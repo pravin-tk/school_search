@@ -21,7 +21,7 @@ class home extends CI_Controller {
 // 		header ( "Content-Type: text/html" );
 		
 		$standard_key = 'standardlist.json';
-        $top_school_key = 'topschools.json';
+                $top_school_key = 'topschools.json';
 		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
@@ -32,15 +32,14 @@ class home extends CI_Controller {
                                     $this->template->set('topschools',$value);
                             }
                         }
-			$data = $apioutput;
-                        
+
 		} catch ( EBDApiException $e ) {
 			echo $e->getMessage ();
 			unset ( $apicalls );
 			unset ( $apioutput );
 		}
 		$this->template->set('page','home');
-		//$this->template->set ( 'standards', $data );
+		
 		$this->template->set_layout ( 'edbuddy' )
                                 ->title ( 'Search for finest schools near you: Edbuddy.in' )
                                 ->set_partial ( 'header', 'partials/header_home' )
@@ -212,30 +211,42 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id,$standardId) {
-		//$standardId = $_COOKIE['ebdstdid'];
+	public function schoolDetail($id) {
+		$standardId = $_COOKIE['ebdstdid'];
+                $geocode = $_COOKIE['ebdsearchgeocode'];
+                if(strpos($geocode, ",")){
+                    $arrgeocode = explode(",",$geocode);
+                }
+                $map['latitude'] = $arrgeocode[0];
+                $map['longitude'] = $arrgeocode[1];
 		$school_basic_key = 'school/basiclist.json/' . $id.'/'.$standardId;
 		$school_other_key = 'school.json/' . $id;
 		$standard_key = 'standardlist.json';
+                $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
 		
 		
 		$apicalls = array($school_basic_key,
-						  $school_other_key,
-						  $standard_key);
+				$school_other_key,
+				$standard_key,
+                                $nearbyschool_key);
 		
 		$schoolInfo = null;
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
 				if (strpos($key,'basiclist.json') !== false) {
-					$this->template->set ( 'basicInfo', $value );
+                                    $this->template->set ( 'basicInfo', $value );
 				} elseif (strpos($key,$school_other_key) !== false) {
-					$this->template->set ('otherInfo', $value);
-					$schoolInfo = $value;
-                } elseif (strpos($key,$standard_key) !==false){
-                    $this->template->set('standard',$value);
-                }
+                                    $this->template->set ('otherInfo', $value);
+                                    $schoolInfo = $value;
+                                    error_log(json_encode($value),0);
+                                } elseif (strpos($key,$standard_key) !==false){
+                                    $this->template->set('standard',$value);
+                                } elseif (strpos($key,$nearbyschool_key) !==false){
+                                    $this->template->set('nearbySchool',$value);
+                                }
 			}
+                        
 			$this->template->set('overviewInfo',$schoolInfo['highlights']);
 			$this->template->set('contactInfo',$schoolInfo['contacts']);
 			$this->template->set('galleryinfo',$schoolInfo['images']);
@@ -323,36 +334,36 @@ class home extends CI_Controller {
         }
         
         /* getting actual location stored in our db */
-//	public function get_location(){
-//                header("Cache-Control: private, max-age=900");
-//                header("Expires: ".gmdate('r', time()+900));
-//                $map['latitude'] = trim($this->input->get('lat',TRUE));
-//                $map['longitude'] = trim($this->input->get('long',TRUE));
-//                $geocode = $map['latitude'].', '.$map['longitude'];
-//                $geo = 'city/geolocation.json?'.http_build_query($map);
-//                $apicalls = array($geo);
-//                try {
-//                        $apioutput = $this->apiclient->process($apicalls);
-//                        $areas = $apioutput[$geo];
-//                        setcookie("tkuserdefaultcity", strtolower($areas['cityname']), time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        setcookie("tkuserdefaultcityid", $areas['cityid'], time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        $this->session->set_userdata('cityid',$areas['cityid']);
-//                        $this->session->set_userdata('cityname',strtolower($areas['cityname']));
-//                        setcookie("geolocation", $this->input->get('location',TRUE), time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        setcookie("geocode", $geocode, time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        $map['areaid'] = $areas['areaid'];
-//                        $map['permlink'] = $areas['permlink'];
-//                        $map['city_permlink'] = $areas['city_permlink'];
-//                        $map['cityname'] = strtolower($areas['city_permlink']);
-//                        echo json_encode($map);
-//                }catch(EBDApiException $e) {
-//                        $data['status'] = 1;
-//                        $this->session->set_userdata('areaid',$areaid);
-//                        setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
-//                        unset($apicalls);
-//                        unset($apioutput);
-//                }
-//	}
+	public function getLocation(){
+          
+            $map['latitude'] = trim($this->input->post('lat',TRUE));
+            $map['longitude'] = trim($this->input->post('lng',TRUE));
+            $map['standard'] = trim($this->input->post('std',TRUE));
+            $geocode = $map['latitude'].', '.$map['longitude'];
+            $permlink_key = 'geturi.json/'.$map['latitude'].'/'.$map['longitude'].'/'.$map['standard'];
+            $apicalls = array($permlink_key);
+            try {
+                $apioutput = $this->apiclient->process($apicalls);
+                error_log('**********************');
+                error_log($permlink_key);
+                error_log(json_encode($apioutput),0);
+                foreach($apioutput as $key => $value ){
+                    if (strpos($key,$permlink_key) !== false) {
+                            $data = $value;
+                           
+                           
+                    }	
+		}
+               
+                  echo json_encode($data );
+            }catch(EBDApiException $e) {
+                    $data['status'] = 1;
+                    $this->session->set_userdata('areaid',$areaid);
+                    setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+	}
         
         
         

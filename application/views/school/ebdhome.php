@@ -92,8 +92,8 @@
                                 <select class="selectpicker form-control" id="cboStd" name="standardId" required>
                                         <option value="">--Select--</option>
                                         <?php  
-                                        if(isset($standards))
-                                            foreach ($standards as $key=>$value) { ?>
+                                        if(isset($standardlist))
+                                            foreach ($standardlist as $key=>$value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                             <?php  } ?>
                                 </select>
@@ -146,26 +146,28 @@
 			<div class="page-section">
 				<section class="row gridalicious" id="slicktest"
 					data-toggle="gridalicious" data-width="300">
-        		<?php for ($i=0;$i<2;$i++) { ?>
+        		<?php 
+                        if(isset($topschools)) 
+                            foreach ($topschools as $key =>$school) { ?>
         		<div class="galcolumn" id="item0sSqCX"
-						style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-						<div class="panel panel-default relative"
-							style="margin-bottom: 15px; zoom: 1; opacity: 1;">
-							<div
-								class="ribbon-heading h4 inline absolute left margin-none ribbon-primary">State</div>
-							<div class="cover hover overlay margin-none"
-								style="height: 245px;">
-								<div class="overlay overlay-full overlay-bg-black"
-									style="height: 245px;">
-									<div class="v-center">
-										<h5 class="text-h4 margin-v-0-10 text-overlay text-uppercase">Shanti
-											Niketan High School</h5>
+			style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
+			<div class="panel panel-default relative" style="margin-bottom: 15px; zoom: 1; opacity: 1;">
+				<div class="ribbon-heading h4 inline absolute left margin-none ribbon-primary"><?php echo $school['cityName'] ?></div>
+					<div class="cover hover overlay margin-none" style="height: 245px;">
+						<div class="overlay overlay-full overlay-bg-black" style="height: 245px;">
+                                                    <div class="v-center">
+                                                        <h5 class="text-h4 margin-v-0-10 text-overlay text-uppercase">
+                                                            <?php echo $school['name'] ?> </h5>
+                                                                    <p> <?php echo $school['localityName'] ?></p>
 										<p class="text-h5">
-											<span class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span>
+                                                                                  <?php for($j=1;$j <= $school['rating'];$j++){ ?>
+											<span class="fa fa-fw fa-star text-primary"></span>
+                                                                                  <?php } ?>
+                                                                                   <?php for($k=$j;$k<= 5;$k++){ ?>
+									<span class="fa fa-fw fa-star-o text-white"></span>
+                                                                                  <?php } ?>    
+                                                                                       
+                                                                                        
 										</p>
 									</div>
 								</div>
@@ -174,15 +176,22 @@
 									class="v-center"> <span class="btn btn-circle btn-white"><i
 											class="fa fa-eye"></i></span>
 								</span>
-								</a> <a ui-sref="front.property" href="schooldetailsTest"> <img
+								</a> 
+                                                                  <?php if ($school['homeImage'] == ""){ ?>
+                                                                <a ui-sref="front.property" href="schooldetailsTest"> <img
 									src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg"
 									alt="location" class="img-responsive"
 									style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-								</a>
+								</a> <?php } else {?>
+                                                                   <a ui-sref="front.property" href="schooldetailsTest"> <img
+									src="<?php echo asset_url();?>img/<?php echo $school['homeImage']?>"
+									alt="location" class="img-responsive"
+									style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+                                                                </a> <?php }?> 
 							</div>
 						</div>
 					</div>
-					<div class="galcolumn" id="item2sSqCX"
+<!--					<div class="galcolumn" id="item2sSqCX"
 						style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
 						<div class="panel panel-default relative"
 							style="margin-bottom: 15px; zoom: 1; opacity: 1;">
@@ -215,7 +224,7 @@
 								</a>
 							</div>
 						</div>
-					</div>
+					</div>-->
           <?php } ?>
           
           
