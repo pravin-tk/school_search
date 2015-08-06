@@ -147,6 +147,7 @@ class Auth extends CI_Controller {
                      
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
                     $this->session->set_userdata('sessEmailID', $map['email']);
+                    $this->session->set_userdata("ebdmypic",$responsedata->image);
                     $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], 60 * 60 * 24);
                     $this->input->set_cookie("ebdusername",$responsedata->firstName, 60*60*24);
                     $this->input->set_cookie("ebdmypic",$responsedata->image, 60*60*24);

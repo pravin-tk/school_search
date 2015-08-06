@@ -302,6 +302,7 @@
                     } else {
                         $("#pwd_form_error").html(messg);
                         $("#pwd_form_error").addClass('help-block-success');
+                        window.history.back();
                     }
                 }, 'json'
                         );

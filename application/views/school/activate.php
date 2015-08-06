@@ -1,5 +1,3 @@
-<?php ?>
-
 <style>
     #map-canvas {
         width: 90%;
@@ -30,7 +28,6 @@
 </style>
 
 <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
-        <?php //include 'header.php';  ?>
         <div id="content" >
             <section class="cover overlay height-70 height-70-xs"></section>
 

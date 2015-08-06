@@ -149,7 +149,7 @@ $classification = $filtersList['classificationFilter'];
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = readCookie('ebdmypic');
+        logged_pic = "<?php echo $this->session->set_userdata("ebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -241,7 +241,7 @@ $classification = $filtersList['classificationFilter'];
              
              
               if(logged_in != null) { // logged in
-                    var private_data = '<li class="dropdown user">';
+                    var private_data = '<li class="dropdown user" style="background-color:#fff;">';
                     private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
                     private_data += '<ul class="dropdown-menu" role="menu">';
