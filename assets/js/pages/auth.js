@@ -85,10 +85,7 @@
                                         regexp: /^[a-zA-Z\']+$/,
                                         message: 'first name can only consist of alphabets,apostrophe, space '
                         },
-//                        different: {
-//                                    field: 'password',
-//                                    message: 'The username and password can\'t be the same as each other'
-//                                    }
+
                         }   
                     },
                     lastName: {
@@ -105,12 +102,8 @@
                                 regexp: {
                                         regexp: /^[a-zA-Z\']+$/,
                                         message: 'last name can only consist of alphabets,apostrophe, space '
-                        },
-//                        different: {
-//                                    field: 'password',
-//                                    message: 'The username and password can\'t be the same as each other'
-//                                    }
-                        }   
+                                },
+                            }
                     },
                     mobileNo: {
                     message: 'mobile no. is not valid',
@@ -122,14 +115,9 @@
                                         max: 10,
                                         message: 'mobile number should be 10 digits long'
                                 },
-                                regexp: {
-                                        regexp: /^d{10}$/,
+                               digits: {
                                         message: 'mobile no. can consist only of digits '
-                        },
-//                        different: {
-//                                    field: 'password',
-//                                    message: 'The username and password can\'t be the same as each other'
-//                                    }
+                                 },
                         }   
                     },
                     emailId: {
@@ -198,14 +186,10 @@
                                     max: 10,
                                     message: 'mobile number should be 10 digits long'
                             },
-                            regexp: {
-                                    regexp: /^d{10}$/,
-                                    message: 'mobile no. can consist only of digits '
-                    },
-//                    different: {
-//                                field: 'password',
-//                                message: 'The username and password can\'t be the same as each other'
-//                                }
+                            digits: {
+                                        message: 'mobile no. can consist only of digits '
+                            },
+
                     }   
                 },
                 requirement: {
@@ -223,6 +207,7 @@
                 }//fields
                  
     });
+    
     function submitRequirement() {
         var id,messg,status,errors;
         var formData = new FormData();

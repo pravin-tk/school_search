@@ -10,10 +10,23 @@ aaaa
 
 
 <script type="text/javascript">
-           
+              var markers = new Array(new Array());
             ulat = "18.5463286";
             ulng = "73.90331390000006";
+            
+            ulat1 = "18.566644" ;
+            ulng1 = "73.9154069";
+            
+            ulat2 = "18.5619384" ;
+            ulng2 = "73.9109977";
+            
+            ulat3 = "18.535787" ;
+            ulng3 = "73.8918897";
+            
+         
+             var myMarker, myMarkernew;
   function initialize() {
+      var bounds = new google.maps.LatLngBounds();
         var mapOptions = {
           center: new google.maps.LatLng(ulat, ulng),
           zoom: 8
@@ -26,6 +39,9 @@ aaaa
             map: map,
             title: 'Hello World!'
         });
+        
+
+        
         var drawingManager = new google.maps.drawing.DrawingManager({
           drawingMode: google.maps.drawing.OverlayType.MARKER,
           drawingControl: true,
@@ -67,6 +83,19 @@ aaaa
     };
     cityCircle = new google.maps.Circle(sunCircle)
     cityCircle.bindTo('center', marker, 'position');
+    
+    for( i = 1; i <= 3; i++ ) {
+    var position = new google.maps.LatLng("ulat"+i, "ulng"+i);
+    bounds.extend(position);
+    marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: 'viman'
+    });
+    }
+        
+        
+        
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

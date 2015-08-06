@@ -95,7 +95,7 @@ class home extends CI_Controller {
         $this->template
                    	->set_layout('edbuddy')
                    	->title('Search for finest schools near you: Edbuddy.in')
-                    ->set_partial('header','partials/searchheader')
+                        ->set_partial('header','partials/searchheader')
                    	->set_partial('footer','partials/footer');
        	$this->template->build('school/list');
         unset($apicalls);
@@ -211,16 +211,22 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+        
 	public function schoolDetail($id) {
 		$standardId = $_COOKIE['ebdstdid'];
+                $param = $this->uri->segment(3); 
+                
+                $schoolarr = explode('-',$param);
+                $schoolid = $schoolarr[count($schoolarr)-1];
+                
                 $geocode = $_COOKIE['ebdsearchgeocode'];
                 if(strpos($geocode, ",")){
                     $arrgeocode = explode(",",$geocode);
                 }
                 $map['latitude'] = $arrgeocode[0];
                 $map['longitude'] = $arrgeocode[1];
-		$school_basic_key = 'school/basiclist.json/' . $id.'/'.$standardId;
-		$school_other_key = 'school.json/' . $id;
+		$school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
+		$school_other_key = 'school.json/' . $schoolid;
 		$standard_key = 'standardlist.json';
                 $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
 		
@@ -236,10 +242,13 @@ class home extends CI_Controller {
 			foreach ( $apioutput as $key => $value ) {
 				if (strpos($key,'basiclist.json') !== false) {
                                     $this->template->set ( 'basicInfo', $value );
+                                    error_log('school detail');
+                                    error_log(json_encode($value),0);
 				} elseif (strpos($key,$school_other_key) !== false) {
+                                    error_log('school ohter');
+                                    error_log(json_encode($value),0);
                                     $this->template->set ('otherInfo', $value);
                                     $schoolInfo = $value;
-                                    error_log(json_encode($value),0);
                                 } elseif (strpos($key,$standard_key) !==false){
                                     $this->template->set('standard',$value);
                                 } elseif (strpos($key,$nearbyschool_key) !==false){
@@ -266,7 +275,9 @@ class home extends CI_Controller {
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header_home' )->set_partial ( 'footer', 'partials/footer' );
 		$this->template->build ( 'school/school-details' );
 	}
- 
+        
+        
+        
 	public function rateSchool() {
 		$api_key = 'school/rate.json/';
 		$data= $_POST;
@@ -335,7 +346,6 @@ class home extends CI_Controller {
         
         /* getting actual location stored in our db */
 	public function getLocation(){
-          
             $map['latitude'] = trim($this->input->post('lat',TRUE));
             $map['longitude'] = trim($this->input->post('lng',TRUE));
             $map['standard'] = trim($this->input->post('std',TRUE));
@@ -344,18 +354,12 @@ class home extends CI_Controller {
             $apicalls = array($permlink_key);
             try {
                 $apioutput = $this->apiclient->process($apicalls);
-                error_log('**********************');
-                error_log($permlink_key);
-                error_log(json_encode($apioutput),0);
                 foreach($apioutput as $key => $value ){
                     if (strpos($key,$permlink_key) !== false) {
                             $data = $value;
-                           
-                           
                     }	
 		}
-               
-                  echo json_encode($data );
+                echo json_encode($data );
             }catch(EBDApiException $e) {
                     $data['status'] = 1;
                     $this->session->set_userdata('areaid',$areaid);
@@ -363,44 +367,6 @@ class home extends CI_Controller {
                     unset($apicalls);
                     unset($apioutput);
             }
-	}
-        
-        
-        
-        
-        
-        
-	public function testLogin(){
-		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
-		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
-		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("email" => "er.pradeep007@gmail.com");
-		$postfields = http_build_query($postfields);
-		$ch = curl_init();
-		$options = array(
-				CURLOPT_URL => $url,
-				CURLOPT_HEADER => true,
-				CURLOPT_POST => 1,
-				CURLOPT_HTTPHEADER => $headers,
-				CURLOPT_POSTFIELDS => $postfields,
-				CURLOPT_RETURNTRANSFER => true
-		); // cURL options
-		curl_setopt_array($ch, $options);
-		curl_exec($ch);
-		if(!curl_errno($ch))
-		{
-			$info = curl_getinfo($ch);
-			var_dump($info);
-			if ($info['http_code'] == 200)
-				$errmsg = "File uploaded successfully";
-		}
-		else
-		{
-			$errmsg = curl_error($ch);
-		}
-		curl_close($ch);
-		echo $errmsg;
 	}
 	
 	public function view360()
@@ -411,7 +377,10 @@ class home extends CI_Controller {
 	public function postRequirement()
 	{
 		$this->template->set('page','auth');
-		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->set_layout ( 'edbuddy' )
+                ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                ->set_partial ( 'header', 'partials/searchheader' )
+                ->set_partial ( 'footer', 'partials/footer_links' );
 		$this->template->build ( 'school/post-requirement.php' );
 	}
 	public function addRequirement() {
@@ -440,5 +409,78 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+        
+        function contactPost() {
+            $data = "";
+            $map['name'] = $this->input->post('firstName');
+            $map['mobile'] = $this->input->post('mobileNo');
+            $map['email'] = $this->input->post('emailId');
+            $map['schoolId'] = $this->input->post('schoolId');
+            $contact_key = 'post/contactus.json';
+            $apicalls = array(array('url' => $contact_key,
+                            'params' => http_build_query($map),
+                            'headers' => 'application/x-www-form-urlencoded'
+            )
+            );
+            
+            try {
+                $apioutput = $this->apiclient->process($apicalls, 'POST');
+                error_log(json_encode($apioutput), 0);
+                foreach ($apioutput as $key => $value) {
+                        if (strpos($key, $contact_key) !== false) {
+                                $data = $value;
+                        }
+                }
+            } catch (EBDApiException $e) {
+                    error_log($e);
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+            echo json_encode($data);
+        }
+        
+        function testFence() {
+                $this->template->set('page','detail');
+		$this->template->set_layout ( 'edbuddy' )
+                        ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                        ->set_partial ( 'header', 'partials/header_home' )
+                        ->set_partial ( 'footer', 'partials/footer' );
+		$this->template->build ( 'school/pages/test' );
+        }
+        
+        
+//        public function testLogin(){
+//		$errmsg = "";
+//		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
+//		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
+//		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
+//		$postfields = array("email" => "er.pradeep007@gmail.com");
+//		$postfields = http_build_query($postfields);
+//		$ch = curl_init();
+//		$options = array(
+//				CURLOPT_URL => $url,
+//				CURLOPT_HEADER => true,
+//				CURLOPT_POST => 1,
+//				CURLOPT_HTTPHEADER => $headers,
+//				CURLOPT_POSTFIELDS => $postfields,
+//				CURLOPT_RETURNTRANSFER => true
+//		); // cURL options
+//		curl_setopt_array($ch, $options);
+//		curl_exec($ch);
+//		if(!curl_errno($ch))
+//		{
+//			$info = curl_getinfo($ch);
+//			var_dump($info);
+//			if ($info['http_code'] == 200)
+//				$errmsg = "File uploaded successfully";
+//		}
+//		else
+//		{
+//			$errmsg = curl_error($ch);
+//		}
+//		curl_close($ch);
+//		echo $errmsg;
+//	}
+	
 	
 }

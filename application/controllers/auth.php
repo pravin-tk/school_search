@@ -27,7 +27,7 @@ class Auth extends CI_Controller {
         $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/header')
+                ->set_partial('header', 'partials/searchheader')
                 ->set_partial('footer', 'partials/footer_links');
         // ->set_partial('breadcrumb','../partials/breadcrumb');
         $this->template->set("page",'auth');
@@ -65,7 +65,7 @@ class Auth extends CI_Controller {
             $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/header')
+                ->set_partial('header', 'partials/searchheader')
                 ->set_partial('footer', 'partials/footer_links');
                 // ->set_partial('breadcrumb','../partials/breadcrumb');
                 $this->template->set("emailId1",$emailId);
@@ -199,7 +199,7 @@ class Auth extends CI_Controller {
         $this->template->set("page",'profile');
         $this->template->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/header')
+                ->set_partial('header', 'partials/searchheader')
                 ->set_partial('footer', 'partials/footer');
         $this->template->build('school/profile');
     }

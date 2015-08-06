@@ -302,8 +302,14 @@
 	margin:10px auto;
 	border:1px solid #e5e5e5;
 }
+
+.has-success .form-control {
+    background: none;
+}
 -->
 </style>
+
+
 <form style="position:absolute;top: 3px;left:150px;z-index:7000;" class="col-lg-4" action="<?php echo base_url();?>index.php/home/search" method="post">	
 	<input type="hidden" name="schoolId" id="schoolId" value="<?php echo $basicInfo['schoolId'];?>"/>
 	<div class="form-group">
