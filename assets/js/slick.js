@@ -562,7 +562,6 @@
         indexOffset = unevenOffset ? 0 : (_.slideCount - _.currentSlide) % _.options.slidesToScroll;
 
         switch (event.data.message) {
-
             case 'previous':
                 slideOffset = indexOffset === 0 ? _.options.slidesToScroll : _.options.slidesToShow - indexOffset;
                 if (_.slideCount > _.options.slidesToShow) {
@@ -580,7 +579,6 @@
             case 'index':
                 var index = event.data.index === 0 ? 0 :
                     event.data.index || $(event.target).parent().index() * _.options.slidesToScroll;
-
                 navigables = _.getNavigableIndexes();
                 prevNavigable = 0;
                 if(navigables[index] && navigables[index] === index) {
@@ -927,6 +925,11 @@
 
         if (_.options.dots === true && _.slideCount > _.options.slidesToShow) {
             $('li', _.$dots).on('click.slick', {
+                message: 'index'
+            }, _.changeSlide);
+        }
+        if ( _.slideCount > _.options.slidesToShow) {
+            $('li .button-slick').on('click.slick', {
                 message: 'index'
             }, _.changeSlide);
         }

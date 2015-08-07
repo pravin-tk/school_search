@@ -24,6 +24,11 @@
 .slider-nav {
     background-image: url(../img/icons/dot.gif) center repeat-x;
 }
+#dates{background: url(../../../../assets/img/icons/dot.gif) center repeat-x;margin-bottom:30px;width:100%;height:40px;text-align:center;}
+#dates li{display: inline;margin-left: 80px;border-radius: 50px;background:#1c7d74;min-height:80px;}
+
+.btn-circle btn{}
+.btn-circle a{color:#fff;padding:10px;}
 -->
 </style>
 <div class="panel panel-default">
@@ -181,7 +186,20 @@
 		           </section>
 			      <?php } ?>
 		  	</div>
+		  	<div class="col-md-12">
+		  	
+			<ul id="dates">
+			<?php if(isset($timelineInfo))
+			       foreach($timelineInfo as $key=>$timeline)
+			       {?>
+			<li class="btn btn-primary btn-circle"><a class="button-slick" data-role="none"><?php echo $timeline['year']; ?></a></li>
+			<?php } ?>
+			
+			</ul>
+		  	</div>
+		  	
 		</div>
+		
 		<div class="container">
 		  	<div class="panel">
 		   		<div class="overview-heading">
