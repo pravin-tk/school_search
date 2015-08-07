@@ -48,42 +48,7 @@ $('.timelineslider').slick({
 	  
 	  	  
 });
-//$('.timelineslider').slick({
-//adaptiveHeight: true,
-////centerMode: true,
-////centerPadding: '50px',
-//slidesToShow: 3,
-//asNavFor: '.slider-nav',
-//
-//responsive: [
-//{
-//  breakpoint: 1024,
-//  settings: {
-//    arrows: true,
-//    centerMode: true,
-//    slidesToShow: 3
-//  }
-//},
-//{
-//  breakpoint: 600,
-//  settings: {
-//    arrows: true,
-//    centerMode: true,
-//    slidesToShow: 1
-//  }
-//}
-//]
-//
-//
-//});
-//$('.slider-nav').slick({
-//slidesToShow: 3,
-//slidesToScroll: 1,
-//asNavFor: '.timelineslider',
-//dots: true,
-//centerMode: true,
-//focusOnSelect: true
-//});
+
 
 //fee flipster
 
@@ -169,6 +134,7 @@ $(document.body).on('change', '#standardId' ,function(){
 
 
 function initialize() {
+    $("#userName").focus();
     var ulat = $("#latitude").val();
     var ulng = $("#longitude").val();
     var mapCanvas = document.getElementById('map_canvas');
@@ -196,6 +162,114 @@ function initialize() {
 }
 google.maps.event.addDomListener(window, 'load', initialize);
 
+
+//validation for contact us form
+
+ $('#contactfrm').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+            },
+            submitHandler: function(validator, form, submitButton) {
+                   $('button[type="submit"]').prop('disabled', 'false')
+                    contactSubmit();
+             },
+            fields: {
+                    userName: {
+                    message: 'First name is not valid',
+                        validators: {
+                                notEmpty: {
+                                        message: 'Name is required and cannot be empty'
+                                },
+                                stringLength: {
+                                        min: 4,
+                                        max: 30,
+                                        message: 'Name must be more than 3 and less than 30 characters long'
+                                },
+                                regexp: {
+                                        regexp: /^[a-zA-Z\']+$/,
+                                        message: 'Name can only consist of alphabets,apostrophe, space '
+                                },
+
+                        }   
+                    },
+                   
+                    mobileNo: {
+                    message: 'mobile no. is not valid',
+                        validators: {
+                                notEmpty: {
+                                        message: 'mobile no. is required and cannot be empty'
+                                },
+                                stringLength: {
+                                        max: 10,
+                                        message: 'mobile number should be 10 digits long'
+                                },
+                                digits: {
+                                        message: 'mobile no. can consist only of digits '
+                                 },
+
+                        }   
+                    },
+                    emailId: {
+                            validators: {
+                                        notEmpty: {
+                                        message: 'The email address is required and can\'t be empty'
+                            },
+                                        emailAddress: {
+                                        message: 'The input is not a valid email address'
+                                           }
+                            }
+                    },
+                   
+                    
+                    }//fields
+                     
+        });
+        
+        function contactSubmit() {
+            var status ="";
+            var messg ="";
+            var id= "";
+           $.post(base_url+"contactus/post",
+                {
+                name: $("#userName").val(),
+                mobile: $("#mobileNo").val(),
+                email: $("#emailId").val(),
+                schoolId: $("#schoolId").val(),
+                },function(response){
+                    $.each(response, function(key, value) {
+                          
+                                if(key == "id")
+                                   id = value;
+                                else if(key == "message")
+                                   messg = value;
+                                else if(key == "status")
+                                   status = value;
+
+                            });
+                            console.log("status >"+status);
+                            console.log("Message >"+messg);
+                            if(status == 0){
+                                $("#derr").html(messg);
+                                $("#derr").show();
+                                $("#derr").addClass('help-block-error');
+                                console.log("@@@@22");
+                            }else if(status == 1){ //user not activated
+                                 $("#derr").html(messg);
+                                 $("#derr").show();
+                                $("#derr").addClass('help-block-success');
+                                 console.log("xxxxxxx");
+                            }else{
+                                $("#derr").html(messg);
+                                console.log("zzzzzz");
+                            }
+                        },'json'
+                        );
+                   // }
+                }
+      
 $(document).ready(function () {
     size_li = $("#reviewBoard .review-panel").size();
     x=4;

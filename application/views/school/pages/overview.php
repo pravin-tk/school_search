@@ -207,9 +207,11 @@
 		    	</div>
 		   		<div class="panel-body highlight-panel-body col-md-12">
 		     
-		          <?php foreach ($otherInfo['schoolAchievements'] as $key => $value){
+		          <?php 
+                          if(isset($otherInfo)){
+                          foreach ($otherInfo['schoolAchievements'] as $key => $value){
 		          ?>
-		          	<div class="col-md-12">
+		          <div class="col-md-12">
 			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
 			          		<div class="col-md-1">
 				                <div><?php echo $value['batch']?></div>
@@ -223,7 +225,10 @@
 			            </section> 
 		            </div>
 		          	<?php
-		          } ?>
+		          } 
+                          }else{?>
+                             Data not available
+                          <?php }?> 
 		         
 		  		</div>
 		  	</div>

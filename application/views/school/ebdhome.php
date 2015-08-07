@@ -146,81 +146,65 @@
 			<div class="page-section">
 				<section class="row gridalicious" id="slicktest"
 					data-toggle="gridalicious" data-width="300">
-        		<?php for ($i=0;$i<2;$i++) { ?>
+        		<?php 
+                        echo "<pre>";
+                       
+                        if(isset($topschools)) 
+                            foreach ($topschools as $key =>$school) { 
+                                  $id = $school['schoolId'];
+                                  $cityname =   preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['cityName']))); 
+                                  $localityname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['localityName']))); 
+                                  $schoolname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['name']))); 
+                                  $urllink =   $base_url.$cityname."/".$localityname."/".$schoolname."-".$id."/detail";
+                                        
+                            ?>
         		<div class="galcolumn" id="item0sSqCX"
-						style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-						<div class="panel panel-default relative"
-							style="margin-bottom: 15px; zoom: 1; opacity: 1;">
-							<div
-								class="ribbon-heading h4 inline absolute left margin-none ribbon-primary">State</div>
-							<div class="cover hover overlay margin-none"
-								style="height: 245px;">
-								<div class="overlay overlay-full overlay-bg-black"
-									style="height: 245px;">
-									<div class="v-center">
-										<h5 class="text-h4 margin-v-0-10 text-overlay text-uppercase">Shanti
-											Niketan High School</h5>
-										<p class="text-h5">
-											<span class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star text-primary"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span>
-										</p>
-									</div>
-								</div>
-								<a u class="overlay overlay-full overlay-bg-black overlay-hover"
-									href="schooldetailsTest" style="height: 245px;"> <span
-									class="v-center"> <span class="btn btn-circle btn-white"><i
-											class="fa fa-eye"></i></span>
-								</span>
-								</a> <a ui-sref="front.property" href="schooldetailsTest"> <img
-									src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg"
-									alt="location" class="img-responsive"
-									style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-								</a>
-							</div>
+			style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
+			<div class="panel panel-default relative" style="margin-bottom: 15px; zoom: 1; opacity: 1;">
+				<div class="ribbon-heading h4 inline absolute left margin-none ribbon-primary"><?php echo $school['cityName'] ?></div>
+					<div class="cover hover overlay margin-none" style="height: 245px;">
+						<div class="overlay overlay-full overlay-bg-black" style="height: 245px;">
+                                <div class="v-center">
+                                    <h5 class="text-h4 margin-v-0-10 text-overlay text-uppercase">
+                                        <?php echo $school['name'] ?> </h5>
+                                                <p> <?php echo $school['localityName'] ?></p>
+                                                            <p class="text-h5">
+                                                              <?php for($j=1;$j <= $school['rating'];$j++){ ?>
+                                                                    <span class="fa fa-fw fa-star text-primary"></span>
+                                                              <?php } ?>
+                                                               <?php for($k=$j;$k<= 5;$k++){ ?>
+                                                    <span class="fa fa-fw fa-star-o text-white"></span>
+                                                              <?php } ?>    
+
+
+                                                            </p>
+                                                    </div>
+                                            </div>
+                                            <a u class="overlay overlay-full overlay-bg-black overlay-hover"
+                                               href="<?php echo $urllink;?>" style="height: 245px;"> <span
+                                                    class="v-center"> <span class="btn btn-circle btn-white"><i
+                                                                    class="fa fa-eye"></i></span>
+                                            </span>
+                                            </a> 
+                                    <?php if ($school['homeImage'] == ""){ ?>
+                                  <a ui-sref="front.property" href="<?php echo $urllink;?>"> <img
+                                          src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg"
+                                          alt="location" class="img-responsive"
+                                          style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+                                  </a> <?php } else {?>
+                                     <a ui-sref="front.property" href="<?php echo $urllink;?>"> <img
+                                          src="<?php echo asset_url();?>img/<?php echo $school['homeImage']?>"
+                                          alt="location" class="img-responsive"
+                                          style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
+                                  </a> <?php }?> 
+                                    </div>
 						</div>
 					</div>
-					<div class="galcolumn" id="item2sSqCX"
-						style="width: 32.9059829059829%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-						<div class="panel panel-default relative"
-							style="margin-bottom: 15px; zoom: 1; opacity: 1;">
-							<div
-								class="ribbon-heading h4 inline absolute left margin-none ribbon-primary">State</div>
-							<div class="cover hover overlay margin-none"
-								style="height: 246px;">
-								<div class="overlay overlay-bg-black">
-									<div class="v-bottom">
-										<h5 class="text-h5 text-overlay margin-v-0-10 text-uppercase">Nagarwal
-											Junior School</h5>
-										<p class="text-h5">
-											<span class="fa fa-fw fa-star text-yellow-800"></span> <span
-												class="fa fa-fw fa-star text-yellow-800"></span> <span
-												class="fa fa-fw fa-star text-yellow-800"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span> <span
-												class="fa fa-fw fa-star-o text-white"></span>
-										</p>
-									</div>
-								</div>
-								<a class="overlay overlay-full overlay-bg-black overlay-hover"
-									href="schooldetailsTest" style="height: 246px;"> <span
-									class="v-center"> <span class="btn btn-circle btn-white"><i
-											class="fa fa-eye"></i></span>
-								</span>
-								</a> <a href="schooldetailsTest"> <img
-									src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg"
-									alt="location" class="img-responsive"
-									style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-								</a>
-							</div>
-						</div>
-					</div>
+
           <?php } ?>
           
           
-          <div id="clearsSqCX"
-						style="clear: both; height: 0px; width: 0px; display: block;"></div>
+          <div id="clearsSqCX" style="clear: both; height: 0px; width: 0px; display: block;"></div>
 				</section>
 				<br>
 

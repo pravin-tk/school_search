@@ -26,14 +26,12 @@ $("#sch").click(function () {
             stackup_spacing: 10 // spacing between consecutively stacked growls.
           });
     }  else {
-        
         address = $('#address').val();
-        var permlink = getPermlink(address,$("#cboStd option:selected").text());
-        console.log("perm="+permlink);
+//        var permlink = getPermlink(address,$("#cboStd option:selected").text());
+        
         if($("#cboStd").val() != "" && $("#latitude").val() != "" && $("#longitude").val() != ""){
-            document.getElementById('searchform').setAttribute('action',base_url+permlink);
-            $("#address").val(permlink);
-            $('#searchform').submit();
+            getPermlink($("#latitude").val(),$("#longitude").val(),$("#cboStd option:selected").val());
+          
         }
     }
 });
@@ -45,24 +43,51 @@ $(document).ready(function () {
 });
 
 
-function getPermlink(strAddress,stdname){
-    var arrStr = [];
-    var city = "";
-    var locality = "";
-    var permlink = "";
-    
-    arrStr = strAddress.split(',');
-    for(i=0;i<arrStr.length;i++){
-        console.log(arrStr[i]);
-    }
-    city = arrStr[1].trim().replace(" ","-");
-    locality = arrStr[0].replace(" ","-");
-    locality = arrStr[0].replace(".","-");
-    stdname = stdname.replace(" ","-");
-    stdname = stdname.replace(".","-");
-    permlink = city+"/"+locality+"/"+stdname;
-    permlink =permlink.toLowerCase();
-    return permlink.replace(/\s/g, '-').trim();
+//function getPermlink(strAddress,stdname){
+ function getPermlink(latitude,longitude,stdid){
+     console.log(latitude+ ","+longitude+","+stdid);
+    var permlink =null;
+    var status = 0;
+    var data ="";
+    $.post(base_url + "permlink",
+            {
+               lat: latitude,
+               lng: longitude,
+               std: stdid
+            }, function (response) {
+                
+                $.each(response, function (key, value) {
+                    if (key == "status") {
+                        status = value;
+                    }else if(key == "data" ){
+                        data = JSON.parse(value);
+                        $.each(data, function (key1, value1) {
+                            permlink = value1.toLowerCase(); 
+                        });
+                       
+                    }
+                });
+                if(permlink != null && permlink !="" && status ==1){
+                    document.getElementById('searchform').setAttribute('action',base_url+permlink);
+                    $("#address").val(permlink);
+                    $('#searchform').submit();
+                }else{
+                    $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
+                        ele: 'body', // which element to append to
+                        type: 'danger', // (null, 'info', 'danger', 'success')
+                        offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+                        align: 'center', // ('left', 'right', or 'center')
+                        width: 250, // (integer, or 'auto')
+                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                    });
+                }
+            }, 'json'
+        );
+       
+         //return permlink;       
+    //return permlink.replace(/\s/g, '-').trim();
    
 }
 

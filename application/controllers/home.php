@@ -21,7 +21,7 @@ class home extends CI_Controller {
 // 		header ( "Content-Type: text/html" );
 		
 		$standard_key = 'standardlist.json';
-        $top_school_key = 'topschools.json';
+                $top_school_key = 'topschools.json';
 		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
@@ -32,15 +32,14 @@ class home extends CI_Controller {
                                     $this->template->set('topschools',$value);
                             }
                         }
-			$data = $apioutput;
-                        
+
 		} catch ( EBDApiException $e ) {
 			echo $e->getMessage ();
 			unset ( $apicalls );
 			unset ( $apioutput );
 		}
 		$this->template->set('page','home');
-		//$this->template->set ( 'standards', $data );
+		
 		$this->template->set_layout ( 'edbuddy' )
                                 ->title ( 'Search for finest schools near you: Edbuddy.in' )
                                 ->set_partial ( 'header', 'partials/header_home' )
@@ -96,7 +95,7 @@ class home extends CI_Controller {
         $this->template
                    	->set_layout('edbuddy')
                    	->title('Search for finest schools near you: Edbuddy.in')
-                    ->set_partial('header','partials/searchheader')
+                        ->set_partial('header','partials/searchheader')
                    	->set_partial('footer','partials/footer');
        	$this->template->build('school/list');
         unset($apicalls);
@@ -212,30 +211,51 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
-	public function schoolDetail($id,$standardId) {
-		//$standardId = $_COOKIE['ebdstdid'];
-		$school_basic_key = 'school/basiclist.json/' . $id.'/'.$standardId;
-		$school_other_key = 'school.json/' . $id;
+        
+	public function schoolDetail($id) {
+		$standardId = $_COOKIE['ebdstdid'];
+                $param = $this->uri->segment(3); 
+                
+                $schoolarr = explode('-',$param);
+                $schoolid = $schoolarr[count($schoolarr)-1];
+                
+                $geocode = $_COOKIE['ebdsearchgeocode'];
+                if(strpos($geocode, ",")){
+                    $arrgeocode = explode(",",$geocode);
+                }
+                $map['latitude'] = $arrgeocode[0];
+                $map['longitude'] = $arrgeocode[1];
+		$school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
+		$school_other_key = 'school.json/' . $schoolid;
 		$standard_key = 'standardlist.json';
+                $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
 		
 		
 		$apicalls = array($school_basic_key,
-						  $school_other_key,
-						  $standard_key);
+				$school_other_key,
+				$standard_key,
+                                $nearbyschool_key);
 		
 		$schoolInfo = null;
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
 			foreach ( $apioutput as $key => $value ) {
 				if (strpos($key,'basiclist.json') !== false) {
-					$this->template->set ( 'basicInfo', $value );
+                                    $this->template->set ( 'basicInfo', $value );
+                                    error_log('school detail');
+                                    error_log(json_encode($value),0);
 				} elseif (strpos($key,$school_other_key) !== false) {
-					$this->template->set ('otherInfo', $value);
-					$schoolInfo = $value;
-                } elseif (strpos($key,$standard_key) !==false){
-                    $this->template->set('standard',$value);
-                }
+                                    error_log('school ohter');
+                                    error_log(json_encode($value),0);
+                                    $this->template->set ('otherInfo', $value);
+                                    $schoolInfo = $value;
+                                } elseif (strpos($key,$standard_key) !==false){
+                                    $this->template->set('standard',$value);
+                                } elseif (strpos($key,$nearbyschool_key) !==false){
+                                    $this->template->set('nearbySchool',$value);
+                                }
 			}
+                        
 			$this->template->set('overviewInfo',$schoolInfo['highlights']);
 			$this->template->set('contactInfo',$schoolInfo['contacts']);
 			$this->template->set('galleryinfo',$schoolInfo['images']);
@@ -255,7 +275,9 @@ class home extends CI_Controller {
 		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header_home' )->set_partial ( 'footer', 'partials/footer' );
 		$this->template->build ( 'school/school-details' );
 	}
- 
+        
+        
+        
 	public function rateSchool() {
 		$api_key = 'school/rate.json/';
 		$data= $_POST;
@@ -323,73 +345,28 @@ class home extends CI_Controller {
         }
         
         /* getting actual location stored in our db */
-//	public function get_location(){
-//                header("Cache-Control: private, max-age=900");
-//                header("Expires: ".gmdate('r', time()+900));
-//                $map['latitude'] = trim($this->input->get('lat',TRUE));
-//                $map['longitude'] = trim($this->input->get('long',TRUE));
-//                $geocode = $map['latitude'].', '.$map['longitude'];
-//                $geo = 'city/geolocation.json?'.http_build_query($map);
-//                $apicalls = array($geo);
-//                try {
-//                        $apioutput = $this->apiclient->process($apicalls);
-//                        $areas = $apioutput[$geo];
-//                        setcookie("tkuserdefaultcity", strtolower($areas['cityname']), time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        setcookie("tkuserdefaultcityid", $areas['cityid'], time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        $this->session->set_userdata('cityid',$areas['cityid']);
-//                        $this->session->set_userdata('cityname',strtolower($areas['cityname']));
-//                        setcookie("geolocation", $this->input->get('location',TRUE), time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        setcookie("geocode", $geocode, time()+60*60*24*30, "/", parse_ini_file("/etc/php5/fpm/tastykhana.ini")['domain'], 0);
-//                        $map['areaid'] = $areas['areaid'];
-//                        $map['permlink'] = $areas['permlink'];
-//                        $map['city_permlink'] = $areas['city_permlink'];
-//                        $map['cityname'] = strtolower($areas['city_permlink']);
-//                        echo json_encode($map);
-//                }catch(EBDApiException $e) {
-//                        $data['status'] = 1;
-//                        $this->session->set_userdata('areaid',$areaid);
-//                        setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
-//                        unset($apicalls);
-//                        unset($apioutput);
-//                }
-//	}
-        
-        
-        
-        
-        
-        
-	public function testLogin(){
-		$errmsg = "";
-		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
-		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
-		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
-		$postfields = array("email" => "er.pradeep007@gmail.com");
-		$postfields = http_build_query($postfields);
-		$ch = curl_init();
-		$options = array(
-				CURLOPT_URL => $url,
-				CURLOPT_HEADER => true,
-				CURLOPT_POST => 1,
-				CURLOPT_HTTPHEADER => $headers,
-				CURLOPT_POSTFIELDS => $postfields,
-				CURLOPT_RETURNTRANSFER => true
-		); // cURL options
-		curl_setopt_array($ch, $options);
-		curl_exec($ch);
-		if(!curl_errno($ch))
-		{
-			$info = curl_getinfo($ch);
-			var_dump($info);
-			if ($info['http_code'] == 200)
-				$errmsg = "File uploaded successfully";
+	public function getLocation(){
+            $map['latitude'] = trim($this->input->post('lat',TRUE));
+            $map['longitude'] = trim($this->input->post('lng',TRUE));
+            $map['standard'] = trim($this->input->post('std',TRUE));
+            $geocode = $map['latitude'].', '.$map['longitude'];
+            $permlink_key = 'geturi.json/'.$map['latitude'].'/'.$map['longitude'].'/'.$map['standard'];
+            $apicalls = array($permlink_key);
+            try {
+                $apioutput = $this->apiclient->process($apicalls);
+                foreach($apioutput as $key => $value ){
+                    if (strpos($key,$permlink_key) !== false) {
+                            $data = $value;
+                    }	
 		}
-		else
-		{
-			$errmsg = curl_error($ch);
-		}
-		curl_close($ch);
-		echo $errmsg;
+                echo json_encode($data );
+            }catch(EBDApiException $e) {
+                    $data['status'] = 1;
+                    $this->session->set_userdata('areaid',$areaid);
+                    setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
+                    unset($apicalls);
+                    unset($apioutput);
+            }
 	}
 	
 	public function view360()
@@ -400,7 +377,10 @@ class home extends CI_Controller {
 	public function postRequirement()
 	{
 		$this->template->set('page','auth');
-		$this->template->set_layout ( 'edbuddy' )->title ( 'Search for finest schools near you: Edbuddy.in' )->set_partial ( 'header', 'partials/header' )->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->set_layout ( 'edbuddy' )
+                ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                ->set_partial ( 'header', 'partials/searchheader' )
+                ->set_partial ( 'footer', 'partials/footer_links' );
 		$this->template->build ( 'school/post-requirement.php' );
 	}
 	public function addRequirement() {
@@ -429,5 +409,81 @@ class home extends CI_Controller {
 		}
 		echo json_encode($data);
 	}
+        
+        function contactPost() {
+            $data = "";
+            $map['name'] = $this->input->post('name');
+            $map['mobile'] = $this->input->post('mobile');
+            $map['email'] = $this->input->post('email');
+            $map['schoolId'] = $this->input->post('schoolId');
+            
+            $contact_key = 'post/contactus.json';
+            $apicalls = array(
+                            array(
+                            'url' => $contact_key,
+                            'params' => http_build_query($map),
+                            'headers' => 'application/x-www-form-urlencoded'
+                            )
+                        );
+           
+            try {
+                $apioutput = $this->apiclient->process($apicalls, 'POST');
+                
+                foreach ($apioutput as $key => $value) {
+                        if (strpos($key, $contact_key) !== false) {
+                                $data = $value;
+                        }
+                }
+            } catch (EBDApiException $e) {
+                    error_log($e);
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+            echo json_encode($data);
+        }
+        
+        function testFence() {
+                $this->template->set('page','detail');
+		$this->template->set_layout ( 'edbuddy' )
+                        ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                        ->set_partial ( 'header', 'partials/header_home' )
+                        ->set_partial ( 'footer', 'partials/footer' );
+		$this->template->build ( 'school/pages/test' );
+        }
+        
+        
+//        public function testLogin(){
+//		$errmsg = "";
+//		$url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/forgot.json";
+//		$headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4="); // cURL headers for file uploading
+//		//$postfields = array("filedata" => "@$filedata", "filename" => $filename);
+//		$postfields = array("email" => "er.pradeep007@gmail.com");
+//		$postfields = http_build_query($postfields);
+//		$ch = curl_init();
+//		$options = array(
+//				CURLOPT_URL => $url,
+//				CURLOPT_HEADER => true,
+//				CURLOPT_POST => 1,
+//				CURLOPT_HTTPHEADER => $headers,
+//				CURLOPT_POSTFIELDS => $postfields,
+//				CURLOPT_RETURNTRANSFER => true
+//		); // cURL options
+//		curl_setopt_array($ch, $options);
+//		curl_exec($ch);
+//		if(!curl_errno($ch))
+//		{
+//			$info = curl_getinfo($ch);
+//			var_dump($info);
+//			if ($info['http_code'] == 200)
+//				$errmsg = "File uploaded successfully";
+//		}
+//		else
+//		{
+//			$errmsg = curl_error($ch);
+//		}
+//		curl_close($ch);
+//		echo $errmsg;
+//	}
+	
 	
 }

@@ -302,17 +302,26 @@
 	margin:10px auto;
 	border:1px solid #e5e5e5;
 }
+
+.has-success .form-control {
+    background: none;
+}
 -->
 </style>
+
+
 <form style="position:absolute;top: 3px;left:150px;z-index:7000;" class="col-lg-4" action="<?php echo base_url();?>index.php/home/search" method="post">	
 	<input type="hidden" name="schoolId" id="schoolId" value="<?php echo $basicInfo['schoolId'];?>"/>
 	<div class="form-group">
 		<div class="col-lg-6 selectContainer">
 			<select class="selectpicker form-control" id="standardId" name="standardId">
 				<option value="">--Select--</option>
-                <?php  foreach ($standard as $key=>$value) { ?>
-           		<option value="<?php echo $value['id'] ?>" <?php if($value['id'] == $standardId){ echo "selected";}?>><?php echo $value['name'] ?></option>
-               	<?php  } ?>
+                <?php  
+                if(isset($standard)){
+                    foreach ($standard as $key=>$value) { ?>
+                            <option value="<?php echo $value['id'] ?>" <?php if($value['id'] == $standardId){ echo "selected";}?>><?php echo $value['name'] ?></option>
+                    <?php  }
+                }?>
 	  		</select>
 		</div>
 		
@@ -338,22 +347,22 @@
                <div class="col-lg-4 school-detail-overlay">
                		<div class="text-h5 text-overlay">
 		            <?php 
-						$ratingNumber = round($basicInfo['rating']);
-						$decimal = $basicInfo['rating'] - $ratingNumber;
-						$unratedStars = 5 - $ratingNumber;
-						if($decimal >= 0.5){
-							$unratedStars = $unratedStars - 1;
-						}
-						for ($i=0; $i < $ratingNumber; $i++){
-					?>
-						<span class="fa fa-fw fa-star text-yellow-800"></span>
-					<?php }?>
-					<?php if($decimal >= 0.5) { ?>
-					 	<span class="fa fa-fw fa-star-half-o text-yellow-800"></span> 
-					<?php }?>
-					<?php for ($i=0; $i < $unratedStars; $i++) {?>
-					 	<span class="fa fa-fw fa-star-o"></span>
-					<?php }?>
+                            $ratingNumber = round($basicInfo['rating']);
+                            $decimal = $basicInfo['rating'] - $ratingNumber;
+                            $unratedStars = 5 - $ratingNumber;
+                            if($decimal >= 0.5){
+                                    $unratedStars = $unratedStars - 1;
+                            }
+                            for ($i=0; $i < $ratingNumber; $i++){
+                    ?>
+                            <span class="fa fa-fw fa-star text-yellow-800"></span>
+                    <?php }?>
+                    <?php if($decimal >= 0.5) { ?>
+                            <span class="fa fa-fw fa-star-half-o text-yellow-800"></span> 
+                    <?php }?>
+                    <?php for ($i=0; $i < $unratedStars; $i++) {?>
+                            <span class="fa fa-fw fa-star-o"></span>
+                    <?php }?>
 		            </div>
                   <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
                   <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?> ,<?php echo $basicInfo['localityName'];?> ,<?php echo $basicInfo['cityName'];?></p>
