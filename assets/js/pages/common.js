@@ -172,6 +172,8 @@ $( document ).ready(function() {
 //end login js
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
+    	$(".page-scroll").removeClass('active');
+    	$(this).addClass('active');
         var $anchor = $(this);
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
@@ -182,9 +184,10 @@ $(function() {
 
 // Highlight the top nav as scrolling occurs
 $('body').scrollspy({
-    target: '.navbar-fixed-top',
+    target: '.property-meta',
     offset: 51
 });
+
 
 $(window).load(function() {
 	// Animate loader off screen

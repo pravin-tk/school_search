@@ -49,7 +49,7 @@
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>
 			              <div class="float-left" >    
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
+			                <img class="pano-next" data-id="http://54.68.33.139:8080/edbuddy/images/pano/pano_20150720_155325.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>  
 		            </div>
@@ -85,6 +85,7 @@ function init() {
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 
+
 	var image1 = new THREE.MeshBasicMaterial( {
 		map: THREE.ImageUtils.loadTexture( asset_url+'img/panorma/campus_new.jpg' )
 	} );
@@ -115,10 +116,12 @@ $(".pano-play").click(function(){
 
 	isUserInteracting = true;
 })
-$(".pano-next").click(function(){
+$(".pano-next").click(function(event){
 	event.preventDefault();
 	
 	imagecount = $(this).attr("data-id");
+	THREE.ImageUtils.crossOrigin = '';
+	
 	var image1 = new THREE.MeshBasicMaterial( {
 		map: THREE.ImageUtils.loadTexture( imagecount )
 	} );

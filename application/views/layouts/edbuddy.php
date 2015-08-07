@@ -121,7 +121,7 @@
 	var asset_url = '<?php echo asset_url();?>';
 </script>
 </head>
-<body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".property-meta">
 	<div class="se-pre-con">
 	<p class="text-center loadings" >Loading Schools </p>
 	</div>

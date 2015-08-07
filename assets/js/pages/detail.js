@@ -35,9 +35,10 @@ $('.demo').slick({
 });
 
 $('.timelineslider').slick({
+	 dots: false,
 	infinite: true,
 	  slidesToShow: 3,
-	  slidesToScroll: 3,
+	  slidesToScroll: 1,
 	  prevArrow: '<button type="button" data-role="none" class="slick-prev"><img src="'+asset_url+'img/icons/arrow_left.svg"></button>',
 	  nextArrow: '<button type="button" data-role="none" class="slick-next"><img src="'+asset_url+'img/icons/arrow_right.svg"></button>',
 	  autoplay: false,
@@ -194,3 +195,17 @@ function initialize() {
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+$(document).ready(function () {
+    size_li = $("#reviewBoard .review-panel").size();
+    x=4;
+    $('#reviewBoard .review-panel:lt('+x+')').show();
+    $('#loadMore').click(function () {
+        x= (x+5 <= size_li) ? x+5 : size_li;
+        $('#reviewBoard .review-panel:lt('+x+')').show();
+    });
+    $('#showLess').click(function () {
+        x=(x-5<0) ? 4 : x-5;
+        $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
+    });
+});

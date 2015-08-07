@@ -407,17 +407,21 @@
 	  </div>
 	</div>  
 </nav>
-  
+
+<div id="details-wrap">
 <!-- Begin page content -->
-<div class="divider" id="overview1"></div>
-<div class="row">
-	<?php include 'pages/overview.php';?>
+<div class="section"data-anchor="overview">
+	<div class="divider" id="overview1"></div>
+	<div class="row">
+		<?php include 'pages/overview.php';?>
+	</div>
 </div>
 
-
-<div class="divider" id="facility"></div>
-  <div class="row">
-		<?php include 'pages/facility.php';?>
+<div class="section" data-anchor="facility">
+	<div class="divider" id="facility"></div>
+	  <div class="row">
+			<?php include 'pages/facility.php';?>
+	</div>
 </div>
 
 <div class="divider" id="visualtour"></div>  
@@ -454,8 +458,7 @@
 
 
 </div><!--/wrap-->
-
-
+</div>
 
 <ul class="nav pull-right scroll-top">
   <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>

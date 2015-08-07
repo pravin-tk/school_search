@@ -122,3 +122,19 @@
 		    border-radius: 2px;
 		    border: 1px solid #cdcdcd;
 		    }
+/* load more */
+div.review-panel
+{
+	display: none;
+}
+#reviewBoard{
+	height:450px;
+	overflow:scroll;
+}
+#loadMore{
+	text-align: center;
+	background: #909397;
+	width:100%;
+	font: 600;
+}
+/*  */		    

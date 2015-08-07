@@ -92,8 +92,8 @@
                                 <select class="selectpicker form-control" id="cboStd" name="standardId" required>
                                         <option value="">--Select--</option>
                                         <?php  
-                                        if(isset($standards))
-                                            foreach ($standards as $key=>$value) { ?>
+                                        if(isset($standardlist))
+                                            foreach ($standardlist as $key=>$value) { ?>
                                             <option value="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></option>
                                             <?php  } ?>
                                 </select>
