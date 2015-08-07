@@ -4,11 +4,12 @@
       	<div class="demo">
       	<?php if(isset($nearbySchool))
                   foreach ($nearbySchool as $key =>$school) {
+                        $id = $school['schoolId'];
                         $cityname =  "pune";// preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['cityName']))); 
                         $localityname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['localityName']))); 
                         $schoolname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['name']))); 
-                        $urllink2 =   $base_url.$cityname."/".$localityname."/".$schoolname."/detail";
-                      
+                        $urllink2 =   $base_url.$cityname."/".$localityname."/".$schoolname."-".$id."/detail";
+                       
             
             ?>
         	<div class="item" style="width: 222px; padding-left: 15px;
@@ -28,7 +29,11 @@
                 		</a>
               		</div>
 	              	<div class="panel-body">
-                            <h4 class="margin-v-0-5" ><a href="<?php echo $urllink2;?>" alt ="<?php echo $school['name'] ?>" title ="<?php echo $school['name'] ?>" ><?php echo substr($school['name'],0,15); ?>....</a></h4>
+<!--                            <h4 class="margin-v-0-5" >-->
+                                <div class="infra-name">
+                                    <a href="<?php echo $urllink2;?>" alt ="<?php echo $school['name'] ?>" title ="<?php echo $school['name'] ?>" ><strong><?php echo substr($school['name'],0,15); ?>....</strong></a>
+                                </div>
+<!--                            </h4>-->
 	                	<p class="small">
                                       <?php for($j=1;$j <= $school['rating'];$j++){ ?>
                                             <span class="fa fa-fw fa-star text-yellow-800"></span>
