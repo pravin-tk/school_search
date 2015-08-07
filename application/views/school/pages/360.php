@@ -14,44 +14,46 @@
 						</div>					 
 					</div>
 					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
+						<?php for($i=0; $i<count($otherInfo['panorama']);$i++){?>
 						<div class="float-left">
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/campus_new.jpg"  src="<?php echo asset_url();?>img/panorma/campus_new.jpg" />
-			               <h4><a> Campus</a> </h4>
+			                <img class="pano-next" data-id="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
+			               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a> </h4>
 			            </div>
-			            <div class="float-left">
+			            <?php }?>
+<!-- 			            <div class="float-left"> 
 							<img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/classroom.jpg" src="<?php echo asset_url();?>img/panorma/classroom.jpg" />						  
-			               <h4><a>Class Room</a></h4>
+	 			               <h4><a>Class Room</a></h4> -->
 							
-							</div>
-						<div class="float-left">	
+<!-- 							</div> -->
+<!-- 						<div class="float-left">	 
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/computer.jpg"  src="<?php echo asset_url();?>img/panorma/computer.jpg" />
-			               <h4><a>Computer Lab</a></h4>
-			            </div>
-			            <div class="float-left">
+	 			               <h4><a>Computer Lab</a></h4> -->
+<!-- 			            </div> -->
+<!-- 			            <div class="float-left"> 
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar.jpg"  src="<?php echo asset_url();?>img/panorma/seminar.jpg" /> 
- 			                <h4><a>Seminar Hall 1</a></h4>
-			                </div>
+	  			                <h4><a>Seminar Hall 1</a></h4> -->
+<!-- 			                </div> -->
 			            
-			            <div class="float-left" >    
+<!-- 			            <div class="float-left" >     
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/lobby.jpg"  src="<?php echo asset_url();?>img/panorma/lobby.jpg" />
-			             	<h4><a>Lobby</a></h4>
-			            </div>
-			            <div class="float-left" >    
+	 			             	<h4><a>Lobby</a></h4> -->
+<!-- 			            </div> -->
+<!-- 			            <div class="float-left" >     
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar_b.jpg"  src="<?php echo asset_url();?>img/panorma/seminar_b.jpg" />
-			             	<h4><a>Seminar Hall 2</a></h4>
-			            </div>
-			            <div class="float-left" >    
+	 			             	<h4><a>Seminar Hall 2</a></h4> -->
+<!-- 			            </div> -->
+<!-- 			            <div class="float-left" >     
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/sitting.jpg"  src="<?php echo asset_url();?>img/panorma/sitting.jpg" />
-			             	<h4><a>Hostel Room</a></h4>
-			            </div>
-			            <div class="float-left" >    
+	 			             	<h4><a>Hostel Room</a></h4> -->
+<!-- 			            </div> -->
+<!-- 			            <div class="float-left" >     
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  src="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
-			             	<h4><a>Hostel bedroom</a></h4>
-			            </div>
-			              <div class="float-left" >    
+				             	<h4><a>Hostel bedroom</a></h4> -->
+<!-- 			            </div> -->
+<!-- 			              <div class="float-left" >
 			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
-			             	<h4><a>Hostel bedroom</a></h4>
-			            </div>  
+			             	<h4><a>Hostel bedroom</a></h4> -->
+<!-- 			            </div>   -->
 		            </div>
            		 </div>
                 </div>
@@ -61,7 +63,7 @@
 <script src="<?php echo asset_url();?>js/360.js"></script>
 <script>
 var camera, scene, renderer;
-var imagecount = 'panorama4.jpg';
+var imagecount = 'https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_190545.jpg';
 
 var isUserInteracting = false,
 onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -84,9 +86,9 @@ function init() {
 
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
-
+	THREE.ImageUtils.crossOrigin = '';
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture( asset_url+'img/panorma/campus_new.jpg' )
+		map: THREE.ImageUtils.loadTexture("https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_153036.jpg")
 	} );
 
 	

@@ -132,6 +132,19 @@ $classification = $filtersList['classificationFilter'];
 .search-bar-login i:hover{
 	color:#26a69a;
 }
+#loggedin_user{
+	color:white;
+}
+#loggedin_user:hover{
+	color:white;
+	background-color:#212121;
+}
+#loggedin_user_li open{
+	background-color:#212121;
+}
+#loggedin_user_li open:not ( :hover){
+	background-color:#212121;
+}
 -->
 </style>
 <script type="text/javascript">
@@ -149,12 +162,12 @@ $classification = $filtersList['classificationFilter'];
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = "<?php echo $this->session->set_userdata("ebdmypic");?>";
+        logged_pic = "<?php echo $this->session->userdata("ebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid" style="background-color:#212121;">
-      <div class="navbar-header" style="color:white;">
+    <div class="container-fluid" style="background-color:#212121;opacity:0.8;">
+      <div class="navbar-header" style="color:white;height:45px;">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" style="color:white;">
           <span class="sr-only">Toggle navigation</span>
@@ -167,7 +180,7 @@ $classification = $filtersList['classificationFilter'];
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav" id="searchInner">
-        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid" id="frmsearchInner">
+        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid" id="frmsearchInner" style="height:45px;">
           	<div class="search-1">
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
@@ -182,7 +195,7 @@ $classification = $filtersList['classificationFilter'];
 					  		</select>
 						</div>
 						<div class="col-lg-8">
-							<input id="schbox_inner" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
+							<input id="schbox_inner" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;height:35px;">
 						</div>
 					</div>
 	          	</div>
@@ -241,8 +254,8 @@ $classification = $filtersList['classificationFilter'];
              
              
               if(logged_in != null) { // logged in
-                    var private_data = '<li class="dropdown user" style="background-color:#fff;">';
-                    private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+                    var private_data = '<li class="dropdown user" style="color:#fff;" id="loggedin_user_li">';
+                    private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="loggedin_user">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
                     private_data += '<ul class="dropdown-menu" role="menu">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
@@ -429,12 +442,12 @@ $classification = $filtersList['classificationFilter'];
       	</ul>
       	<ul class="nav nav-tabs navbar-right">
 			<li style="padding-right:3px;">
-				<a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;">
+				<a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:-1;">
 					Map
 				</a>
 			</li>
 			<li style="padding-right:3px;">
-				<a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;">
+				<a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:-1;">
 					List
 				</a>
 			</li>

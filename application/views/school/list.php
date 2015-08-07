@@ -49,7 +49,7 @@ html, body {height: 100%;}
 }
 .map-view{
 	position:absolute;
-	top:90px;
+	top:87px;
 	width: 100%;
     height: auto;
     min-height:auto;
@@ -388,7 +388,7 @@ html, body {height: 100%;}
 }
 .right-main-content-inner{
 	position:fixed;
-	top:90px;
+	top:87px;
 	left:inherit;
 	width:inherit;
 	padding-right:15px;
@@ -553,7 +553,14 @@ html, body {height: 100%;}
                         <?php 
                         if(isset($schools)) {
                             foreach($schools as $key => $school){
-                        
+                            	$url = $permlink;
+                            	$schoolName = strtolower($school['name']);
+                            	$schoolName = str_replace(" ", "-",$schoolName);
+                            	$schoolName = str_replace("'", "",$schoolName);
+                            	$schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+                            	$urllink = $base_url.$url ."/".$schoolName;
+                            	
+                            	$rawUrl = $base_url."index.php/home/schoolDetail/". $school['schoolId']."/".$standardId;
                         ?>
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId']?>">
 
@@ -606,7 +613,7 @@ html, body {height: 100%;}
 	                                            	<?php echo $school['teachingApproach'];?>
 	                                            </div>
 	                                            <?php }?>
-												<a class="btn btn-primary list-primary-button" href="">
+												<a class="btn btn-primary list-primary-button" href="<?php echo $rawUrl;?>#gallery" target="_blank">
 													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages'];?>)
 	                                            </a>
 											</div>
@@ -631,7 +638,7 @@ html, body {height: 100%;}
 	                                            <div class="detail-value">
 	                                            	<?php echo $school['schoolCategory']?>
 	                                            </div>
-	                                            <a class="btn btn-primary list-primary-button" href="">
+	                                            <a class="btn btn-primary list-primary-button" href="<?php echo $rawUrl;?>#visualtour" target="_blank">
 													<i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
 	                                            </a>
 											</div>
@@ -661,7 +668,7 @@ html, body {height: 100%;}
 															echo $school['totalFee']." PA";
 													?> (approx.)
 	                                            </div>
-	                                            <a class="btn btn-primary list-primary-button" href="">
+	                                            <a class="btn btn-primary list-primary-button" href="<?php echo $rawUrl;?>#review" target="_blank">
 													<i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews']?>)
 	                                            </a>
 											</div>
@@ -700,7 +707,7 @@ html, body {height: 100%;}
 													</div>
 												</div>
 												<div class="text-center">
-													<a class="btn btn-primary list-primary-button" href="">
+													<a class="btn btn-primary list-primary-button" href="<?php echo $rawUrl;?>#contact" target="_blank">
 														<i class="fa fa-phone"></i> Contact
 		                                            </a>
 	                                            </div>

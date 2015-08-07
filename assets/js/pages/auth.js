@@ -98,7 +98,7 @@
                                         message: 'last name is required and cannot be empty'
                                 },
                                 stringLength: {
-                                        min: 6,
+                                        min: 0,
                                         max: 30,
                                         message: 'last name must be more than 6 and less than 30 characters long'
                                 },

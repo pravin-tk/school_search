@@ -60,7 +60,7 @@
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = readCookie('ebdmypic');
+        logged_pic = "<?php echo $this->session->userdata("ebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-static-top" style="position: absolute;width:100%;"role="navigation">

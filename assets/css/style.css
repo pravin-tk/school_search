@@ -103,7 +103,7 @@
 			text-transform: uppercase;
 			min-width:50px;
 			}
-			.btn {
+			#pano-btn {
 		    -webkit-transition: 0.2s;
 		    -o-transition: 0.2s;
 		    transition: 0.2s;
@@ -113,7 +113,7 @@
 		    cursor: pointer;
 		    display: inline-block;
 		    height: auto;
-		    line-height: 40px;
+		    line-height: 32px;
 		    outline: none;
 		    padding: 0 15px;
 		    text-align: center;
