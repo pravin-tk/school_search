@@ -412,20 +412,23 @@ class home extends CI_Controller {
         
         function contactPost() {
             $data = "";
-            $map['name'] = $this->input->post('firstName');
-            $map['mobile'] = $this->input->post('mobileNo');
-            $map['email'] = $this->input->post('emailId');
+            $map['name'] = $this->input->post('name');
+            $map['mobile'] = $this->input->post('mobile');
+            $map['email'] = $this->input->post('email');
             $map['schoolId'] = $this->input->post('schoolId');
+            
             $contact_key = 'post/contactus.json';
-            $apicalls = array(array('url' => $contact_key,
+            $apicalls = array(
+                            array(
+                            'url' => $contact_key,
                             'params' => http_build_query($map),
                             'headers' => 'application/x-www-form-urlencoded'
-            )
-            );
-            
+                            )
+                        );
+           
             try {
                 $apioutput = $this->apiclient->process($apicalls, 'POST');
-                error_log(json_encode($apioutput), 0);
+                
                 foreach ($apioutput as $key => $value) {
                         if (strpos($key, $contact_key) !== false) {
                                 $data = $value;

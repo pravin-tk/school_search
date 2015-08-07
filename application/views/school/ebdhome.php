@@ -147,12 +147,15 @@
 				<section class="row gridalicious" id="slicktest"
 					data-toggle="gridalicious" data-width="300">
         		<?php 
+                        echo "<pre>";
+                       
                         if(isset($topschools)) 
                             foreach ($topschools as $key =>$school) { 
+                                  $id = $school['schoolId'];
                                   $cityname =   preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['cityName']))); 
                                   $localityname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['localityName']))); 
                                   $schoolname = preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['name']))); 
-                                  $urllink =   $base_url.$cityname."/".$localityname."/".$schoolname."/detail";
+                                  $urllink =   $base_url.$cityname."/".$localityname."/".$schoolname."-".$id."/detail";
                                         
                             ?>
         		<div class="galcolumn" id="item0sSqCX"
