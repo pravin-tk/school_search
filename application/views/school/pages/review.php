@@ -65,8 +65,8 @@
         		</div>
         		<div class="col-md-6">
 					<div class="panel panel-default" id="reviewBoard">
-						<?php
-						if(isset($reviewInfo)){
+					<?php
+					if(isset($reviewInfo) && !empty($reviewInfo)){
 						foreach($reviewInfo as $key => $schoolReview){
 						?>
 						<div class="panel panel-default review-panel">
@@ -86,16 +86,16 @@
 		           		<?php 
 						}
 						echo "<div id='loadMore'>show more</div>";
-					 }else{
+					}else{
 					 	?>
 					 	<section class="panel panel-default">
-						<div class="panel-body">
-						 0 Review  		
-		            	</div>
-		           </section>
-					 	<?php
-					 }	
-						?>
+							<div class="panel-body">
+							 0 Review  		
+			            	</div>
+		           		</section>
+					<?php
+					}	
+					?>
 					</div>
 					<!-- div>
 						<input type="hidden" name="schoolId" id ="schoolId" value="<?php echo $basicInfo['schoolId'];?>"/>
