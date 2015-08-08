@@ -147,7 +147,7 @@
 				<section class="row gridalicious" id="slicktest"
 					data-toggle="gridalicious" data-width="300">
         		<?php 
-                        echo "<pre>";
+                     
                        
                         if(isset($topschools)) 
                             foreach ($topschools as $key =>$school) { 
@@ -200,7 +200,7 @@
                                     </div>
 						</div>
 					</div>
-
+             
           <?php } ?>
           
           

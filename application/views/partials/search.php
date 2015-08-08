@@ -1,12 +1,20 @@
 <?php 
                         if(isset($schools)) {
                             foreach($schools as $key => $school){
-                                $url = $permlink; 
+//                                $url = $permlink; 
+//                                $schoolName = strtolower($school['name']);
+//                                $schoolName = str_replace(" ", "-",$schoolName);
+//                                $schoolName = str_replace("'", "",$schoolName);
+//                                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+//                                $urllink = $base_url.$url ."/".$schoolName;
+                                $arrLinks = explode("/",$permlink);
                                 $schoolName = strtolower($school['name']);
-                                $schoolName = str_replace(" ", "-",$schoolName);
-                                $schoolName = str_replace("'", "",$schoolName);
+                                $schoolName = str_replace(" ", "-", $schoolName);
+                                $schoolName = str_replace("'", "", $schoolName);
                                 $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
-                                $urllink = $base_url.$url ."/".$schoolName;
+                                $urllink = $base_url.$arrLinks[0]."/".$arrLinks[1]."/". $schoolName."-".$school['schoolId']."/".$arrLinks[2];
+
+ 
                         
                         ?>
 
@@ -15,7 +23,7 @@
 									<div class="media media-clearfix-xs media-clearfix-sm">
 										<div class="media-left">
 											<p id="list-image">
-												<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
+												<a href="<?php echo $urllink?>" target="_blank">
                                                     <?php if($school['logo'] == ""){?>
                                                     <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
                                                     <?php }else{?>
@@ -31,7 +39,7 @@
 											<div class="col-sm-3" id="padding-left-08">
 												<div class="list-top-line">
 													<div class="school-name-text margin-title text-capitalize">
-														<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank">
+														<a href="<?php echo $urllink;?>" target="_blank">
 															<?php echo $school['name']?>
 			                                            </a>
 		                                            </div>
@@ -60,7 +68,7 @@
 	                                            	<?php echo $school['teachingApproach'];?>
 	                                            </div>
 	                                            <?php }?>
-												<a class="btn btn-primary list-primary-button" href="">
+                                                                                            <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery" target="_blank">
 													<i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']?>)
 	                                            </a>
 											</div>
@@ -85,8 +93,8 @@
 	                                            <div class="detail-value">
 	                                            	<?php echo $school['schoolCategory']?>
 	                                            </div>
-	                                            <a class="btn btn-primary list-primary-button" href="">
-													<i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
+	                                            <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour" target="_blank">
+							<i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
 	                                            </a>
 											</div>
 											<div class="col-sm-3" id="padding-left-08">
@@ -115,7 +123,7 @@
 															echo $school['totalFee']." PA";
 													?> (approx.)
 	                                            </div>
-	                                            <a class="btn btn-primary list-primary-button" href="">
+                                                                                            <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/review" target="_blank">
 													<i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews']?>)
 	                                            </a>
 											</div>
@@ -154,7 +162,7 @@
 													</div>
 												</div>
 												<div class="text-center">
-													<a class="btn btn-primary list-primary-button" href="">
+													<a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#contact" target="_blank">
 														<i class="fa fa-phone"></i> Contact
 		                                            </a>
 	                                            </div>

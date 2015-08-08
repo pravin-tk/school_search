@@ -44,6 +44,13 @@
         cursor: hand;
         color :#000;
     }
+    .has-success .form-control {
+        background:none;
+    }
+    .has-error .form-control {
+        background: none;
+    }
+  
 </style>
 <script type="text/javascript">
         var logged_in = null;

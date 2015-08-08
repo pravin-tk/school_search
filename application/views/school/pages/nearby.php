@@ -2,7 +2,10 @@
     <div class="container">
       	<h3 class="page-section-heading">Related schools</h3>
       	<div class="demo">
-      	<?php if(isset($nearbySchool))
+          
+      	<?php
+                
+                if(isset($nearbySchool))
                   foreach ($nearbySchool as $key =>$school) {
                         $id = $school['schoolId'];
                         $cityname =  "pune";// preg_replace('/[^A-Za-z0-9\-]/', '', strtolower(str_replace(" ","-",$school['cityName']))); 
