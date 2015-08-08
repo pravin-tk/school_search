@@ -29,7 +29,6 @@ class Auth extends CI_Controller {
                 ->title('Search for finest schools near you: Edbuddy.in')
                 ->set_partial('header', 'partials/header_home')
                 ->set_partial('footer', 'partials/footer_links');
-        // ->set_partial('breadcrumb','../partials/breadcrumb');
         $this->template->set("page",'auth');
         $this->template->build('school/register');
     }
@@ -109,7 +108,6 @@ class Auth extends CI_Controller {
                                 'headers' => 'application/x-www-form-urlencoded'));
         try {
             $apioutput = $this->apiclient->process($apicalls, 'POST');
-            
             if (isset($apioutput))
                 foreach ($apioutput as $key => $value) {
                     if (strpos($key, 'user/forgot.json') !== false) {//&& $apioutput[$key]['status'] == 1
