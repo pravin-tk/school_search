@@ -26,6 +26,9 @@
     .has-success .form-control {
         background: none;
     }
+    .top-spacing{
+        padding-top:5px;
+    }
 </style>
 
 <!-- uiView:  --><div class="ui-view-main"><!-- uiView:  -->
@@ -33,26 +36,14 @@
         
         <div id="content" >
             <section class="cover overlay height-70 height-270-xs">
-<!--                <img src="<?php echo asset_url(); ?>img/school/photodune-186709-residential-street-m.jpg" alt="cover">-->
-<!--                <div class="overlay overlay-full overlay-bg-black bg-transparent">
-                    <div class="container">
-                        <h1 class="text-h1 text-overlay">School</h1>
-                    </div>
-                </div>-->
-<!--                <div class="overlay overlay-bg-black">
-                    <div class="v-bottom">
-                        <div class="container">
-                            <p class="text-overlay">You searched for school near hadpsar. <span class="hidden-sm hidden-xs"></span></p>
-                        </div>
-                    </div>
-                </div>-->
+
             </section>
             <div class="container">
                 <div class="row">
                     
                     <div class="col-md-9">
 
-                        <div class="row">
+                        <div class="row top-spacing">
                             
                         </div>
 
@@ -122,3 +113,9 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+           $(".container-fluid").css("background", "black");
+        });
+    </script>
+        

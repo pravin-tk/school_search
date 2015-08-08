@@ -77,7 +77,7 @@
                                         message: 'first name is required and cannot be empty'
                                 },
                                 stringLength: {
-                                        min: 6,
+                                        min: 5,
                                         max: 30,
                                         message: 'first name must be more than 6 and less than 30 characters long'
                                 },
@@ -91,11 +91,11 @@
                     lastName: {
                     message: 'last name is not valid',
                         validators: {
-                                notEmpty: {
-                                        message: 'last name is required and cannot be empty'
-                                },
+//                                notEmpty: {
+//                                        message: 'last name is required and cannot be empty'
+//                                },
                                 stringLength: {
-                                        min: 6,
+                                        min: 2,
                                         max: 30,
                                         message: 'last name must be more than 6 and less than 30 characters long'
                                 },
@@ -171,8 +171,8 @@
                                     message: 'first name must be more than 6 and less than 30 characters long'
                             },
                             regexp: {
-                                    regexp: /^[a-zA-Z\']+$/,
-                                    message: 'first name can only consist of alphabets,apostrophe, space '
+                                    regexp: /^([a-zA-Z ']*)$/,
+                                    message: 'firsst name can only consist of alphabets,apostrophe, space '
                             }        	
                     }
                 } ,   
@@ -180,14 +180,14 @@
                 message: 'mobile no. is not valid',
                     validators: {
                             notEmpty: {
-                                    message: 'mobile no. is required and cannot be empty'
+                                    message: 'mobile number is required and cannot be empty'
                             },
                             stringLength: {
                                     max: 10,
                                     message: 'mobile number should be 10 digits long'
                             },
                             digits: {
-                                        message: 'mobile no. can consist only of digits '
+                                        message: 'mobile number can consist only of digits '
                             },
 
                     }   
@@ -196,11 +196,11 @@
                    // message: 'not valid',
                         validators: {
                                 notEmpty: {
-                                        message: 'Requirement should no empty'
+                                        message: 'details should not be empty'
                                 },
                                 stringLength: {
-                                    min: 3,
-                                    message: 'Requirement  should be 10 digits long'
+                                    min: 10,
+                                    message: 'details  should more than 10 characters long.'
                             },                        }   
                     },
                 

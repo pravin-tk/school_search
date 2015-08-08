@@ -458,7 +458,9 @@ $classification = $filtersList['classificationFilter'];
                         <?php
                         if (isset($schools)) {
                             foreach ($schools as $key => $school) {
+                                
                                 $arrLinks = explode("/",$permlink);
+                               // print_r($arrLinks);exit;
                                 $schoolName = strtolower($school['name']);
                                 $schoolName = str_replace(" ", "-", $schoolName);
                                 $schoolName = str_replace("'", "", $schoolName);
@@ -579,7 +581,7 @@ $classification = $filtersList['classificationFilter'];
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
                                                     <div class="school-name-text margin-title text-capitalize">
-                                                        <a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId ?>" target="_blank">
+                                                        <a href="<?php echo $urllink;?>" target="_blank">
         <?php echo $school['name'] ?>
                                                         </a>
                                                     </div>
@@ -608,7 +610,7 @@ $classification = $filtersList['classificationFilter'];
                                                     <?php echo $school['teachingApproach']; ?>
                                                     </div>
         <?php } ?>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
                                                     <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
                                                 </a>
                                             </div>
@@ -633,7 +635,7 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="detail-value">
         <?php echo $school['schoolCategory'] ?>
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
                                                     <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
                                                 </a>
                                             </div>
@@ -663,7 +665,7 @@ $classification = $filtersList['classificationFilter'];
                                                         echo $school['totalFee'] . " PA";
                                                     ?> (approx.)
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
                                                     <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
                                                 </a>
                                             </div>
@@ -702,7 +704,7 @@ $classification = $filtersList['classificationFilter'];
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <a class="btn btn-primary list-primary-button" href="">
+                                                    <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#contact">
                                                         <i class="fa fa-phone"></i> Contact
                                                     </a>
                                                 </div>
@@ -928,13 +930,13 @@ if (isset($schools)) {
                             $("#address").val(address);
 
                             $.cookie("ebdsearchgeocode", i, {expires: 180, path: '/'});
-                            $.cookie("ebdsearchgeoloc", a, {expires: 180, path: '/'});
+                            //$.cookie("ebdsearchgeoloc", a, {expires: 180, path: '/'});
                             /******/
 
                             document.cookie = "ebdsearchgeocode=" + i + ";expires=" + expires + "; path=/;";
-                            document.cookie = "ebdsearchgeoloc=" + a + ";expires=" + expires + "; path=/;";
-
-
+                            
+                            getPermlink(latitude,longitude, $("#standardId").val());
+                            
                             for (var i = 0; i < markers.length; i++) {
                                 markers[i].setMap(null);
                             }
@@ -1013,5 +1015,96 @@ if (isset($schools)) {
                         }
 
                     });
+                    
+                    //function getPermlink(strAddress,stdname){
+ function getPermlink(latitude,longitude,stdid){
+     console.log(latitude+ ","+longitude+","+stdid);
+    var permlink =null;
+    var status = 0;
+    var data ="";
+    $.post(base_url + "permlink",
+            {
+               lat: latitude,
+               lng: longitude,
+               std: stdid
+            }, function (response) {
+                
+                $.each(response, function (key, value) {
+                    if (key == "status") {
+                        status = value;
+                    }else if(key == "data" ){
+                        data = JSON.parse(value);
+                        $.each(data, function (key1, value1) {
+                            permlink = value1.toLowerCase(); 
+                        });
+                       
+                    }
+                });
+                if(permlink != null && permlink !="" && status ==1){
+                    
+                    $("#address").val(permlink);
+                    document.cookie = "ebdsearchgeoloc=" + permlink + ";expires=" + expires + "; path=/;";
+                }else{
+                    $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
+                        ele: 'body', // which element to append to
+                        type: 'danger', // (null, 'info', 'danger', 'success')
+                        offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+                        align: 'top', // ('left', 'right', or 'center')
+                        width: 250, // (integer, or 'auto')
+                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                    });
+                }
+            }, 'json'
+        );
+       
+         //return permlink;       
+    //return permlink.replace(/\s/g, '-').trim();
+   
+}
+
+$("#frmSch").affix({
+    offset: {
+        top: 200,
+    }
+});
+$("#search_header").affix({
+    offset: {
+        top: 200,
+    }
+});
+
+
+$('body').scrollspy({
+    target: '.navbar-fixed-top',
+    offset: 51
+});
+
+var cookie_domain = 'edbuddy.in';
+var d = new Date();
+d.setTime(d.getTime()+(1*24*60*60*1000));
+var expires = "expires="+d.toGMTString();
+
+google.maps.event.addDomListener(window, 'load', function () {
+    var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
+    console.log('189');
+    google.maps.event.addListener(places, 'place_changed', function () {
+        var place = places.getPlace();
+        var address = place.formatted_address;
+        var latitude = place.geometry.location.lat();
+        var longitude = place.geometry.location.lng();
+        var i = latitude+","+longitude;
+        var a = address;
+        var mesg = "Address: " + address;
+        mesg += "\nLatitude: " + latitude;
+        mesg += "\nLongitude: " + longitude;
+        $("#latitude").val(latitude);
+        $("#longitude").val(longitude);
+        $("#address").val(address);
+        document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;domain=edbuddy.in";
+        document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
+    });
+});
                     /**** del marker functions ****/
 </script>

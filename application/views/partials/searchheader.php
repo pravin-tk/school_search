@@ -1,10 +1,17 @@
 <?php
-$schools = $schoolList;
-$schoolMedium = $filtersList['mediumFilter'];
-$schoolBoard = $filtersList['boardFilter'];
-$schoolCategory = $filtersList['categoryFilter'];
-$classification = $filtersList['classificationFilter'];
+if(isset($schoolList))
+    $schools = $schoolList;
 
+if(isset($filtersList)) {
+    $schoolMedium = $filtersList['mediumFilter'];
+    $schoolBoard = $filtersList['boardFilter'];
+    $schoolCategory = $filtersList['categoryFilter'];
+    $classification = $filtersList['classificationFilter'];
+}
+if(!isset($latitude))
+    $latitude ="";
+if(!isset($longitude))
+     $longitude ="";
 ?>
 <style>
 <!--
@@ -132,6 +139,12 @@ $classification = $filtersList['classificationFilter'];
 .search-bar-login i:hover{
 	color:#26a69a;
 }
+.has-success .form-control {
+        background:none;
+    }
+    .has-error .form-control {
+        background: none;
+    }
 -->
 </style>
 <script type="text/javascript">

@@ -22,11 +22,11 @@
     }
 
     .form-group .form-control {
-       
         width: 250px;
-        
     }
-   
+    .top-spacing{
+        padding-top:5px;
+    }
 </style>
 
 <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
@@ -96,3 +96,8 @@
         </div>
     </div>
 
+<script>
+        $(document).ready(function(){
+           $(".container-fluid").css("background", "black");
+        });
+    </script>

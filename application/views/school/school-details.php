@@ -1,3 +1,4 @@
+
 <style>
 <!--
 @media screen and (min-width:992px){
@@ -311,7 +312,7 @@
 
 
 <form style="position:absolute;top: 3px;left:150px;z-index:7000;" class="col-lg-4" action="<?php echo base_url();?>index.php/home/search" method="post">	
-	<input type="hidden" name="schoolId" id="schoolId" value="<?php echo $basicInfo['schoolId'];?>"/>
+	<input type="hidden" name="schoolId" id="schoolId" value="<?php echo $schId;?>"/>
 	<div class="form-group">
 		<div class="col-lg-6 selectContainer">
 			<select class="selectpicker form-control" id="standardId" name="standardId">
