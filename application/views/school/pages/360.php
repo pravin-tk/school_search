@@ -20,40 +20,6 @@
 			               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a> </h4>
 			            </div>
 			            <?php }?>
-<!-- 			            <div class="float-left"> 
-							<img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/classroom.jpg" src="<?php echo asset_url();?>img/panorma/classroom.jpg" />						  
-	 			               <h4><a>Class Room</a></h4> -->
-							
-<!-- 							</div> -->
-<!-- 						<div class="float-left">	 
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/computer.jpg"  src="<?php echo asset_url();?>img/panorma/computer.jpg" />
-	 			               <h4><a>Computer Lab</a></h4> -->
-<!-- 			            </div> -->
-<!-- 			            <div class="float-left"> 
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar.jpg"  src="<?php echo asset_url();?>img/panorma/seminar.jpg" /> 
-	  			                <h4><a>Seminar Hall 1</a></h4> -->
-<!-- 			                </div> -->
-			            
-<!-- 			            <div class="float-left" >     
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/lobby.jpg"  src="<?php echo asset_url();?>img/panorma/lobby.jpg" />
-	 			             	<h4><a>Lobby</a></h4> -->
-<!-- 			            </div> -->
-<!-- 			            <div class="float-left" >     
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar_b.jpg"  src="<?php echo asset_url();?>img/panorma/seminar_b.jpg" />
-	 			             	<h4><a>Seminar Hall 2</a></h4> -->
-<!-- 			            </div> -->
-<!-- 			            <div class="float-left" >     
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/sitting.jpg"  src="<?php echo asset_url();?>img/panorma/sitting.jpg" />
-	 			             	<h4><a>Hostel Room</a></h4> -->
-<!-- 			            </div> -->
-<!-- 			            <div class="float-left" >     
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  src="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
-				             	<h4><a>Hostel bedroom</a></h4> -->
-<!-- 			            </div> -->
-<!-- 			              <div class="float-left" >
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
-			             	<h4><a>Hostel bedroom</a></h4> -->
-<!-- 			            </div>   -->
 		            </div>
            		 </div>
                 </div>
@@ -117,10 +83,12 @@ $(".pano-play").click(function(){
 
 	isUserInteracting = true;
 })
-$(".pano-next").click(function(){
+$(".pano-next").click(function(event){
 	event.preventDefault();
 	
 	imagecount = $(this).attr("data-id");
+	THREE.ImageUtils.crossOrigin = '';
+	
 	var image1 = new THREE.MeshBasicMaterial( {
 		map: THREE.ImageUtils.loadTexture( imagecount )
 	} );
@@ -264,7 +232,6 @@ function update() {
 	camera.lookAt( camera.target );
 
 	/*
-	// distortion
 	camera.position.copy( camera.target ).negate();
 	*/
 

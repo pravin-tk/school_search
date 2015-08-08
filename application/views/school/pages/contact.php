@@ -1,3 +1,5 @@
+
+
 <div class="col-md-12">
   	<div class="panel panel-default">
       	<div class="panel-heading">
@@ -26,34 +28,35 @@
 		                        	</div>
 		                    </div>
 		         		</div>
-			        	<div class="panel panel-default">
-		                <form class="form-horizontal" method="post">
-		                    <fieldset>
+			        	<div class="panel panel-default" id="divcontact">
+                                        <form class="form-horizontal" method="post" id="contactfrm">
+                                         <fieldset>
 		                    	<div class="panel-heading" style="border-bottom: 1px solid #e2e9e6;">
 		                        	<h3 class="text-center infra-heading"><strong>Contact Us</strong></h3>
 		                        </div>
+                                        <div id="derr"></div>
 		                        <div class="panel-body">
 			                        <div class="form-group">
 			                            <div class="col-md-10 col-md-offset-1">
-			                                <input id="name" name="name" type="text" placeholder="First Name" class="form-control">
+                                                        <input id="userName" name="userName" type="text" placeholder="your name" maxlength="30" class="form-control">
 			                            </div>
 			                        </div>
 			
 			                        <div class="form-group">
 			                            <div class="col-md-10 col-md-offset-1">
-			                                <input id="email" name="email" type="text" placeholder="Email Address" class="form-control">
+			                                <input id="emailId" name="emailId" type="text" placeholder="your email" maxlength="25" class="form-control">
 			                            </div>
 			                        </div>
 			
 			                        <div class="form-group">
 			                            <div class="col-md-10 col-md-offset-1">
-			                                <input id="phone" name="phone" type="text" placeholder="Phone" class="form-control">
+			                                <input id="mobileNo" name="mobileNo" type="text" placeholder="your mobile" maxlength="10" class="form-control">
 			                            </div>
 			                        </div>
 			
 			                        <div class="form-group">
 			                            <div class="col-md-12 text-center">
-			                                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                                                        <input type="submit" class="btn btn-primary btn-lg" id= "btnpost" value ="Submit" >
 			                            </div>
 			                        </div>
 			                  	</div>

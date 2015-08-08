@@ -97,6 +97,10 @@ h6 small,
 .property-meta .property-meta-item {
   padding: 9px;
 }
+.property-meta .property-meta-item .active {
+  color:#4193d0;
+  border-bottom: solid 5px #26a69a;
+}
 @media (min-width: 992px) {
   .property-meta .property-meta-item {
     border-right: 1px solid #eeeeee;
@@ -379,10 +383,10 @@ fieldset[disabled] .btn-inverse.active {
   border-radius: 50%;
 }
 .btn-circle.btn {
-  padding: 0;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
+    padding: 0;
+    width: 51px;
+    height: 40px;
+    line-height: 40px;
 }
 .btn-circle.btn-lg {
   width: 45px;

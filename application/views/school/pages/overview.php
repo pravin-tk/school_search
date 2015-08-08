@@ -24,6 +24,11 @@
 .slider-nav {
     background-image: url(../img/icons/dot.gif) center repeat-x;
 }
+#dates{background: url(../../../../assets/img/icons/dot.gif) center repeat-x;margin-bottom:30px;width:100%;height:40px;text-align:center;}
+#dates li{display: inline;margin-left: 80px;border-radius: 50px;background:#1c7d74;min-height:80px;}
+
+.btn-circle btn{}
+.btn-circle a{color:#fff;padding:10px;}
 -->
 </style>
 <div class="panel panel-default">
@@ -181,7 +186,20 @@
 		           </section>
 			      <?php } ?>
 		  	</div>
+		  	<div class="col-md-12">
+		  	
+			<ul id="dates">
+			<?php if(isset($timelineInfo))
+			       foreach($timelineInfo as $key=>$timeline)
+			       {?>
+			<li class="btn btn-primary btn-circle"><a class="button-slick" data-role="none"><?php echo $timeline['year']; ?></a></li>
+			<?php } ?>
+			
+			</ul>
+		  	</div>
+		  	
 		</div>
+		
 		<div class="container">
 		  	<div class="panel">
 		   		<div class="overview-heading">
@@ -189,9 +207,11 @@
 		    	</div>
 		   		<div class="panel-body highlight-panel-body col-md-12">
 		     
-		          <?php foreach ($otherInfo['schoolAchievements'] as $key => $value){
+		          <?php 
+                          if(isset($otherInfo)){
+                          foreach ($otherInfo['schoolAchievements'] as $key => $value){
 		          ?>
-		          	<div class="col-md-12">
+		          <div class="col-md-12">
 			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
 			          		<div class="col-md-1">
 				                <div><?php echo $value['batch']?></div>
@@ -205,7 +225,10 @@
 			            </section> 
 		            </div>
 		          	<?php
-		          } ?>
+		          } 
+                          }else{?>
+                             Data not available
+                          <?php }?> 
 		         
 		  		</div>
 		  	</div>
