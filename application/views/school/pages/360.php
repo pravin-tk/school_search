@@ -71,7 +71,7 @@ function init() {
 	//alert( window.innerWidth+"-"+ window.innerHeight);
 	container.appendChild( renderer.domElement );
 
-	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+	container.addEventListener( 'mousedown', onDocumentMouseDown, false );
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	document.addEventListener( 'mouseup', onDocumentMouseUp, false );
 	document.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
