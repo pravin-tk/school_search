@@ -805,7 +805,7 @@ if (isset($schools)) {
                 var hexMarkerColor = getColourTemp(<?php echo $maxColor; ?>,<?php echo $minColor; ?>,<?php echo $school['totalFee']; ?>);
                 var schoolText = "<?php echo $school['name']; ?>";
                 var localityText = "<?php echo $school['localityName']; ?>";
-                </script><?php if ($school['totalFee'] > 1000) { ?>
+                <?php if ($school['totalFee'] > 1000) { ?>
                     var schoolFeeMarker = "<?php echo round($school['totalFee'] / 1000, 2) . "K PA"; ?>";
                 <?php } else { ?>
                     var schoolFeeMarker = "<?php echo $school['totalFee'] . " PA"; ?>";

@@ -123,7 +123,7 @@
 															echo $school['totalFee']." PA";
 													?> (approx.)
 	                                            </div>
-                                                                                            <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/review" target="_blank">
+                                                                                            <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review" target="_blank">
 													<i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews']?>)
 	                                            </a>
 											</div>

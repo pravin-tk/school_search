@@ -254,17 +254,19 @@ class home extends CI_Controller {
                 $standardId ="";
                 if(isset($_COOKIE['ebdstdid']))
                     $standardId = $_COOKIE['ebdstdid'];
-                if(isset($_COOKIE['ebdsearchgeocode']))
+                if(isset($_COOKIE['ebdsearchgeocode'])){
                     $geocode = $_COOKIE['ebdsearchgeocode'];
+                    if(strpos($geocode, ",")){
+                        $arrgeocode = explode(",",$geocode);
+                    }
+                }
                 $param = $this->uri->segment(3); 
                 
                 $schoolarr = explode('-',$param);
                 $schoolid = $schoolarr[count($schoolarr)-1];
                 
                
-                if(strpos($geocode, ",")){
-                    $arrgeocode = explode(",",$geocode);
-                }
+               
                
                 if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
                     $map['latitude'] = $arrgeocode[0];
