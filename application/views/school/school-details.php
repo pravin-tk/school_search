@@ -342,10 +342,10 @@
 	      </div>
 	    </div> 
     <div class="overlay overlay-bg-black overlay-full-xs">
-      <div class="v-bottom v-top-xs">
+      <div class="v-bottom">
         <div class="container">
             <div class="col-lg-12">
-               <div class="col-lg-4 school-detail-overlay">
+               <div class="col-lg-12 school-detail-overlay">
                		<div class="text-h5 text-overlay">
 		            <?php 
                             $ratingNumber = round($basicInfo['rating']);
@@ -368,12 +368,16 @@
                   <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
                   <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?> ,<?php echo $basicInfo['localityName'];?> ,<?php echo $basicInfo['cityName'];?></p>
           	   </div>
-          	   <div style="float: right">                
-          	     <h4 class="text-h4 text-overlay"<a href="#visualtour"><img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png"></a></h4>
-          	   </div>
           	</div>
           	<div >
                 <p class="text-subhead text-overlay"></p>
+          	</div>
+          	<div class="v-bottom-right" style="position:absolute;right:0px;bottom:0px;">                
+          	     <h4 class="text-h4 text-overlay">
+          	     	<a href="#visualtour">
+          	     		<img alt="360 view " src="<?php  echo asset_url();?>img/icons/360.png">
+          	     	</a>
+          	     </h4>
           	</div>
         </div>
       </div>
