@@ -362,6 +362,9 @@ $classification = $filtersList['classificationFilter'];
     #list-image{
         position:relative;
     }
+    #list-image img{
+    	border:1px solid #e2e9e6;
+    }
     #map-image{
         position:relative;
     }

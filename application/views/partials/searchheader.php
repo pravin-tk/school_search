@@ -270,7 +270,7 @@ if(!isset($longitude))
                     var private_data = '<li class="dropdown user" style="color:#fff;" id="loggedin_user_li">';
                     private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="loggedin_user">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
-                    private_data += '<ul class="dropdown-menu" role="menu">';
+                    private_data += '<ul class="dropdown-menu" role="menu" style="z-index:200;">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
 //                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
                     private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
@@ -452,15 +452,15 @@ if(!isset($longitude))
                 </a>
             </li>
       	</ul>
-      	<ul class="nav nav-tabs navbar-right">
+      	<ul class="nav nav-tabs navbar-left">
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:-1;">
-                        Map
+                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;">
+                   	<i class="fa fa-2x fa-map-marker"></i>
                 </a>
             </li>
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:-1;">
-                        List
+                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;">
+                   	<i class="fa fa-2x fa-th-list"></i>
                 </a>
             </li>
       	</ul>
