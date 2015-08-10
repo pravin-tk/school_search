@@ -27,9 +27,8 @@ class Auth extends CI_Controller {
         $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/searchheader')
+                ->set_partial('header', 'partials/header_home')
                 ->set_partial('footer', 'partials/footer_links');
-        // ->set_partial('breadcrumb','../partials/breadcrumb');
         $this->template->set("page",'auth');
         $this->template->build('school/register');
     }
@@ -109,20 +108,20 @@ class Auth extends CI_Controller {
                                 'headers' => 'application/x-www-form-urlencoded'));
         try {
             $apioutput = $this->apiclient->process($apicalls, 'POST');
-            error_log(json_encode($apioutput));
             if (isset($apioutput))
                 foreach ($apioutput as $key => $value) {
                     if (strpos($key, 'user/forgot.json') !== false) {//&& $apioutput[$key]['status'] == 1
                         $responsedata = $value;
                     }
                 }
+                echo json_encode($responsedata);
         } catch (EBDApiException $e) {
             echo $e->getMessage();
 
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($responsedata);
+        
     }
 
     public function userlogin() {
@@ -147,23 +146,24 @@ class Auth extends CI_Controller {
                      
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
                     $this->session->set_userdata('sessEmailID', $map['email']);
+                    $this->session->set_userdata("ebdmypic",$responsedata->image);
                     $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], 60 * 60 * 24);
                     $this->input->set_cookie("ebdusername",$responsedata->firstName, 60*60*24);
                     $this->input->set_cookie("ebdmypic",$responsedata->image, 60*60*24);
                 }else if(strpos($key, 'user/login.json') !== false ){
-                    
                     $responsedata->loginstatus=0;
                     $responsedata->message=$value['errors'][0];
                    
                 }
                
             }
+             echo json_encode($responsedata);
         } catch (EBDApiException $e) {
             echo $e->getMessage();
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($responsedata);
+       
     }
 
     public function userLogout() {
@@ -177,7 +177,13 @@ class Auth extends CI_Controller {
     }
 
     public function userProfile() {
-        $userid = ($this->session->userdata('sessuserID') != '') ? $this->session->userdata('sessuserID') : $_COOKIE['ebduserid'];
+        if(isset($_COOKIE['ebduserid']))
+            $cookieUserId = $_COOKIE['ebduserid'];
+        
+        $userid = ($this->session->userdata('sessuserID') != '') ? $this->session->userdata('sessuserID') :$_COOKIE['ebduserid'] ;
+        if($userid == ""){
+            $this->userLogout();
+        }
         $profile_key = 'user/profile.json/' . $userid;
         $apicalls = array($profile_key);
         try {
@@ -199,7 +205,7 @@ class Auth extends CI_Controller {
         $this->template->set("page",'profile');
         $this->template->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/searchheader')
+                ->set_partial('header', 'partials/header_home')
                 ->set_partial('footer', 'partials/footer');
         $this->template->build('school/profile');
     }
@@ -223,18 +229,19 @@ class Auth extends CI_Controller {
         );
         try {
             $apioutput = $this->apiclient->process($apicalls, 'POST');
-            error_log(json_encode($apioutput), 0);
+            
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, $profile_key) !== false) {
                     $data = $value;
                 }
             }
+            echo json_encode($data);
         } catch (EBDApiException $e) {
-            error_log($e);
+//            error_log($e);
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($data);
+        
     }
 
     public function profileUpdate() {
@@ -246,6 +253,7 @@ class Auth extends CI_Controller {
         $map['email'] = $this->input->post('email');
         $map['id'] = $userid;
         $map['image'] = '';
+        if(isset($_FILES['file']))
         if ($_FILES['file']['size'] > 0)
             $map['image'] = new CurlFile($_FILES['file']['tmp_name'], 'file/exgpd', $_FILES['file']['name']);
 
@@ -264,12 +272,13 @@ class Auth extends CI_Controller {
                     $data = $value;
                 }
             }
+             echo json_encode($data);
         } catch (EBDApiException $e) {
 
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($data);
+       
     }
 
     public function updatePassword() {
@@ -290,81 +299,15 @@ class Auth extends CI_Controller {
                     $data['data'] = $value;
                 }
             }
+             echo json_encode($data);
         } catch (EBDApiException $e) {
-            error_log(json_encode($e));
+           
             unset($apicalls);
             unset($apioutput);
         }
-        echo json_encode($data);
+       
     }
 
-    public function testAPI() {
-
-        $errmsg = "";
-        $url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/user/activate.json";
-        // $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=","Content-Type:multipart/form-data"); 
-        $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=");
-        $postfields = array(
-            "email" => "briteny@mtv.com",
-            "password" => "7DB3PDT0",
-        );
-        $ch = curl_init();
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_HEADER => true,
-            CURLOPT_POST => 1,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => $postfields,
-            // CURLOPT_INFILESIZE => $filesize,
-            CURLOPT_RETURNTRANSFER => true
-        ); // cURL options
-        curl_setopt_array($ch, $options);
-        curl_exec($ch);
-        if (!curl_errno($ch)) {
-            $info = curl_getinfo($ch);
-            var_dump($info);
-            if ($info['http_code'] == 200)
-                $errmsg = "File uploaded successfully";
-        } else {
-            $errmsg = curl_error($ch);
-        }
-        curl_close($ch);
-        echo $errmsg;
-    }
-
-    public function testAPPI() {
-
-        $errmsg = "";
-        $url = "http://192.168.1.199:8080/edbuddy/webapi/api1.0/user/login.json";
-        // $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=","Content-Type:multipart/form-data"); 
-        $headers = array("EBD-API-KEY: PANKY YWRtaW46YWRtaW4=",
-             'headers' => 'multipart/form-data' );
-        $postfields = array(
-            "email" => "er.pradeep007@gmail.com",
-            "password" => "pradeep","socialType" =>0
-        );
-        $ch = curl_init();
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_HEADER => true,
-            CURLOPT_POST => 1,
-            CURLOPT_HTTPHEADER => $headers,
-            CURLOPT_POSTFIELDS => $postfields,
-            // CURLOPT_INFILESIZE => $filesize,
-            CURLOPT_RETURNTRANSFER => true
-        ); // cURL options
-        curl_setopt_array($ch, $options);
-        $op=curl_exec($ch);
-        if (!curl_errno($ch)) {
-            $info = curl_getinfo($ch);
-            
-            if ($info['http_code'] == 200)
-                var_dump($op);
-        } else {
-            $errmsg = curl_error($ch);
-        }
-        curl_close($ch);
-        echo $errmsg;
-    }
+    
 
 }

@@ -33,6 +33,7 @@
         border-color: #a94442;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
         background: #efefef; 
+        width:50%;
     }
 
     .has-error .input-group-addon {
@@ -43,8 +44,15 @@
     .form-group {
         width :65%;
     }
+    .form-control {
+        width :455px;
+    }
     .has-success .form-control {
         background: none;
+    }
+    
+    .top-spacing{
+        padding-top:5px;
     }
     
    
@@ -54,19 +62,7 @@
         <?php //include 'header.php';  ?>
         <div id="content" >
             <section class="cover overlay height-70 height-270-xs">
-<!--                <img src="<?php echo asset_url(); ?>img/school/photodune-186709-residential-street-m.jpg" alt="cover">
-                <div class="overlay overlay-full overlay-bg-black bg-transparent">
-                    <div class="container">
-                        <h1 class="text-h1 text-overlay">School</h1>
-                    </div>
-                </div>
-                <div class="overlay overlay-bg-black">
-                    <div class="v-bottom">
-                        <div class="container">
-                            <p class="text-overlay">You searched for school near hadpsar. <span class="hidden-sm hidden-xs"></span></p>
-                        </div>
-                    </div>
-                </div>-->
+
             </section>
 
             <div class="container">
@@ -90,7 +86,7 @@
                                                    
                                                         <input type="text" pattern="^([_A-z0-9]){3,}$" maxlength="25" 
                                                                class="form-control" id="firstName" name="firstName" 
-                                                               required value ="<?php echo $profileInfo['firstName'] ?>" disabled="disabled">
+                                                               required value ="<?php echo $profileInfo['firstName'] ?>" >
                                                     
                                                     <span class="help-block with-errors"></span>
                                                 </div>
@@ -126,7 +122,9 @@
                                                    
                                                         <input type="file"  
                                                                class="form-control" id="imageFile" placeholder="Upload image" name="imageFile" required>
-                                                    
+                                                     <?php if($profileInfo['image']!="" && $profileInfo['image']!= null){ ?>
+                                                         <img src="<?php echo $profileInfo['image'] ?>" />
+                                                        <?php }?>
                                                     <span class="help-block with-errors"></span>
                                                 </div>
 
@@ -192,9 +190,8 @@
                                                 <div class="form-group">
                                                 
                                                     <input type="submit" id="profile_update" class="btn btn-primary" value="Update" />
-                                                  <input type="button" id="changePwd" class="btn btn-primary" value="Change Password"/>
-                                                   <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
-                               onclick="location.href = '<?php echo $base_url;?>';" /> 
+                                                  <!--<input type="button" id="changePwd" class="btn btn-primary" value="Change Password"/>-->
+                                         <input type="button" id="btncancel" class="btn btn-default" value="Cancel"/> 
                                                 </div>
                                             </form>
                                         </div>
@@ -224,8 +221,7 @@
                             <div class="form-group">
 
                                 <input type="submit" id="btnchangePwd" class="btn btn-primary" value="Change Password" />
- <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
-                               onclick="location.href = '<?php echo $base_url;?>';" />
+ <input type="button" id="btncancel" class="btn btn-default" value="Cancel" />
                             </div>
                         </form>
                     </div>
@@ -253,3 +249,30 @@
     }*/
         
     </style>
+<script>
+        $(document).ready(function(){
+           $(".container-fluid").css("background", "black");
+        });
+        
+         $("#edit_profile_form").on("click", "#btncancel", function () {
+             
+            $("#divedit").hide();
+            $("#divview").show();
+            $("#divchangepwd").hide();
+            $('.form-group').removeClass('has-error has-feedback has-success');
+            $("form#edit_profile_form").bootstrapValidator("destroy");
+            $("form#edit_profile_form")[0].reset();
+            $( ".help-block" ).html( "" );
+        });
+        
+         $("#password_change_form").on("click", "#btncancel", function () {
+             
+            $("#divedit").hide();
+            $("#divview").show();
+            $("#divchangepwd").hide();
+            $('.form-group').removeClass('has-error has-feedback has-success');
+            $("form#edit_profile_form").bootstrapValidator("destroy");
+            $("form#edit_profile_form")[0].reset();
+            $( ".help-block" ).html( "" );
+        });
+    </script>

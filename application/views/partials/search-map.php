@@ -2,12 +2,12 @@
 
 if (isset ( $schools )) {
 	foreach ( $schools as $key => $school ) {
-            $url = $permlink; 
-            $schoolName = strtolower($school['name']);
-            $schoolName = str_replace(" ", "-",$schoolName);
-            $schoolName = str_replace("'", "",$schoolName);
-            $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
-            $urllink = $base_url.$url ."/".$schoolName;
+            $arrLinks = explode("/",$permlink);
+                                $schoolName = strtolower($school['name']);
+                                $schoolName = str_replace(" ", "-", $schoolName);
+                                $schoolName = str_replace("'", "", $schoolName);
+                                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+                                $urllink = $base_url.$arrLinks[0]."/".$arrLinks[1]."/". $schoolName."-".$school['schoolId']."/".$arrLinks[2];
 		
 		?>
 <div class="panel panel-default"
@@ -16,7 +16,7 @@ if (isset ( $schools )) {
 		<div class="media media-clearfix-xs media-clearfix-sm">
 			<div class="media-left">
 				<p id="map-image">
-					<a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']?>/<?php echo $standardId; ?>" target="_blank">
+					<a href="<?php echo $urllink;?>" target="_blank">
                    	<?php if($school['logo'] == ""){?>
                         <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                   	<?php }else{?>
@@ -55,7 +55,7 @@ if (isset ( $schools )) {
 				</div>
 				<h4 class="school-name-text media-heading margin-v-0-10">
 					<a
-						href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId?>" target="_blank"><?php echo $school['name']?>
+						href="<?php echo $urllink;?>" target="_blank"><?php echo $school['name']?>
                                                     </a>
 				</h4>
 				<h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'].", ".$school['cityName']);?></h5>

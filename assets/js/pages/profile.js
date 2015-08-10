@@ -1,13 +1,11 @@
-   // A $( document ).ready() block.
-        $( document ).ready(function() {
-                   
-        });
-        
-        
-      //  $("#edit_profile_form").on("click", "#profile_update", function () {
+ 
         function updateProfile(){    
             var formData = new FormData();
-            formData.append('file', $('#edit_profile_form input[type=file]')[0].files[0]);
+            var filedata =$('#edit_profile_form input[type=file]')[0].files[0];
+            if (filedata != undefined){
+                formData.append('file', $('#edit_profile_form input[type=file]')[0].files[0]);
+            }
+            
             formData.append('firstName', $("#firstName").val());
             formData.append('lastName', $("#lastName").val());
             formData.append('mobileNo', $("#mobileNo").val());
@@ -48,7 +46,7 @@
                       console.log(data);
                 }
             });
-       // });
+      
         }                                      
 
         $("#edit_profile_form").on("click", "#btnCancelProfile", function () {
@@ -79,7 +77,7 @@
             $("#divchangepwd").show();
         });
         
-      //  $("#password_change_form").on("click", "#btnchangePwd", function () {
+     
       function changePassword() {
            //ajax code to update password
                 $.post(base_url+"index.php/auth/updatePassword",
@@ -204,20 +202,15 @@
                                         regexp: /^[a-zA-Z\']+$/,
                                         message: 'first name can only consist of alphabets,apostrophe, space '
                         },
-//                        different: {
-//                                    field: 'password',
-//                                    message: 'The username and password can\'t be the same as each other'
-//                                    }
+
                         }   
                     },
                     lastName: {
                     message: 'last name is not valid',
                         validators: {
-                                notEmpty: {
-                                        message: 'last name is required and cannot be empty'
-                                },
+                               
                                 stringLength: {
-                                        min: 6,
+                                        min: 0,
                                         max: 30,
                                         message: 'last name must be more than 6 and less than 30 characters long'
                                 },
@@ -225,43 +218,27 @@
                                         regexp: /^[a-zA-Z\']+$/,
                                         message: 'last name can only consist of alphabets,apostrophe, space '
                         },
-//                        different: {
-//                                    field: 'password',
-//                                    message: 'The username and password can\'t be the same as each other'
-//                                    }
-                        }   
+                      }   
                     },
                     mobileNo: {
                     message: 'mobile no. is not valid',
                         validators: {
                                 notEmpty: {
-                                        message: 'mobile no. is required and cannot be empty'
+                                        message: 'mobile number is required and cannot be empty'
                                 },
                                 stringLength: {
                                         max: 10,
                                         message: 'mobile number should be 10 digits long'
                                 },
-                                regexp: {
-                                        regexp: /^[0-9]+$/,
-                                        message: 'mobile no. can consist only of digits '
-                        },
+                                digits: {
+                                        message: 'mobile number can consist only of digits '
+                                },
                          }   
                     },
-//                    emailId: {
-//                            validators: {
-//                                        notEmpty: {
-//                                        message: 'The email address is required and can\'t be empty'
-//                            },
-//                                        emailAddress: {
-//                                        message: 'The input is not a valid email address'
-//                                           }
-//                            }
-//                    },
+
                    imageFile: {
                             validators: {
-//                                    notEmpty: {
-//                                        message: 'Image file should be uploaded'
-//                                },
+
                                     file: {
                                         extension: 'jpg,jpeg, png',
                                         type: 'image/jpg,image/jpeg, image/png',
@@ -302,6 +279,7 @@
                     } else {
                         $("#pwd_form_error").html(messg);
                         $("#pwd_form_error").addClass('help-block-success');
+                        window.history.back();
                     }
                 }, 'json'
                         );

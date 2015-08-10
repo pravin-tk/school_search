@@ -1,5 +1,3 @@
-<?php ?>
-
 <style>
     #map-canvas {
         width: 90%;
@@ -22,15 +20,14 @@
     }
 
     .form-group .form-control {
-       
         width: 250px;
-        
     }
-   
+    .top-spacing{
+        padding-top:5px;
+    }
 </style>
 
 <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
-        <?php //include 'header.php';  ?>
         <div id="content" >
             <section class="cover overlay height-70 height-70-xs"></section>
 
@@ -96,3 +93,8 @@
         </div>
     </div>
 
+<script>
+        $(document).ready(function(){
+           $(".container-fluid").css("background", "black");
+        });
+    </script>

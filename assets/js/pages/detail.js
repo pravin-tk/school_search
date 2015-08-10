@@ -86,7 +86,7 @@ dataType: "json",
 data: schooldata,
 success: function(data){
           console.log('success') 
-          alert('success');                       
+          //alert('success');                       
           },
         error: function(request, errorType, errorThrown){
         }
@@ -124,23 +124,45 @@ function anim(pos,t){
 	animace = setTimeout(function(){anim((pos+.5))}, step);
 } 
 
-$(document.body).on('change', '#standardId' ,function(){
+    $(document.body).on('change', '#standardId' ,function(){
+        var blnFlag = false;
 	$.get(base_url+"/index.php/home/get_vaccant_seats/"+$("#schoolId").val()+"/"+$(this).val(),{},function(data){
-		if(data["data"][0].vacantSeat > 0){
-			$("#school-vaccant-seats-info").html(data["data"][0].vacantSeat+" Available");
+               var optiontxt =  $( "#standardId option:selected" ).text();
+//               if(data.count>0) 
+//		if(data["data"][0].vacantSeat > 0  ){
+//			$("#school-vaccant-seats-info").html(data["data"][0].vacantSeat+" Available");
+//		}
+
+        var dataobj;
+        
+        $('#flipster').flipster('data-flip-category', "Play Group");
+        $.each(data, function(k, v) {
+            if(k == "data")
+                dataaobj= v;
+            else if(k == "status")
+                status = v;
+            $.each(dataaobj, function(key, value) {
+                if(data["data"][0].vacantSeat > 0  ){
+			$("#school-vaccant-seats-info").html(value.vacantSeat+" Available");
+                        blnFlag = true;
 		}
+                    
+             });
+             if (!blnFlag)
+                   $("#school-vaccant-seats-info").html(" Data not available");          
+        });
 	},'json');
 });
 
 
 function initialize() {
-    $("#userName").focus();
     var ulat = $("#latitude").val();
     var ulng = $("#longitude").val();
     var mapCanvas = document.getElementById('map_canvas');
     var mapOptions = {
       center: new google.maps.LatLng(ulat, ulng),
       zoom: 16,
+      scrollwheel: false,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
   	map = new google.maps.Map(mapCanvas, mapOptions);
@@ -249,37 +271,36 @@ google.maps.event.addDomListener(window, 'load', initialize);
                                    status = value;
 
                             });
-                            console.log("status >"+status);
-                            console.log("Message >"+messg);
+                            
                             if(status == 0){
                                 $("#derr").html(messg);
                                 $("#derr").show();
                                 $("#derr").addClass('help-block-error');
-                                console.log("@@@@22");
+                                
                             }else if(status == 1){ //user not activated
                                  $("#derr").html(messg);
                                  $("#derr").show();
                                 $("#derr").addClass('help-block-success');
-                                 console.log("xxxxxxx");
+                                 
                             }else{
                                 $("#derr").html(messg);
-                                console.log("zzzzzz");
+                                
                             }
                         },'json'
                         );
                    // }
                 }
       
-$(document).ready(function () {
-    size_li = $("#reviewBoard .review-panel").size();
-    x=4;
-    $('#reviewBoard .review-panel:lt('+x+')').show();
-    $('#loadMore').click(function () {
-        x= (x+5 <= size_li) ? x+5 : size_li;
-        $('#reviewBoard .review-panel:lt('+x+')').show();
-    });
-    $('#showLess').click(function () {
-        x=(x-5<0) ? 4 : x-5;
-        $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
-    });
-});
+//$(document).ready(function () {
+//    size_li = $("#reviewBoard .review-panel").size();
+//    x=4;
+//    $('#reviewBoard .review-panel:lt('+x+')').show();
+//    $('#loadMore').click(function () {
+//        x= (x+5 <= size_li) ? x+5 : size_li;
+//        $('#reviewBoard .review-panel:lt('+x+')').show();
+//    });
+//    $('#showLess').click(function () {
+//        x=(x-5<0) ? 4 : x-5;
+//        $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
+//    });
+//});

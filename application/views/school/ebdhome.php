@@ -69,7 +69,7 @@
                         
                     </div>
                     <div class="item">
-                        <img src="<?php echo asset_url();?>img/header6.jpg" alt="Slider"
+                        <img src="<?php echo asset_url();?>img/header7.jpg" alt="Slider"
 							 class="" style=" width:100%;height: 80%;">
 
                     </div>
@@ -108,7 +108,7 @@
                                         class="form-control">
                             </div>
                         <div class="col-md-3">
-                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" style="background:#26a69a;font-weight:700;"/>
+                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" style="background:#26a69a;font-weight:900;"/>
                        
                         </div>
                         </div>
@@ -147,7 +147,7 @@
 				<section class="row gridalicious" id="slicktest"
 					data-toggle="gridalicious" data-width="300">
         		<?php 
-                        echo "<pre>";
+                     
                        
                         if(isset($topschools)) 
                             foreach ($topschools as $key =>$school) { 
@@ -200,7 +200,7 @@
                                     </div>
 						</div>
 					</div>
-
+             
           <?php } ?>
           
           

@@ -1,10 +1,17 @@
 <?php
-$schools = $schoolList;
-$schoolMedium = $filtersList['mediumFilter'];
-$schoolBoard = $filtersList['boardFilter'];
-$schoolCategory = $filtersList['categoryFilter'];
-$classification = $filtersList['classificationFilter'];
+if(isset($schoolList))
+    $schools = $schoolList;
 
+if(isset($filtersList)) {
+    $schoolMedium = $filtersList['mediumFilter'];
+    $schoolBoard = $filtersList['boardFilter'];
+    $schoolCategory = $filtersList['categoryFilter'];
+    $classification = $filtersList['classificationFilter'];
+}
+if(!isset($latitude))
+    $latitude ="";
+if(!isset($longitude))
+     $longitude ="";
 ?>
 <style>
 <!--
@@ -132,6 +139,25 @@ $classification = $filtersList['classificationFilter'];
 .search-bar-login i:hover{
 	color:#26a69a;
 }
+#loggedin_user{
+	color:white;
+}
+#loggedin_user:hover{
+	color:white;
+	background-color:#212121;
+}
+#loggedin_user_li open{
+	background-color:#212121;
+}
+#loggedin_user_li open:not ( :hover){
+	background-color:#212121;
+}
+.has-success .form-control {
+    background:none;
+}
+.has-error .form-control {
+    background: none;
+}
 -->
 </style>
 <script type="text/javascript">
@@ -149,12 +175,12 @@ $classification = $filtersList['classificationFilter'];
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = readCookie('ebdmypic');
+        logged_pic = "<?php echo $this->session->userdata("ebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid" style="background-color:#212121;">
-      <div class="navbar-header" style="color:white;">
+    <div class="container-fluid" style="background-color:#212121;opacity:0.8;">
+      <div class="navbar-header" style="color:white;height:45px;">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" style="color:white;">
           <span class="sr-only">Toggle navigation</span>
@@ -167,24 +193,24 @@ $classification = $filtersList['classificationFilter'];
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav" id="searchInner">
-        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid" id="frmsearchInner">
+        <form class="navbar-form navbar-left margin-none ng-pristine ng-valid" id="frmsearchInner" style="height:45px;">
           	<div class="search-1">
 	            <div class="input-group">
 		            <div class="text-center col-lg-12" style="display: inline-block;">
-						<div class="col-lg-4 selectContainer">
-							<select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
-								<option value="">--Select--</option>
-		                        <?php  
-                                        if($standard)
-                                            foreach ($standard as $key=>$value) { ?>
-                                                <option value="<?php echo $value['id'] ?>" <?php if ($standardId == $value['id']) { echo "selected"; }?>><?php echo $value['name'] ?></option>
-		                        <?php  } ?>
-					  		</select>
-						</div>
-						<div class="col-lg-8">
-							<input id="schbox_inner" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;">
-						</div>
-					</div>
+                                <div class="col-lg-4 selectContainer">
+                                    <select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
+					<option value="">--Select--</option>
+                                <?php  
+                                if($standard)
+                                    foreach ($standard as $key=>$value) { ?>
+                                        <option value="<?php echo $value['id'] ?>" <?php if ($standardId == $value['id']) { echo "selected"; }?>><?php echo $value['name'] ?></option>
+                                <?php  } ?>
+                                    </select>
+                                </div>
+                                <div class="col-lg-8">
+                                        <input id="schbox_inner" type="text" placeholder="Search by School, Area, Location" name="searchtxt" class="form-control" style="background-color: white;height:35px;">
+                                </div>
+                            </div>
 	          	</div>
 	     	</div>
         </form>
@@ -241,10 +267,10 @@ $classification = $filtersList['classificationFilter'];
              
              
               if(logged_in != null) { // logged in
-                    var private_data = '<li class="dropdown user">';
-                    private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown">';
+                    var private_data = '<li class="dropdown user" style="color:#fff;" id="loggedin_user_li">';
+                    private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="loggedin_user">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
-                    private_data += '<ul class="dropdown-menu" role="menu">';
+                    private_data += '<ul class="dropdown-menu" role="menu" style="z-index:200;">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
 //                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
                     private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
@@ -264,13 +290,12 @@ $classification = $filtersList['classificationFilter'];
     	<input type="hidden" name="longitude" id="longitude" value="<?php echo $longitude;?>" />
 		<!-- <input type="hidden" name="standardId" id="standardId" value="<?php echo $standardId;?>" /> -->
     	<div class="navbar-header">
-<!--     		<a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a> -->
 	        <button type="button" class="navbar-toggle collapsed filter-toggle-icon" data-toggle="collapse" data-target="#main-nav-search">
 	          <i class="text-success fa fa-filter"></i>
 	        </button>
         	<h4 class="filter-text-bar">
-				<i class="text-success fa fa-filter fa-2x"></i> 
-			</h4>
+                    <i class="text-success fa fa-filter fa-2x"></i> 
+		</h4>
       	</div>
     	<div class="collapse navbar-collapse" id="main-nav-search">				
     		<ul class="nav navbar-nav navbar-left">
@@ -284,14 +309,14 @@ $classification = $filtersList['classificationFilter'];
 	                <?php 
                             if(isset($classification)) {
 	                     	foreach ($classification as $key => $value) { ?>
-	                        	<div class="form-group">
+                                    <div class="form-group">
 	                             	<div class="input-group">
-					<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-									</div>
+                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                        </div>
 	                            </div>
 	                <?php 
-	                		}
-	                	} 
+                                }
+                            } 
 	               	?>
 	            </form>
 	            </div>
@@ -305,16 +330,16 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
 	                <?php 
-	                	if(isset($schoolBoard)) {
+                            if(isset($schoolBoard)) {
 	                     	foreach ($schoolBoard as $key => $value) { ?>
-	                        	<div class="form-group">
+                                    <div class="form-group">
 	                             	<div class="input-group">
-										<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-									</div>
+                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                        </div>
 	                            </div>
 	                <?php 
-	                		}
-	                	} 
+	                	}
+                            } 
 	               	?>
 	           	</form>
 	            </div>
@@ -328,16 +353,16 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
 	                <?php 
-	                	if(isset($schoolMedium)) {
+                            if(isset($schoolMedium)) {
 	                     	foreach ($schoolMedium as $key => $value) { ?>
-	                        	<div class="form-group">
+                                    <div class="form-group">
 	                             	<div class="input-group">
-										<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-									</div>
+                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                        </div>
 	                            </div>
 	                <?php 
-	                		}
-	                	} 
+	                	}
+                            } 
 	               	?>
 	           	</form>
 	            </div>
@@ -351,16 +376,16 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
 	                <?php 
-	                	if(isset($schoolCategory)) {
+                            if(isset($schoolCategory)) {
 	                     	foreach ($schoolCategory as $key => $value) { ?>
-	                        	<div class="form-group">
+                                    <div class="form-group">
 	                             	<div class="input-group">
-										<input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
-									</div>
+                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                        </div>
 	                            </div>
 	                <?php 
-	                		}
-	                	} 
+	                	}
+                            } 
 	               	?>
 	           	</form>
 	            </div>
@@ -377,67 +402,67 @@ $classification = $filtersList['classificationFilter'];
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
                   	<div class="form-group">
-                      	<div class="input-group">
-							<a href="javascript:sortSchool('classFee');" id="classFee-button">
-								Fees <i class="fa fa-sort-amount-asc"></i>
-							</a>
-						</div>
-						<div>
-							<a href="javascript:sortSchool('distance');" id="distance-button">
-								Distance <i class="fa fa-sort-amount-asc"></i>
-							</a>
-						</div>
-						<div>
-							<a href="javascript:sortSchool('rating');" id="rating-button">
-								Rating <i class="fa fa-sort-amount-asc"></i>
-							</a>
-						</div>
-						<div>
-							<a href="javascript:sortSchool('seats');" id="seats-button">
-								Seats <i class="fa fa-sort-amount-asc"></i>
-							</a>
-						</div>
+                            <div class="input-group">
+                                <a href="javascript:sortSchool('classFee');" id="classFee-button">
+                                        Fees <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:sortSchool('distance');" id="distance-button">
+                                        Distance <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:sortSchool('rating');" id="rating-button">
+                                        Rating <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="javascript:sortSchool('seats');" id="seats-button">
+                                        Seats <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </div>
                  	</div>
 	            </form>
 	            </div>
-	          </li>
-			<li class="sort-field-list">
-				<a href="javascript:sortSchool('classFee');" id="classFee-button">
-					Fees <i class="fa fa-sort-amount-asc"></i>
-				</a>
-			</li>
-			<li class="sort-field-list">
-				<a href="javascript:sortSchool('distance');" id="distance-button">
-					Distance <i class="fa fa-sort-amount-asc"></i>
-				</a>
-			</li>
-			<li class="sort-field-list">
-				<a href="javascript:sortSchool('rating');" id="rating-button">
-					Rating <i class="fa fa-sort-amount-asc"></i>
-				</a>
-			</li>
-			<li class="sort-field-list">
-				<a href="javascript:sortSchool('seats');" id="seats-button">
-					Seats <i class="fa fa-sort-amount-asc"></i>
-				</a>
-			</li>
-			<li>
-				<a href="javascript:sortClear();" id="seats-button">
-					Reset <i class="fa fa-refresh"></i>
-				</a>
-			</li>
+	    </li>
+            <li class="sort-field-list">
+                <a href="javascript:sortSchool('classFee');" id="classFee-button">
+                        Fees <i class="fa fa-sort-amount-asc"></i>
+                </a>
+            </li>
+            <li class="sort-field-list">
+                <a href="javascript:sortSchool('distance');" id="distance-button">
+                        Distance <i class="fa fa-sort-amount-asc"></i>
+                </a>
+            </li>
+            <li class="sort-field-list">
+                <a href="javascript:sortSchool('rating');" id="rating-button">
+                        Rating <i class="fa fa-sort-amount-asc"></i>
+                </a>
+            </li>
+            <li class="sort-field-list">
+                <a href="javascript:sortSchool('seats');" id="seats-button">
+                        Seats <i class="fa fa-sort-amount-asc"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:sortClear();" id="seats-button">
+                        Reset <i class="fa fa-refresh"></i>
+                </a>
+            </li>
       	</ul>
-      	<ul class="nav nav-tabs navbar-right">
-			<li style="padding-right:3px;">
-				<a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;">
-					Map
-				</a>
-			</li>
-			<li style="padding-right:3px;">
-				<a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;">
-					List
-				</a>
-			</li>
+      	<ul class="nav nav-tabs navbar-left">
+            <li style="padding-right:3px;">
+                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;">
+                   	<i class="fa fa-2x fa-map-marker"></i>
+                </a>
+            </li>
+            <li style="padding-right:3px;">
+                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;">
+                   	<i class="fa fa-2x fa-th-list"></i>
+                </a>
+            </li>
       	</ul>
     </div>
   </nav>

@@ -18,6 +18,7 @@ $classification = $filtersList['classificationFilter'];
         background: #fff;
         z-index: 1;
     }
+    
     #map-tabs {
         float:right;
         width:25%;
@@ -31,36 +32,36 @@ $classification = $filtersList['classificationFilter'];
         border-right: 1px solid rgba(0,0,0,.1);
         box-sizing: border-box;
     }
-
+    
     #map-tabs .col-md-6{
-        padding-left:0px;
-        padding-right:0px;
-        height:100%;
-        overflow-y:auto;
-        min-height: 100%;
-        background: #f4f4f4;
-        cursor: pointer;
-        color: #2e2e32;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-    .map-view{
-        position:absolute;
-        top:90px;
-        width: 100%;
-        height: auto;
-        min-height:auto;
-        display: block;
-        font-size: 14px;
-        line-height: 20px;
-        font-family: din,Calibri,Cantarell,sans-serif;
-    }
-    .schoollistTab, .sortlistTab{
-        width:50%;
-        color: #2e2e32;
-    }
+		padding-left:0px;
+		padding-right:0px;
+		height:100%;
+	    overflow-y:auto;
+	    min-height: 100%;
+		background: #f4f4f4;
+	    cursor: pointer;
+	    color: #2e2e32;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    font-size: 16px;
+	}
+	.map-view{
+		position:absolute;
+		top:87px;
+		width: 100%;
+	    height: auto;
+	    min-height:auto;
+	    display: block;
+	    font-size: 14px;
+	    line-height: 20px;
+	    font-family: din,Calibri,Cantarell,sans-serif;
+	}
+	.schoollistTab, .sortlistTab{
+		width:50%;
+		color: #2e2e32;
+	}
 
     .schoollistTab, .sortlistTab .summary{
         line-height: 50px;
@@ -361,6 +362,9 @@ $classification = $filtersList['classificationFilter'];
     #list-image{
         position:relative;
     }
+    #list-image img{
+    	border:1px solid #e2e9e6;
+    }
     #map-image{
         position:relative;
     }
@@ -377,7 +381,6 @@ $classification = $filtersList['classificationFilter'];
         z-index:1;
         font-size:16px;
     }
-
     .sort-listed-map-schools{
         position: absolute;
         right: 4px;
@@ -474,9 +477,9 @@ $classification = $filtersList['classificationFilter'];
                                                 <p id="map-image">
                                                     <a href="<?php echo $urllink; ?>" target="_blank">
                                                         <?php if ($school['logo'] == "") { ?>
-                                                            <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="lazy media-object">
+                                                            <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
                                                         <?php } else { ?>
-                                                            <img src="<?php echo $school['logo']; ?>" alt="property" width="120" height="100" class="lazy media-object">
+                                                            <img src="<?php echo $school['logo']; ?>" alt="property" width="120" height="100" class="media-object">
                                                         <?php } ?>
                                                     </a>
                                                     <span class="sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>">
@@ -512,7 +515,8 @@ $classification = $filtersList['classificationFilter'];
                                                 </h4>
                                                 <h5 class="margin-title text-capitalize"><?php echo ucwords($school['localityName'] . ", " . $school['cityName']); ?></h5>
                                                 <p>
-                                                    <span class="label-100"><?php if (strtolower($school['boardName']) != "na") {
+                                                    <span class="label-100">
+                                                    <?php if (strtolower($school['boardName']) != "na") {
                                                         echo $school['boardName'];
                                                     } else {
                                                         echo $school['teachingApproach'];
@@ -565,10 +569,10 @@ $classification = $filtersList['classificationFilter'];
                                             <p id="list-image">
                                                 <a href="<?php echo $urllink; ?>" target="_blank">
                                                     <?php if ($school['logo'] == "") { ?>
-                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="lazy media-object">
+                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
                                                     <?php } else { ?>
-                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="lazy media-object">
-        <?php } ?>
+                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="media-object">
+                                                    <?php } ?>
                                                 </a>
                                                 <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']; ?>">
                                                     <i class="fa fa-heart-o"></i> 
@@ -579,8 +583,9 @@ $classification = $filtersList['classificationFilter'];
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
                                                     <div class="school-name-text margin-title text-capitalize">
-                                                        <a href="<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId ?>" target="_blank">
-        <?php echo $school['name'] ?>
+
+                                                        <a href="<?php echo $urllink;?>" target="_blank">
+                                                            <?php echo $school['name'] ?>
                                                         </a>
                                                     </div>
                                                     <div class="street-locality">
@@ -593,22 +598,22 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="detail-value">
                                                 <?php echo $school['schoolClassification']; ?>
                                                 </div>
-        <?php if (strtolower($school['boardName']) != "na") { ?>
+                                                <?php if (strtolower($school['boardName']) != "na") { ?>
                                                     <div class="detail-label">
                                                         Board
                                                     </div>
                                                     <div class="detail-value">
                                                     <?php echo $school['boardName']; ?>
                                                     </div>
-        <?php } else { ?>
+        					<?php } else { ?>
                                                     <div class="detail-label">
                                                         Teaching Approach
                                                     </div>
                                                     <div class="detail-value">
                                                     <?php echo $school['teachingApproach']; ?>
                                                     </div>
-        <?php } ?>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <?php } ?>
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
                                                     <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
                                                 </a>
                                             </div>
@@ -625,15 +630,15 @@ $classification = $filtersList['classificationFilter'];
                                                     Medium
                                                 </div>
                                                 <div class="detail-value">
-        <?php echo $school['mediums'] ?>
+                                                    <?php echo $school['mediums'] ?>
                                                 </div>
                                                 <div class="detail-label">
                                                     Type
                                                 </div>
                                                 <div class="detail-value">
-        <?php echo $school['schoolCategory'] ?>
+                                                    <?php echo $school['schoolCategory'] ?>
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
                                                     <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
                                                 </a>
                                             </div>
@@ -649,7 +654,7 @@ $classification = $filtersList['classificationFilter'];
                                                     Management
                                                 </div>
                                                 <div class="detail-value">
-        <?php echo $school['schoolCategory'] ?>
+                                                    <?php echo $school['schoolCategory'] ?>
                                                 </div>
                                                 <div class="detail-label">
                                                     Fee(Per Annum)
@@ -663,7 +668,7 @@ $classification = $filtersList['classificationFilter'];
                                                         echo $school['totalFee'] . " PA";
                                                     ?> (approx.)
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="">
+                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
                                                     <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
                                                 </a>
                                             </div>
@@ -689,7 +694,7 @@ $classification = $filtersList['classificationFilter'];
                                                         <?php } ?>
                                                         <?php for ($i = 0; $i < $unratedStars; $i++) { ?>
                                                             <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-        <?php } ?>
+        						<?php } ?>
                                                     </div>
                                                     <div class="text-center">(0 votes)</div>
                                                 </div>
@@ -702,7 +707,7 @@ $classification = $filtersList['classificationFilter'];
                                                     </div>
                                                 </div>
                                                 <div class="text-center">
-                                                    <a class="btn btn-primary list-primary-button" href="">
+                                                    <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#contact">
                                                         <i class="fa fa-phone"></i> Contact
                                                     </a>
                                                 </div>
@@ -742,7 +747,6 @@ $classification = $filtersList['classificationFilter'];
     var infowindow = new google.maps.InfoWindow();
     dataArr = <?php echo json_encode($schools); ?>;
     var markers = [];
-//var infowindow = null;
     $(document).ready(function () {
 
         $('#map-canvas').height(($(window).height() - $(".navbar-fixed-top").height()));
@@ -800,15 +804,15 @@ if (isset($schools)) {
 
 if (isset($schools)) {
     foreach ($schools as $key => $school) {
-        ?>
+?>
                 var hexMarkerColor = getColourTemp(<?php echo $maxColor; ?>,<?php echo $minColor; ?>,<?php echo $school['totalFee']; ?>);
                 var schoolText = "<?php echo $school['name']; ?>";
                 var localityText = "<?php echo $school['localityName']; ?>";
-        <?php if ($school['totalFee'] > 1000) { ?>
+                <?php if ($school['totalFee'] > 1000) { ?>
                     var schoolFeeMarker = "<?php echo round($school['totalFee'] / 1000, 2) . "K PA"; ?>";
-        <?php } else { ?>
+                <?php } else { ?>
                     var schoolFeeMarker = "<?php echo $school['totalFee'] . " PA"; ?>";
-        <?php } ?>
+                <?php } ?>
                 var marker_url = "<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId ?>";
                         var schoolBoards = "<?php echo $school['boardName'] ?>,<?php echo $school['mediums'] ?>";
 
@@ -829,11 +833,11 @@ if (isset($schools)) {
                                 });
                                 marker = marker<?php echo $school['schoolId'] ?>;
                                 var school_img = "";
-        <?php if ($school['logo'] == "") { ?>
+                                <?php if ($school['logo'] == "") { ?>
                                     school_img = "<img src='<?php echo asset_url() ?>img/vector-school-house-28931692.jpg' style='width:90px;height:90px;'>";
-        <?php } else { ?>
+                                <?php } else { ?>
                                     school_img = "<img src='<?php echo $school['logo'] ?>' style='width:90px;height:90px;'>";
-        <?php } ?>
+                                <?php } ?>
                                 var infoContent = "<div id='infobox' style='width: 300px;'>"
                                         + "<div id='infobox-text' style='color: #000000; text-align: center;width:300px;'>"
                                         + "<span id='ins-drag'>"
@@ -928,13 +932,13 @@ if (isset($schools)) {
                             $("#address").val(address);
 
                             $.cookie("ebdsearchgeocode", i, {expires: 180, path: '/'});
-                            $.cookie("ebdsearchgeoloc", a, {expires: 180, path: '/'});
+                            //$.cookie("ebdsearchgeoloc", a, {expires: 180, path: '/'});
                             /******/
 
                             document.cookie = "ebdsearchgeocode=" + i + ";expires=" + expires + "; path=/;";
-                            document.cookie = "ebdsearchgeoloc=" + a + ";expires=" + expires + "; path=/;";
-
-
+                            
+                            getPermlink(latitude,longitude, $("#standardId").val());
+                            
                             for (var i = 0; i < markers.length; i++) {
                                 markers[i].setMap(null);
                             }
@@ -1004,14 +1008,99 @@ if (isset($schools)) {
 
 
                     $('#main-nav').on('keydown', '#frmsearchInner', function (evt) {
-                        // if the user hits enter AND if the chosen dropdown is NOT in view
-                        // note @BMorearty's example is checking for existence. 
-                        // It seems the element is always there, just negatively positioned when not in use.
                         if (evt.which === 13) {
                             evt.preventDefault();
 
                         }
 
                     });
-                    /**** del marker functions ****/
+                    
+                    
+ function getPermlink(latitude,longitude,stdid){
+     console.log(latitude+ ","+longitude+","+stdid);
+    var permlink =null;
+    var status = 0;
+    var data ="";
+    $.post(base_url + "permlink",
+            {
+               lat: latitude,
+               lng: longitude,
+               std: stdid
+            }, function (response) {
+                
+                $.each(response, function (key, value) {
+                    if (key == "status") {
+                        status = value;
+                    }else if(key == "data" ){
+                        data = JSON.parse(value);
+                        $.each(data, function (key1, value1) {
+                            permlink = value1.toLowerCase(); 
+                        });
+                       
+                    }
+                });
+                if(permlink != null && permlink !="" && status ==1){
+                    
+                    $("#address").val(permlink);
+                    document.cookie = "ebdsearchgeoloc=" + permlink + ";expires=" + expires + "; path=/;";
+                }else{
+                    $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
+                        ele: 'body', // which element to append to
+                        type: 'danger', // (null, 'info', 'danger', 'success')
+                        offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+                        align: 'top', // ('left', 'right', or 'center')
+                        width: 250, // (integer, or 'auto')
+                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                    });
+                }
+            }, 'json'
+        );
+   
+}
+
+$("#frmSch").affix({
+    offset: {
+        top: 200,
+    }
+});
+$("#search_header").affix({
+    offset: {
+        top: 200,
+    }
+});
+
+
+$('body').scrollspy({
+    target: '.navbar-fixed-top',
+    offset: 51
+});
+
+var cookie_domain = 'edbuddy.in';
+var d = new Date();
+d.setTime(d.getTime()+(1*24*60*60*1000));
+var expires = "expires="+d.toGMTString();
+
+google.maps.event.addDomListener(window, 'load', function () {
+    var places = new google.maps.places.Autocomplete(document.getElementById('schbox'));
+    console.log('189');
+    google.maps.event.addListener(places, 'place_changed', function () {
+        var place = places.getPlace();
+        var address = place.formatted_address;
+        var latitude = place.geometry.location.lat();
+        var longitude = place.geometry.location.lng();
+        var i = latitude+","+longitude;
+        var a = address;
+        var mesg = "Address: " + address;
+        mesg += "\nLatitude: " + latitude;
+        mesg += "\nLongitude: " + longitude;
+        $("#latitude").val(latitude);
+        $("#longitude").val(longitude);
+        $("#address").val(address);
+        document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;domain=edbuddy.in";
+        document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
+    });
+});
+
 </script>
