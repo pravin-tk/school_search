@@ -21,10 +21,17 @@
               		<div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"><?php //echo $school['city'] ?></div>
               		<div class="cover hover overlay margin-none" style="height: 147px;">
                             <?php if ($school['homeImage'] == ""){ ?>
-                		<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="img-responsive">
-                                 <?php }else{ ?> 
-                                <img src="<?php echo asset_url().$school['homeImage'];?>" alt="location" class="img-responsive">
-                                <?php  }?>
+                		        <img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive">
+                                 <?php }else{ 
+                                 $headers = get_headers($timeline['image']);
+	                                 if($headers[0]=='HTTP/1.1 200 OK'){ 
+	                                echo "<img src='$school[homeImage]' alt='location' class='lazy img-responsive'>";
+	                                
+	                                 }else{
+									echo "<img src='".asset_url()."img/icons/3-512.png' alt='location' class='lazy img-responsive'>";
+	                                 } 
+	                                 	
+                                 }?>
                                 <a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">
                   			<span class="v-center">
                         		<span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>

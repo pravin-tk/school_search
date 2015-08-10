@@ -291,22 +291,15 @@ class home extends CI_Controller {
                                 $this->template->set('nearbySchool',$value);
                             }
 			}
-                        if(isset($schoolInfo['highlights']))
-                            $this->template->set('overviewInfo',$schoolInfo['highlights']);
-                        if(isset($schoolInfo['contacts']))
-                            $this->template->set('contactInfo',$schoolInfo['contacts']);
-                        if(isset($schoolInfo['images']))
-                            $this->template->set('galleryinfo',$schoolInfo['images']);
-                        if(isset($schoolInfo['rating']))
-                            $this->template->set('ratingInfo',$schoolInfo['rating']);
-                        if(isset($schoolInfo['reviews']))
-                            $this->template->set('reviewInfo',$schoolInfo['reviews']);
-                        if(isset($schoolInfo['fees']))
-                            $this->template->set('feeInfo',$schoolInfo['fees']);
-                        if(isset($standardId))
-                            $this->template->set('standardId',$standardId);
-                        if(isset($schoolid))
-                            $this->template->set('schId',$schoolid);
+                        
+			$this->template->set('overviewInfo',$schoolInfo['highlights']);
+			$this->template->set('contactInfo',$schoolInfo['contacts']);
+			$this->template->set('galleryinfo',$schoolInfo['images']);
+			$this->template->set('ratingInfo',$schoolInfo['rating']);
+			if(isset($schoolInfo['reviews']))
+			$this->template->set('reviewInfo',$schoolInfo['reviews']);
+			$this->template->set('feeInfo',$schoolInfo['fees']);
+			$this->template->set('standardId',$standardId);
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;

@@ -57,7 +57,14 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+<!-- 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i> -->
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
@@ -80,7 +87,13 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
@@ -101,7 +114,13 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
 						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
 						                    </div>

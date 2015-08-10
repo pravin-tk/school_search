@@ -72,6 +72,9 @@
 						<div class="panel panel-default review-panel">
 							<div class="media">
 								<div class="media-left">
+									<?php 
+ 									 
+?>
 									<img src="<?php echo $schoolReview["userRegistrationInfo"]["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["userRegistrationInfo"]["firstName"];?>" class="img-circle media-object">
 									<div class="text-center review-user-name"><?php echo $schoolReview["userRegistrationInfo"]["firstName"];?></div>
 								</div>
