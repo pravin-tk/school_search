@@ -88,7 +88,8 @@ $(".pano-next").click(function(event){
 	
 	imagecount = $(this).attr("data-id");
 	THREE.ImageUtils.crossOrigin = '';
-	
+	$("h4").removeClass('active-pano');
+	$(this).prev().addClass("active-pano");
 	var image1 = new THREE.MeshBasicMaterial( {
 		map: THREE.ImageUtils.loadTexture( imagecount )
 	} );

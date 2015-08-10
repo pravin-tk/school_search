@@ -123,6 +123,11 @@
 		    border-radius: 2px;
 		    border: 1px solid #cdcdcd;
 		    }
+		    .active-pano{
+		    background:#26a69a;
+		    width:150px;
+		    color:#fff;
+		    }
 /* load more */
 div.review-panel
 {
