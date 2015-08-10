@@ -18,9 +18,9 @@
               		<div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"><?php //echo $school['city'] ?></div>
               		<div class="cover hover overlay margin-none" style="height: 147px;">
                             <?php if ($school['homeImage'] == ""){ ?>
-                		<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="img-responsive">
+                		        <img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive">
                                  <?php }else{ ?> 
-                                <img src="<?php echo asset_url().$school['homeImage'];?>" alt="location" class="img-responsive">
+                                <img src="<?php echo asset_url().$school['homeImage'];?>" alt="location" class="lazy img-responsive">
                                 <?php  }?>
                                 <a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">
                   			<span class="v-center">

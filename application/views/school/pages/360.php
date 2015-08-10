@@ -15,41 +15,41 @@
 					</div>
 					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
 						<div class="float-left">
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/campus_new.jpg"  src="<?php echo asset_url();?>img/panorma/campus_new.jpg" />
+			                <img class="lazy pano-next" src="<?php echo asset_url();?>img/panorma/campus_new.jpg"  data-original="<?php echo asset_url();?>img/panorma/campus_new.jpg" />
 			               <h4><a> Campus</a> </h4>
 			            </div>
 			            <div class="float-left">
-							<img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/classroom.jpg" src="<?php echo asset_url();?>img/panorma/classroom.jpg" />						  
+							<img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/classroom.jpg" data-original="<?php echo asset_url();?>img/panorma/classroom.jpg" />						  
 			               <h4><a>Class Room</a></h4>
 							
 							</div>
 						<div class="float-left">	
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/computer.jpg"  src="<?php echo asset_url();?>img/panorma/computer.jpg" />
+			                <img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/computer.jpg"  data-original="<?php echo asset_url();?>img/panorma/computer.jpg" />
 			               <h4><a>Computer Lab</a></h4>
 			            </div>
 			            <div class="float-left">
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar.jpg"  src="<?php echo asset_url();?>img/panorma/seminar.jpg" /> 
+			                <img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar.jpg" data-original="<?php echo asset_url();?>img/panorma/seminar.jpg" /> 
  			                <h4><a>Seminar Hall 1</a></h4>
 			                </div>
 			            
 			            <div class="float-left" >    
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/lobby.jpg"  src="<?php echo asset_url();?>img/panorma/lobby.jpg" />
+			                <img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/lobby.jpg"  data-original="<?php echo asset_url();?>img/panorma/lobby.jpg" />
 			             	<h4><a>Lobby</a></h4>
 			            </div>
 			            <div class="float-left" >    
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar_b.jpg"  src="<?php echo asset_url();?>img/panorma/seminar_b.jpg" />
+			                <img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/seminar_b.jpg"  data-original="<?php echo asset_url();?>img/panorma/seminar_b.jpg" />
 			             	<h4><a>Seminar Hall 2</a></h4>
 			            </div>
 			            <div class="float-left" >    
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/sitting.jpg"  src="<?php echo asset_url();?>img/panorma/sitting.jpg" />
+			                <img class=" lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/sitting.jpg" data-original="<?php echo asset_url();?>img/panorma/sitting.jpg" />
 			             	<h4><a>Hostel Room</a></h4>
 			            </div>
 			            <div class="float-left" >    
-			                <img class="pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  src="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
+			                <img class="lazy pano-next" data-id="<?php echo asset_url();?>img/panorma/bedroom.jpg"  data-original="<?php echo asset_url();?>img/panorma/bedroom.jpg" />
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>
 			              <div class="float-left" >    
-			                <img class="pano-next" data-id="http://54.68.33.139:8080/edbuddy/images/pano/pano_20150720_155325.jpg"  src="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
+			                <img class="lazy pano-next" data-id="http://54.68.33.139:8080/edbuddy/images/pano/pano_20150720_155325.jpg"  data-original="<?php echo asset_url();?>img/panorma/PANO_20150720_190545.jpg" />
 			             	<h4><a>Hostel bedroom</a></h4>
 			            </div>  
 		            </div>

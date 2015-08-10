@@ -260,6 +260,7 @@ class home extends CI_Controller {
 			$this->template->set('contactInfo',$schoolInfo['contacts']);
 			$this->template->set('galleryinfo',$schoolInfo['images']);
 			$this->template->set('ratingInfo',$schoolInfo['rating']);
+			if(isset($schoolInfo['reviews']))
 			$this->template->set('reviewInfo',$schoolInfo['reviews']);
 			$this->template->set('feeInfo',$schoolInfo['fees']);
 			$this->template->set('standardId',$standardId);

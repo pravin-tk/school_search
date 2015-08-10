@@ -37,6 +37,7 @@
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
 <script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
+<script src="<?php echo asset_url();?>js/jquery.lazyload.min.js"></script>
 
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div

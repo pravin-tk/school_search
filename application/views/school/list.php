@@ -474,9 +474,9 @@ $classification = $filtersList['classificationFilter'];
                                                 <p id="map-image">
                                                     <a href="<?php echo $urllink; ?>" target="_blank">
                                                         <?php if ($school['logo'] == "") { ?>
-                                                            <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="media-object">
+                                                            <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="120" height="100" class="lazy media-object">
                                                         <?php } else { ?>
-                                                            <img src="<?php echo $school['logo']; ?>" alt="property" width="120" height="100" class="media-object">
+                                                            <img src="<?php echo $school['logo']; ?>" alt="property" width="120" height="100" class="lazy media-object">
                                                         <?php } ?>
                                                     </a>
                                                     <span class="sort-listed-map-schools" id="sortlistedmaphearts-<?php echo $school['schoolId']; ?>">
@@ -565,9 +565,9 @@ $classification = $filtersList['classificationFilter'];
                                             <p id="list-image">
                                                 <a href="<?php echo $urllink; ?>" target="_blank">
                                                     <?php if ($school['logo'] == "") { ?>
-                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="lazy media-object">
                                                     <?php } else { ?>
-                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="lazy media-object">
         <?php } ?>
                                                 </a>
                                                 <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']; ?>">
