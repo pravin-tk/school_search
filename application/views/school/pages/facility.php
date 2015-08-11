@@ -59,7 +59,7 @@ foreach($infra as $infrakey => $infravalue){
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>
@@ -82,7 +82,7 @@ foreach($infra as $infrakey => $infravalue){
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>
@@ -103,7 +103,7 @@ foreach($infra as $infrakey => $infravalue){
 						                        <div>
 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>

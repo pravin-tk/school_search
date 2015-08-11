@@ -129,6 +129,13 @@
     white-space: nowrap;
     text-transform: capitalize;
 }
+.infra-item-name{
+	max-width: 165px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
 .school-detail-overlay{
 	text-transform: capitalize;
 }
@@ -334,7 +341,7 @@
 <div id="wrap">
 <div id="schoolheader" class="cover overlay overflow-hidden margin-bottom-none height-400 height-500-lg max-height-500" >
         <div id="pan">
-	      <div id="wrapper"></div>
+	      <div id="wrapper" style="background:url(<?php echo $basicInfo["homeImage"];?>) no-repeat;width:1280px;height:600px;background-size: 1280px 600px;"></div>
 	      <div id="mask">
 		<div class="bac"></div>
 		<div class="logo"></div>
@@ -384,7 +391,7 @@
     </div>
 
   </div>
-
+<?php echo $basicInfo["homeImage"];?>
   
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default" role="navigation" id="detailmenubar">
@@ -406,7 +413,7 @@
 	   	  <li class="property-meta-item ">
 	   	  	<a href="#overview" class="page-scroll" > <?php echo $basicInfo['name'];?> </a>
 	   	  </li>
-	      <li class="property-meta-item "><a href="#overview1" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
+	      <li class="property-meta-item "><a href="#overview" class="page-scroll" > <i class="fa fa-fw fa-building-o"></i> Overview</a></li>
 	      <li class="property-meta-item"><a href="#facility" class="page-scroll"><i class="fa fa-fw fa-building-o"></i> Facility</a></li>
 	      <li class="property-meta-item"><a href="#visualtour" class="page-scroll"><i class="fa fa-fw fa-building wow"></i> 360 view</a></li>
 	      <li class="property-meta-item"><a href="#gallery" class="page-scroll"><i class="fa fa-fw fa-camera"></i> Gallery</a></li>
@@ -424,8 +431,8 @@
 
 <div id="details-wrap">
 <!-- Begin page content -->
-<div class="section"data-anchor="overview">
-	<div class="divider" id="overview1"></div>
+<div class="section" data-anchor="overview">
+	<div class="divider" id="overview"></div>
 	<div class="row">
 		<?php include 'pages/overview.php';?>
 	</div>

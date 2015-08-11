@@ -172,7 +172,7 @@
 			                <img src="<?php echo $timeline['image'] ?>"  alt="location" class="img-responsive" style="height:230px;width:100%;">
 			              </div>
 			              <div class="panel-body">
-			                <h4 class="margin-v-0-5"><?php echo $timeline['title'];?></h4>
+			                <h4 class="margin-v-0-5"><?php echo $timeline["milestones"][0]['title'];?></h4>
 			              </div>
 			            </div>
 			          </div>

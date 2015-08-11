@@ -29,7 +29,11 @@
 <script src="<?php echo asset_url();?>js/360.js"></script>
 <script>
 var camera, scene, renderer;
-var imagecount = 'https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_190545.jpg';
+<?php if(count($otherInfo['panorama']) > 0) {?>
+	var imagecount = '<?php echo $otherInfo['panorama'][0]['panoImage'];?>';
+<?php } else { ?>
+	var imagecount = "";
+<?php }?>
 
 var isUserInteracting = false,
 onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -53,9 +57,15 @@ function init() {
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 	THREE.ImageUtils.crossOrigin = '';
+	<?php if(count($otherInfo['panorama']) > 0) {?>
+		var image1 = new THREE.MeshBasicMaterial( {
+			map: THREE.ImageUtils.loadTexture("<?php echo $otherInfo['panorama'][0]['panoImage'];?>")
+		} );
+	<?php } else { ?>
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture("https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_153036.jpg")
+		map: THREE.ImageUtils.loadTexture("")
 	} );
+	<?php }?>
 
 	
 	mesh1 = new THREE.Mesh( geometry, image1 );

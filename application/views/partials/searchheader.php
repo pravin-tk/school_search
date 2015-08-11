@@ -158,6 +158,24 @@ if(!isset($longitude))
 .has-error .form-control {
     background: none;
 }
+.show-item-count{
+	border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	min-width:20px;
+    width: 20px;
+    height: 20px;
+    background: #26a69a;
+    border: 1px solid #f2f2f2;
+    color: #212121;
+    padding:0px auto;
+    padding-top:3px;
+    text-align: center;
+    font: 10px Arial, sans-serif;
+    font-weight:bold;
+    top: -8px;
+    position: relative;
+    display:none;
+}
 -->
 </style>
 <script type="text/javascript">
@@ -302,7 +320,7 @@ if(!isset($longitude))
     		<!-- Category Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Category
+	              <i class="fa fa-angle-down fa-2x"></i> Category<label class="show-item-count" id="classification-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -325,7 +343,7 @@ if(!isset($longitude))
           <!-- Board Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Board
+	              <i class="fa fa-angle-down fa-2x"></i> Board<label class="show-item-count" id="board-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -334,7 +352,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolBoard as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolboardcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -348,7 +366,7 @@ if(!isset($longitude))
           <!-- Medium Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Medium
+	              <i class="fa fa-angle-down fa-2x"></i> Medium<label class="show-item-count" id="medium-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -357,7 +375,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolMedium as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolmediumcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -371,7 +389,7 @@ if(!isset($longitude))
           <!-- Type Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Type
+	              <i class="fa fa-angle-down fa-2x"></i> Type<label class="show-item-count" id="category-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -380,7 +398,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolCategory as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolcategorycheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -452,15 +470,15 @@ if(!isset($longitude))
                 </a>
             </li>
       	</ul>
-      	<ul class="nav nav-tabs navbar-left">
+      	<ul class="nav nav-tabs navbar-right">
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;">
-                   	<i class="fa fa-2x fa-map-marker"></i>
+                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;color:#212121;">
+                   	Map
                 </a>
             </li>
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;">
-                   	<i class="fa fa-2x fa-th-list"></i>
+                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;color:#212121;">
+                   	List
                 </a>
             </li>
       	</ul>
