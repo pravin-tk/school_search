@@ -517,5 +517,51 @@ class home extends CI_Controller {
 //		echo $errmsg;
 //	}
 	
+	public function aboutUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/about_us' );
+	}
 	
+	public function joinUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/join_us' );
+	}
+	
+	public function contactUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/contact_us' );
+	}
+	
+	public function ourTeam(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/our_team' );
+	}
+	
+	public function privacy(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/privacy' );
+	}
+	
+	public function terms(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/terms_of_use' );
+	}
 }
