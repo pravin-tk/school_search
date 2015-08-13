@@ -94,7 +94,7 @@
             
           </li>
            <li class="dropdown">
-              <a href="<?php echo $base_url; ?>home/postRequirement"  class="btn-clear">
+              <a href="<?php echo $base_url; ?>list-your-school"  class="btn-clear">
               <i class="fa fa-fw fa-plus"></i> List Your School
             </a>
             

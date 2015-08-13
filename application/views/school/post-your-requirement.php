@@ -1,6 +1,6 @@
 <style>
     .form-group {
-        width :65%;
+        width :55%;
     }
     .form-control {
         width :455px;
@@ -15,6 +15,13 @@
     .has-feedback {
     position: none;
     }
+    
+    .alert-danger {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #BD362F;
+        width :70%;
+    }
     </style>
 
 
@@ -24,34 +31,40 @@
             </section>
             <div class="container"style="margin-top: 30px;">
                 <div class="row">
-                    
+                   
                     <div class="col-md-9">
                             <div class="panel panel-default">
                                 <div class="panel-body">
+                                     <div class="alert alert-danger" role="alert">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                    <span class="sr-only">Error:</span>
+                                    Sorry ! We do not have schools listed in this area. Please post your requirement.
+                                    </div>
                                     <div class="media media-clearfix-xs media-clearfix-sm">
-                                        <h4> List Your School </h4>
-                                        <hr/>
+                                    <h4> Post requirement </h4>
+                                    <hr/>
                 <div class="media-body">
                     <form method="post"   id="post_requirement_form" action="javascript:" enctype="multipart/form-data">
                         <div id="profile_form_error"></div>
                 <div class="form-group">
-                    <label for="firstName" class="control-label">Name</label>
-                        <input type="text" pattern="^([_A-z0-9]){3,}$" maxlength="25" 
-                               class="form-control" id="firstName" name="firstName" placeholder="Enter first name" value ="">
+                    <label for="firstName" class="control-label">Your Name</label>
+                        <input type="text"  maxlength="100" 
+                               class="form-control" id="userName" name="userName" placeholder="Your name" value ="">
                     
                     <span class="help-block with-errors"></span>
-                </div>
+                </div> 
+               
                     <div class="form-group">
-                        <label for="mobileNo" class="control-label">Mobile No</label>
+                        <label for="mobileNo" class="control-label">Your Mobile no.</label>
                         
-                            <input type="text" pattern="^([0-9]){3,}$" maxlength="10" 
-                                   class="form-control" id="mobileNo" name="mobileNo" placeholder="Enter mobile number" required value="">
+                            <input type="text"  maxlength="10" 
+                                   class="form-control" id="mobileNo" name="mobileNo" placeholder="Your mobile number" required value="">
 
                         <span class="help-block with-errors"></span>
                     </div>
                     <div class="form-group">
-                        <label for="requirement" class="control-label">Details</label>
-                        	<textarea id="requirement" name="requirement" class="form-control" rows="5" required></textarea>
+                        <label for="requirement" class="control-label">Requirement</label>
+                        	<textarea id="requirement" name="requirement" class="form-control" rows="5" placeholder="Your requirement description"></textarea>
 
                         <span class="help-block with-errors"></span>
                     </div>

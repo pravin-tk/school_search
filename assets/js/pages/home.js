@@ -72,16 +72,17 @@ $(document).ready(function () {
                     $("#address").val(permlink);
                     $('#searchform').submit();
                 }else{
-                    $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
-                        ele: 'body', // which element to append to
-                        type: 'danger', // (null, 'info', 'danger', 'success')
-                        offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
-                        align: 'center', // ('left', 'right', or 'center')
-                        width: 250, // (integer, or 'auto')
-                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
-                        allow_dismiss: true, // If true then will display a cross to close the popup.
-                        stackup_spacing: 10 // spacing between consecutively stacked growls.
-                    });
+//                    $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
+//                        ele: 'body', // which element to append to
+//                        type: 'danger', // (null, 'info', 'danger', 'success')
+//                        offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
+//                        align: 'center', // ('left', 'right', or 'center')
+//                        width: 250, // (integer, or 'auto')
+//                        delay: 4000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+//                        allow_dismiss: true, // If true then will display a cross to close the popup.
+//                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+//                    });
+                    window.location.href = base_url+"post-your-requirement";
                 }
             }, 'json'
         );

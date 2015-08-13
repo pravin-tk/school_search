@@ -119,6 +119,7 @@
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
 	var asset_url = '<?php echo asset_url();?>';
+        
 </script>
 </head>
 <body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".property-meta">
@@ -135,8 +136,10 @@
     <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.bootstrap-growl.min.js"></script>
+    <script src="<?php echo asset_url();?>js/jquery.bootstrap-rating.input.js"></script>
     <script src="<?php echo asset_url();?>js/pages/common.js"></script>
     <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
     <!-- // END .bg-white -->
 	<!-- // END #content -->
+        
     <?php echo $template['partials']['footer']; ?>
