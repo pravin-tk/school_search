@@ -8,6 +8,7 @@
 				<div class="flipster col-md-12">
 				    <ul style="width:100%;height:100%;" class="fee-panel-ul">
 					    <?php  
+					    $i = 0;
 					    if (isset($feeInfo))
 					    foreach($feeInfo as $key => $schoolFee) {
 						?>
@@ -94,7 +95,7 @@
 				          		</div>
 				          	</div>
 					    </li>
-					   	<?php } ?>
+					   	<?php $i++;} ?>
 				    </ul>
 				    <br>
 				    <br>

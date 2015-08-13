@@ -45,6 +45,7 @@ foreach($infra as $infrakey => $infravalue){
 				   	<div class="panel-body">
 					 	<div class="container">
 				        	<div class="col-md-12">
+				        		 <?php if(count($arractivity) > 0) {?>
 				            	<section class="panel panel-default col-md-12" style="margin-right:10px;">
 					                <div class="panel-heading">
 								      	<h4 class="text-left infra-heading"><?php //echo $key;?>School Activity </h4>
@@ -57,17 +58,24 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+<!-- 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i> -->
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>
 					                    </div>
 					                </div>
 				            	</section> 
-				            
-				            
+				            	<?php }?>
+				            	<?php if(count($arrsafety) > 0) {?>
 					            <section class="panel panel-default col-md-12" style="margin-right:10px;">
 					               	<div class="panel-heading">
 								      	<h4 class="text-left infra-heading"><?php //echo $key;?>School Safety </h4>
@@ -80,15 +88,23 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>
 					                    </div>
 					                </div>
 					            </section> 
+					            <?php }?>
+					            <?php if(count($arrinfra) > 0) {?>
 				            	<section class="panel panel-default col-md-12" style="margin-right:10px;">
 				               		<div class="panel-heading">
 							      		<h4 class="text-left infra-heading"><?php //echo $key;?>School Infrastructure </h4>
@@ -101,16 +117,22 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i>
+						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+                									if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
+						                        	<?php }else{
+						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
+						                        		
+						                        	}?>
 						                        </div>
-						                        <p class="page-scroll" ><?php echo $itemvalue['name'];?></p>
+						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
 					                    <?php }?>
 					                    <?php }?>
 					                    </div>
 				                	</div>
 				            	</section> 
-				          
+				          		<?php }?>
 				          	</div>
 				     	</div>
 				 	</div>

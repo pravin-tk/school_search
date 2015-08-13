@@ -187,7 +187,9 @@ $('body').scrollspy({
     target: '.property-meta',
     offset: 51
 });
-
+$("img").lazyload({
+    effect : "fadeIn"
+});
 
 $(window).load(function() {
 	// Animate loader off screen

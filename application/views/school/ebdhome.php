@@ -69,7 +69,7 @@
                         
                     </div>
                     <div class="item">
-                        <img src="<?php echo asset_url();?>img/header7.jpg" alt="Slider"
+                        <img src="<?php echo asset_url();?>img/header6.jpg" alt="Slider"
 							 class="" style=" width:100%;height: 80%;">
 
                     </div>

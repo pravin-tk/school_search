@@ -128,7 +128,8 @@
 
                                         </div>
                                     </div>
-          			</section>
+          			
+                                </form>
             			</div>
           			</section>
                         
@@ -207,7 +208,7 @@
 								<div class="media-left">
 									<img src="<?php echo $schoolReview["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["firstName"];?>" class="img-circle media-object">
 									<div class="text-center review-user-name"><?php echo $schoolReview["firstName"];?></div>
-								</div>
+                					</div>
 								<div class="media-body">
 									<p class="font-size-14"><strong><?php echo $schoolReview["title"];?></strong></p>
 									<p>

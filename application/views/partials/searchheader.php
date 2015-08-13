@@ -158,6 +158,24 @@ if(!isset($longitude))
 .has-error .form-control {
     background: none;
 }
+.show-item-count{
+	border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	min-width:20px;
+    width: 20px;
+    height: 20px;
+    background: #26a69a;
+    border: 1px solid #f2f2f2;
+    color: #212121;
+    padding:0px auto;
+    padding-top:3px;
+    text-align: center;
+    font: 10px Arial, sans-serif;
+    font-weight:bold;
+    top: -8px;
+    position: relative;
+    display:none;
+}
 -->
 </style>
 <script type="text/javascript">
@@ -199,7 +217,7 @@ if(!isset($longitude))
 		            <div class="text-center col-lg-12" style="display: inline-block;">
                                 <div class="col-lg-4 selectContainer">
                                     <select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
-					<option value="">--Select--</option>
+									<option value="">--Select--</option>
                                 <?php  
                                 if($standard)
                                     foreach ($standard as $key=>$value) { ?>
@@ -270,7 +288,7 @@ if(!isset($longitude))
                     var private_data = '<li class="dropdown user" style="color:#fff;" id="loggedin_user_li">';
                     private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="loggedin_user">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
-                    private_data += '<ul class="dropdown-menu" role="menu" style="z-index:200;">';
+                    private_data += '<ul class="dropdown-menu" role="menu" id="loggedin-settings">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
 //                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
                     private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
@@ -295,14 +313,14 @@ if(!isset($longitude))
 	        </button>
         	<h4 class="filter-text-bar">
                     <i class="text-success fa fa-filter fa-2x"></i> 
-		</h4>
+			</h4>
       	</div>
     	<div class="collapse navbar-collapse" id="main-nav-search">				
     		<ul class="nav navbar-nav navbar-left">
     		<!-- Category Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Category
+	              <i class="fa fa-angle-down fa-2x"></i> Category<label class="show-item-count" id="classification-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -325,7 +343,7 @@ if(!isset($longitude))
           <!-- Board Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Board
+	              <i class="fa fa-angle-down fa-2x"></i> Board<label class="show-item-count" id="board-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -334,7 +352,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolBoard as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolboardcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -348,7 +366,7 @@ if(!isset($longitude))
           <!-- Medium Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Medium
+	              <i class="fa fa-angle-down fa-2x"></i> Medium<label class="show-item-count" id="medium-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -357,7 +375,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolMedium as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolmediumcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -371,7 +389,7 @@ if(!isset($longitude))
           <!-- Type Filter -->
 	          <li class="dropdown filters">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	              <i class="fa fa-angle-down fa-2x"></i> Type
+	              <i class="fa fa-angle-down fa-2x"></i> Type<label class="show-item-count" id="category-count">0</label>
 	            </a>
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
@@ -380,7 +398,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolCategory as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolcategorycheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -389,6 +407,16 @@ if(!isset($longitude))
 	               	?>
 	           	</form>
 	            </div>
+	          </li>
+	          <li>
+	      		<a href="javascript:resetFilters();">
+                  	<i class="fa fa-undo"></i>
+                </a>
+	          </li>
+	          <li>
+	      		<h4 class="filter-text-bar">
+                    <i class="text-success fa fa-sort-numeric-asc"></i> 
+				</h4>
 	          </li>
           <!-- // END Type -->
       		<input type="hidden" name="classFee" id="classFee" value=""/>
@@ -447,20 +475,20 @@ if(!isset($longitude))
                 </a>
             </li>
             <li>
-                <a href="javascript:sortClear();" id="seats-button">
-                        Reset <i class="fa fa-refresh"></i>
+                <a href="javascript:sortClear();">
+                         <i class="fa fa-refresh"></i>
                 </a>
             </li>
       	</ul>
-      	<ul class="nav nav-tabs navbar-left">
+      	<ul class="nav-tabs navbar-right" id="map-list-nav" style="margin-bottom:0px;margin-top:5px;">
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;">
-                   	<i class="fa fa-2x fa-map-marker"></i>
+                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:0;color:#212121;">
+                   	Map
                 </a>
             </li>
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;">
-                   	<i class="fa fa-2x fa-th-list"></i>
+                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:0;color:#212121;">
+                   	List
                 </a>
             </li>
       	</ul>

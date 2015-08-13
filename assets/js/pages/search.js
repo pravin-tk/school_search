@@ -27,34 +27,57 @@ function filterResults() {
     var infraType = "";
     var safetyType = "";
     var classificationType = "";
+    var board_count = 0;
+    var category_count = 0;
+    var classification_count = 0;
+    var medium_count = 0;
+    
+    $(".show-item-count").hide();
+    
     $('input[name="schoolboardcheckbox"]:checked').each(function() { 
 		if(boardType == ""){
 			boardType = $(this).val();
 		} else {
 			boardType += "," + $(this).val();
 		}
+		board_count = parseInt(board_count) + 1;
    	});
+    if(board_count > 0){
+    	$("#board-count").html(board_count).show();
+    }
     $('input[name="schoolmediumcheckbox"]:checked').each(function() { 
 		if(mediumType == ""){
 			mediumType = $(this).val();
 		} else {
 			mediumType += "," + $(this).val();
 		}
+		medium_count = parseInt(medium_count) + 1;
    	});
+    if(medium_count > 0){
+    	$("#medium-count").html(medium_count).show();
+    }
     $('input[name="schoolcategorycheckbox"]:checked').each(function() { 
 		if(categoryType == ""){
 			categoryType = $(this).val();
 		} else {
 			categoryType += "," + $(this).val();
 		}
+		category_count = parseInt(category_count) + 1;
    	});
+    if(category_count > 0){
+    	$("#category-count").html(category_count).show();
+    }
     $('input[name="schoolclassificationcheckbox"]:checked').each(function() { 
 		if(classificationType == ""){
 			classificationType = $(this).val();
 		} else {
 			classificationType += "," + $(this).val();
 		}
+		classification_count = parseInt(classification_count) + 1;
    	});
+    if(classification_count > 0){
+    	$("#classification-count").html(classification_count).show();
+    }
     $('#sortFields option:selected').each(function() {
         schoolType += $(this).val() + ",";
 	});
@@ -70,7 +93,8 @@ function filterResults() {
         	safetyId: safetyType,
         	infraId: infraType,
         	activityId: activityType,
-        	classificationId: classificationType	
+        	classificationId: classificationType,
+        	categoryId: categoryType
         },function(response){
         	$("#schresult").html(response.html);
         	$("#schresult-map").html(response.htmlmap);
@@ -183,6 +207,7 @@ function sortSchool(sortFilter) {
         	infraId: infraType,
         	activityId: activityType,
         	classificationId: classificationType,
+        	categoryId: categoryType,
         	classFee: classFee,
         	distance: distance,
         	rating: rating,
@@ -213,7 +238,7 @@ function clearSortFields(){
 }
 
 function sortClear(){
-	$('input:checkbox').removeAttr('checked');
+	//$('input:checkbox').removeAttr('checked');
 	clearSortFields();
 	filterResults();
 	scrollTopLink("schresult");
@@ -233,6 +258,7 @@ function resetFilters(){
 	$('input:checkbox').removeAttr('checked');
 	filterResults();
 	scrollTopLink("search-list-row");
+	$(".show-item-count").hide();
 }
 function scrollTopLink(id){
 	$('html,body').animate({

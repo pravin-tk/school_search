@@ -17,7 +17,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Login with Email</h4>
-      </div><form class="form-horizontal" method="post" id="loginfrm">
+      </div><form  method="post" id="loginfrm">
       <div class="modal-body">
        
                 
@@ -53,8 +53,8 @@
            
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary btn-lg" id= "btnpost" value ="Submit" >
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary btn-sm" id= "btnpost" value ="Submit" >
       </div></form>
     </div>
   </div>

@@ -20,7 +20,8 @@ $('.demo').slick({
 		settings: {
 		  arrows: true,
 		 // centerMode: true,
-		  slidesToShow: 3
+		  slidesToShow: 3,
+		  slidesToScroll: 6
 		}
 		},
 		{
@@ -28,7 +29,8 @@ $('.demo').slick({
 		settings: {
 		  arrows: true,
 		 // centerMode: true,
-		  slidesToShow: 1
+		  slidesToShow: 1,
+		  slidesToScroll: 6
 		}
 		}
 	]

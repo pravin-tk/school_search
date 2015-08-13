@@ -30,16 +30,18 @@
                             </div>
                                     </div><?php }?>
 			        	<div class="panel panel-default" id="divcontact">
-                                        <form class="form-horizontal" method="post" id="contactfrm">
-                                         <fieldset>
+                                        
+                                         
 		                    	<div class="panel-heading" style="border-bottom: 1px solid #e2e9e6;">
 		                        	<h3 class="text-center infra-heading"><strong>Contact Us</strong></h3>
 		                        </div>
                                         <div id="derr"></div>
+                                        <form class="form-horizontal" method="post" id="contactfrm">
 		                        <div class="panel-body">
+                                            
 			                        <div class="form-group">
 			                            <div class="col-md-10 col-md-offset-1">
-                                                        <input id="userName" name="userName" type="text" placeholder="your name" maxlength="30" class="form-control">
+                                                        <input id="userName" name="userName" type="text" placeholder="your names" maxlength="30" class="form-control">
 			                            </div>
 			                        </div>
 			
@@ -57,12 +59,12 @@
 			
 			                        <div class="form-group">
 			                            <div class="col-md-12 text-center">
-                                                        <input type="submit" class="btn btn-primary btn-lg" id= "btnpost" value ="Submit" >
+                                                        <input type="submit" class="btn btn-primary btn-sm" id= "btnpost" value ="Submit" >
 			                            </div>
-			                        </div>
-			                  	</div>
-		                    </fieldset>
-		                </form>
+			                        </div> 
+			                  	</div></form>
+		                  
+		               
 		                </div>
 			        </div>
 			        <div class="col-md-6">

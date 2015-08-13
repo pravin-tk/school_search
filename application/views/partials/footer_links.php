@@ -49,6 +49,7 @@
                     public_data += '</li>';
                     document.write(public_data);
               }
+              </script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -65,11 +66,11 @@
          <div class="col-xs-6 col-md-2"> 
            <h4>Corporate</h4> 
            <ul class="list-unstyled"> 
-             <li><a href="">About the company</a></li> 
+             <li><a href="<?php echo $base_url; ?>aboutus">About the company</a></li> 
              <li><a href="">Our Mission</a></li> 
-             <li><a href="">Our People</a></li> 
-             <li><a href="">Career</a></li> 
-             <li><a href="">Contact Us</a></li> 
+             <li><a href="<?php echo $base_url; ?>ourteam">Our People</a></li> 
+             <li><a href="<?php echo $base_url; ?>career">Career</a></li> 
+             <li><a href="<?php echo $base_url; ?>contactus">Contact Us</a></li> 
            </ul> 
          </div> 
          <div class="col-xs-6 col-md-2"> 
@@ -84,10 +85,10 @@
  		<div class="col-xs-6 col-md-2"> 
            <h4>Policies</h4> 
            <ul class="list-unstyled"> 
-             <li><a href="">How We Rate Schools</a></li> 
-             <li><a href="">School Review Guidelines</a></li> 
-             <li><a href="">Terms Of Use</a></li> 
-             <li><a href="">Privacy and Policies</a></li> 
+             <li><a href="<?php echo $base_url; ?>how_we_rate">How We Rate Schools</a></li> 
+             <li><a href="<?php echo $base_url; ?>review_guidelines">School Review Guidelines</a></li> 
+             <li><a href="<?php echo $base_url; ?>terms">Terms Of Use</a></li> 
+             <li><a href="<?php echo $base_url; ?>privacy">Privacy and Policies</a></li> 
            </ul> 
          </div>        <div class="col-xs-12 col-md-4"> 
            <div class="panel bg-transparent margin-none"> 

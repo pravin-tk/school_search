@@ -1,35 +1,37 @@
-        <div class="col-md-12">
-            <div class="panel panel-default text-center">
+      <div class="col-md-12">
+         <div class="panel panel-default text-center">
                 <div class="panel-heading">
                     <h3 class="text-center"><strong>Visual Tour </strong></h3>
                 </div>
-                <div class="panel-body nomargin"style="padding:0px;overflow:hidden;">
-					<div class="container" id="container"style="overflow:hidden;width:100%;">
-					   <div id="pano-controls" style="left: 135px;">
-							<div class="pano-position">
-							<span>Campus</span>
-							</div>
-						</div>  
+             <div class="panel-body nomargin"style="padding:0px;overflow:hidden;">
+			   <div class="container" id="container"style="overflow:hidden;width:100%;">
+				 <div id="pano-controls" style="">
+					  <div class="overlay-gallery text-center demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
+							<?php for($i=0; $i<count($otherInfo['panorama']);$i++){?>
+							<div class="">
+				               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a></h4>
+				                <img class="lazy img-responsive pano-next" data-id="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
+				            </div>
+				          <?php }?>
+		            	</div>
+				  </div>  
 						
-						</div>					 
-					</div>
-					<div class="overlay-gallery text-center col-md-11 demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
-						<?php for($i=0; $i<count($otherInfo['panorama']);$i++){?>
-						<div class="float-left">
-			                <img class="pano-next" data-id="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
-			               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a> </h4>
-			            </div>
-			            <?php }?>
-		            </div>
-           		 </div>
-                </div>
+				</div>					 
+			  </div>
+					
+           	</div>
+         </div>
 		<div id="info">
 		</div>
 		
 <script src="<?php echo asset_url();?>js/360.js"></script>
 <script>
 var camera, scene, renderer;
-var imagecount = 'https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_190545.jpg';
+<?php if(count($otherInfo['panorama']) > 0) {?>
+	var imagecount = '<?php echo $otherInfo['panorama'][0]['panoImage'];?>';
+<?php } else { ?>
+	var imagecount = "";
+<?php }?>
 
 var isUserInteracting = false,
 onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -53,22 +55,25 @@ function init() {
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 	THREE.ImageUtils.crossOrigin = '';
+	<?php if(count($otherInfo['panorama']) > 0) {?>
+		var image1 = new THREE.MeshBasicMaterial( {
+			map: THREE.ImageUtils.loadTexture("<?php echo $otherInfo['panorama'][0]['panoImage'];?>")
+		} );
+	<?php } else { ?>
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture("https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_153036.jpg")
+		map: THREE.ImageUtils.loadTexture("")
 	} );
+	<?php }?>
 
 	
 	mesh1 = new THREE.Mesh( geometry, image1 );
 	
 	
 	scene.add( mesh1);
-// 	scene.add( mesh2 );
-// 	scene.add( mesh3);
 	
 	renderer = new THREE.WebGLRenderer();
 	renderer.setPixelRatio( window.devicePixelRatio );
-	renderer.setSize( window.innerWidth, 470 );
-	//alert( window.innerWidth+"-"+ window.innerHeight);
+	renderer.setSize( window.innerWidth, window.innerHeight - $("#detailmenubar").height() - $('.panel-heading').height()  );
 	container.appendChild( renderer.domElement );
 
 	container.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -77,7 +82,6 @@ function init() {
 	document.addEventListener( 'mousewheel', onDocumentMouseWheel, false );
 	document.addEventListener( 'DOMMouseScroll', onDocumentMouseWheel, false);
     
-	//
 $(".pano-play").click(function(){
 	event.preventDefault();
 
@@ -88,7 +92,8 @@ $(".pano-next").click(function(event){
 	
 	imagecount = $(this).attr("data-id");
 	THREE.ImageUtils.crossOrigin = '';
-	
+	$("h4").removeClass('active-pano');
+	$(this).prev().addClass("active-pano");
 	var image1 = new THREE.MeshBasicMaterial( {
 		map: THREE.ImageUtils.loadTexture( imagecount )
 	} );
@@ -96,7 +101,7 @@ $(".pano-next").click(function(event){
 	scene.remove(mesh1);
   	scene.add(mesh1);
   	$('html, body').stop().animate({
-        scrollTop: $("#container").offset().top - $("#detailmenubar").height()
+        scrollTop: $("#container").offset().top
     }, 500, 'easeInOutExpo');	
 })
 	document.addEventListener( 'dragover', function ( event ) {
@@ -145,8 +150,8 @@ function onWindowResize() {
 
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight - $(".overlay-gallery").height()  );
-
+	renderer.setSize( window.innerWidth, window.innerHeight - $("#container").offset().top - $("#detailmenubar").height( ) -  $('.panel-heading').height());
+	
 }
 
 function onDocumentMouseDown( event ) {
@@ -230,11 +235,6 @@ function update() {
 	camera.target.z = 500 * Math.sin( phi ) * Math.sin( theta );
 
 	camera.lookAt( camera.target );
-
-	/*
-	camera.position.copy( camera.target ).negate();
-	*/
-
 	renderer.render( scene, camera );
 
 }

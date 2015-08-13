@@ -21,7 +21,7 @@ class home extends CI_Controller {
 // 		header ( "Content-Type: text/html" );
 		
 		$standard_key = 'standardlist.json';
-        $top_school_key = 'topschools.json';
+                 $top_school_key = 'topschools.json';
 		$apicalls = array ($standard_key,$top_school_key);
 		try {
 			$apioutput = $this->apiclient->process ( $apicalls );
@@ -250,37 +250,32 @@ class home extends CI_Controller {
 	}
         
 	public function schoolDetail($id) {
-                $map = array();
-                $standardId ="";
-                $userid ="";
-                $school_rating_key ="";
-                if(isset($_COOKIE['ebdstdid']))
-                    $standardId = $_COOKIE['ebdstdid'];
-                if(isset($_COOKIE['ebdsearchgeocode'])){
-                    $geocode = $_COOKIE['ebdsearchgeocode'];
-                    if(strpos($geocode, ",")){
-                        $arrgeocode = explode(",",$geocode);
-                    }
+
+            $map = array();
+            $standardId ="";
+            $userid ="";
+            $school_rating_key ="";
+            if(isset($_COOKIE['ebdstdid']))
+                $standardId = $_COOKIE['ebdstdid'];
+            if(isset($_COOKIE['ebdsearchgeocode'])){
+                $geocode = $_COOKIE['ebdsearchgeocode'];
+                if(strpos($geocode, ",")){
+                    $arrgeocode = explode(",",$geocode);
                 }
-                
-                if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
-                    $userid = $_COOKIE['ebduserid'];
-                }elseif( $this->session->userdata('sessuserID')!="" ){
-                    $userid = $this->session->userdata('sessuserID');
-                }else{
-                    //echo $userid ."not setas ";
-                }
-               
-                $param = $this->uri->segment(3); 
-               
-                $schoolarr = explode('-',$param);
-                $schoolid = $schoolarr[count($schoolarr)-1];
-               
-               
-                if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
+            }
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                $userid = $this->session->userdata('sessuserID');
+            }
+            $param = $this->uri->segment(3); 
+            $schoolarr = explode('-',$param);
+            $schoolid = $schoolarr[count($schoolarr)-1];
+              
+            if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
                     $map['latitude'] = $arrgeocode[0];
-                if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
-                    $map['longitude'] = $arrgeocode[1];
+            if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
+                $map['longitude'] = $arrgeocode[1];
 		$school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
 		$school_other_key = 'school.json/' . $schoolid;
 		$standard_key = 'standardlist.json';
@@ -326,6 +321,7 @@ class home extends CI_Controller {
                                 $this->template->set('schoolRatingInfo',$value);
                             }
 			}
+
                         if(isset($schoolInfo['highlights']))
                             $this->template->set('overviewInfo',$schoolInfo['highlights']);
                         if(isset($schoolInfo['contacts']))
@@ -343,6 +339,7 @@ class home extends CI_Controller {
                             $this->template->set('standardId',$standardId);
                         if(isset($schoolid))
                             $this->template->set('schId',$schoolid);
+
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;
@@ -680,5 +677,51 @@ class home extends CI_Controller {
 //		echo $errmsg;
 //	}
 	
+	public function aboutUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/about_us' );
+	}
 	
+	public function joinUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/join_us' );
+	}
+	
+	public function contactUs(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/contact_us' );
+	}
+	
+	public function ourTeam(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/our_team' );
+	}
+	
+	public function privacy(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/privacy' );
+	}
+	
+	public function terms(){
+		$this->template->set_layout ( 'edbuddy' )
+		->title ( 'Search for finest schools near you: Edbuddy.in' )
+		->set_partial ( 'header', 'partials/header_home' )
+		->set_partial ( 'footer', 'partials/footer_links' );
+		$this->template->build ( 'school/terms_of_use' );
+	}
 }
