@@ -64,7 +64,7 @@ class Auth extends CI_Controller {
             $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
-                ->set_partial('header', 'partials/searchheader')
+                ->set_partial('header', 'partials/header_home')
                 ->set_partial('footer', 'partials/footer_links');
                 // ->set_partial('breadcrumb','../partials/breadcrumb');
                 $this->template->set("emailId1",$emailId);
@@ -146,10 +146,10 @@ class Auth extends CI_Controller {
                      
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
                     $this->session->set_userdata('sessEmailID', $map['email']);
-                    $this->session->set_userdata("ebdmypic",$responsedata->image);
-                    $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], 60 * 60 * 24);
-                    $this->input->set_cookie("ebdusername",$responsedata->firstName, 60*60*24);
-                    $this->input->set_cookie("ebdmypic",$responsedata->image, 60*60*24);
+                  
+                    $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], time() + (86400 * 30));
+                    $this->input->set_cookie("ebdusername",$responsedata->firstName, time() + (86400 * 30));
+                    $this->input->set_cookie("ebdmypic",$responsedata->image, time() + (86400 * 30));
                 }else if(strpos($key, 'user/login.json') !== false ){
                     $responsedata->loginstatus=0;
                     $responsedata->message=$value['errors'][0];
@@ -171,6 +171,8 @@ class Auth extends CI_Controller {
         $this->input->set_cookie("ebduserid", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("ebdusername", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("edbmypic", null, time() - 60 * 60 * 24 * 30);
+        $this->input->set_cookie("ebdratesch", null, time() - 60 * 60 * 24 * 30);
+        
         $this->session->sess_destroy();
         $this->input->set_cookie($cookie);
         redirect(site_url());

@@ -65,9 +65,15 @@ $route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+-[0-9]{1,10})/([a-z-]+)'] = 'home/s
 //$route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z-]+)'] = 'home/schoolDetail2/$1';
 $route['download'] = 'download/downloadApp';
 $route['permlink'] = 'home/getLocation';
+$route['list-your-school'] = 'home/listSchool';
+$route['save-school'] = 'home/saveSchool';
+$route['post-your-requirement'] = 'home/postRequirement';
+$route['save-requirement'] = 'home/saveRequirement';
+$route['post-rating-review'] = 'home/userRatingReview';
 $route['aboutus'] = 'home/aboutUs';
 $route['career'] = 'home/joinUs';
 $route['ourteam'] = 'home/ourTeam';
 $route['contactus'] = 'home/contactUs';
 $route['privacy'] = 'home/privacy';
 $route['terms'] = 'home/terms';
+

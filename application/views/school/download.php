@@ -32,3 +32,8 @@
 		</div>
 	</div>
 </div>
+  <script>
+        $(document).ready(function(){
+           $(".container-fluid").css("background", "black");
+        });
+    </script>

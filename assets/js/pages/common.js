@@ -4,8 +4,8 @@ $( document ).ready(function() {
                    
                         $.post(base_url+"index.php/auth/userLogin",
                         {
-                        uname: $("#tusername").val(),
-                        passwd: $("#tpassword").val()
+                        uname: $("#logemailId").val(),
+                        passwd: $("#logpasswd").val()
                         },function(response){
                           
                           $.each(response, function(key, value) {
@@ -28,9 +28,10 @@ $( document ).ready(function() {
                             }else if(status == "0" && loginstatus == "1"){ //user not activated
                                 console.log('redirect');
                                 window.location.href = base_url+"activate";
-                               //window.location.href=strip_hash(referer);
+                               
                             }else{
                                 location.reload();
+                                
                             }
                         },'json'
                         );
@@ -89,7 +90,7 @@ $( document ).ready(function() {
             $("#divforgotp").hide();
         });
            
-         $('#flogin').bootstrapValidator({
+         $('#loginfrm').bootstrapValidator({
             message: 'This value is not valid',
             feedbackIcons: {
                     valid: 'glyphicon glyphicon-ok',
@@ -98,11 +99,10 @@ $( document ).ready(function() {
             },
             submitHandler: function(validator, form, submitButton) {
                    $('button[type="submit"]').prop('disabled', 'false')
-                  
                      userLogin();
              },
             fields: {
-                    tusername: {
+                    logemailId: {
                     message: 'Email Id is not valid',
                         validators: {
                                 notEmpty: {
@@ -113,7 +113,7 @@ $( document ).ready(function() {
                                 },
                         }   
                     },
-                    password: {
+                    logpasswd: {
                     message: 'password is not valid',
                         validators: {
                                 notEmpty: {
@@ -196,3 +196,4 @@ $(window).load(function() {
 	$(".se-pre-con").fadeOut("slow");
 	
 });
+

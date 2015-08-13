@@ -1,3 +1,13 @@
+<style>
+.rating-md {
+    font-size: 2.13em;
+}
+ .rating-sm {
+    font-size: 1.13em;
+}   
+</style>
+<?php //print_r($userRatingInfo);exit;?>
+
 <div class="col-md-12">
   	<div class="panel panel-default">
 	    <div class="panel-heading">
@@ -5,15 +15,139 @@
 		      	<strong>Rating & Reviews </strong>
 				<span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
 			</h3>
+                <div style="align:right"><a id="addReview" style="cursor:hand;" >Add Rating & Review </a> </div>
 	    </div>
-   		<div class="panel-body">
+            <div class="panel-body" id="divreviewfrm" style="display:none;">
+                <div class="container">
+                    <div class ="col-md-12">
+                        <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
+            			<div class="panel-body">
+                                    <h4> Rating and review form</h4>
+                                    <form id="frmrateReview" name="frmrateReview" method="post" />
+                                    <input type="hidden" name="hdnSchid" id="hdnSchid" value="<?php echo $schId;?>" />
+                                    <button id ="btnopenLogin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none">
+                                        open login form
+                                    </button>
+                                    <hr/>
+                                   <?php 
+                                   
+        			$totalRating = 0;
+        			$totalRatingCount = 0;
+                                $ratingId = 0;
+	    			if(isset($userRatingInfo) && count($userRatingInfo)>0){
+                                foreach($userRatingInfo as $key => $schoolRating){
+	    				$totalRatingCount++;
+                                        if(isset($schoolRating['id']))
+                                            $ratingId = $schoolRating['id'];
+                                ?>
+          			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
+            			<div class="panel-body">
+	                		<div class="col-xs-3 col-md-3 text-center">
+			          	      <i class="fa fa-building-o fa-2x"></i>
+			          	      <div class="infra-name">
+			          	      	<strong><?php echo $schoolRating['name']?></strong>
+			          	      </div>
+			                </div>
+		                 	<div class="col-xs-4 col-md-4 text-center">
+                                            <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating" />
+		                      
+		                    </div>
+            			</div>
+          			</section>
+	          	<?php 
+			    	} // for
+                             }else{
+                                   foreach($schoolRatingInfo as $key => $schoolRating){
+	    				$totalRatingCount++;
+                                        if(isset($schoolRating['id']))
+                                            $ratingId = $schoolRating['id'];
+                                ?>
+          			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
+            			<div class="panel-body">
+	                		<div class="col-xs-3 col-md-3 text-center">
+			          	      <i class="fa fa-building-o fa-2x"></i>
+			          	      <div class="infra-name">
+			          	      	<strong><?php echo $schoolRating['name']?></strong>
+			          	      </div>
+			                </div>
+		                 	<div class="col-xs-4 col-md-4 text-center">
+                                            <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating" />
+		                      
+		                    </div>
+            			</div>
+          			</section>
+	          	<?php 
+			    	} // for 
+                             }?>
+                                    <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div class="col-xs-3 col-md-3 text-center">
+
+                                                  <div class="infra-name">
+                                                    <strong>Review Title</strong>
+                                                  </div>
+                                            </div>
+                                            <div class="col-xs-4 col-md-4 text-center">
+                                            <div class="rating">
+                                                <input type="hidden" id="hdnreviewid" value="" />
+                                               <input id="txttitle" name="txttitle" type="text" 
+                                                      placeholder="review title" maxlength="25" class="form-control">	                       
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                            <div class="col-xs-3 col-md-3 text-center">
+
+                                                  <div class="infra-name">
+                                                    <strong>Review Description</strong>
+                                                  </div>
+                                            </div>
+                                            <div class="col-xs-4 col-md-4 text-center">
+                                            <div class="rating">
+                                                <textarea name="txtReview" id="txtReview" class="form-control"> </textarea>		                       
+                                            </div>
+
+                                        </div>
+                                    </div>
+          			</section>
+                                     <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
+                                    <div class="panel-body">
+                                            <div class="col-xs-3 col-md-3 text-center">
+
+                                                  <div class="infra-name">
+                                                    
+                                                  </div>
+                                            </div>
+                                            <div class="col-xs-4 col-md-4 text-center">
+                                            <div class="rating">
+                                                <input type="submit" name="btnAddReview" class="btn btn-primary btn-lg" 
+                                                       id="btnAddReview" value="Submit">
+                                                <input type="button" name="btnCancel" id="btnCancel" value="Cancel"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+          			
+                                </form>
+            			</div>
+          			</section>
+                        
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+   		<div class="panel-body" id="divUserRatingReview">
 	 		<div class="container">
         		<div class="col-md-6">
         		<?php 
         			$totalRating = 0;
         			$totalRatingCount = 0;
 	    			if(isset($ratingInfo))
-                    foreach($ratingInfo as $key => $schoolRating){
+                                foreach($ratingInfo as $key => $schoolRating){
 	    				$totalRatingCount++;
 	    		?>
           			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
@@ -59,25 +193,22 @@
 					<section class="panel panel-default">
 						<div class="panel-body">
 						 Rating Not Available 		
-		            	</div>
-		           </section>
+                                                </div>
+                                    </section>
 				<?php } ?>
         		</div>
         		<div class="col-md-6">
 					<div class="panel panel-default" id="reviewBoard">
-					<?php
+					<?php 
 					if(isset($reviewInfo) && !empty($reviewInfo)){
-						foreach($reviewInfo as $key => $schoolReview){
+						foreach($reviewInfo as $key => $schoolReview){ //print_r($schoolReview);
 						?>
 						<div class="panel panel-default review-panel">
 							<div class="media">
 								<div class="media-left">
-									<?php 
- 									 
-?>
-									<img src="<?php echo $schoolReview["userRegistrationInfo"]["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["userRegistrationInfo"]["firstName"];?>" class="img-circle media-object">
-									<div class="text-center review-user-name"><?php echo $schoolReview["userRegistrationInfo"]["firstName"];?></div>
-								</div>
+									<img src="<?php echo $schoolReview["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["firstName"];?>" class="img-circle media-object">
+									<div class="text-center review-user-name"><?php echo $schoolReview["firstName"];?></div>
+                					</div>
 								<div class="media-body">
 									<p class="font-size-14"><strong><?php echo $schoolReview["title"];?></strong></p>
 									<p>
@@ -100,38 +231,31 @@
 					}	
 					?>
 					</div>
-					<!-- div>
-						<input type="hidden" name="schoolId" id ="schoolId" value="<?php echo $basicInfo['schoolId'];?>"/>
-		    			<input type="hidden" name="userId" id="userId" value="<?php echo $basicInfo['schoolId'];?>">
-						<form  id="rateusfrm">
-				
-							<?php 
-							if(isset($ratingInfo))
-							foreach($ratingInfo as $key => $schoolRating){
-							?>
-								<div class="col-md-12 text-center">
-				                	<div class="col-md-3 text-center btn btn-primary btn-sm">
-						          	   	<?php echo $schoolRating['name']?>
-						           	</div>
-						            <div class="col-md-6 text-center">
-						               	<div class="rating">
-					   						<input id="<?php echo $schoolRating['catid']; ?>" name="<?php echo $schoolRating['catid']; ?>" class="rating" data-min="0" data-max="5" data-step="1"data-size="xs">
-						                </div>
-						         	</div>
-			        			</div>
-			        			<br/><br/>
-							<?php 
-							}
-							?>
-							<br/>
-			        		<div class="col-md-3 text-center">
-			           			<input type="submit" id="rateUs" value =" Submit Rating"/>
-			        		</div>
-		        		</form>
-	        		</div> -->
+					
         		</div>
     		</div> <!-- container -->
    		</div> <!-- pane body -->
   	</div><!--  -->
 </div>
 
+<script>
+$( document ).ready(function() {
+    <?php if(isset($userRatingInfo)){
+            foreach($userRatingInfo as $key => $schoolRating){
+	    	$totalRatingCount++;
+                if(isset($schoolRating["id"]) && $schoolRating["id"]>0){?>  
+                    $("#rate_star_<?php echo $schoolRating["catid"]?>_<?php echo $schoolRating["id"]?>").rating({ size:'sm',showCaption:false,step:1});
+                <?php }else{ ?>      
+                    $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'sm',showCaption:false,step:1});
+            <?php }
+            }
+    }else{
+        foreach($schoolRatingInfo as $key => $schoolRating){ ?>
+            $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'sm',showCaption:false,step:1});    
+  <?php  }
+    }?>          
+    });
+
+
+
+    </script>
