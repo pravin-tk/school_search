@@ -9,9 +9,8 @@
 					  <div class="overlay-gallery text-center demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
 							<?php for($i=0; $i<count($otherInfo['panorama']);$i++){?>
 							<div class="">
-				               <h4><a> Campus</a> </h4>
-				                <img class="pano-next" data-id="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
-				               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a> </h4>
+				               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a></h4>
+				                <img class="lazy img-responsive pano-next" data-id="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
 				            </div>
 				          <?php }?>
 		            	</div>

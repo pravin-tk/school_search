@@ -226,7 +226,7 @@
 		<div class="container">
 		  	<div class="panel">
 		   		<div class="overview-heading">
-		      		<h4 class="text-left">School & Student Achievements</h4>
+		      		<h4 class="text-left"><img src="<?php echo asset_url();?>img/icons/vector_333_04-24.png" />School & Student Achievements</h4>
 		    	</div>
 		   		<div class="panel-body highlight-panel-body col-md-12">
 		     

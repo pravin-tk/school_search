@@ -62,7 +62,7 @@
 			padding:0px 20px;
 			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
 			min-width:97%;
-			height:120px;;
+			height:120px;
 			overflow:hidden;
 			}
 			.overlay-gallery{
@@ -148,4 +148,27 @@ div.review-panel
 .facility-icons{
 	height:50px;
 	width:50px;
+}
+
+.gmap-area {
+    background-image: url("../img/map.jpg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 70px 0;
 }	    
+
+.gmap {
+    border: 10px solid #f6f5f0;
+    border-radius: 50%;
+    box-shadow: 0 0 3px 3px #e7e4dc;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 300px;
+}
+
+.img-circle {
+    border-radius: 50%;
+}
