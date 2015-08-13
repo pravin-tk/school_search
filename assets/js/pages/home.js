@@ -39,7 +39,11 @@ $("#sch").click(function () {
 
 $(document).ready(function () {
     $("#cboStd").css("display", "block");
-    
+//    if(typeof $.cookie("ebdsearchgeolocation") != "undefined"){
+//    	if($.cookie("ebdsearchgeolocation").length > 0){
+//    		$("#schbox").val($.cookie("ebdsearchgeolocation"));
+//    	}
+//    }
 });
 
 
@@ -131,6 +135,7 @@ google.maps.event.addDomListener(window, 'load', function () {
         $("#address").val(address);
         document.cookie="ebdsearchgeocode="+i+";expires="+expires+"; path=/;domain=edbuddy.in";
         document.cookie="ebdsearchgeoloc="+a+";expires="+expires+"; path=/;domain=edbuddy.in";
+        $.cookie("ebdsearchgeolocation", a, {expires: 180, path: '/'});
     });
 });
 

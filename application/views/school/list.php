@@ -605,7 +605,7 @@ $classification = $filtersList['classificationFilter'];
                                                     <div class="detail-value">
                                                     <?php echo $school['boardName']; ?>
                                                     </div>
-        					<?php } else { ?>
+        										<?php } else { ?>
                                                     <div class="detail-label">
                                                         Teaching Approach
                                                     </div>
@@ -654,7 +654,7 @@ $classification = $filtersList['classificationFilter'];
                                                     Management
                                                 </div>
                                                 <div class="detail-value">
-                                                    <?php echo $school['schoolCategory'] ?>
+                                                    <?php echo $school['schoolType'] ?>
                                                 </div>
                                                 <div class="detail-label">
                                                     Fee(Per Annum)
@@ -768,7 +768,7 @@ $classification = $filtersList['classificationFilter'];
 
     function initialize() {
         updateSortListedSchools();
-
+        $('#schbox_inner').val($.cookie("ebdsearchgeolocation"));
         dataArr = <?php echo json_encode($schools); ?>;
         var ulat = $("#latitude").val();
         var ulng = $("#longitude").val();
@@ -888,6 +888,15 @@ if (isset($schools)) {
                             position: myLatlng,
                             map: map,
                             title: 'My location!',
+                            icon: {
+                                path: fontawesome.markers.MALE,
+                                scale: 0.4,
+                                strokeWeight: 0.2,
+                                strokeColor: 'black',
+                                strokeOpacity: 1,
+                                fillColor: '#212121',
+                                fillOpacity: 0.9
+                            }
                         });
                         // Define a symbol using SVG path notation, with an opacity of 1.
                         var lineSymbol = {
@@ -932,7 +941,7 @@ if (isset($schools)) {
                             $("#address").val(address);
 
                             $.cookie("ebdsearchgeocode", i, {expires: 180, path: '/'});
-                            //$.cookie("ebdsearchgeoloc", a, {expires: 180, path: '/'});
+                            $.cookie("ebdsearchgeolocation", a, {expires: 180, path: '/'});
                             /******/
 
                             document.cookie = "ebdsearchgeocode=" + i + ";expires=" + expires + "; path=/;";

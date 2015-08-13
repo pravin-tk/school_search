@@ -238,7 +238,7 @@ function clearSortFields(){
 }
 
 function sortClear(){
-	$('input:checkbox').removeAttr('checked');
+	//$('input:checkbox').removeAttr('checked');
 	clearSortFields();
 	filterResults();
 	scrollTopLink("schresult");

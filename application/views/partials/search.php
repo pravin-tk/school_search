@@ -109,7 +109,7 @@
 	                                            	Management
 	                                            </div>
 	                                            <div class="detail-value">
-	                                            	<?php echo $school['schoolCategory']?>
+	                                            	<?php echo $school['schoolType']?>
 	                                            </div>
 	                                            <div class="detail-label">
 	                                            	Fee(Per Annum)

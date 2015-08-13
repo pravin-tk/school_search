@@ -49,6 +49,9 @@
 	margin-top:0px;
 	margin-bottom:5px;
 }
+.flip-future{
+	display:none;
+}
 .fee-panel-box .flip-content .panel-default{
 	border:1px solid #e2e9e6;
 	padding-top:0px;
@@ -194,7 +197,7 @@
 }
 #timelineslider .slick-prev {
     position: absolute;
-    left: -35px;
+    left: 0px;
     top: 10px;
     font-size: 24px;
     height:auto;
@@ -204,7 +207,7 @@
 }
 #timelineslider .slick-prev:hover {
     position: absolute;
-    left: -35px;
+    left: 0px;
     top: 10px;
     font-size: 24px;
     height:auto;
@@ -218,7 +221,7 @@
 }
 #timelineslider .slick-next {
     position: absolute;
-    right: 3px;
+    right: 0px;
     top: 10px;
     font-size: 24px;
     height:auto;
@@ -228,7 +231,7 @@
 }
 #timelineslider .slick-next:hover {
     position: absolute;
-    right: 3px;
+    right: 0px;
     top: 10px;
     font-size: 24px;
     height:auto;
@@ -314,12 +317,31 @@
 .has-success .form-control {
     background: none;
 }
+.school-timeline-progress{
+	position: relative;
+    top: 30px;
+    left: 20px;
+    border: 1px solid #26a69a;
+    width: 110%;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+#dates{
+	display:none;
+}
+.timeline-milestone-title{
+	max-width: 100%;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
 -->
 </style>
 
 
 <form style="position:absolute;top: 3px;left:150px;z-index:7000;" class="col-lg-4" action="<?php echo base_url();?>index.php/home/search" method="post">	
-	<input type="hidden" name="schoolId" id="schoolId" value="<?php echo $schId;?>"/>
+	<input type="hidden" name="schoolId" id="schoolId" value="<?php //echo $schId;?>"/>
 	<div class="form-group">
 		<div class="col-lg-6 selectContainer">
 			<select class="selectpicker form-control" id="standardId" name="standardId">
@@ -340,14 +362,14 @@
 </form>
 <div id="wrap">
 <div id="schoolheader" class="cover overlay overflow-hidden margin-bottom-none height-400 height-500-lg max-height-500" >
-        <div id="pan">
-	      <div id="wrapper" style="background:url(<?php echo $basicInfo["homeImage"];?>) no-repeat;width:1280px;height:600px;background-size: 1280px 600px;"></div>
-	      <div id="mask">
-		<div class="bac"></div>
-		<div class="logo"></div>
-		<div class="remote stop"></div>
-	      </div>
-	    </div> 
+  	<div id="pan">
+	    <div id="wrapper" style="background:url(<?php echo $basicInfo["homeImage"];?>) no-repeat;background-size: 100% 100%;"></div>
+      	<div id="mask">
+			<div class="bac"></div>
+			<div class="logo"></div>
+			<div class="remote stop"></div>
+      	</div>
+    </div> 
     <div class="overlay overlay-bg-black overlay-full-xs">
       <div class="v-bottom">
         <div class="container">
@@ -373,7 +395,7 @@
                     <?php }?>
 		            </div>
                   <h1 class="text-h1 text-overlay"><?php echo $basicInfo['name'];?></h1>
-                  <p class="text-subhead text-overlay"><?php echo $basicInfo['streetName'];?> ,<?php echo $basicInfo['localityName'];?> ,<?php echo $basicInfo['cityName'];?></p>
+                  <p class="text-subhead text-overlay"><?php echo $basicInfo['localityName'];?>, <?php echo $basicInfo['cityName'];?></p>
           	   </div>
           	</div>
           	<div >
@@ -391,7 +413,6 @@
     </div>
 
   </div>
-<?php echo $basicInfo["homeImage"];?>
   
 <!-- Fixed navbar -->
 <nav class="navbar navbar-default" role="navigation" id="detailmenubar">

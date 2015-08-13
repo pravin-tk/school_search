@@ -53,15 +53,16 @@
 			#pano-controls{
 			position:absolute;
 			z-index:1;
-			background:rgba(31,31,31,0.8);
+			background:rgba(31,31,31,0.6);
 			color:silver;
-			top:100px;
+			bottom:20px;
 			border-radius:2px;
 			box-sizing:border-box;
 			text-align: center;
-			padding:30px 20px;
+			padding:0px 20px;
 			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
-			min-width:250px;
+			min-width:97%;
+			height:120px;;
 			overflow:hidden;
 			}
 			.overlay-gallery{
@@ -74,7 +75,7 @@
 			border-radius:2px;
 			box-sizing:border-box;
 			text-align: center;
-			padding:30px 20px;
+			padding:0px 20px;
 			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
 /* 			overflow:hidden; */
 			}
@@ -88,7 +89,7 @@
 			box-sizing:border-box;
 			text-align: center;
 			box-shadow:0 0 10px -5px rgba(0,0,0,0.5);
-			margin-top: 20px;
+			margin-top: 0px;
 			
 			}
 			#pano-position{
@@ -122,6 +123,11 @@
 		    border-radius: 2px;
 		    border: 1px solid #cdcdcd;
 		    }
+		    .active-pano{
+		    background:#26a69a;
+		    width:150px;
+		    color:#fff;
+		    }
 /* load more */
 div.review-panel
 {
@@ -137,4 +143,9 @@ div.review-panel
 	width:100%;
 	font: 600;
 }
-/*  */		    
+/*  */	
+/*facility*/
+.facility-icons{
+	height:50px;
+	width:50px;
+}	    

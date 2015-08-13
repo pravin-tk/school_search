@@ -217,7 +217,7 @@ if(!isset($longitude))
 		            <div class="text-center col-lg-12" style="display: inline-block;">
                                 <div class="col-lg-4 selectContainer">
                                     <select class="selectpicker form-control" id="standardId" name="standardId" style="background-color: white;height: 35px;">
-					<option value="">--Select--</option>
+									<option value="">--Select--</option>
                                 <?php  
                                 if($standard)
                                     foreach ($standard as $key=>$value) { ?>
@@ -288,7 +288,7 @@ if(!isset($longitude))
                     var private_data = '<li class="dropdown user" style="color:#fff;" id="loggedin_user_li">';
                     private_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="loggedin_user">';
                     private_data += '<img src="'+logged_pic+'" alt="" class="img-circle"> '+logged_in_as+'<span class="caret"></span></a>'; 
-                    private_data += '<ul class="dropdown-menu" role="menu" style="z-index:200;">';
+                    private_data += '<ul class="dropdown-menu" role="menu" id="loggedin-settings">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
 //                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
                     private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
@@ -313,7 +313,7 @@ if(!isset($longitude))
 	        </button>
         	<h4 class="filter-text-bar">
                     <i class="text-success fa fa-filter fa-2x"></i> 
-		</h4>
+			</h4>
       	</div>
     	<div class="collapse navbar-collapse" id="main-nav-search">				
     		<ul class="nav navbar-nav navbar-left">
@@ -408,6 +408,16 @@ if(!isset($longitude))
 	           	</form>
 	            </div>
 	          </li>
+	          <li>
+	      		<a href="javascript:resetFilters();">
+                  	<i class="fa fa-undo"></i>
+                </a>
+	          </li>
+	          <li>
+	      		<h4 class="filter-text-bar">
+                    <i class="text-success fa fa-sort-numeric-asc"></i> 
+				</h4>
+	          </li>
           <!-- // END Type -->
       		<input type="hidden" name="classFee" id="classFee" value=""/>
 			<input type="hidden" name="distance" id="distance" value=""/>
@@ -465,19 +475,19 @@ if(!isset($longitude))
                 </a>
             </li>
             <li>
-                <a href="javascript:sortClear();" id="seats-button">
-                        Reset <i class="fa fa-refresh"></i>
+                <a href="javascript:sortClear();">
+                         <i class="fa fa-refresh"></i>
                 </a>
             </li>
       	</ul>
-      	<ul class="nav nav-tabs navbar-right">
+      	<ul class="nav-tabs navbar-right" id="map-list-nav" style="margin-bottom:0px;margin-top:5px;">
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:1;color:#212121;">
+                <a class="btn btn-default" href="javascript:viewMap();" id="map-button" style="max-height:38px;margin-top:1px;z-index:0;color:#212121;">
                    	Map
                 </a>
             </li>
             <li style="padding-right:3px;">
-                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:1;color:#212121;">
+                <a class="btn btn-default" href="javascript:hideMap();" id="list-button" style="max-height:38px;margin-top:1px;z-index:0;color:#212121;">
                    	List
                 </a>
             </li>

@@ -250,26 +250,23 @@ class home extends CI_Controller {
 	}
         
 	public function schoolDetail($id) {
-                $map = array();
-                $standardId ="";
-                if(isset($_COOKIE['ebdstdid']))
-                    $standardId = $_COOKIE['ebdstdid'];
-                if(isset($_COOKIE['ebdsearchgeocode']))
-                    $geocode = $_COOKIE['ebdsearchgeocode'];
-                $param = $this->uri->segment(3); 
-                
-                $schoolarr = explode('-',$param);
-                $schoolid = $schoolarr[count($schoolarr)-1];
-                
+    	$map = array();
+        $standardId ="";
+        if(isset($_COOKIE['ebdstdid']))
+         	$standardId = $_COOKIE['ebdstdid'];
+        if(isset($_COOKIE['ebdsearchgeocode']))
+          	$geocode = $_COOKIE['ebdsearchgeocode'];
+        $param = $this->uri->segment(3); 
+        $schoolarr = explode('-',$param);
+        $schoolid = $schoolarr[count($schoolarr)-1];
+        if(strpos($geocode, ",")){
+           	$arrgeocode = explode(",",$geocode);
+        }
                
-                if(strpos($geocode, ",")){
-                    $arrgeocode = explode(",",$geocode);
-                }
-               
-                if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
-                    $map['latitude'] = $arrgeocode[0];
-                if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
-                    $map['longitude'] = $arrgeocode[1];
+        if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
+          	$map['latitude'] = $arrgeocode[0];
+        if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
+            $map['longitude'] = $arrgeocode[1];
 		$school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
 		$school_other_key = 'school.json/' . $schoolid;
 		$standard_key = 'standardlist.json';
@@ -291,22 +288,15 @@ class home extends CI_Controller {
                                 $this->template->set('nearbySchool',$value);
                             }
 			}
-                        if(isset($schoolInfo['highlights']))
-                            $this->template->set('overviewInfo',$schoolInfo['highlights']);
-                        if(isset($schoolInfo['contacts']))
-                            $this->template->set('contactInfo',$schoolInfo['contacts']);
-                        if(isset($schoolInfo['images']))
-                            $this->template->set('galleryinfo',$schoolInfo['images']);
-                        if(isset($schoolInfo['rating']))
-                            $this->template->set('ratingInfo',$schoolInfo['rating']);
-                        if(isset($schoolInfo['reviews']))
-                            $this->template->set('reviewInfo',$schoolInfo['reviews']);
-                        if(isset($schoolInfo['fees']))
-                            $this->template->set('feeInfo',$schoolInfo['fees']);
-                        if(isset($standardId))
-                            $this->template->set('standardId',$standardId);
-                        if(isset($schoolid))
-                            $this->template->set('schId',$schoolid);
+                        
+			$this->template->set('overviewInfo',$schoolInfo['highlights']);
+			$this->template->set('contactInfo',$schoolInfo['contacts']);
+			$this->template->set('galleryinfo',$schoolInfo['images']);
+			$this->template->set('ratingInfo',$schoolInfo['rating']);
+			if(isset($schoolInfo['reviews']))
+			$this->template->set('reviewInfo',$schoolInfo['reviews']);
+			$this->template->set('feeInfo',$schoolInfo['fees']);
+			$this->template->set('standardId',$standardId);
 			$data ['status'] = 1;
 		} catch ( EBDApiException $e ) {
 			$data ['status'] = 0;

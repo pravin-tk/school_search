@@ -20,6 +20,7 @@
 }
 .timelineslider{
 	padding-bottom:10px;
+	border: 1px solid #e5e5e5;
 }
 .slider-nav {
     background-image: url(../img/icons/dot.gif) center repeat-x;
@@ -86,16 +87,16 @@
 		  					Fee
 		  				</div>
 		  				<div class="col-md-3">
-		  					Management
+		  					Campus Size
 		  				</div>
 		  				<div class="col-md-3">
-		  					Fee
+		  					Student:Teacher Ratio
 		  				</div>
 			  		</div>
 			  		<div class="highlight-panel-body-title col-md-12">
 			  			<div class="col-md-3">
 			  				<div>
-			  					<?php echo $basicInfo['mediums']?>
+			  					<?php echo $basicInfo['schoolType']?>
 			  				</div>
 			  			</div>
 			  			<div class="col-md-3">
@@ -105,12 +106,12 @@
 			  			</div>
 			  			<div class="col-md-3">
 			  				<div>
-			  					<?php echo $basicInfo['mediums']?>
+			  					<?php echo $basicInfo['campusSize']?> <?php echo $basicInfo['unitName']?>
 			  				</div>
 			  			</div>
 			  			<div class="col-md-3">
 			  				<div>
-			  					<i class="fa fa-rupee"></i> <?php echo $basicInfo['totalFee']?>
+			  					10:<?php echo round(($basicInfo['teachers']/$basicInfo['students']),1)*10;?>
 			  				</div>
 			  			</div>
 			  		</div>
@@ -158,22 +159,44 @@
 			$i = 0;	
 			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 						
-			<div class="timelineslider col-md-12" id="timelineslider">
+			<div class="timelineslider col-md-12" id="timelineslider" style="padding-top: 25px;padding-left: 45px;">
 		       <?php 
 		       if(isset($timelineInfo)){
 			       foreach($timelineInfo as $key=>$timeline)
 			       {?>
 			        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">
 			            <div class="panel panel-default relative">
-			              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute">
-			                 <?php 	echo $timeline['year'];?>
-			              </div>
+<!-- 			              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"> -->
+			                 <?php 	//echo $timeline['year'];?>
+<!-- 			              </div> -->
 			              <div class="cover hover overlay margin-none" style="height: 240px;">
-			                <img src="<?php echo $timeline['image'] ?>"  alt="location" class="img-responsive" style="height:230px;width:100%;">
+			                <?php 
+			                if($timeline['image']==null){
+							echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
+			                }else {
+			                $headers = get_headers($timeline['image']);
+                			if($headers[0]=='HTTP/1.1 200 OK'){
+								?>
+							<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
+								<?php 
+						       }else{
+						       	echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
+						       }
+						    }
+						       ?>
 			              </div>
 			              <div class="panel-body">
-			                <h4 class="margin-v-0-5"><?php echo $timeline["milestones"][0]['title'];?></h4>
+			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php echo $timeline["milestones"][0]['title'];?></h5>
 			              </div>
+			            </div>
+			            <div>
+			           		<hr class="school-timeline-progress">
+			            	<div style="padding-left:0px;margin-left:0px;margin-top:10px;margin-bottom:0px;">
+			            		<i class="fa fa-dot-circle-o fa-2x text-primary"></i>
+			            	</div>
+				            <div style="font-size:14px;font-weight:bold;padding-left:0px;margin-left:0px;padding-top:5px;margin-top:-10px;margin-bottom:0px;">
+				            	<?php echo $timeline['year'];?>
+				            </div>
 			            </div>
 			          </div>
 			        <?php } 

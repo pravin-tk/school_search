@@ -10,9 +10,18 @@
 	    	?>
 	      	<div class="col-md-4">
                 <div class="well">
-                   	<a href="<?php echo $schoolGallery['imageUrl'];?>" title="<?php echo $schoolGallery['imageTitle'];?>">
-                    	<img class="thumbnail img-responsive" alt="<?php echo $schoolGallery['imageTitle'];?>" src="<?php echo $schoolGallery['imageUrl'];?>" />
+                <?php 
+                $headers = get_headers($schoolGallery['imageUrl']);
+                
+                if($headers[0]=='HTTP/1.1 200 OK'){
+               ?>
+               	    <a href="<?php echo $schoolGallery['imageUrl'];?>" title="<?php echo $schoolGallery['imageTitle'];?>">
+                    	<img class="lazy img-responsive" data-original="<?php echo $schoolGallery['imageUrl'];?>" alt="<?php echo $schoolGallery['imageTitle'];?>"  />
                    	</a>
+               <?php 
+				 }
+                ?>
+                   	
                 </div>
             </div>
             <?php } }else{
