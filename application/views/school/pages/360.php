@@ -54,7 +54,7 @@ function init() {
 
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
-	THREE.ImageUtils.crossOrigin = '';
+	THREE.ImageUtils.crossOrigin = 'anonymous';
 	<?php if(count($otherInfo['panorama']) > 0) {?>
 		var image1 = new THREE.MeshBasicMaterial( {
 			map: THREE.ImageUtils.loadTexture("<?php echo $otherInfo['panorama'][0]['panoImage'];?>")
