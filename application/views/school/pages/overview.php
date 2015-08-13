@@ -111,7 +111,7 @@
 			  			</div>
 			  			<div class="col-md-3">
 			  				<div>
-			  					10:<?php echo round(($basicInfo['teachers']/$basicInfo['students']),1)*10;?>
+                                                                10:<?php if(isset($basicInfo['teachers'])){echo round(($basicInfo['teachers']/$basicInfo['students']),1)*10;}?>
 			  				</div>
 			  			</div>
 			  		</div>
@@ -174,8 +174,9 @@
 			                if($timeline['image']==null){
 							echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
 			                }else {
-			                $headers = get_headers($timeline['image']);
-                			if($headers[0]=='HTTP/1.1 200 OK'){
+                                            if(isset($timeline['image']))
+                                                $headers = get_headers($timeline['image']);
+                                            if($headers[0]=='HTTP/1.1 200 OK'){
 								?>
 							<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
 								<?php 

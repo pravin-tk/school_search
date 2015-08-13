@@ -9,36 +9,39 @@
         	<div class="container">
 			    <div class="row">
 			        <div class="col-md-6">
-        			 	<div class="panel panel-default">
-			                    <div class="panel-body text-left">
-			                    	<div class="panel-heading">
-			                    		<h3 class="default-contact infra-heading" style="border-bottom: 1px solid #e2e9e6;">
-				                    		<strong><?php echo $contactInfo['name'];?></strong>
-				                    		<span class="locality-box-label"> <?php echo $contactInfo['address'];?></span>
-			                    		</h3>
-			                    	</div>
-			                        <div class="text-left panel-body">
-			                        <?php for ($i = 0; $i < count($contactInfo['contacts']); $i++){?>
-			                        	<div class="col-md-6">
-					                        <div><?php echo $contactInfo['contacts'][$i]['name']?></div>
-					                        <div><?php echo $contactInfo['contacts'][$i]['mobileNo']?></div>
-					                        <div><?php echo $contactInfo['contacts'][$i]['email']?></div>
-				                        </div>
-			                        <?php }?>
-		                        	</div>
-		                    </div>
-		         		</div>
+                                    <?php if(isset($contactInfo)){ ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-body text-left">
+                                        <div class="panel-heading">
+                                                <h3 class="default-contact infra-heading" style="border-bottom: 1px solid #e2e9e6;">
+                                                        <strong><?php echo $contactInfo['name'];?></strong>
+                                                        <span class="locality-box-label"> <?php echo $contactInfo['address'];?></span>
+                                                </h3>
+                                        </div>
+                                        <div class="text-left panel-body">
+                                        <?php for ($i = 0; $i < count($contactInfo['contacts']); $i++){?>
+                                        <div class="col-md-6">
+                                                <div><?php echo $contactInfo['contacts'][$i]['name']?></div>
+                                                <div><?php echo $contactInfo['contacts'][$i]['mobileNo']?></div>
+                                                <div><?php echo $contactInfo['contacts'][$i]['email']?></div>
+                                        </div>
+                                        <?php }?>
+                                        </div>
+                            </div>
+                                    </div><?php }?>
 			        	<div class="panel panel-default" id="divcontact">
-                                        <form class="form-horizontal" method="post" id="contactfrm">
-                                         <fieldset>
+                                        
+                                         
 		                    	<div class="panel-heading" style="border-bottom: 1px solid #e2e9e6;">
 		                        	<h3 class="text-center infra-heading"><strong>Contact Us</strong></h3>
 		                        </div>
                                         <div id="derr"></div>
+                                        <form class="form-horizontal" method="post" id="contactfrm">
 		                        <div class="panel-body">
+                                            
 			                        <div class="form-group">
 			                            <div class="col-md-10 col-md-offset-1">
-                                                        <input id="userName" name="userName" type="text" placeholder="your name" maxlength="30" class="form-control">
+                                                        <input id="userName" name="userName" type="text" placeholder="your names" maxlength="30" class="form-control">
 			                            </div>
 			                        </div>
 			
@@ -56,17 +59,17 @@
 			
 			                        <div class="form-group">
 			                            <div class="col-md-12 text-center">
-                                                        <input type="submit" class="btn btn-primary btn-lg" id= "btnpost" value ="Submit" >
+                                                        <input type="submit" class="btn btn-primary btn-sm" id= "btnpost" value ="Submit" >
 			                            </div>
-			                        </div>
-			                  	</div>
-		                    </fieldset>
-		                </form>
+			                        </div> 
+			                  	</div></form>
+		                  
+		               
 		                </div>
 			        </div>
 			        <div class="col-md-6">
-			        	<input type="hidden" id="latitude" value="<?php echo $contactInfo['latitude'];?>"/>
-			        	<input type="hidden" id="longitude" value="<?php echo $contactInfo['longitude'];?>"/>
+			        	<input type="hidden" id="latitude" value="<?php if(isset($contactInfo))echo $contactInfo['latitude'];?>"/>
+			        	<input type="hidden" id="longitude" value="<?php if(isset($contactInfo)) echo $contactInfo['longitude'];?>"/>
 			        	<div class="row" style="padding-bottom: 20px;">
 			        		<div class="panel panel-default" style="padding-bottom: 20px;">
 				        		<div class="panel-heading" style="border-bottom: 1px solid #e2e9e6;">
