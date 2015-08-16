@@ -1,10 +1,10 @@
 <style>
-.rating-md {
-    font-size: 2.13em;
-}
- .rating-sm {
-    font-size: 1.13em;
-}   
+/* .rating-md { */
+/*     font-size: 2.13em; */
+/* } */
+/*  .rating-sm { */
+/*     font-size: 1.13em; */
+/* }    */
 </style>
 <?php //print_r($userRatingInfo);exit;?>
 
@@ -43,7 +43,7 @@
           			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
             			<div class="panel-body">
 	                		<div class="col-xs-3 col-md-3 text-center">
-			          	      <i class="fa fa-building-o fa-2x"></i>
+			          	      <i class="fa fa-2x"><img alt="<?php echo $schoolRating['name']?>" src="<?php echo asset_url();?>img/<?php echo strtolower($schoolRating['name']);?>.png" class="rating-category-icons"></i>
 			          	      <div class="infra-name">
 			          	      	<strong><?php echo $schoolRating['name']?></strong>
 			          	      </div>
@@ -65,7 +65,7 @@
           			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
             			<div class="panel-body">
 	                		<div class="col-xs-3 col-md-3 text-center">
-			          	      <i class="fa fa-building-o fa-2x"></i>
+			          	      <i class="fa fa-2x"><img alt="<?php echo $schoolRating['name']?>" src="<?php echo asset_url();?>img/<?php echo strtolower($schoolRating['name']);?>.png" class="rating-category-icons"></i>
 			          	      <div class="infra-name">
 			          	      	<strong><?php echo $schoolRating['name']?></strong>
 			          	      </div>
@@ -153,7 +153,7 @@
           			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
             			<div class="panel-body">
 	                		<div class="col-xs-3 col-md-3 text-center">
-			          	      <i class="fa fa-building-o fa-2x"></i>
+			          	      <i class="fa fa-2x"><img alt="<?php echo $schoolRating['name']?>" src="<?php echo asset_url();?>img/<?php echo strtolower($schoolRating['name']);?>.png" class="rating-category-icons"></i>
 			          	      <div class="infra-name">
 			          	      	<strong><?php echo $schoolRating['name']?></strong>
 			          	      </div>

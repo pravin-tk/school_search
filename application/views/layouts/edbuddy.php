@@ -18,20 +18,10 @@
 
 <link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/bootstrapValidator.min.css" rel="stylesheet">
-
-
-<!-- Custom Fonts -->
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-<link
-	href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" wtype="text/css" href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css">
-<!-- jQuery -->
-<!--    <script src="<?php echo asset_url();?>js/all.js"></script>-->
-
-<!-- Bootstrap Core JavaScript -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/pages/<?php echo $page;?>.css" rel="stylesheet">
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing"></script>
 <script src="<?php echo asset_url();?>js/jquery.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.cookie.js"></script>
@@ -90,7 +80,7 @@
   background:white;
 }
 #mask .logo{
-   background:url("./img/logo130is.png") no-repeat 20px 10px;
+/*    background:url("./img/logo130is.png") no-repeat 20px 10px; */
 }
 #mask .bac{
   -webkit-opacity:.4; 
@@ -110,10 +100,10 @@
   cursor:pointer;
 }
 #mask .stop{
-  background:url("pause.png") no-repeat;
+/*   background:url("pause.png") no-repeat; */
 }
 #mask .play{
-  background:url("play.png") no-repeat;
+/*   background:url("play.png") no-repeat; */
 }
 
 </style>
@@ -137,7 +127,7 @@
     <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.bootstrap-growl.min.js"></script>
-    <script src="<?php echo asset_url();?>js/jquery.bootstrap-rating.input.js"></script>
+    <script src="<?php echo asset_url();?>js/bootstrap-rating-input.js"></script>
     <script src="<?php echo asset_url();?>js/pages/common.js"></script>
     <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
     <!-- // END .bg-white -->

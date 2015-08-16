@@ -18,20 +18,17 @@ $timelineInfo = $otherInfo['schoolTimelineData'];
 						echo "<li id='".$timeline['year']."' >";
 						?>
 							<img src='<?php echo $timeline['image']; ?>' width='150' height='150' />
-							<h1>1900</h1>
-						<?php foreach ($timeline['milestones'] as $key=>$milestone) {
-	   					?> 
+							<h1><?php echo $timeline['year'];?></h1>
 							<div class="timeline-inverted">
 								<div class="timeline-panel">
 						            <div class="timeline-heading">
-						              <h4 class="timeline-title"><?php echo $milestone['title'];?></h4>
+						              <h4 class="timeline-title"><?php echo $timeline['title'];?></h4>
 						            </div>
             						<div class="timeline-body">
-										<p><?php echo $milestone['milestoneDesc'];?> </p>
+										<p><?php //echo $milestone['milestoneDesc'];?> </p>
                         			</div>
 						      	</div>
 							</div>
-	 					<?php }?>
 						</li>
 						<?php } ?>
 

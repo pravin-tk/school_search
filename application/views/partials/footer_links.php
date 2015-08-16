@@ -10,23 +10,16 @@
       <div class="modal-body">
            <!-- Login -->
             <script>
-             alert(logged_in);
                 if(logged_in == null) { //not logged in
                     var public_data = '';
-                   
                     public_data += '<div class="dropdown-menu dropdown-size-280" id="divlogin">';
                     public_data += '<div class="dropdown-toggle" style ="float:right;" data-toggle="collapse" id="" onclick=""><a style="color:#000;" href=""> <i class="fa fa-close"></i></a> </div>';
                     public_data += '<div id="derr" class="help-block"></div>';
                     public_data += '<form class="ng-pristine ng-valid" id = "flogin">';
                     public_data += '<div class="form-group" id="divname">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
                     public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="tusername" name="tusername" />';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="form-group" id="divpwd">';
-                   
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-shield"></i></span>';
                     public_data += '<input type="password" class="form-control" placeholder="PASSWORD" id="tpassword" name="tpassword" >';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="text-center">';
@@ -38,8 +31,6 @@
                     public_data += '<div id="dpwerr" class="help-block"></div>';
                     public_data += '<form class="ng-pristine ng-valid" id="frmpwd">';
                     public_data += '<div class="form-group" id="divfpwd">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
                     public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="temail" name="temail" />';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="text-center">';
@@ -58,8 +49,6 @@
     </div>
   </div>
 </div>
-
-
 <section class="footer-section" > 
      <div class="container"> 
        <div class="row"> 
@@ -109,12 +98,10 @@
      </div> 
    </section> 
 </div>
-
 <!-- Footer -->
 <footer class="footer" style="position: relative;">
 	<strong>eddbuddy </strong> v1.2.0 © Copyright 2015
 </footer>
-
 <!-- Inline Script for colors and config objects; used by various external scripts; -->
 <script>
     var colors = {
@@ -138,8 +125,6 @@
         }
       }
     };
-
-    
 	$('.multiselect').multiselect(
 		{
              enableFiltering: true,

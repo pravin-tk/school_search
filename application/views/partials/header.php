@@ -41,25 +41,23 @@
         
 </style>
 <script type="text/javascript">
-        var logged_in = null;
-        var url = '<?php echo $base_url;?>';
-        function readCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                    var c = ca[i];
-                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
+	var logged_in = null;
+    var url = '<?php echo $base_url;?>';
+    function readCookie(name) {
+     	var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+       	for(var i=0;i < ca.length;i++) {
+        	var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
         }
-        logged_in = readCookie('ebduserid');
-        logged_in_as = readCookie('ebdusername');
-        logged_pic = readCookie('ebdmypic');
-        
+        return null;
+   	}
+   	logged_in = readCookie('ebduserid');
+    logged_in_as = readCookie('ebdusername');
+    logged_pic = readCookie('ebdmypic');
 </script>
 <nav class="navbar navbar-default navbar-static-top" style="position: absolute;width:100%;"role="navigation">
-
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
@@ -71,9 +69,7 @@
         </button>
         <a class="navbar-brand"  href="<?php echo $base_url; ?>"> Edbuddy</a>
       </div>
-
       <div class="collapse navbar-collapse" id="main-nav">
-
         <ul class="nav navbar-nav navbar-right">
             <script>
                 if(logged_in == null) { //not logged in
@@ -85,13 +81,9 @@
                     public_data += '<div id="derr" class="help-block"></div>';
                     public_data += '<form class="ng-pristine ng-valid" id = "flogin">';
                     public_data += '<div class="form-group" id="divname">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
                     public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="tusername" name="tusername" />';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="form-group" id="divpwd">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-shield"></i></span>';
                     public_data += '<input type="password" class="form-control" placeholder="PASSWORD" id="tpassword" name="tpassword" >';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="text-center">';
@@ -103,8 +95,6 @@
                     public_data += '<div id="dpwerr" class="help-block"></div>';
                     public_data += '<form class="ng-pristine ng-valid" id="frmpwd">';
                     public_data += '<div class="form-group" id="divfpwd">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
                     public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="temail" name="temail" />';
                     public_data += '</div>'; //</div>
                     public_data += '<div class="text-center">';

@@ -1,35 +1,42 @@
  <style>
 <!--
-.highlight-panel-body {
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:0px;
-    padding-right:0px;
-    background-color:#fff;
-    font-size:14px;
-}
-.highlight-panel-body .col-md-6{
-	margin-top:5px;
-	margin-bottom:0px;
-}
-.panel-col-6-section{
-	margin-right:5px;
-	margin-bottom:5px;
-}
-.timelineslider .slide-bar .panel{
-}
-.timelineslider{
-	padding-bottom:10px;
-	border: 1px solid #e5e5e5;
-}
-.slider-nav {
-    background-image: url(../img/icons/dot.gif) center repeat-x;
-}
-#dates{background: url(../../../../assets/img/icons/dot.gif) center repeat-x;margin-bottom:30px;width:100%;height:40px;text-align:center;}
-#dates li{display: inline;margin-left: 80px;border-radius: 50px;background:#1c7d74;min-height:80px;}
-
-.btn-circle btn{}
-.btn-circle a{color:#fff;padding:10px;}
+/* .highlight-panel-body { */
+/*     padding-top:10px; */
+/*     padding-bottom:10px; */
+/*     padding-left:0px; */
+/*     padding-right:0px; */
+/*     background-color:#fff; */
+/*     font-size:14px; */
+/* } */
+/* .highlight-panel-body .col-md-6{ */
+/* 	margin-top:5px; */
+/* 	margin-bottom:0px; */
+/* } */
+/* .panel-col-6-section{ */
+/* 	margin-right:5px; */
+/* 	margin-bottom:5px; */
+/* } */
+/* .timelineslider{ */
+/* 	padding-bottom:10px; */
+/* 	border: 1px solid #e5e5e5; */
+/* } */
+/* #dates{ */
+/* 	margin-bottom:30px; */
+/* 	width:100%; */
+/* 	height:40px; */
+/* 	text-align:center; */
+/* } */
+/* #dates li{ */
+/* 	display: inline; */
+/* 	margin-left: 80px; */
+/* 	border-radius: 50px; */
+/* 	background:#1c7d74; */
+/* 	min-height:80px; */
+/* } */
+/* .btn-circle a{ */
+/* 	color:#fff; */
+/* 	padding:10px; */
+/* } */
 -->
 </style>
 <div class="panel panel-default">
@@ -133,7 +140,7 @@
 			          ?>
 			          	<div class="col-md-6">
 				          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
-				                <li class="">
+				                <li style="list-style:disc;">
 									<?php echo $value['name']?>
 				                </li>
 				            </section> 
@@ -160,38 +167,35 @@
 			$timelineInfo = $otherInfo['schoolTimelineData']; ?>        
 						
 			<div class="timelineslider col-md-12" id="timelineslider" style="padding-top: 25px;padding-left: 45px;">
+				<hr class="school-timeline-progress">
 		       <?php 
 		       if(isset($timelineInfo)){
 			       foreach($timelineInfo as $key=>$timeline)
 			       {?>
 			        <div class="item  slide-bar col-md-4" style="padding-bottom:15px;padding-right:45px;box-sizing: border-box;">
 			            <div class="panel panel-default relative">
-<!-- 			              <div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"> -->
-			                 <?php 	//echo $timeline['year'];?>
-<!-- 			              </div> -->
 			              <div class="cover hover overlay margin-none" style="height: 240px;">
 			                <?php 
 			                if($timeline['image']==null){
-							echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
+								echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
 			                }else {
-                                            if(isset($timeline['image']))
-                                                $headers = get_headers($timeline['image']);
-                                            if($headers[0]=='HTTP/1.1 200 OK'){
+                             	if(isset($timeline['image']))
+                                	$headers = get_headers($timeline['image']);
+                               		if($headers[0]=='HTTP/1.1 200 OK'){
 								?>
-							<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
+									<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
 								<?php 
-						       }else{
-						       	echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
-						       }
+							       	}else{
+							       		echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
+							       	}
 						    }
 						       ?>
 			              </div>
-			              <div class="panel-body">
-			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php echo $timeline["milestones"][0]['title'];?></h5>
+			              <div class="panel-body" style="padding-top:5px;padding-bottom:5px;height:30px;">
+			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php echo $timeline['title'];?></h5>
 			              </div>
 			            </div>
 			            <div>
-			           		<hr class="school-timeline-progress">
 			            	<div style="padding-left:0px;margin-left:0px;margin-top:10px;margin-bottom:0px;">
 			            		<i class="fa fa-dot-circle-o fa-2x text-primary"></i>
 			            	</div>

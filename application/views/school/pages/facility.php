@@ -12,6 +12,7 @@ if(isset($activity))
         foreach($activityvalue['items'] as $key=>$value ){
             $arractivity[$activityvalue['name']][$i]['id'] = $value['id'];
             $arractivity[$activityvalue['name']][$i]['name'] = $value['name'];
+            $arractivity[$activityvalue['name']][$i]['image'] = $value['image'];
             $i++;
         }
     }
@@ -21,6 +22,7 @@ foreach($safety as $safetykey => $safetyvalue){
     foreach($safetyvalue['items'] as $key=>$value ){
         $arrsafety[$safetyvalue['name']][$i]['id'] = $value['id'];
         $arrsafety[$safetyvalue['name']][$i]['name'] = $value['name'];
+        $arrsafety[$safetyvalue['name']][$i]['image'] = $value['image'];
         $i++;
     }
 }
@@ -30,6 +32,7 @@ foreach($infra as $infrakey => $infravalue){
     foreach($infravalue['items'] as $key=>$value ){
         $arrinfra[$infravalue['name']][$i]['id'] = $value['id'];
         $arrinfra[$infravalue['name']][$i]['name'] = $value['name'];
+        $arrinfra[$infravalue['name']][$i]['image'] = $value['image'];
         $i++;
     }
 }
@@ -48,7 +51,7 @@ foreach($infra as $infrakey => $infravalue){
 				        		 <?php if(count($arractivity) > 0) {?>
 				            	<section class="panel panel-default col-md-12" style="margin-right:10px;">
 					                <div class="panel-heading">
-								      	<h4 class="text-left infra-heading"><?php //echo $key;?>School Activity </h4>
+								      	<h4 class="text-left infra-heading">School Activity </h4>
 								    </div>
 					                <div class="panel-body">
 					                    <div class="col-sm-12">
@@ -58,14 +61,16 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-<!-- 						                        	<i class="fa fa-4x fa-building-o wow bounceIn marginleft" data-wow-delay=".2s"></i> -->
-						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
+						                        <?php if($itemvalue["image"] != null || $itemvalue["image"] != "") {?>
+						                        	<?php $headers = get_headers($itemvalue["image"]);
                 									if($headers[0]=='HTTP/1.1 200 OK'){?>
-						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
-						                        	<?php }else{
-						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
-						                        		
-						                        	}?>
+						                        		<img class="fa-4x facility-icons marginleft" src="<?php echo $itemvalue["image"];?>"/>
+						                        	<?php }else{ ?>
+						                       			<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/>
+						                        	<?php }?>
+						                        <?php } else { ?>
+						                        	<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/>
+						                        <?php }?>
 						                        </div>
 						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
@@ -88,13 +93,16 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
-                									if($headers[0]=='HTTP/1.1 200 OK'){?>
-						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
-						                        	<?php }else{
-						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
-						                        		
-						                        	}?>
+						                        <?php if($itemvalue["image"] != null || $itemvalue["image"] != "") {?>
+						                        	<?php $headers = get_headers($itemvalue["image"]);
+                										if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        		<img class="fa-4x facility-icons marginleft" src="<?php echo $itemvalue['image'];?>">
+						                        	<?php }else{ ?>
+						                       			<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/>
+						                        	<?php }?>
+						                        <?php } else { ?>
+						                        	<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/>
+						                        <?php } ?>
 						                        </div>
 						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
@@ -117,13 +125,16 @@ foreach($infra as $infrakey => $infravalue){
 					                    <?php foreach($value as $itemkey => $itemvalue) {?>
 						                    <div class="col-sm-2 text-center">
 						                        <div>
-						                        	<?php $headers = get_headers(asset_url()."img/icons/".$itemvalue['name'].".png");
-                									if($headers[0]=='HTTP/1.1 200 OK'){?>
-						                        	<img class="fa-4x facility-icons marginleft" src="<?php echo asset_url()?>img/icons/<?php echo $itemvalue['name'];?>.png">
-						                        	<?php }else{
-						                       		echo"<img class='marginleft' src='".asset_url()."img/icons/no-image.png'/>"; 
-						                        		
-						                        	}?>
+						                        <?php if($itemvalue["image"] != null || $itemvalue["image"] != "") {?>
+						                        	<?php $headers = get_headers($itemvalue["image"]);
+                										if($headers[0]=='HTTP/1.1 200 OK'){?>
+						                        		<img class="fa-4x facility-icons marginleft" src="<?php echo $itemvalue['image'];?>">
+						                        	<?php }else{ ?>
+						                       			<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/> 
+						                        	<?php }?>
+						                        <?php } else { ?>
+						                        	<img class='marginleft' src='<?php echo asset_url();?>img/icons/no-image.png'/>
+						                        <?php }?>
 						                        </div>
 						                        <p class="page-scroll infra-item-name" ><?php echo $itemvalue['name'];?></p>
 						                    </div>
@@ -139,3 +150,4 @@ foreach($infra as $infrakey => $infravalue){
             	</div>
          	</div>
      	</div>
+     	
