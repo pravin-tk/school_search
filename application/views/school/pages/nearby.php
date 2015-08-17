@@ -15,7 +15,7 @@
             	<div class="panel panel-default relative">
               		<div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"><?php //echo $school['city'] ?></div>
               		<div class="cover hover overlay margin-none" style="height: 147px;">
-                    	<?php if ($school['logo'] == ""){ ?>
+                    	<?php if ($school['homeImage'] == ""){ ?>
                 			<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive">
                        	<?php }else{ 
                     		$headers = get_headers($school['homeImage']);
