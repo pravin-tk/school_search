@@ -62,6 +62,7 @@ $('.timelineslider').slick({
 
 //fee flipster
 $('.flipster').flipster({
+	start:1,
 	enableMousewheel:false,
 	enableNav:true,
 	enableNavButtons:true,
