@@ -273,6 +273,7 @@ function contactSubmit() {
       
 $( "#frmrateReview" ).submit(function( event ) {
     rateReviewSubmit();
+    return false;
 });
         
         
@@ -348,7 +349,7 @@ function getRatingValue(){
     }else{
         $.bootstrapGrowl("Ratings cannot be empty!" , {
             ele: 'body', // which element to append to
-            type: danger, // (null, 'info', 'danger', 'success')
+            type: 'danger', // (null, 'info', 'danger', 'success')
             offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
             align: 'center', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')

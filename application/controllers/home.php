@@ -34,7 +34,7 @@ class home extends CI_Controller {
                 unset ( $apioutput );
             }
             $this->template->set('page','home');
-
+            $this->template->set('userId','');
             $this->template->set_layout ( 'edbuddy' )
                             ->title ( 'Search for finest schools near you: Edbuddy.in' )
                             ->set_partial ( 'header', 'partials/header_home' )
@@ -447,32 +447,35 @@ class home extends CI_Controller {
 	}
 	
 	public function saveSchool() {
-		$data = "";
-        $map['school'] = $this->input->post('school');
-        $map['city'] = $this->input->post('city');
-		$map['name'] = $this->input->post('firstName');
-		$map['mobile'] = $this->input->post('mobileNo');
-		$map['requirement'] = $this->input->post('requirement');
+            error_log("achheeee");
+            $data = "";
+            $map['schoolName'] = $this->input->post('school');
+            $map['city'] = $this->input->post('city');
+            $map['name'] = $this->input->post('firstName');
+            $map['mobile'] = $this->input->post('mobileNo');
+            $map['requirement'] = $this->input->post('requirement');
                 
-		$schooladd_key = 'post/listSchool.json';
-		$apicalls = array(
-			array('url' => $schooladd_key,
-				'params' => http_build_query($map),
-				'headers' => 'application/x-www-form-urlencoded'
-			)
-		);
-		try {
-			$apioutput = $this->apiclient->process($apicalls, 'POST');
-			foreach ($apioutput as $key => $value) {
-				if (strpos($key, $profile_key) !== false) {
-					$data = $value;
-				}
-			}
-		} catch (EBDApiException $e) {
-			unset($apicalls);
-			unset($apioutput);
-		}
-		echo json_encode($data);
+            $schooladd_key = 'post/listschool.json';
+            $apicalls = array(
+                            array('url' => $schooladd_key,
+                                    'params' => http_build_query($map),
+                                    'headers' => 'application/x-www-form-urlencoded'
+                            )
+            );
+            try {
+                    error_log(json_encode($apicalls),0);
+                    $apioutput = $this->apiclient->process($apicalls, 'POST');
+                    error_log(json_encode($apioutput),0);
+                    foreach ($apioutput as $key => $value) {
+                            if (strpos($key, $schooladd_key) !== false) {
+                                    $data = $value;
+                            }
+                    }
+            } catch (EBDApiException $e) {
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+            echo json_encode($data);
 	}
         
     function contactPost() {
@@ -526,8 +529,9 @@ class home extends CI_Controller {
             )
             );
             try {
+                    error_log(json_encode($apicalls),0);
                     $apioutput = $this->apiclient->process($apicalls, 'POST');
-
+                    error_log(json_encode($apioutput),0);
                     foreach ($apioutput as $key => $value) {
                             if (strpos($key, $requirement_key) !== false) {
                                     $data = $value;
@@ -590,7 +594,7 @@ class home extends CI_Controller {
                                             )
                                     );
                     try {
-
+                           
                         $apioutput = $this->apiclient->process($apicalls, 'POST');
                         foreach ($apioutput as $key => $value) {
                             if (strpos($key, $ratereviewpost_key) !== false) {
