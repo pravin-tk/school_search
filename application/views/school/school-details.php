@@ -67,7 +67,7 @@
 /* 	width:100%; */
 /* } */
 /* .fee-desc-panel{ */
-/* 	/*color: #26a69a;*/ */
+/* 	/*color: #26a69a;*/
 /* } */
 /* .flipster-nav{ */
 /* 	text-align:center; */

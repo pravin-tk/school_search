@@ -179,20 +179,20 @@
 			                if($timeline['image']==null){
 								echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
 			                }else {
-                             	if(isset($timeline['image']))
-                                	$headers = get_headers($timeline['image']);
-                               		if($headers[0]=='HTTP/1.1 200 OK'){
-								?>
-									<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
-								<?php 
-							       	}else{
-							       		echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
-							       	}
-						    }
-						       ?>
+                                        if(isset($timeline['image']))
+                                            $headers = get_headers($timeline['image']);
+                                                if($headers[0]=='HTTP/1.1 200 OK'){ ?>
+                                                    <img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
+                                            <?php 
+                                                }else{
+                                                    echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
+                                                }
+                                        }
+                                        ?>
 			              </div>
 			              <div class="panel-body" style="padding-top:5px;padding-bottom:5px;height:30px;">
 			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php echo $timeline['title'];?></h5>
+
 			              </div>
 			            </div>
 			            <div>
@@ -233,32 +233,31 @@
 		   		<div class="overview-heading">
 		      		<h4 class="text-left"><img src="<?php echo asset_url();?>img/icons/vector_333_04-24.png" />School & Student Achievements</h4>
 		    	</div>
-		   		<div class="panel-body highlight-panel-body col-md-12">
+		   	<div class="panel-body highlight-panel-body col-md-12">
 		     
 		          <?php 
                           if(isset($otherInfo)){
-                          foreach ($otherInfo['schoolAchievements'] as $key => $value){
+                            foreach ($otherInfo['schoolAchievements'] as $key => $value){
 		          ?>
-		          <div class="col-md-12">
-			          	<section class="text-left panel-col-6-section" style="border-radius:30px;">
-			          		<div class="col-md-1">
-				                <div><?php echo $value['batch']?></div>
-			                </div>
-			                <!-- div class="col-md-2" style="text-transform:capitalize;">
-								<?php echo $value['name']?>
-			                </div> -->
-			                <div class="col-md-11" style="text-transform:capitalize;">
-			                	<i class="fa fa-user"></i> <strong><?php echo $value['name']?></strong> - <?php echo $value['achievements']?>
-			                </div>
-			            </section> 
-		            </div>
-		          	<?php
-		          } 
+                                <div class="col-md-12">
+                                    <section class="text-left panel-col-6-section" style="border-radius:30px;">
+                                        <div class="col-md-1">
+                                            <div><?php echo $value['batch']?></div>
+                                        </div>
+                                        <div class="col-md-11" style="text-transform:capitalize;">
+                                            <i class="fa fa-user"></i> <strong><?php echo $value['name']?></strong> - <?php echo $value['achievements']?>
+                                        </div>
+                                    </section> 
+                                </div>
+                                    <?php
+                              } 
                           }else{?>
                              Data not available
-                          <?php }?> 
+                          <?php 
+                          }
+                          ?> 
 		         
-		  		</div>
+		  	</div>
 		  	</div>
 		</div>
 	</div>

@@ -38,10 +38,7 @@ $( document ).ready(function() {
                    // }
                 }
            //});// lgin button click
-           
-        $("#alogin").click(function() {
-            $("#divlogin").show();
-            });
+   
           
           
         function forgotP() { 
@@ -80,7 +77,8 @@ $( document ).ready(function() {
             $("#divforgotp").show();
         });
         
-        $("#alogin").click(function() {
+        $(".alogin").click(function() {
+            
             $("#divlogin").show();
             $("#divforgotp").hide();
         });

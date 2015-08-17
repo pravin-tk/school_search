@@ -6,15 +6,13 @@
 /*     font-size: 1.13em; */
 /* }    */
 </style>
-<?php //print_r($userRatingInfo);exit;?>
-
 <div class="col-md-12">
   	<div class="panel panel-default">
 	    <div class="panel-heading">
 	      	<h3 class="text-center">
-		      	<strong>Rating & Reviews </strong>
-				<span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
-			</h3>
+		    <strong>Rating & Reviews </strong>
+                    <span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
+                </h3>
                 <div style="align:right"><a id="addReview" style="cursor:hand;" >Add Rating & Review </a> </div>
 	    </div>
             <div class="panel-body" id="divreviewfrm" style="display:none;">
@@ -25,9 +23,7 @@
                                     <h4> Rating and review form</h4>
                                     <form id="frmrateReview" name="frmrateReview" method="post" />
                                     <input type="hidden" name="hdnSchid" id="hdnSchid" value="<?php echo $schId;?>" />
-                                    <button id ="btnopenLogin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none">
-                                        open login form
-                                    </button>
+                                    <button id ="btnopenLogin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none"> open login form</button>
                                     <hr/>
                                    <?php 
                                    
@@ -51,11 +47,10 @@
 		                 	<div class="col-xs-4 col-md-4 text-center">
                                             <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating" />
 		                      
-		                    </div>
+                                            </div>
             			</div>
           			</section>
-	          	<?php 
-			    	} // for
+	          	<?php } // for
                              }else{
                                    foreach($schoolRatingInfo as $key => $schoolRating){
 	    				$totalRatingCount++;
@@ -73,7 +68,7 @@
 		                 	<div class="col-xs-4 col-md-4 text-center">
                                             <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating" />
 		                      
-		                    </div>
+                                        </div>
             			</div>
           			</section>
 	          	<?php 
@@ -111,28 +106,25 @@
                                         </div>
                                     </div>
           			</section>
-                                     <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
+                                <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
                                     <div class="panel-body">
                                             <div class="col-xs-3 col-md-3 text-center">
-
-                                                  <div class="infra-name">
-                                                    
-                                                  </div>
+                                                  <div class="infra-name">  </div>
                                             </div>
                                             <div class="col-xs-4 col-md-4 text-center">
-                                            <div class="rating">
-                                                <input type="submit" name="btnAddReview" class="btn btn-primary btn-lg" 
-                                                       id="btnAddReview" value="Submit">
-                                                <input type="button" name="btnCancel" id="btnCancel" value="Cancel"/>
-                                            </div>
+                                                <div class="rating">
+                                                    <input type="submit" name="btnAddReview" class="btn btn-primary btn-sm" 
+                                                           id="btnAddReview" value="Submit">
+                                                    <input type="button" class="btn btn-default btn-sm" name="btnCancel" id="btnCancel" value="Cancel"/>
+                                                </div>
 
-                                        </div>
+                                            </div>
                                     </div>
-          			
+          			</section>
                                 </form>
             			</div>
-          			</section>
-                        
+          			
+                        </section>
                         
                         
                     </div>
@@ -198,46 +190,49 @@
 				<?php } ?>
         		</div>
         		<div class="col-md-6">
-					<div class="panel panel-default" id="reviewBoard">
-					<?php 
-					if(isset($reviewInfo) && !empty($reviewInfo)){
-						foreach($reviewInfo as $key => $schoolReview){ //print_r($schoolReview);
-						?>
-						<div class="panel panel-default review-panel">
-							<div class="media">
-								<div class="media-left">
-									<img src="<?php echo $schoolReview["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["firstName"];?>" class="img-circle media-object">
-									<div class="text-center review-user-name"><?php echo $schoolReview["firstName"];?></div>
-                					</div>
-								<div class="media-body">
-									<p class="font-size-14"><strong><?php echo $schoolReview["title"];?></strong></p>
-									<p>
-										<?php echo $schoolReview["review"];?>
-									</p>
-								</div>
-							</div>
-						</div>
-		           		<?php 
-						}
-						echo "<div id='loadMore'>show more</div>";
-					}else{
-					 	?>
-					 	<section class="panel panel-default">
-							<div class="panel-body">
-							 0 Review  		
-			            	</div>
-		           		</section>
-					<?php
-					}	
-					?>
-					</div>
+                            <div class="panel panel-default" id="reviewBoard">
+                            <?php 
+                            $i = 0;
+                            if(isset($reviewInfo) && !empty($reviewInfo)){
+                                    foreach($reviewInfo as $key => $schoolReview){ //print_r($schoolReview);
+                                        $i++;
+                                    ?>
+                                    <div class="panel panel-default review-panel">
+                                        <div class="media">
+                                            <div class="media-left">
+                                            <img src="<?php echo $schoolReview["image"];?>" width="70" height="70" alt="<?php echo $schoolReview["firstName"];?>" class="img-circle media-object">
+                                            <div class="text-center review-user-name"><?php echo $schoolReview["firstName"];?></div>
+                                            </div>
+                                            <div class="media-body">
+                                            <p class="font-size-14"><strong><?php echo $schoolReview["title"];?></strong></p>
+                                            <p>
+                                                    <?php echo $schoolReview["review"];?>
+                                            </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                            <?php 
+                                    }
+                                    if($i>4)
+                                        echo "<div id='loadMore'>show more</div>";
+                            }else{
+                                    ?>
+                                    <section class="panel panel-default">
+                                            <div class="panel-body">
+                                             0 Reviews		
+                            </div>
+                            </section>
+                            <?php
+                            }	
+                            ?>
+                            </div>
 					
         		</div>
     		</div> <!-- container -->
    		</div> <!-- pane body -->
   	</div><!--  -->
 </div>
-
 <script>
 $( document ).ready(function() {
     <?php if(isset($userRatingInfo)){
@@ -256,6 +251,4 @@ $( document ).ready(function() {
     }?>          
     });
 
-
-
-    </script>
+</script>

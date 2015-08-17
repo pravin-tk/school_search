@@ -271,84 +271,53 @@ function contactSubmit() {
 	);
 }
       
-$('#frmrateReview').bootstrapValidator({
-    message: 'This value is not valid',
-    feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-    },
-    submitHandler: function(validator, form, submitButton) {
-           $('button[type="submit"]').prop('disabled', 'false')
-            rateReviewSubmit();
-    },
-    fields: {
-        txtReview: {
-        message: 'review description cannot be empty',
-            validators: {
-                notEmpty: {
-                        message: 'review description is required and cannot be empty'
-                },
-                stringLength: {
-                        min: 4,
-                        max: 200,
-                        message: 'review description must be more than 3  characters long'
-                },
-            }   
-        },
-    }//fields
-});
-
-$(function(){
-    $('.rating-stars').on('change', function(){
-      //alert("Changed: " + $(this).val())
-    });
+$( "#frmrateReview" ).submit(function( event ) {
+    rateReviewSubmit();
 });
         
+        
 function rateReviewSubmit() {
+
     var ratingData = getRatingValue();
     var schId = $("#hdnSchid").val();
     var id,messg,status;
     var label ="";
     $.post(base_url+"post-rating-review",
-    {
-    schoolId: $("#hdnSchid").val(),
-    userId: logged_in,
-    reviewId: $("#hdnreviewid").val(),
-    reviewTitle: $("#txttitle").val(),
-    reviewDesc: $("#txtReview").val(),
-    rating: ratingData,
-    },function(response){
-        $.each(response, function(key, value) {
-            console.log("key:"+key+" :value="+value);
-             if(key == "id")
-                id = value;
-             else if(key == "message")
-                messg = value;
-             else if(key == "status")
-                status = value;
-            if (status ==1)
-                 label = "success";
-            else
-                 label ="danger";
-             
-        });//end each loop
-        $.bootstrapGrowl(messg, {
-            ele: 'body',
-            type: label,
-            offset: {from: 'top', amount: 90},
-            align: 'center',
-            width: 250,
-            delay: 2000,
-            allow_dismiss: true,
-            stackup_spacing: 10
-        }); 
-        $("#divreviewfrm").hide();
-        $("#divUserRatingReview").show();  
-//      $('body,html').animate({
-//        	scrollTop: 0
-//      }, 1000);      
-    },'json'
+        {
+        schoolId: $("#hdnSchid").val(),
+        userId: logged_in,
+        reviewId: $("#hdnreviewid").val(),
+        reviewTitle: $("#txttitle").val(),
+        reviewDesc: $("#txtReview").val(),
+        rating: ratingData,
+        },function(response){
+            $.each(response, function(key, value) {
+                console.log("key:"+key+" :value="+value);
+                 if(key == "id")
+                    id = value;
+                 else if(key == "message")
+                    messg = value;
+                 else if(key == "status")
+                    status = value;
+                if (status ==1)
+                     label = "success";
+                else
+                     label ="danger";
+
+            });//end each loop
+            $.bootstrapGrowl(messg, {
+                    ele: 'body', // which element to append to
+                    type: label, // (null, 'info', 'danger', 'success')
+                    offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                    align: 'center', // ('left', 'right', or 'center')
+                    width: 250, // (integer, or 'auto')
+                    delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                    allow_dismiss: true, // If true then will display a cross to close the popup.
+                    stackup_spacing: 10 // spacing between consecutively stacked growls.
+            }); 
+            $("#divreviewfrm").hide();
+            $("#divUserRatingReview").show();
+        },'json'
     );
 }
         
@@ -357,19 +326,49 @@ function getRatingValue(){
     var ratingData = [];
     var ratingItem = null;
     var strArray = [];
+    var blnNoRating = false;
     $('#frmrateReview').find('input').each(function(x, field) {
         strSplit = field.name   ;
         strArray = strSplit.split("_");
         if(strArray[0] == "rate" && strArray[1]=="star"){
-            if(strArray[3]>0){
-                
-                ratingItem = {catid:strArray[2],ratevalue:field.value,id:strArray[3]};
-            }else{    
-                 
-                ratingItem = {catid:strArray[2],ratevalue:field.value};
+            if(field.value >0){
+                if(strArray[3]>0){
+                    ratingItem = {catid:strArray[2],ratevalue:field.value,id:strArray[3]};
+                }else{    
+                    ratingItem = {catid:strArray[2],ratevalue:field.value};
+                }
+                ratingData.push(ratingItem);
+            }else {
+                blnNoRating = true;
             }
-            ratingData.push(ratingItem);
         }
     });
-    return JSON.stringify(ratingData);
+    if(!blnNoRating){
+        return JSON.stringify(ratingData);
+    }else{
+        $.bootstrapGrowl("Ratings cannot be empty!" , {
+            ele: 'body', // which element to append to
+            type: danger, // (null, 'info', 'danger', 'success')
+            offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+            align: 'center', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 2000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+        }); 
+    }
 }
+        
+$(document).ready(function () {
+    size_li = $("#reviewBoard .review-panel").size();
+    x=4;
+    $('#reviewBoard .review-panel:lt('+x+')').show();
+    $('#loadMore').click(function () {
+        x= (x+5 <= size_li) ? x+5 : size_li;
+        $('#reviewBoard .review-panel:lt('+x+')').show();
+    });
+    $('#showLess').click(function () {
+        x=(x-5<0) ? 4 : x-5;
+        $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
+    });
+});
