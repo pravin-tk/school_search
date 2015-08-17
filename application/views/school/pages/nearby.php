@@ -18,12 +18,12 @@
                     	<?php if ($school['logo'] == ""){ ?>
                 			<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive">
                        	<?php }else{ 
-                    		$headers = get_headers($school['logo']);
+                    		$headers = get_headers($school['homeImage']);
                     	?>
 	                        <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
-	                        	<img src='<?php echo $school["logo"];?>' alt='location' class='lazy img-responsive'>
+	                        	<img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive'>
 	                        <?php } else { ?>
-								<img src='<?php echo asset_url();?>' alt='location' class='lazy img-responsive'>
+								<img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive'>
 	                        <?php } ?> 
                         <?php }?>
                     	<a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">
