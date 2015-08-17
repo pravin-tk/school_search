@@ -24,11 +24,11 @@
 		<div id="info">
 		</div>
 		
-<script src="<?php echo asset_url();?>js/360.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.min.js"></script>
 <script>
 var camera, scene, renderer;
 var imagecount = 'https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_20150720_190545.jpg';
-
+var image2 ='https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/pano_2.jpg';
 var isUserInteracting = false,
 onMouseDownMouseX = 0, onMouseDownMouseY = 0,
 lon = 0, onMouseDownLon = 0,
@@ -51,9 +51,15 @@ function init() {
 	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
 	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
 
-
+	var imageObj = new Image()
+	imageObj.onload = function(){
+	 THREE.ImageUtils.loadTexture(imagecount)
+	 // or maybe load image into canvas?
+	}
+	imageObj.src = asset_url+'img/panorma/campus_new.jpg' 
+			THREE.ImageUtils.crossOrigin = '';
 	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture( asset_url+'img/panorma/campus_new.jpg' )
+		map: THREE.ImageUtils.loadTexture( image2 )
 	} );
 
 	
@@ -85,16 +91,20 @@ $(".pano-play").click(function(){
 $(".pano-next").click(function(event){
 	event.preventDefault();
 	
-	imagecount = $(this).attr("data-id");
-	THREE.ImageUtils.crossOrigin = '';
-	$("h4").removeClass('active-pano');
+	var newimage = $(this).attr("data-id");
+	var nextimage=newimage;
+$("h4").removeClass('active-pano');
 	$(this).prev().addClass("active-pano");
-	var image1 = new THREE.MeshBasicMaterial( {
-		map: THREE.ImageUtils.loadTexture( imagecount )
+	THREE.ImageUtils.crossOrigin = '';
+	var image2 = new THREE.MeshBasicMaterial( {
+		map: THREE.ImageUtils.loadTexture( nextimage )
 	} );
-	mesh1 = new THREE.Mesh( geometry, image1 );
+	mesh2 = new THREE.Mesh( geometry, image2 );
+	//scene.add( mesh1);
+	scene1 = new THREE.Scene();
+	
 	scene.remove(mesh1);
-  	scene.add(mesh1);
+  	scene.add(mesh2);
   	$('html, body').stop().animate({
         scrollTop: $("#container").offset().top
     }, 500, 'easeInOutExpo');	
@@ -141,6 +151,24 @@ $(".pano-next").click(function(event){
 
 }
 
+function assignImage(geometry ,image2){
+	scene = new THREE.Scene();
+	
+	var geometry = new THREE.SphereGeometry( 500, 60, 40 );
+	geometry.applyMatrix( new THREE.Matrix4().makeScale( -1, 1, 1 ) );
+	
+	THREE.ImageUtils.crossOrigin = '';
+	var image1 = new THREE.MeshBasicMaterial( {
+		map: THREE.ImageUtils.loadTexture( image2 )
+	} );
+
+	
+	mesh1 = new THREE.Mesh( geometry, image1 );
+	
+	
+	scene.add( mesh1);
+	
+}
 function onWindowResize() {
 
 	camera.aspect = window.innerWidth / window.innerHeight;

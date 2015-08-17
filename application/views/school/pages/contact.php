@@ -17,7 +17,8 @@
 				                    		<span class="locality-box-label"> <?php echo $contactInfo['address'];?></span>
 			                    		</h3>
 			                    	</div>
-			                        <div class="text-left panel-body">
+			                        <a id="contact_details">Click Here For Contact Details</a>
+			                        <div class="text-left panel-body contact_details">
 			                        <?php for ($i = 0; $i < count($contactInfo['contacts']); $i++){?>
 			                        	<div class="col-md-6">
 					                        <div><?php echo $contactInfo['contacts'][$i]['name']?></div>

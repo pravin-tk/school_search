@@ -55,6 +55,7 @@ $('.timelineslider').slick({
 //fee flipster
 
 $('.flipster').flipster({
+	start:1,
 	enableMousewheel:false,
 	enableNav:true,
 	enableNavButtons:true,
@@ -306,3 +307,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
 //        $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
 //    });
 //});
+
+    $(".contact_details").slideUp();
+        $("#contact_details").click(function(){
+            $(".contact_details").slideDown();
+            $("#contact_details").hide();
+            
+
+        })
