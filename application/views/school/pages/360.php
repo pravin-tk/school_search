@@ -141,19 +141,19 @@ function onWindowResize() {
 function onDocumentKeyDown(event){
 	isUserInteracting = true;
 	mesh1.rotation.order = 'ZYX';
-	if (keyboard.pressed("up")) {
+	if (keyboard.pressed("down")) {
 		event.preventDefault();
 		lat = lat - 0.5;
 	}
-	if (keyboard.pressed("down")) {
+	if (keyboard.pressed("up")) {
 		event.preventDefault();
 		lat = lat + 0.5;
 	}
-	if (keyboard.pressed("left")){
+	if (keyboard.pressed("right")){
 		event.preventDefault();
 		lon = lon + 0.5;
 	}
-	if (keyboard.pressed("right")){
+	if (keyboard.pressed("left")){
 		event.preventDefault();
 		lon = lon - 0.5;
 	}
