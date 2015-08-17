@@ -44,7 +44,7 @@
                                     <h4> Post requirement </h4>
                                     <hr/>
                 <div class="media-body">
-                    <form method="post"   id="post_requirement_form" action="javascript:" enctype="multipart/form-data">
+                    <form method="post"   id="post_requirement_form"  enctype="multipart/form-data">
                         <div id="profile_form_error"></div>
                 <div class="form-group">
                     <label for="firstName" class="control-label">Your Name</label>
