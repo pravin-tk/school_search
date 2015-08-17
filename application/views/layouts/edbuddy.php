@@ -127,7 +127,7 @@
     <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.bootstrap-growl.min.js"></script>
-    <script src="<?php echo asset_url();?>js/bootstrap-rating-input.js"></script>
+<!--    <script src="<?php echo asset_url();?>js/bootstrap-rating-input.js"></script>-->
     <script src="<?php echo asset_url();?>js/pages/common.js"></script>
     <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
     <!-- // END .bg-white -->
