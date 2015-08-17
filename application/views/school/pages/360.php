@@ -9,7 +9,7 @@
 					  <div class="overlay-gallery text-center demo" style="margin-left:60px;margin-right:50px;" id="pan-slider">
 							<?php for($i=0; $i<count($otherInfo['panorama']);$i++){?>
 							<div class="">
-				               <h4><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a></h4>
+				               <h4 class="pano-thumb-title <?php if($i == 0){echo "active-pano";}?>"><a> <?php echo $otherInfo['panorama'][$i]['title'];?></a></h4>
 				                <img class="lazy img-responsive pano-next" data-id="<?php echo $i;?>"  src="<?php echo $otherInfo['panorama'][$i]['panoImage'];?>" />
 				            </div>
 				          <?php }?>
@@ -102,7 +102,7 @@ function init() {
 		scene.remove(mesh1);
 	  	scene.add(mesh1);
 	  	$('html, body').stop().animate({
-	        scrollTop: $("#container").offset().top
+	        scrollTop: ($("#container").offset().top - $("#detailmenubar").height( ))
 	    }, 500, 'easeInOutExpo');	
 	});
 	
@@ -133,9 +133,9 @@ function init() {
 }
 
 function onWindowResize() {
-	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.aspect = window.innerWidth / (window.innerHeight - $("#detailmenubar").height( ) - 25);
 	camera.updateProjectionMatrix();
-	renderer.setSize( window.innerWidth, window.innerHeight - $("#container").offset().top - $("#detailmenubar").height( ) -  $('.panel-heading').height());
+	renderer.setSize( window.innerWidth, window.innerHeight - $("#detailmenubar").height( ) - 25);
 }
 
 function onDocumentKeyDown(event){
