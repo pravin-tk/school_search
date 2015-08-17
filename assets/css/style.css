@@ -135,7 +135,7 @@ div.review-panel
 }
 #reviewBoard{
 	height:450px;
-	overflow:scroll;
+	overflow:auto;
 }
 #loadMore{
 	text-align: center;

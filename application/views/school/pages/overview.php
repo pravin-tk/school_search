@@ -178,7 +178,7 @@
                                                 $headers = get_headers($timeline['image']);
                                             if($headers[0]=='HTTP/1.1 200 OK'){
 								?>
-							<img data-original="<?php echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
+							<img data-original="<?php if(isset($timeline)) echo $timeline['image'] ?>"  alt="location" class="lazy img-responsive" style="height:230px;width:100%;">
 								<?php 
 						       }else{
 						       	echo"<img data-original='".asset_url()."img/icons/default-thumb.png'  alt='location' class='lazy img-responsive' style='height:230px;width:100%;'>";
@@ -187,7 +187,7 @@
 						       ?>
 			              </div>
 			              <div class="panel-body">
-			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php echo $timeline["milestones"][0]['title'];?></h5>
+			                <h5 class="margin-v-0-5 timeline-milestone-title"><?php if(isset($timeline["milestones"][0]['title'])) echo $timeline["milestones"][0]['title'];?></h5>
 			              </div>
 			            </div>
 			            <div>

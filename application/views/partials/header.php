@@ -78,50 +78,19 @@
             <script>
                 if(logged_in == null) { //not logged in
                     var public_data = '<li class="dropdown">';
-                    public_data += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="alogin">';
+                    public_data += '<a href="#"  data-toggle="modal" data-target="#myModal" id="alogin">';
                     public_data += '<i class="fa fa-fw fa-lock"></i> Login</a>';
-                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divlogin">';
-                    public_data += '<div class="dropdown-toggle" style ="float:right;" data-toggle="collapse" id="" onclick=""><a style="color:#000;" href=""> <i class="fa fa-close"></i></a></div>';
-                    public_data += '<div id="derr" class="help-block"></div>';
-                    public_data += '<form class="ng-pristine ng-valid" id = "flogin">';
-                    public_data += '<div class="form-group" id="divname">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
-                    public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="tusername" name="tusername" />';
-                    public_data += '</div>'; //</div>
-                    public_data += '<div class="form-group" id="divpwd">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-shield"></i></span>';
-                    public_data += '<input type="password" class="form-control" placeholder="PASSWORD" id="tpassword" name="tpassword" >';
-                    public_data += '</div>'; //</div>
-                    public_data += '<div class="text-center">';
-                    public_data += '<input type="submit" name="blogin" id="blogin" value="Login" class="btn btn-primary" />';
-                    public_data += '<a href="#" class="forgot_password" >Forgot Password?</a></label>'; 
-                    public_data += '</div></form></div>';
-                    public_data += '<div class="dropdown-menu dropdown-size-280" id="divforgotp" style="display:none">';
-                    public_data += '<div  style ="float:right;" data-toggle="collapse" id="" onclick=""> <a style="color:#000;" href=""><i class="fa fa-close"></i> </a></div>';
-                    public_data += '<div id="dpwerr" class="help-block"></div>';
-                    public_data += '<form class="ng-pristine ng-valid" id="frmpwd">';
-                    public_data += '<div class="form-group" id="divfpwd">';
-                    //public_data += '<div class="input-group">';
-                    //public_data += '<span class="input-group-addon"><i class="fa fa-user"></i></span>';
-                    public_data += '<input type="text" class="form-control" placeholder="EMAIL" id="temail" name="temail" />';
-                    public_data += '</div>'; //</div>
-                    public_data += '<div class="text-center">';
-                    public_data += '<input type="submit" name="btnfpwd" id="btnfpwd" value="Submit" class="btn btn-primary" />';
-                    public_data += '</div>';
-                    public_data += '</form></div>';
                     public_data += '</li>';
                     document.write(public_data);
-              }
-              if(logged_in == null) { // not logged in
+                }
+               if(logged_in == null) { // not logged in
                 var public_data = '<li class="dropdown">';
                     public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" >';
                     public_data += '<i class="fa fa-fw fa-plus"></i> Sign Up</a>';
                     public_data += '<div class="dropdown-menu dropdown-size-280"></div>'
                     public_data += '</li>';
                     document.write(public_data);
-              }  
+               }  
              
              
               if(logged_in != null) { // logged in

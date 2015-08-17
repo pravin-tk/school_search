@@ -60,7 +60,7 @@ class Auth extends CI_Controller {
         }
         
         if($activateUser > 0) { 
-         $emailId = ($this->session->userdata('sessEmailID') != '') ? $this->session->userdata('sessEmailID') : '';
+            $emailId = ($this->session->userdata('sessEmailID') != '') ? $this->session->userdata('sessEmailID') : '';
             $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
@@ -190,7 +190,6 @@ class Auth extends CI_Controller {
         $apicalls = array($profile_key);
         try {
             $apioutput = $this->apiclient->process($apicalls);
-           
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, $profile_key) !== false) {
                     $this->template->set('profileInfo', $value);
@@ -221,8 +220,6 @@ class Auth extends CI_Controller {
         $map['image'] = '';
         if ($_FILES['file']['size'] > 0)
             $map['image'] = new CurlFile($_FILES['file']['tmp_name'], 'file/exgpd', $_FILES['file']['name']);
-
-
         $profile_key = 'user/signup.json';
         $apicalls = array(array('url' => 'user/signup.json',
                 'params' => $map,
@@ -231,7 +228,6 @@ class Auth extends CI_Controller {
         );
         try {
             $apioutput = $this->apiclient->process($apicalls, 'POST');
-            
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, $profile_key) !== false) {
                     $data = $value;
@@ -258,8 +254,6 @@ class Auth extends CI_Controller {
         if(isset($_FILES['file']))
         if ($_FILES['file']['size'] > 0)
             $map['image'] = new CurlFile($_FILES['file']['tmp_name'], 'file/exgpd', $_FILES['file']['name']);
-
-
         $profile_key = 'user/update.json';
         $apicalls = array(array('url' => 'user/update.json',
                 'params' => $map,
