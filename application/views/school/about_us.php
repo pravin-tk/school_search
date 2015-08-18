@@ -41,7 +41,7 @@ We want to empower parents with verified data about schools so that they spend l
 OUR VISION
 </div>
 <div class="p-elem vision-content">
-At Edbuddy, we have initiated change — change for the best. Our vision is to help the world live better. We are on a journey to simplifying everything, so that you can focus on your loved ones and things that matter the most. We are here to get to the root of every challenge, find a solution and deliver to you a world that’s filled to the brim with optimism, innovation, transparency, and advancement. Live better with Housing.	
+At Edbuddy, We want to empower parents with verified data about schools so that they spend least amount of time on school search and get rid of worrying about their kids education.	
 </div>
 </section>
 </div>
