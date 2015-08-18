@@ -242,106 +242,106 @@ class home extends CI_Controller {
 	}
         
 	public function schoolDetail($id) {
-     	$map = array();
-        $standardId ="";
-       	$userid ="";
-        $school_rating_key ="";
-       	if(isset($_COOKIE['ebdstdid']))
-         	$standardId = $_COOKIE['ebdstdid'];
-        if(isset($_COOKIE['ebdsearchgeocode'])){
-           	$geocode = $_COOKIE['ebdsearchgeocode'];
-            if(strpos($geocode, ",")){
-               	$arrgeocode = explode(",",$geocode);
+            $map = array();
+            $standardId ="";
+            $userid ="";
+            $school_rating_key ="";
+            if(isset($_COOKIE['ebdstdid']))
+                    $standardId = $_COOKIE['ebdstdid'];
+            if(isset($_COOKIE['ebdsearchgeocode'])){
+                    $geocode = $_COOKIE['ebdsearchgeocode'];
+                if(strpos($geocode, ",")){
+                    $arrgeocode = explode(",",$geocode);
+                }
             }
-       	}
-       	if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
-          	$userid = $_COOKIE['ebduserid'];
-       	}elseif( $this->session->userdata('sessuserID')!="" ){
-           	$userid = $this->session->userdata('sessuserID');
-        }
-        $param = $this->uri->segment(3); 
-        $schoolarr = explode('-',$param);
-       	$schoolid = $schoolarr[count($schoolarr)-1];
-              
-        if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
-          	$map['latitude'] = $arrgeocode[0];
-       	if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
-          	$map['longitude'] = $arrgeocode[1];
-		$school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
-		$school_other_key = 'school.json/' . $schoolid;
-		$standard_key = 'standardlist.json';
-        $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
-        $school_rating_key ="xxx";
-        if($userid == ""){
-           	$ratereview_key = 'school/rating.json/'.$schoolid;
-        }else{
-          	$ratereview_key = 'school/ratingandreview.json/' .$schoolid."/".$userid;
-            $school_rating_key = 'school/rating.json/'.$schoolid;
-        }
-		$apicalls = array(
-			$school_basic_key,
-            $school_other_key,
-            $standard_key,
-            $nearbyschool_key,
-            $ratereview_key,
-           	$school_rating_key
-       	);
-		$schoolInfo = null;
-		try {
-			$apioutput = $this->apiclient->process ( $apicalls );
-          	foreach ( $apioutput as $key => $value ) {
-            	if (strpos($key,'basiclist.json') !== false) {
-                	$this->template->set ( 'basicInfo', $value );
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $param = $this->uri->segment(3); 
+            $schoolarr = explode('-',$param);
+            $schoolid = $schoolarr[count($schoolarr)-1];
+
+            if(isset($arrgeocode[0]) && $arrgeocode[0] !=="")
+                    $map['latitude'] = $arrgeocode[0];
+            if(isset($arrgeocode[1]) && $arrgeocode[1] !=="")
+                    $map['longitude'] = $arrgeocode[1];
+                    $school_basic_key = 'school/basiclist.json/' . $schoolid.'/'.$standardId;
+                    $school_other_key = 'school.json/' . $schoolid;
+                    $standard_key = 'standardlist.json';
+            $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
+            $school_rating_key ="xxx";
+            if($userid == ""){
+                    $ratereview_key = 'school/rating.json/'.$schoolid;
+            }else{
+                    $ratereview_key = 'school/ratingandreview.json/' .$schoolid."/".$userid;
+                $school_rating_key = 'school/rating.json/'.$schoolid;
+            }
+                    $apicalls = array(
+                            $school_basic_key,
+                $school_other_key,
+                $standard_key,
+                $nearbyschool_key,
+                $ratereview_key,
+                    $school_rating_key
+            );
+                $schoolInfo = null;
+                try {
+                        $apioutput = $this->apiclient->process ( $apicalls );
+                foreach ( $apioutput as $key => $value ) {
+                if (strpos($key,'basiclist.json') !== false) {
+                        $this->template->set ( 'basicInfo', $value );
                 } elseif (strpos($key,$school_other_key) !== false) {
-                   	$this->template->set ('otherInfo', $value);
+                        $this->template->set ('otherInfo', $value);
                     $schoolInfo = $value;
                 } elseif (strpos($key,$standard_key) !==false){
                     $this->template->set('standard',$value);
                 } elseif (strpos($key,$nearbyschool_key) !==false){
                     $this->template->set('nearbySchool',$value);
                 } elseif (strpos($key,$ratereview_key) !==false){
-                	if($userid == ""){ 
-                    	$this->template->set('userRatingInfo',$value);
+                        if($userid == ""){ 
+                        $this->template->set('userRatingInfo',$value);
                     }else{
                         $this->template->set('userRatingInfo',$value['ratings']);
-                	}
+                        }
                     $this->template->set('userReviewInfo',$value);
-               	} elseif (strpos($key,$school_rating_key) !==false && $userid <> ""){
+                } elseif (strpos($key,$school_rating_key) !==false && $userid <> ""){
                     $this->template->set('schoolRatingInfo',$value);
                 }
-			}
-           	if(isset($schoolInfo['highlights']))
-            	$this->template->set('overviewInfo',$schoolInfo['highlights']);
-           	if(isset($schoolInfo['contacts']))
-               	$this->template->set('contactInfo',$schoolInfo['contacts']);
-            if(isset($schoolInfo['images']))
-                $this->template->set('galleryinfo',$schoolInfo['images']);
-            if(isset($schoolInfo['rating']))
-               	$this->template->set('ratingInfo',$schoolInfo['rating']);
-            if(isset($schoolInfo['ratingsAndReviews']))
-                $this->template->set('reviewInfo',$schoolInfo['ratingsAndReviews']);
-            if(isset($schoolInfo['fees']))
-                $this->template->set('feeInfo',$schoolInfo['fees']);
-           	if(isset($standardId))
-                $this->template->set('standardId',$standardId);
-            if(isset($schoolid))
+                        }
+                if(isset($schoolInfo['highlights']))
+                    $this->template->set('overviewInfo',$schoolInfo['highlights']);
+                if(isset($schoolInfo['contacts']))
+                    $this->template->set('contactInfo',$schoolInfo['contacts']);
+                if(isset($schoolInfo['images']))
+                    $this->template->set('galleryinfo',$schoolInfo['images']);
+                if(isset($schoolInfo['rating']))
+                    $this->template->set('ratingInfo',$schoolInfo['rating']);
+                if(isset($schoolInfo['ratingsAndReviews']))
+                    $this->template->set('reviewInfo',$schoolInfo['ratingsAndReviews']);
+                if(isset($schoolInfo['fees']))
+                    $this->template->set('feeInfo',$schoolInfo['fees']);
+                    if(isset($standardId))
+                    $this->template->set('standardId',$standardId);
+                if(isset($schoolid))
                 $this->template->set('schId',$schoolid);
-			$data ['status'] = 1;
-		} catch ( EBDApiException $e ) {
-			$data ['status'] = 0;
-			$data ['data'] = $data;
-			unset ( $apicalls );
-			unset ( $apioutput );
-		}
-		$data ['data'] = $data;
-                
-        $this->template->set('userId',$userid);
-		$this->template->set('page','detail');
-		$this->template->set_layout ( 'edbuddy' )
+                        $data ['status'] = 1;
+                } catch ( EBDApiException $e ) {
+                        $data ['status'] = 0;
+                        $data ['data'] = $data;
+                        unset ( $apicalls );
+                        unset ( $apioutput );
+                }
+                $data ['data'] = $data;
+
+                $this->template->set('userId',$userid);
+                $this->template->set('page','detail');
+                $this->template->set_layout ( 'edbuddy' )
                         ->title ( 'Search for finest schools near you: Edbuddy.in' )
                         ->set_partial ( 'header', 'partials/header_home' )
                         ->set_partial ( 'footer', 'partials/footer' );
-		$this->template->build ( 'school/school-details' );
+                $this->template->build ( 'school/school-details' );
 	}
         
 	public function rateSchool() {
@@ -408,27 +408,27 @@ class home extends CI_Controller {
         
    	/* getting actual location stored in our db */
 	public function getLocation(){
-   		$map['latitude'] = trim($this->input->post('lat',TRUE));
-        $map['longitude'] = trim($this->input->post('lng',TRUE));
-        $map['standard'] = trim($this->input->post('std',TRUE));
-        $geocode = $map['latitude'].', '.$map['longitude'];
-        $permlink_key = 'geturi.json/'.$map['latitude'].'/'.$map['longitude'].'/'.$map['standard'];
-        $apicalls = array($permlink_key);
-        try {
-           	$apioutput = $this->apiclient->process($apicalls);
-            foreach($apioutput as $key => $value ){
-                if (strpos($key,$permlink_key) !== false) {
-                            $data = $value;
-                }	
-			}
-            echo json_encode($data );
-        }catch(EBDApiException $e) {
-            $data['status'] = 1;
-            $this->session->set_userdata('areaid',$areaid);
-            setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
-            unset($apicalls);
-            unset($apioutput);
-        }
+            $map['latitude'] = trim($this->input->post('lat',TRUE));
+            $map['longitude'] = trim($this->input->post('lng',TRUE));
+            $map['standard'] = trim($this->input->post('std',TRUE));
+            $geocode = $map['latitude'].', '.$map['longitude'];
+            $permlink_key = 'geturi.json/'.$map['latitude'].'/'.$map['longitude'].'/'.$map['standard'];
+            $apicalls = array($permlink_key);
+            try {
+                    $apioutput = $this->apiclient->process($apicalls);
+                foreach($apioutput as $key => $value ){
+                    if (strpos($key,$permlink_key) !== false) {
+                                $data = $value;
+                    }	
+                            }
+                echo json_encode($data );
+            }catch(EBDApiException $e) {
+                $data['status'] = 1;
+                $this->session->set_userdata('areaid',$areaid);
+                setcookie('tksearchlocid'.lcfirst($this->uri->segment(1)), $areaid, time()+60*60*24*30, "/", ".tastykhana.in",0);;
+                unset($apicalls);
+                unset($apioutput);
+            }
 	}
 	
 	public function view360()
@@ -463,9 +463,9 @@ class home extends CI_Controller {
                             )
             );
             try {
-                    error_log(json_encode($apicalls),0);
+                    
                     $apioutput = $this->apiclient->process($apicalls, 'POST');
-                    error_log(json_encode($apioutput),0);
+                  
                     foreach ($apioutput as $key => $value) {
                             if (strpos($key, $schooladd_key) !== false) {
                                     $data = $value;
@@ -630,6 +630,7 @@ class home extends CI_Controller {
 	}
 	
 	public function contactUs(){
+            $this->template->set('page','requirement');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )

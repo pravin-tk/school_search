@@ -54,7 +54,16 @@
     .top-spacing{
         padding-top:5px;
     }
-    
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    .alert-danger {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
    
 </style>
 
@@ -204,7 +213,7 @@
                             <div class="form-group" id="dnpwd">
                                 <label for="newPassword" class="control-label">New Password</label>
 
-                                    <input type="text"  maxlength="8" 
+                                    <input type="password"  maxlength="8" 
                                            class="form-control" id="newPassword" name="newPassword" >
 
                                 <span class="help-block with-errors"></span>
@@ -212,7 +221,7 @@
 
                             <div class="form-group" id="dncpwd">
                                 <label for="confirmPassword" class="control-label" style = 'margin-left:-400px'>Confirm Password</label>
-                                 <input type="text"  maxlength="8" 
+                                 <input type="password"  maxlength="8" 
                                    class="form-control" id="confirmPassword" name="confirmPassword" >
 
                                 <span class="help-block with-errors"></span>

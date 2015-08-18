@@ -25,6 +25,16 @@
     .top-spacing{
         padding-top:5px;
     }
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    .alert-danger {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
 </style>
 
 <!-- uiView:  --><div data-ui-view="" class="ui-view-main ng-scope"><!-- uiView:  --><div ui-view="" class="ui-view-main ng-scope"><!-- Fixed navbar -->
