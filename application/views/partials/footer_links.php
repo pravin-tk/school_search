@@ -5,11 +5,11 @@
          <div class="col-xs-6 col-md-2"> 
            <h4>Corporate</h4> 
            <ul class="list-unstyled"> 
-             <li><a href="<?php echo $base_url; ?>aboutus">About the company</a></li> 
+             <li><a href="<?php echo $base_url; ?>about-us">About the company</a></li> 
              <li><a href="">Our Mission</a></li> 
-             <li><a href="<?php echo $base_url; ?>ourteam">Our People</a></li> 
+             <li><a href="<?php echo $base_url; ?>our-team">Our People</a></li> 
              <li><a href="<?php echo $base_url; ?>career">Career</a></li> 
-             <li><a href="<?php echo $base_url; ?>contactus">Contact Us</a></li> 
+             <li><a href="<?php echo $base_url; ?>contact-us">Contact Us</a></li> 
            </ul> 
          </div> 
          <div class="col-xs-6 col-md-2"> 

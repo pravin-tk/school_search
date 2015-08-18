@@ -73,10 +73,10 @@ $route['save-school'] = 'home/saveSchool';
 $route['post-your-requirement'] = 'home/postRequirement';
 $route['save-requirement'] = 'home/saveRequirement';
 $route['post-rating-review'] = 'home/userRatingReview';
-$route['aboutus'] = 'home/aboutUs';
+$route['about-us'] = 'home/aboutUs';
 $route['career'] = 'home/joinUs';
-$route['ourteam'] = 'home/ourTeam';
-$route['contactus'] = 'home/contactUs';
+$route['our-team'] = 'home/ourTeam';
+$route['contact-us'] = 'home/contactUs';
 $route['privacy'] = 'home/privacy';
 $route['terms'] = 'home/terms';
 
