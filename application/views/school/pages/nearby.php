@@ -15,15 +15,15 @@
             	<div class="panel panel-default relative">
               		<div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"><?php //echo $school['city'] ?></div>
               		<div class="cover hover overlay margin-none" style="height: 147px;">
-                    	<?php if ($school['homeImage'] == ""){ ?>
+                    	<?php if ($school['logo'] == "" ){ ?>
                 			<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive">
                        	<?php }else{ 
-                    		$headers = get_headers($school['homeImage']);
+                    		$headers = get_headers($school['logo']);
                     	?>
 	                        <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
-	                        	<img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive'>
+	                        	<img src='<?php echo $school["logo"];?>' alt='location' class='lazy img-responsive'>
 	                        <?php } else { ?>
-								<img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive'>
+								<img src='<?php echo asset_url();?>' alt='location' class='lazy img-responsive'>
 	                        <?php } ?> 
                         <?php }?>
                     	<a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">
