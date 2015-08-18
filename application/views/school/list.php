@@ -432,6 +432,9 @@ $classification = $filtersList['classificationFilter'];
     #schbox_inner{
         width:250px;
     }
+    .compaire{
+    	display:none;
+    }
 </style>
 
 <div id="content">
@@ -571,9 +574,9 @@ $classification = $filtersList['classificationFilter'];
                                             <p id="list-image">
                                                 <a href="<?php echo $urllink; ?>" target="_blank">
                                                     <?php if ($school['logo'] == "") { ?>
-                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="130" class="media-object">
                                                     <?php } else { ?>
-                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="130" class="media-object">
                                                     <?php } ?>
                                                 </a>
                                                 <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']; ?>">
@@ -581,8 +584,8 @@ $classification = $filtersList['classificationFilter'];
                                                 </span>
                                             </p>
                                            
-                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare">
-                                                 <p class="compaire" id="">
+                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare" data-id="<?php echo $school['schoolId']; ?>">
+                                                 <p class="compaire" id="compare-<?php echo $school['schoolId']; ?>">
                                                     Compare
                                                 </p>
                                         </div>
@@ -1140,6 +1143,10 @@ google.maps.event.addDomListener(window, 'load', function () {
 $('.toggle-event').change(function() {
 	if($(this).prop('checked')){
 	    $(this .span).html('Toggle: ' + $(this).prop('checked'));
+	    //if($('.toggle-event:checked').size() >= 2)
+	    $("#compare-"+$(this).attr("data-id")).show();
+	}else{
+		$("#compare-"+$(this).attr("data-id")).hide();
 	}
   })
   $(".compaire").click(function(){
