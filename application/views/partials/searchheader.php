@@ -195,7 +195,7 @@ if(!isset($longitude))
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = "<?php echo $this->session->userdata("ebdmypic");?>";
+        logged_pic = "<?php echo $this->session->userdata("sessebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
