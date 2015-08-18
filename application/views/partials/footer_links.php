@@ -31,7 +31,7 @@
            </ul> 
          </div>        <div class="col-xs-12 col-md-4"> 
            <div class="panel bg-transparent margin-none"> 
-             <div class="panel-body"> 
+<!--             <div class="panel-body"> 
                <div class="form-group form-control-default"> 
                  <label for="email">Email:</label> 
                  <input id="email" class="form-control" type="text" placeholder="Your email address .."> 
@@ -41,7 +41,7 @@
                </div> 
 
                <small class="help-block">* We will never sell your email</small> 
-             </div> 
+             </div> -->
            </div> 
          </div> 
        </div> 
