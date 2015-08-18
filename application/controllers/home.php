@@ -529,9 +529,7 @@ class home extends CI_Controller {
             )
             );
             try {
-                    error_log(json_encode($apicalls),0);
                     $apioutput = $this->apiclient->process($apicalls, 'POST');
-                    error_log(json_encode($apioutput),0);
                     foreach ($apioutput as $key => $value) {
                             if (strpos($key, $requirement_key) !== false) {
                                     $data = $value;
@@ -601,7 +599,7 @@ class home extends CI_Controller {
                                     $data = $value;
                             }
                         }
-                        error_log(json_encode($data),0);
+                      
                         echo json_encode($data);
                     } catch ( EBDApiException $e ) {
                         unset ( $apicalls );
@@ -614,6 +612,7 @@ class home extends CI_Controller {
         }
         
 	public function aboutUs(){
+             $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -622,6 +621,7 @@ class home extends CI_Controller {
 	}
 	
 	public function joinUs(){
+             $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -638,6 +638,7 @@ class home extends CI_Controller {
 	}
 	
 	public function ourTeam(){
+             $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -646,6 +647,7 @@ class home extends CI_Controller {
 	}
 	
 	public function privacy(){
+             $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -654,6 +656,7 @@ class home extends CI_Controller {
 	}
 	
 	public function terms(){
+             $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )

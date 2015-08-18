@@ -23,7 +23,9 @@
 .symbol-filled {
   background-color: black;
 }
-
+.rating-md { 
+font-size: 1.75em; 
+}
 </style>
 <div class="col-md-12">
   	<div class="panel panel-default">
@@ -32,7 +34,7 @@
 		    <strong>Rating & Reviews </strong>
                     <span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
                 </h3>
-                <div style="align:right"><a id="addReview" style="cursor:hand;" href ="#">Add Rating & Review </a> </div>
+                <div style="align:right;padding-left:100px;"><a id="addReview" style="cursor:hand;" href ="#"><u>Add Rating & Review </u></a> </div>
 	    </div>
             <div class="panel-body" id="divreviewfrm" style="display:none;">
                 <div class="container">
