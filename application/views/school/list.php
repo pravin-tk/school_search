@@ -174,7 +174,8 @@ $classification = $filtersList['classificationFilter'];
         padding-bottom:5px;
     }
     .share-school{
-        min-height:48px;
+    	margin-top: 11px;
+        min-height:45px;
     }
     .share-school .padding-top-05{
         margin-top:5px;
@@ -198,6 +199,7 @@ $classification = $filtersList['classificationFilter'];
         white-space: nowrap;
     }
     .school-name-text {
+    	font-size: 14px;
         font-weight:700;
         max-width: 165px;
         padding-left: 0px;
@@ -239,7 +241,7 @@ $classification = $filtersList['classificationFilter'];
         font-size:16px;
     }
     .list-top-line{
-        min-height:57px;
+        min-height:45px;
     }
     .container .panel .panel-body .media .media-left p{
         margin-bottom:8px;
@@ -427,7 +429,6 @@ $classification = $filtersList['classificationFilter'];
         padding-top:5px;
     }
 
-
     #schbox_inner{
         width:250px;
     }
@@ -613,9 +614,11 @@ $classification = $filtersList['classificationFilter'];
                                                     <?php echo $school['teachingApproach']; ?>
                                                     </div>
                                                 <?php } ?>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
-                                                    <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
-                                                </a>
+                                                <div style="margin-top:8px;">
+                                                	<a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
+	                                                    <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
+	                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
@@ -638,16 +641,21 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="detail-value">
                                                     <?php echo $school['schoolCategory'] ?>
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
-                                                    <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
-                                                </a>
+                                                <div style="margin-top:8px;">
+	                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
+	                                                    <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
+	                                                </a>
+	                                            </div>
                                             </div>
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
                                                     <div>
-                                                        <span class="label label-grey-100">
-                                                            <i class="fa fa-road"></i> <?php echo round($school['distance'], 2) ?> Kms
-                                                        </span>
+                                                    	<div class="detail-label">
+	                                                        Distance
+	                                                    </div>
+                                                        <div>
+                                                            <?php echo round($school['distance'], 2) ?> Kms
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="detail-label">
@@ -668,16 +676,19 @@ $classification = $filtersList['classificationFilter'];
                                                         echo $school['totalFee'] . " PA";
                                                     ?> (approx.)
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
-                                                    <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
-                                                </a>
+                                                <div style="margin-top:8px;">
+	                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
+	                                                    <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
+	                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="list-top-line text-center">
                                                     <div class="margin-title btn btn-primary">
                                                         <?php echo number_format((float) $school['rating'], 1, '.', ''); ?>
                                                     </div>
-                                                    <div class="text-center">
+                                                </div>
+                                                <div class="text-center">
                                                         <?php
                                                         $ratingNumber = round($school['rating']);
                                                         $decimal = $school['rating'] - $ratingNumber;
@@ -694,19 +705,15 @@ $classification = $filtersList['classificationFilter'];
                                                         <?php } ?>
                                                         <?php for ($i = 0; $i < $unratedStars; $i++) { ?>
                                                             <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-        						<?php } ?>
-                                                    </div>
-                                                    <div class="text-center">(0 votes)</div>
+        												<?php } ?>
                                                 </div>
-                                                <div class="text-center">
-                                                    &nbsp;
-                                                </div>
+                                                <div class="text-center">(0 votes)</div>
                                                 <div class="share-school">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
                                                 </div>
-                                                <div class="text-center">
+                                                <div style="margin-top:0px;">
                                                     <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#contact">
                                                         <i class="fa fa-phone"></i> Contact
                                                     </a>
