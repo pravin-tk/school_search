@@ -433,7 +433,7 @@ $classification = $filtersList['classificationFilter'];
     }
 </style>
 
-<div id="content"style="background:#fff;">
+<div id="content">
     <div id="mav-view-layout" class="map-view">
         <div id="map-canvas"></div>
         <div class="infobox-wrapper" id="infobox-wrapper" style="width: 300px;">
