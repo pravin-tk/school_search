@@ -431,6 +431,8 @@ $classification = $filtersList['classificationFilter'];
     #schbox_inner{
         width:250px;
     }
+    .off{width:100px;}
+    .on{width:50px;}
 </style>
 
 <div id="content">
@@ -580,10 +582,10 @@ $classification = $filtersList['classificationFilter'];
                                                 </span>
                                             </p>
                                            
-                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare">
-                                                 <p class="compaire" id="">
+                                                <input class="toggle-event" type="checkbox"   value="<?php echo $school['schoolId']; ?>">
+                                                 <span class="compaire" style="display: none;">
                                                     Compare
-                                                </p>
+                                                </span>
                                         </div>
                                         <div class="media-body">
                                             <div class="col-sm-3" id="padding-left-08">
@@ -746,9 +748,9 @@ $classification = $filtersList['classificationFilter'];
             </div>
         </div>
     </div>
-    <div id="compareview" style="position:absolute;top:00px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));z-index:1050">
+    <div id="compareview" style="position:absolute;top:00px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7));z-index:1050">
     	   		   <span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
-	   <div id="tiles-container"style="position:relative;top:80px;">
+	   <div id="tiles-container"style="position:relative;top:40px;">
 		 <ul class="tl-page" data-tl-template="myTemplate">
 		   
 		 </ul>
@@ -1132,7 +1134,12 @@ google.maps.event.addDomListener(window, 'load', function () {
 
 $('.toggle-event').change(function() {
 	if($(this).prop('checked')){
-	    $(this .span).html('Toggle: ' + $(this).prop('checked'));
+		$( this).parent().css( "width", "50px" );
+		$( this).closest("span").css( "display", "block" );
+			}else{
+		$( this).parent().css( "width", "100px" );
+		$( this).closest("span").css( "display", "none" );
+		
 	}
   })
   $(".compaire").click(function(){
@@ -1183,5 +1190,10 @@ $('.toggle-event').change(function() {
 	  
   
 	});
+  $('.toggle-event').bootstrapToggle({
+      on: "<i class='fa fa-check'></i>",
+      off: "compare",
+      width:"100px"
+  });
     
 </script>
