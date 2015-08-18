@@ -174,7 +174,8 @@ $classification = $filtersList['classificationFilter'];
         padding-bottom:5px;
     }
     .share-school{
-        min-height:48px;
+    	margin-top: 11px;
+        min-height:45px;
     }
     .share-school .padding-top-05{
         margin-top:5px;
@@ -198,6 +199,7 @@ $classification = $filtersList['classificationFilter'];
         white-space: nowrap;
     }
     .school-name-text {
+    	font-size: 14px;
         font-weight:700;
         max-width: 165px;
         padding-left: 0px;
@@ -239,7 +241,7 @@ $classification = $filtersList['classificationFilter'];
         font-size:16px;
     }
     .list-top-line{
-        min-height:57px;
+        min-height:45px;
     }
     .container .panel .panel-body .media .media-left p{
         margin-bottom:8px;
@@ -427,9 +429,11 @@ $classification = $filtersList['classificationFilter'];
         padding-top:5px;
     }
 
-
     #schbox_inner{
         width:250px;
+    }
+    .compaire{
+    	display:none;
     }
 </style>
 
@@ -559,6 +563,7 @@ $classification = $filtersList['classificationFilter'];
                 <div id="schresult">
                     <?php
                     if (isset($schools)) {
+					echo '<script> var json = '. json_encode($schools).'</script>';
                         foreach ($schools as $key => $school) {
                             ?>
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId'] ?>">
@@ -569,15 +574,20 @@ $classification = $filtersList['classificationFilter'];
                                             <p id="list-image">
                                                 <a href="<?php echo $urllink; ?>" target="_blank">
                                                     <?php if ($school['logo'] == "") { ?>
-                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo asset_url(); ?>img/vector-school-house-28931692.jpg" alt="property" width="150" height="130" class="media-object">
                                                     <?php } else { ?>
-                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="135" class="media-object">
+                                                        <img src="<?php echo $school['logo']; ?>" alt="property" width="150" height="130" class="media-object">
                                                     <?php } ?>
                                                 </a>
                                                 <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']; ?>">
                                                     <i class="fa fa-heart-o"></i> 
                                                 </span>
                                             </p>
+                                           
+                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare" data-id="<?php echo $school['schoolId']; ?>">
+                                                 <p class="compaire" id="compare-<?php echo $school['schoolId']; ?>">
+                                                    Compare
+                                                </p>
                                         </div>
                                         <div class="media-body">
                                             <div class="col-sm-3" id="padding-left-08">
@@ -613,9 +623,11 @@ $classification = $filtersList['classificationFilter'];
                                                     <?php echo $school['teachingApproach']; ?>
                                                     </div>
                                                 <?php } ?>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
-                                                    <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
-                                                </a>
+                                                <div style="margin-top:8px;">
+                                                	<a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#gallery">
+	                                                    <i class="fa fa-picture-o"></i> Gallery (<?php echo $school['galeryImages']; ?>)
+	                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
@@ -638,16 +650,21 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="detail-value">
                                                     <?php echo $school['schoolCategory'] ?>
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
-                                                    <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
-                                                </a>
+                                                <div style="margin-top:8px;">
+	                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#visualtour">
+	                                                    <i class="fa fa-dot-circle-o"></i> 360<sup>0</sup> View
+	                                                </a>
+	                                            </div>
                                             </div>
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
                                                     <div>
-                                                        <span class="label label-grey-100">
-                                                            <i class="fa fa-road"></i> <?php echo round($school['distance'], 2) ?> Kms
-                                                        </span>
+                                                    	<div class="detail-label">
+	                                                        Distance
+	                                                    </div>
+                                                        <div>
+                                                            <?php echo round($school['distance'], 2) ?> Kms
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="detail-label">
@@ -668,16 +685,19 @@ $classification = $filtersList['classificationFilter'];
                                                         echo $school['totalFee'] . " PA";
                                                     ?> (approx.)
                                                 </div>
-                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
-                                                    <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
-                                                </a>
+                                                <div style="margin-top:8px;">
+	                                                <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#review">
+	                                                    <i class="fa fa-comments"></i> Reviews (<?php echo $school['reviews'] ?>)
+	                                                </a>
+                                                </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="list-top-line text-center">
                                                     <div class="margin-title btn btn-primary">
                                                         <?php echo number_format((float) $school['rating'], 1, '.', ''); ?>
                                                     </div>
-                                                    <div class="text-center">
+                                                </div>
+                                                <div class="text-center">
                                                         <?php
                                                         $ratingNumber = round($school['rating']);
                                                         $decimal = $school['rating'] - $ratingNumber;
@@ -694,19 +714,15 @@ $classification = $filtersList['classificationFilter'];
                                                         <?php } ?>
                                                         <?php for ($i = 0; $i < $unratedStars; $i++) { ?>
                                                             <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-        						<?php } ?>
-                                                    </div>
-                                                    <div class="text-center">(0 votes)</div>
+        												<?php } ?>
                                                 </div>
-                                                <div class="text-center">
-                                                    &nbsp;
-                                                </div>
+                                                <div class="text-center">(0 votes)</div>
                                                 <div class="share-school">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
                                                 </div>
-                                                <div class="text-center">
+                                                <div style="margin-top:0px;">
                                                     <a class="btn btn-primary list-primary-button" href="<?php echo $urllink?>/#contact">
                                                         <i class="fa fa-phone"></i> Contact
                                                     </a>
@@ -740,9 +756,20 @@ $classification = $filtersList['classificationFilter'];
             </div>
         </div>
     </div>
+    <div id="compareview" style="position:absolute;top:0px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));z-index:1050;height:100%;">
+    	<span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
+	   	<div id="tiles-container"style="position:relative;top:45px;left:-25px;">
+		 	<ul class="tl-page" data-tl-template="myTemplate">
+		   
+		 	</ul>
+	   	</div>
+    </div>
 </div>
+
+<script src="<?php echo asset_url();?>js/jstiles.js" type="text/javascript"></script>
 <script type="text/javascript">
-    var map;
+
+var map;
     var dataArr = null;
     var infowindow = new google.maps.InfoWindow();
     dataArr = <?php echo json_encode($schools); ?>;
@@ -1026,7 +1053,7 @@ if (isset($schools)) {
                     
                     
  function getPermlink(latitude,longitude,stdid){
-     console.log(latitude+ ","+longitude+","+stdid);
+    console.log(latitude+ ","+longitude+","+stdid);
     var permlink =null;
     var status = 0;
     var data ="";
@@ -1074,12 +1101,12 @@ $("#frmSch").affix({
         top: 200,
     }
 });
+
 $("#search_header").affix({
     offset: {
         top: 200,
     }
 });
-
 
 $('body').scrollspy({
     target: '.navbar-fixed-top',
@@ -1112,4 +1139,56 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
 });
 
+$('.toggle-event').change(function() {
+	if($(this).prop('checked')){
+	    $(this .span).html('Toggle: ' + $(this).prop('checked'));
+	    //if($('.toggle-event:checked').size() >= 2)
+	    $("#compare-"+$(this).attr("data-id")).show();
+	}else{
+		$("#compare-"+$(this).attr("data-id")).hide();
+	}
+  })
+$(".compaire").click(function(){
+	var compareSize = $('.toggle-event:checked').size();
+	if(compareSize >=2){
+	  	addToCompare();
+	  	$("#list-searchresult").hide();
+	  	$( "#compareview" ).fadeIn( "slow", function() {
+		    // Animation complete
+	  	});
+		var myTemplateObject = {
+			myTemplate: {
+			tilesNum: compareSize,
+			   	tiles: {
+				    0: '',
+				    1: '',
+				    2: '',
+				    3: ''
+			  	},
+				animations: {
+				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
+				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				}
+			}
+		}
+		var opt = {
+			templateObj: myTemplateObject
+		} 
+		$('#tiles-container').jstiles(opt);
+	}else{
+		alert("atleast 2 schools needed to compare");
+	}
+});
+$("#comparedistroy").click(function(){
+	$("#compareview").fadeOut( "slow", function() {
+		    // Animation complete
+	});
+	$("#list-searchresult").fadeIn( "slow", function() {
+		    // Animation complete
+	});
+  	$('.tl-page li').remove();
+});
+    
 </script>
