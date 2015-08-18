@@ -39,7 +39,7 @@
     );
 
     $(function () {
-        console.log('yo');
+      
         var cookie_domain = 'edbuddy.in';
         var d = new Date();
         d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000));
@@ -47,9 +47,8 @@
         // function details to populate 
         // //rating data for logged in user
         if (logged_in > 1 && logged_in != null) {
-            
             rateformcookie = readCookie('ebdratesch');
-            console.log("#52="+rateformcookie);
+            
             if (rateformcookie == "yes") {
                 $("#divreviewfrm").show();
                 $("#divUserRatingReview").hide();
@@ -69,7 +68,7 @@
                 isDataavailable = true;
 <?php } ?>
             if (isDataavailable) {
-                console.log("feed reating values");
+               
                 var id = 0;
                 for (var key in ratingData) {
                     var value = ratingData[key];
@@ -104,8 +103,7 @@
         });
         
         $("#addReview").click(function () {
-            alert("hi");
-            console.log("me logged="+logged_in);
+           
             if (logged_in > 1 && logged_in != null) {
                 rateformcookie = readCookie('ebdratesch');
                 // if(rateformcookie == "yes"){
@@ -114,7 +112,7 @@
 
                 // }
             } else {
-                console.log("create cookie");
+               
                 document.cookie = "ebdratesch=yes;expires=" + expires + "; path=/;";
                 $("#btnopenLogin").click();
             }

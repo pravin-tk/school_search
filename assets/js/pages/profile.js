@@ -1,5 +1,6 @@
  
-        function updateProfile(){    
+        function updateProfile(){   
+            var label;
             var formData = new FormData();
             var filedata =$('#edit_profile_form input[type=file]')[0].files[0];
             if (filedata != undefined){
@@ -11,7 +12,7 @@
             formData.append('mobileNo', $("#mobileNo").val());
             $.ajax({
                 type:'POST',
-                url: base_url+"index.php/auth/profileUpdate",
+                url: base_url+"update-profile",
                 data: formData,
                 cache: false,
                 contentType: false,
@@ -32,15 +33,23 @@
                             
                            // });
                             if(status == 0){
-                               $("#profile_form_error").html(messg);
-                               $("#profile_form_error").addClass('help-block-error');
+                               label = 'danger';
                             }else{
-                               $("#profile_form_error").html(messg);
-                               $("#profile_form_error").addClass('help-block-success');
+                               label = 'success';
                             }
                             $('body,html').animate({
                                  scrollTop: 0
                             }, 200);
+                               $.bootstrapGrowl(messg, {
+                                    ele: 'body', // which element to append to
+                                    type: label, // (null, 'info', 'danger', 'success')
+                                    offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                                    align: 'center', // ('left', 'right', or 'center')
+                                    width: 250, // (integer, or 'auto')
+                                    delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                                    allow_dismiss: true, // If true then will display a cross to close the popup.
+                                    stackup_spacing: 10 // spacing between consecutively stacked growls.
+                                });
                 },
                 error: function(data) {
                       console.log(data);
@@ -80,7 +89,8 @@
      
       function changePassword() {
            //ajax code to update password
-                $.post(base_url+"index.php/auth/updatePassword",
+                var label ="";
+                $.post(base_url+"update-password",
                         {
                         email: $("#password_change_form input[name=emailid]").val(),
                         password: $("#password_change_form input[name=newPassword]").val()
@@ -101,16 +111,24 @@
                             });
                             $('.form-group').removeClass('has-error has-feedback has-success');
                             if(status == 0){
-                               $("#pwd_form_error").html(errors);
-                               $("#pwd_form_error").addClass('help-block-error');
+                                 label = 'danger';
                             }else{
-                               $("#pwd_form_error").html(messg);
-                               $("#pwd_form_error").addClass('help-block-success');
+                                 label = 'success';
                             }
                             
                              $('body,html').animate({
                                     scrollTop: 0
                              }, 200);
+                             $.bootstrapGrowl(messg, {
+                                    ele: 'body', // which element to append to
+                                    type: label, // (null, 'info', 'danger', 'success')
+                                    offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                                    align: 'center', // ('left', 'right', or 'center')
+                                    width: 250, // (integer, or 'auto')
+                                    delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                                    allow_dismiss: true, // If true then will display a cross to close the popup.
+                                    stackup_spacing: 10 // spacing between consecutively stacked growls.
+                              });
                         },'json'
                         );
                 
@@ -254,7 +272,8 @@
      
     //    $("#activate_user").on("click", "#btnchangePwd", function () {
     function activateProfile() {
-                $.post(base_url + "index.php/auth/activateProfile",
+                var label =""; 
+                $.post(base_url + "activate-user",
                         {
                             email: $("#activate_profile_form input[name=emailid]").val(),
                             password: $("#activate_profile_form input[name=newPassword]").val()
@@ -274,13 +293,24 @@
 
                     });
                     if (status == 0) {
-                        $("#pwd_form_error").html(errors);
-                        $("#pwd_form_error").addClass('help-block-error');
+                        label = 'danger';
                     } else {
-                        $("#pwd_form_error").html(messg);
-                        $("#pwd_form_error").addClass('help-block-success');
-                        window.location.href = base_url;
+                        label = 'success';
                     }
+                    
+                    $.bootstrapGrowl(messg, {
+                        ele: 'body', // which element to append to
+                        type: label, // (null, 'info', 'danger', 'success')
+                        offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                        align: 'center', // ('left', 'right', or 'center')
+                        width: 250, // (integer, or 'auto')
+                        delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                        allow_dismiss: true, // If true then will display a cross to close the popup.
+                        stackup_spacing: 10 // spacing between consecutively stacked growls.
+                     });
+                     if(status == 0){
+                          window.location.href = base_url;
+                     }
                 }, 'json'
                         );
 

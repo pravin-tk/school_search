@@ -92,7 +92,7 @@
     });
     
     function addSchool() {
-        var id,messg,status,errors;
+        var id,messg,status,errors,label="";
         var formData = new FormData();
         formData.append('school', $("#schoolName").val());
         formData.append('city', $("#cbocity").val());
@@ -126,17 +126,25 @@
                 // });
                 $('.form-group').removeClass('has-error has-feedback has-success');
                 if (status == 0) {
-                    $("#profile_form_error").html(messg+" "+errors);
-                    $("#profile_form_error").addClass('help-block-error');
-                    $("#profile_form_error").removeClass('help-block-success');
+
+                      label = "danger";
                 } else {
-                    $("#profile_form_error").html(messg);
-                    $("#profile_form_error").addClass('help-block-success');
-                    $("#profile_form_error").removeClass('help-block-error');
+
+                      label = "success";
                 }
                 $('body,html').animate({
                         scrollTop: 0
                 }, 200);
+                $.bootstrapGrowl(messg, {
+                            ele: 'body', // which element to append to
+                            type: label, // (null, 'info', 'danger', 'success')
+                            offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                            align: 'center', // ('left', 'right', or 'center')
+                            width: 250, // (integer, or 'auto')
+                            delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                            allow_dismiss: true, // If true then will display a cross to close the popup.
+                            stackup_spacing: 10 // spacing between consecutively stacked growls.
+                }); 
             },
             error: function (data) {
                 $('.se-pre-con').fadeOut('fast');
@@ -212,7 +220,7 @@
     });
     
     function submitRequirement() {
-        var id,messg,status,errors;
+        var id,messg,status,errors,label="";
         var formData = new FormData();
         formData.append('name', $("#userName").val());
         formData.append('mobile', $("#mobileNo").val());
@@ -244,17 +252,24 @@
                 // });
                 $('.form-group').removeClass('has-error has-feedback has-success');
                 if (status == 0) {
-                    $("#profile_form_error").html(messg+" "+errors);
-                    $("#profile_form_error").addClass('help-block-error');
-                    $("#profile_form_error").removeClass('help-block-success');
+                      label = 'danger';
                 } else {
-                    $("#profile_form_error").html(messg);
-                    $("#profile_form_error").addClass('help-block-success');
-                    $("#profile_form_error").removeClass('help-block-error');
+                      label = 'success';
                 }
                 $('body,html').animate({
                         scrollTop: 0
                 }, 200);
+                
+                $.bootstrapGrowl(messg, {
+                            ele: 'body', // which element to append to
+                            type: label, // (null, 'info', 'danger', 'success')
+                            offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+                            align: 'center', // ('left', 'right', or 'center')
+                            width: 250, // (integer, or 'auto')
+                            delay: 25000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                            allow_dismiss: true, // If true then will display a cross to close the popup.
+                            stackup_spacing: 10 // spacing between consecutively stacked growls.
+                }); 
             },
             error: function (data) {
                 $('.se-pre-con').fadeOut('fast');
