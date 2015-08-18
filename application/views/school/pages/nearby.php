@@ -21,9 +21,9 @@
                     		$headers = get_headers($school['homeImage']);
                     	?>
 	                        <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
-	                        	<img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive'>
+	                        	<img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive' height="100%" width="100%">
 	                        <?php } else { ?>
-								<img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive'>
+								<img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive' height="100%" width="100%">
 	                        <?php } ?> 
                         <?php }?>
                     	<a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">

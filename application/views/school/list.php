@@ -756,14 +756,13 @@ $classification = $filtersList['classificationFilter'];
             </div>
         </div>
     </div>
-    <div id="compareview" style="position:absolute;top:00px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));z-index:1050">
-    	   		   <span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
-	   <div id="tiles-container"style="position:relative;top:80px;">
-		 <ul class="tl-page" data-tl-template="myTemplate">
+    <div id="compareview" style="position:absolute;top:0px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8));z-index:1050;height:100%;">
+    	<span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
+	   	<div id="tiles-container"style="position:relative;top:45px;left:-25px;">
+		 	<ul class="tl-page" data-tl-template="myTemplate">
 		   
-		 </ul>
-	   </div>
-	   
+		 	</ul>
+	   	</div>
     </div>
 </div>
 
@@ -1054,7 +1053,7 @@ if (isset($schools)) {
                     
                     
  function getPermlink(latitude,longitude,stdid){
-     console.log(latitude+ ","+longitude+","+stdid);
+    console.log(latitude+ ","+longitude+","+stdid);
     var permlink =null;
     var status = 0;
     var data ="";
@@ -1102,12 +1101,12 @@ $("#frmSch").affix({
         top: 200,
     }
 });
+
 $("#search_header").affix({
     offset: {
         top: 200,
     }
 });
-
 
 $('body').scrollspy({
     target: '.navbar-fixed-top',
@@ -1149,53 +1148,47 @@ $('.toggle-event').change(function() {
 		$("#compare-"+$(this).attr("data-id")).hide();
 	}
   })
-  $(".compaire").click(function(){
+$(".compaire").click(function(){
 	var compareSize = $('.toggle-event:checked').size();
 	if(compareSize >=2){
-	  addToCompare();
-	  $("#list-searchresult").hide();
-	  $( "#compareview" ).fadeIn( "slow", function() {
+	  	addToCompare();
+	  	$("#list-searchresult").hide();
+	  	$( "#compareview" ).fadeIn( "slow", function() {
 		    // Animation complete
-	  });
-	  var myTemplateObject = {
-			  myTemplate: {
-			   tilesNum: compareSize,
-			   tiles: {
-			    0: '',
-			    1: '',
-			    2: '',
-			    3: ''
-			   },
+	  	});
+		var myTemplateObject = {
+			myTemplate: {
+			tilesNum: compareSize,
+			   	tiles: {
+				    0: '',
+				    1: '',
+				    2: '',
+				    3: ''
+			  	},
 				animations: {
 				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
 				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
 				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
 				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				 }
-	  		
-			  }
-			 }
-	  var opt = {
-			  //Set the custom template
-			  templateObj: myTemplateObject
-			 } 
-	  $('#tiles-container').jstiles(opt);
+				}
+			}
+		}
+		var opt = {
+			templateObj: myTemplateObject
+		} 
+		$('#tiles-container').jstiles(opt);
 	}else{
 		alert("atleast 2 schools needed to compare");
-		}
-  
-  });
-  $("#comparedistroy").click(function(){
-	  $("#compareview").fadeOut( "slow", function() {
+	}
+});
+$("#comparedistroy").click(function(){
+	$("#compareview").fadeOut( "slow", function() {
 		    // Animation complete
-	  });
-	  $("#list-searchresult").fadeIn( "slow", function() {
-		    // Animation complete
-	  });
-  	$('.tl-page li').remove();
-	  
-	  
-  
 	});
+	$("#list-searchresult").fadeIn( "slow", function() {
+		    // Animation complete
+	});
+  	$('.tl-page li').remove();
+});
     
 </script>
