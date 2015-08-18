@@ -389,6 +389,7 @@ $classification = $filtersList['classificationFilter'];
         top: 3px;
         z-index:1;
         font-size:16px;
+        padding:1px;
     }
     .right-main-content-inner{
         position:fixed;
@@ -1052,7 +1053,7 @@ if (isset($schools)) {
                     });
                     
                     
- function getPermlink(latitude,longitude,stdid){
+function getPermlink(latitude,longitude,stdid){
     console.log(latitude+ ","+longitude+","+stdid);
     var permlink =null;
     var status = 0;
