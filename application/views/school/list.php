@@ -580,10 +580,10 @@ $classification = $filtersList['classificationFilter'];
                                                 </span>
                                             </p>
                                            
-                                                <input class="toggle-event" type="checkbox" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>">
-                                                 <span class="compaire" id="">
-                                                    Compare ()
-                                                </span>
+                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare">
+                                                 <p class="compaire" id="">
+                                                    Compare
+                                                </p>
                                         </div>
                                         <div class="media-body">
                                             <div class="col-sm-3" id="padding-left-08">
@@ -760,56 +760,7 @@ $classification = $filtersList['classificationFilter'];
 <script src="<?php echo asset_url();?>js/jstiles.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-
-  $(".compaire").click(function(){
-	var compareSize = $('.toggle-event:checked').size();
-	if(compareSize >=2){
-	  addToCompare();
-	  $("#list-searchresult").hide();
-	  $( "#compareview" ).fadeIn( "slow", function() {
-		    // Animation complete
-	  });
-	  var myTemplateObject = {
-			  myTemplate: {
-			   tilesNum: compareSize,
-			   tiles: {
-			    0: '',
-			    1: '',
-			    2: '',
-			    3: ''
-			   },
-				animations: {
-				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
-				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				 }
-	  		
-			  }
-			 }
-	  var opt = {
-			  //Set the custom template
-			  templateObj: myTemplateObject
-			 } 
-	  $('#tiles-container').jstiles(opt);
-	}else{
-		alert("atleast 2 schools needed to compare");
-		}
-  
-  });
-  $("#comparedistroy").click(function(){
-	  $("#compareview").fadeOut( "slow", function() {
-		    // Animation complete
-	  });
-	  $("#list-searchresult").fadeIn( "slow", function() {
-		    // Animation complete
-	  });
-  	$('.tl-page li').remove();
-	  
-	  
-  
-	});
-    var map;
+var map;
     var dataArr = null;
     var infowindow = new google.maps.InfoWindow();
     dataArr = <?php echo json_encode($schools); ?>;
@@ -1179,4 +1130,58 @@ google.maps.event.addDomListener(window, 'load', function () {
     });
 });
 
+$('.toggle-event').change(function() {
+	if($(this).prop('checked')){
+	    $(this .span).html('Toggle: ' + $(this).prop('checked'));
+	}
+  })
+  $(".compaire").click(function(){
+	var compareSize = $('.toggle-event:checked').size();
+	if(compareSize >=2){
+	  addToCompare();
+	  $("#list-searchresult").hide();
+	  $( "#compareview" ).fadeIn( "slow", function() {
+		    // Animation complete
+	  });
+	  var myTemplateObject = {
+			  myTemplate: {
+			   tilesNum: compareSize,
+			   tiles: {
+			    0: '',
+			    1: '',
+			    2: '',
+			    3: ''
+			   },
+				animations: {
+				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
+				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				 }
+	  		
+			  }
+			 }
+	  var opt = {
+			  //Set the custom template
+			  templateObj: myTemplateObject
+			 } 
+	  $('#tiles-container').jstiles(opt);
+	}else{
+		alert("atleast 2 schools needed to compare");
+		}
+  
+  });
+  $("#comparedistroy").click(function(){
+	  $("#compareview").fadeOut( "slow", function() {
+		    // Animation complete
+	  });
+	  $("#list-searchresult").fadeIn( "slow", function() {
+		    // Animation complete
+	  });
+  	$('.tl-page li').remove();
+	  
+	  
+  
+	});
+    
 </script>

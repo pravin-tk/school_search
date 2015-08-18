@@ -558,6 +558,7 @@ function sortMarkers(sortitem){
 $('.toggle-event:checked').each(function () {
 	addToCompare($(this).val());
 });
+
 function addToCompare(){
 	$('.toggle-event:checked').each(function () {
 		var schoolId =$(this).val();
@@ -596,10 +597,6 @@ function addToCompare(){
                      " <p><span class='label label-grey-100'>Teaching Approach : </span>&nbsp;"+data.teachingApproach+"</p>"+
                      " <p><span class='label label-grey-100'>School Type : </span>&nbsp;"+data.schoolType+"</p>"+
                      " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
-                     " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
-                     " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
-
-                     
                      "<p><span class='label label-grey-100'>Vacant Seat :</span>&nbsp;"+data.seats+"</p>"+
 		             " <a  class='btn btn-primary btn-circle absolute bottom right' href=''>View</a>"+
             		"</div>"+
