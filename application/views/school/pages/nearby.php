@@ -18,7 +18,7 @@
                 <?php if ($school['homeImage'] == ""){ ?>
                 	<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive" height="100%" width="100%">
                 <?php }else{ 
-                    	$headers = get_headers($school['logo']); ?>
+                    	$headers = get_headers($school['homeImage']); ?>
                         <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
                                <img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive' height="100%" width="100%">
                         <?php } else { ?>
