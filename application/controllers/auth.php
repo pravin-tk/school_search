@@ -23,7 +23,13 @@ class Auth extends CI_Controller {
      * Function search
      */
     public function userSignup() {
-        // $this->template->set('standards',$data);
+        $userid = "";
+        if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                $userid = $_COOKIE['ebduserid'];
+        }elseif( $this->session->userdata('sessuserID')!="" ){
+                $userid = $this->session->userdata('sessuserID');
+        }
+        $this->template->set('userId',$userid);
         $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')

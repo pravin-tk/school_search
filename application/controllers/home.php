@@ -447,7 +447,7 @@ class home extends CI_Controller {
 	}
 	
 	public function saveSchool() {
-            error_log("achheeee");
+            
             $data = "";
             $map['schoolName'] = $this->input->post('school');
             $map['city'] = $this->input->post('city');
@@ -509,12 +509,19 @@ class home extends CI_Controller {
         
   	public function postRequirement()
 	{
-		$this->template->set('page','requirement');
-		$this->template->set_layout ( 'edbuddy' )
-                		->title ( 'Search for finest schools near you: Edbuddy.in' )
-                		->set_partial ( 'header', 'partials/header_home' )
-                		->set_partial ( 'footer', 'partials/footer_links' );
-		$this->template->build ( 'school/post-your-requirement' );
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
+            $this->template->set('page','requirement');
+            $this->template->set_layout ( 'edbuddy' )
+                            ->title ( 'Search for finest schools near you: Edbuddy.in' )
+                            ->set_partial ( 'header', 'partials/header_home' )
+                            ->set_partial ( 'footer', 'partials/footer_links' );
+            $this->template->build ( 'school/post-your-requirement' );
 	}
 	
 	public function saveRequirement() {
@@ -612,7 +619,14 @@ class home extends CI_Controller {
         }
         
 	public function aboutUs(){
-             $this->template->set('page','home');
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
+            $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -621,6 +635,13 @@ class home extends CI_Controller {
 	}
 	
 	public function joinUs(){
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
              $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
@@ -630,6 +651,13 @@ class home extends CI_Controller {
 	}
 	
 	public function contactUs(){
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
             $this->template->set('page','requirement');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
@@ -639,6 +667,13 @@ class home extends CI_Controller {
 	}
 	
 	public function ourTeam(){
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
              $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
@@ -648,7 +683,14 @@ class home extends CI_Controller {
 	}
 	
 	public function privacy(){
-             $this->template->set('page','home');
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
+            $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )
             ->set_partial ( 'header', 'partials/header_home' )
@@ -657,6 +699,13 @@ class home extends CI_Controller {
 	}
 	
 	public function terms(){
+            $userid = "";
+            if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                    $userid = $_COOKIE['ebduserid'];
+            }elseif( $this->session->userdata('sessuserID')!="" ){
+                    $userid = $this->session->userdata('sessuserID');
+            }
+            $this->template->set('userId',$userid);
              $this->template->set('page','home');
             $this->template->set_layout ( 'edbuddy' )
             ->title ( 'Search for finest schools near you: Edbuddy.in' )

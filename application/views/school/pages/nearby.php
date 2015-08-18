@@ -14,23 +14,23 @@
         	<div class="item" style="width: 222px; padding-left: 15px;padding-bottom: 15px; float: left; box-sizing: border-box;">
             	<div class="panel panel-default relative">
 <!--               		<div class="ribbon-heading text-h5 ribbon-default inline margin-none left absolute"></div> -->
-              		<div class="cover hover overlay margin-none" style="height: 147px;">
-                    	<?php if ($school['homeImage'] == ""){ ?>
-                			<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive" height="100%" width="100%">
-                       	<?php }else{ 
-                    		$headers = get_headers($school['homeImage']);
-                    	?>
-	                        <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
-	                        	<img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive' height="100%" width="100%">
-	                        <?php } else { ?>
-								<img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive' height="100%" width="100%">
-	                        <?php } ?> 
-                        <?php }?>
+              	<div class="cover hover overlay margin-none" style="height: 147px;">
+                <?php if ($school['homeImage'] == ""){ ?>
+                	<img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="lazy img-responsive" height="100%" width="100%">
+                <?php }else{ 
+                    	$headers = get_headers($school['homeImage']); ?>
+                        <?php if($headers[0]=='HTTP/1.1 200 OK'){ ?>
+                               <img src='<?php echo $school["homeImage"];?>' alt='location' class='lazy img-responsive' height="100%" width="100%">
+                        <?php } else { ?>
+                                <img src='<?php echo asset_url();?>img/vector-school-house-28931692.jpg' alt='location' class='lazy img-responsive' height="100%" width="100%">
+
+                        <?php } ?> 
+              <?php }?>
                     	<a  class="overlay overlay-full overlay-bg-black overlay-hover" href="<?php echo $urllink2;?>" style="height: 147px;">
-                  			<span class="v-center">
-                        		<span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
-                  			</span>
-                		</a>
+                        <span class="v-center">
+                        <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
+                        </span>
+                        </a>
               		</div>
 	              	<div class="panel-body">
                     	<div class="infra-name">

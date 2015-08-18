@@ -34,7 +34,7 @@ font-size: 1.75em;
 		    <strong>Rating & Reviews </strong>
                     <span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
                 </h3>
-                <div style="align:right;padding-left:100px;"><a id="addReview" style="cursor:hand;" href ="#"><u>Add Rating & Review </u></a> </div>
+                <div style="align:right;padding-left:100px;"><a class="button" id="addReview" style="cursor:hand;" ><i class="fa fa-pencil fa-fw"></i><u>Add Rating & Review </u></a> </div>
 	    </div>
             <div class="panel-body" id="divreviewfrm" style="display:none;">
                 <div class="container">

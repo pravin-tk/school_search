@@ -4,9 +4,10 @@
         z-index: 0;
     }
 
-    .modal-dialog {
+   #myModal .modal-dialog {
         margin: 30px auto;
         width: 400px;
+        margin-top:100px;
     }
     #divlogin_1 .form-control{
         width:109%;
@@ -15,7 +16,7 @@
 
 <?php if (isset($userId) && $userId < 1) { ?>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" >
             <div class="modal-content" id="divlogin" style="display:block">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
