@@ -24,7 +24,7 @@
 				</div><!-- col-lg-3 -->
 				
 				<div class="col-lg-3 centered">
-					<img class="img img-circle" src="<?php echo asset_url()?>img/users/guy-2.jpg" height="120px" width="120px" alt="">
+					<img class="img img-circle" src="<?php echo asset_url()?>img/users/guy-6.jpg" height="120px" width="120px" alt="">
 					<br>
 					<h4><b>Pradeep Singh</b></h4>
 					<a href="#" class="icon icon-twitter"></a>
@@ -34,7 +34,7 @@
 				</div><!-- col-lg-3 -->
 				
 				<div class="col-lg-3 centered">
-					<img class="img img-circle" src="<?php echo asset_url()?>img/users/guy-6.jpg" height="120px" width="120px" alt="">
+					<img class="img img-circle" src="<?php echo asset_url()?>img/users/woman-5.jpg" height="120px" width="120px" alt="">
 					<br>
 					<h4><b>Shinee Dcosta</b></h4>
 					<a href="#" class="icon icon-twitter"></a>
@@ -44,7 +44,7 @@
 				</div><!-- col-lg-3 -->
 				
 				<div class="col-lg-3 centered">
-					<img class="img img-circle" src="<?php echo asset_url()?>img/users/woman-5.jpg" height="120px" width="120px" alt="">
+					<img class="img img-circle" src="<?php echo asset_url()?>img/users/guy-2.jpg" height="120px" width="120px" alt="">
 					<br>
 					<h4><b>Kundan Jadhav</b></h4>
 					<a href="#" class="icon icon-twitter"></a>
