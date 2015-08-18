@@ -28,7 +28,8 @@
 <script src="<?php echo asset_url();?>js/fontawesome-markers.min.js"></script>
 <script src="<?php echo asset_url();?>js/bootstrap.js"></script>
 <script src="<?php echo asset_url();?>js/jquery.lazyload.min.js"></script>
-
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
 	{

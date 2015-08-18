@@ -433,7 +433,7 @@ $classification = $filtersList['classificationFilter'];
     }
 </style>
 
-<div id="content">
+<div id="content"style="background:#fff;">
     <div id="mav-view-layout" class="map-view">
         <div id="map-canvas"></div>
         <div class="infobox-wrapper" id="infobox-wrapper" style="width: 300px;">
@@ -559,6 +559,7 @@ $classification = $filtersList['classificationFilter'];
                 <div id="schresult">
                     <?php
                     if (isset($schools)) {
+					echo '<script> var json = '. json_encode($schools).'</script>';
                         foreach ($schools as $key => $school) {
                             ?>
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId'] ?>">
@@ -578,8 +579,10 @@ $classification = $filtersList['classificationFilter'];
                                                     <i class="fa fa-heart-o"></i> 
                                                 </span>
                                             </p>
-                                            <span class="btn btn-primary list-primary-button" id="compaire">
-                                                    <i class="fa fa-picture-o"></i> Compare (<?php echo $school['galeryImages']; ?>)
+                                           
+                                                <input class="toggle-event" type="checkbox" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>">
+                                                 <span class="compaire" id="">
+                                                    Compare ()
                                                 </span>
                                         </div>
                                         <div class="media-body">
@@ -743,59 +746,45 @@ $classification = $filtersList['classificationFilter'];
             </div>
         </div>
     </div>
-    <div id="compareview" style="position:relative;top:100px;display:none;overflow:hidden;background: #fff;">
-	   <div id="tiles-container">
-		 <div class="tl-page" data-tl-template="myTemplate">
-		   <?php for($i=1;$i<=4;$i++){?>
-		   <div>
-		       <div class="galcolumn" id="item0ZgvPF" style="width: 100%; padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;">
-          		 <div class="panel panel-default relative" style="margin-bottom: 15px; zoom: 1; opacity: 1;">
-            	 <div class="ribbon-heading ribbon-primary inline absolute left margin-none">CBSE</div>
-		             <div class="cover hover overlay margin-none" style="height: 133px;">
-		              <img src="<?php echo asset_url();?>img/vector-school-house-28931692.jpg" alt="location" class="img-responsive" style="width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-		              <a class="overlay overlay-full overlay-bg-black overlay-hover" href="" style="height: 133px;">
-		                <span class="v-center">
-		                <span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
-		                </span>
-		              </a>
-		            </div>
-		            <div class="panel-body">
-		              <h4 class="margin-v-0-5">Bishops Convent School</h4>
-		              <p class="small">
-		                <span class="fa fa-fw fa-star text-yellow-800"></span>
-		                <span class="fa fa-fw fa-star text-yellow-800"></span>
-		                <span class="fa fa-fw fa-star text-yellow-800"></span>
-		                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-		                <span class="fa fa-fw fa-star-o text-yellow-800"></span>
-		              </p>
-		              <p>bishops convent school .</p>
-		              <span class="label label-grey-100">Medium : English</span>&nbsp;
-		              <i class="small fa fa-fw icon-home-fill-1" data-toggle="tooltip" data-title="Agency"></i>
-		              <a  class="btn btn-primary btn-circle absolute bottom right" href="">View</a>
-            		</div>
-		          </div>
-		        </div>    
-		   </div>
-		   <?php }?>
-		 </div>
+    <div id="compareview" style="position:absolute;top:00px;width:100%;display:none;background:linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));z-index:1050">
+    	   		   <span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
+	   <div id="tiles-container"style="position:relative;top:80px;">
+		 <ul class="tl-page" data-tl-template="myTemplate">
+		   
+		 </ul>
 	   </div>
+	   
     </div>
 </div>
 
 <script src="<?php echo asset_url();?>js/jstiles.js" type="text/javascript"></script>
 <script type="text/javascript">
-  $("#compaire").click(function(){
+
+
+  $(".compaire").click(function(){
+	var compareSize = $('.toggle-event:checked').size();
+	if(compareSize >=2){
+	  addToCompare();
 	  $("#list-searchresult").hide();
-	  $("#compareview").show();
+	  $( "#compareview" ).fadeIn( "slow", function() {
+		    // Animation complete
+	  });
 	  var myTemplateObject = {
 			  myTemplate: {
-			   tilesNum: 4,
+			   tilesNum: compareSize,
 			   tiles: {
-			    0: 'col-xs-12 col-md-3',
-			    1: 'col-xs-12 col-md-3',
-			    2: 'col-xs-12 col-md-3',
-			    3: 'col-xs-12 col-md-3'
-			   }
+			    0: '',
+			    1: '',
+			    2: '',
+			    3: ''
+			   },
+				animations: {
+				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
+				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+				 }
+	  		
 			  }
 			 }
 	  var opt = {
@@ -803,8 +792,23 @@ $classification = $filtersList['classificationFilter'];
 			  templateObj: myTemplateObject
 			 } 
 	  $('#tiles-container').jstiles(opt);
+	}else{
+		alert("atleast 2 schools needed to compare");
+		}
   
   });
+  $("#comparedistroy").click(function(){
+	  $("#compareview").fadeOut( "slow", function() {
+		    // Animation complete
+	  });
+	  $("#list-searchresult").fadeIn( "slow", function() {
+		    // Animation complete
+	  });
+  	$('.tl-page li').remove();
+	  
+	  
+  
+	});
     var map;
     var dataArr = null;
     var infowindow = new google.maps.InfoWindow();

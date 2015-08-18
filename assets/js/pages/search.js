@@ -99,8 +99,8 @@ function filterResults() {
         	$("#schresult").html(response.html);
         	$("#schresult-map").html(response.htmlmap);
         	scrollTopLink("search-list-row");
-        	dataArr = response.jsondata;
         	$(".nav .summary-list").html(dataArr.length);
+        	dataArr = response.jsondata;
         	sortMarkers("");
         	updateSortListedSchools();
         },
@@ -223,7 +223,7 @@ function sortSchool(sortFilter) {
 }
 
 $('input:checkbox').click(function(){
-	filterResults();
+	//filterResults();
 });
 
 function clearSortFields(){
@@ -551,5 +551,64 @@ function sortMarkers(sortitem){
         	window.open(this.url, '_blank');
         });
         markers.push(marker);
+	});
+}
+
+
+$('.toggle-event:checked').each(function () {
+	addToCompare($(this).val());
+});
+function addToCompare(){
+	$('.toggle-event:checked').each(function () {
+		var schoolId =$(this).val();
+		 $(json).each(function(index, data){
+		        if(data.schoolId == schoolId )
+		            {
+		        	var html ="<li style='width:25%;padding-left: 15px; padding-bottom: 15px; float: left; box-sizing: border-box;'>"+
+		        	"<div class='galcolumn' id='item0ZgvPF' >"+
+		        	"<div class='panel panel-default relative' style='margin-bottom: 15px; zoom: 1; opacity: 1;'>"+
+		        	"<div class='ribbon-heading ribbon-primary inline absolute left margin-none'>CBSE</div>"+
+		            "<div class='cover hover overlay margin-none' style='height: 133px;'>";
+		            if(data.logo){
+		            html = html+  "<img src='"+data.logo+"' alt='location' class='img-responsive' style='width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto;'>";	
+		            }else{
+		            	html= html+	            "<img src='"+asset_url+"img/vector-school-house-28931692.jpg' alt='location' class='img-responsive' style='width: auto; height: auto; display: block; margin-left: auto; margin-right: auto;'>";
+		            	
+		            }
+		            html=html+
+		            "<a class='overlay overlay-full overlay-bg-black overlay-hover' href='' style='height: 133px;'>"+
+		            "<span class='v-center'>"+
+		            "<span class='btn btn-circle btn-white'><i class='fa fa-eye'></i></span></span></a>"+
+		            "</div>"+
+		            "<div class='panel-body'>"+
+		            "<h4 class='margin-v-0-5'>"+data.name+"</h4>"+
+		            "<p class='small'>"+
+		            "<span class='fa fa-fw fa-star text-yellow-800'></span>"+
+		            "<span class='fa fa-fw fa-star text-yellow-800'></span>"+
+		            "<span class='fa fa-fw fa-star text-yellow-800'></span>"+
+		            "<span class='fa fa-fw fa-star-o text-yellow-800'></span>"+
+		             "<span class='fa fa-fw fa-star-o text-yellow-800'></span>"+
+		             " </p>"+
+		              "<p>bishops convent school .</p>"+
+		             " <p><span class='label label-grey-100'>Medium : </span>&nbsp;"+data.mediums+"</p>"+
+                     " <p><span class='label label-grey-100'>Board : </span>&nbsp;"+data.boardName+"</p>"+
+                     " <p><span class='label label-grey-100'>School Category : </span>&nbsp;"+data.schoolCategory+"</p>"+
+                     " <p><span class='label label-grey-100'>Teaching Approach : </span>&nbsp;"+data.teachingApproach+"</p>"+
+                     " <p><span class='label label-grey-100'>School Type : </span>&nbsp;"+data.schoolType+"</p>"+
+                     " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
+                     " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
+                     " <p><span class='label label-grey-100'>Distance : </span>&nbsp;"+data.distance+"</p>"+
+
+                     
+                     "<p><span class='label label-grey-100'>Vacant Seat :</span>&nbsp;"+data.seats+"</p>"+
+		             " <a  class='btn btn-primary btn-circle absolute bottom right' href=''>View</a>"+
+            		"</div>"+
+		         " </div>"+
+		       " </div>   "+ 
+		   "</li>";
+		        	$('.tl-page').append(html);
+		        	
+		            }
+		    })
 	});
 }
