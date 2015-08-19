@@ -440,17 +440,17 @@ function sortMarkers(sortitem){
 				maxColor = item.totalFee;
 		   }
 		}else if(sortitem == "distance"){
-			if(minColor > item.distance){
+			if(minColor > parseInt(parseFloat(item.distance)*10000)){
 				minColor = parseInt(parseFloat(item.distance)*10000);
 		   }
-		   if(maxColor < item.distance){
+		   if(maxColor < parseInt(parseFloat(item.distance)*10000)){
 				maxColor = parseInt(parseFloat(item.distance)*10000);
 		   }
 		}else if(sortitem == "rating"){
-			if(minColor > item.rating){
+			if(minColor > parseInt(parseFloat(item.rating)*1000)){
 				minColor = parseInt(parseFloat(item.rating)*1000);
 		   }
-		   if(maxColor < item.rating){
+		   if(maxColor < parseInt(parseFloat(item.rating)*1000)){
 				maxColor = parseInt(parseFloat(item.rating)*1000);
 		   }
 		}else if(sortitem == "seats"){
@@ -468,7 +468,7 @@ function sortMarkers(sortitem){
 			if(sortitem == "classFee"){
 				actualColor = item.totalFee;
 			}else if(sortitem == "distance"){
-				actualColor = parseInt(parseFloat(item.distance)*1000);
+				actualColor = parseInt(parseFloat(item.distance)*10000);
 			}else if(sortitem == "rating"){
 				actualColor = parseInt(parseFloat(item.rating)*1000);
 			}else if(sortitem == "seats"){
