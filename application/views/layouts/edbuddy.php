@@ -16,8 +16,10 @@
 <link href="<?php echo asset_url();?>css/rating.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/timeline.css" rel="stylesheet">
 
+
 <link href="<?php echo asset_url();?>css/jquery.flipster.min.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/bootstrapValidator.min.css" rel="stylesheet">
+<link href="<?php echo asset_url();?>css/bootstrap-social.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <link href="<?php echo asset_url();?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
