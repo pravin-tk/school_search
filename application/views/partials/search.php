@@ -1,21 +1,13 @@
 <?php 
                         if(isset($schools)) {
                             foreach($schools as $key => $school){
-//                                $url = $permlink; 
-//                                $schoolName = strtolower($school['name']);
-//                                $schoolName = str_replace(" ", "-",$schoolName);
-//                                $schoolName = str_replace("'", "",$schoolName);
-//                                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
-//                                $urllink = $base_url.$url ."/".$schoolName;
                                 $arrLinks = explode("/",$permlink);
                                 $schoolName = strtolower($school['name']);
                                 $schoolName = str_replace(" ", "-", $schoolName);
                                 $schoolName = str_replace("'", "", $schoolName);
                                 $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
                                 $urllink = $base_url.$arrLinks[0]."/".$arrLinks[1]."/". $schoolName."-".$school['schoolId']."/".$arrLinks[2];
-
- 
-                        
+                       
                         ?>
 
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId']?>">
@@ -31,16 +23,16 @@
                                                      <?php }?>
                                                 </a>
                                                 <span class="icon-heart-list" id="iconheartlist-<?php echo $school['schoolId']?>">
-													<i class="fa fa-heart-o"></i> 
-												</span>
-											</p>
-										</div>
-										<div class="media-body">
-											<div class="col-sm-3" id="padding-left-08">
-												<div class="list-top-line">
-													<div class="school-name-text margin-title text-capitalize">
-														<a href="<?php echo $urllink;?>" target="_blank">
-															<?php echo $school['name']?>
+                                                <i class="fa fa-heart-o"></i> 
+                                                 </span>
+                                                </p>
+                                                </div>
+                                    <div class="media-body">
+                                            <div class="col-sm-3" id="padding-left-08">
+                                        <div class="list-top-line">
+                                                <div class="school-name-text margin-title text-capitalize">
+                                                        <a href="<?php echo $urllink;?>" target="_blank">
+                                                                <?php echo $school['name']?>
 			                                            </a>
 		                                            </div>
 		                                            <div class="street-locality">
