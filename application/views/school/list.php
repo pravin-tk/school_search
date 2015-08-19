@@ -595,7 +595,7 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="list-top-line">
                                                     <div class="school-name-text margin-title text-capitalize">
 
-                                                        <a href="<?php echo $urllink;?>" target="_blank">
+                                                        <a href="<?php echo $urllink;?>" target="_blank" class="school-link">
                                                             <?php echo $school['name'] ?>
                                                         </a>
                                                     </div>
@@ -718,7 +718,7 @@ $classification = $filtersList['classificationFilter'];
         												<?php } ?>
                                                 </div>
                                                 <div class="text-center">(0 votes)</div>
-                                                <div class="share-school" data-toggle="modal" data-target="#fbModal">
+                                                <div class="share-school" data-toggle="modal" data-target="#fbModal" data-id="<?php echo $school['schoolId']; ?>">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
@@ -1191,8 +1191,30 @@ $("#comparedistroy").click(function(){
 	});
   	$('.tl-page li').remove();
 });
-    
+    //Function for social login modal pop up
     $( ".share-school" ).click(function() {
-        alert( "Handler for .click() called." );
+        var schoolId = $(this).data("id");
+        var divparent = "#list-search-result-"+$(this).data("id");
+        var urLink = $(divparent).find('.school-link').attr('href');
+        var html = "";
+       $.post(base_url+"share-social-login",
+        {
+        permlink: urLink,
+        schoolId: schoolId
+        },function(response){
+          $.each(response, function(key, value) {
+                if(key == "id")
+                   id = value;
+                else if(key == "html")
+                   html = value;
+                else if(key == "status")
+                   status = value;
+             
+               $("#fbModal #divsocial").html(html);
+               $("#fbModal #divsocial #copyurl").val(urLink);
+               
+            });
+        },'json'
+        );
     });
 </script>
