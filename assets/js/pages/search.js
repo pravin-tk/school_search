@@ -241,7 +241,7 @@ function sortClear(){
 	//$('input:checkbox').removeAttr('checked');
 	clearSortFields();
 	filterResults();
-	scrollTopLink("schresult");
+	scrollTopLink("search-list-row");
 }
 
 function moreFilters(){

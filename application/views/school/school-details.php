@@ -429,6 +429,7 @@
   </div>
   
 <!-- Fixed navbar -->
+<div style="height:70px;">
 <nav class="navbar navbar-default" role="navigation" id="detailmenubar">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -463,22 +464,22 @@
 	  </div>
 	</div>  
 </nav>
-
+</div>
 <div id="details-wrap">
 <!-- Begin page content -->
-<div class="section" data-anchor="overview">
-	<div class="divider" id="overview"></div>
+<div class="divider" id="overview"></div>
+<!-- <div class="section" data-anchor="overview"> -->
 	<div class="row">
 		<?php include 'pages/overview.php';?>
 	</div>
-</div>
+<!-- </div> -->
 
-<div class="section" data-anchor="facility">
-	<div class="divider" id="facility"></div>
+<div class="divider" id="facility"></div>
+<!-- <div class="section" data-anchor="facility"> -->
 	  <div class="row">
 			<?php include 'pages/facility.php';?>
 	</div>
-</div>
+<!-- </div> -->
 
 <div class="divider" id="visualtour"></div>  
 <div class="row">
