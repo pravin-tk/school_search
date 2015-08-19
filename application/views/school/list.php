@@ -717,7 +717,7 @@ $classification = $filtersList['classificationFilter'];
         												<?php } ?>
                                                 </div>
                                                 <div class="text-center">(0 votes)</div>
-                                                <div class="share-school">
+                                                <div class="share-school" data-toggle="modal" data-target="#fbModal">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
@@ -1191,4 +1191,7 @@ $("#comparedistroy").click(function(){
   	$('.tl-page li').remove();
 });
     
+    $( ".share-school" ).click(function() {
+        alert( "Handler for .click() called." );
+    });
 </script>

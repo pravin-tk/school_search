@@ -1,4 +1,5 @@
 <?php include 'login.php';?>
+<?php include 'social-login.php';?>
 <footer class="footer" style="position: relative;">
     <strong>eddbuddy </strong> v1.2.0 © Copyright 2015
 </footer>
