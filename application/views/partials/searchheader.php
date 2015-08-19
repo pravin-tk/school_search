@@ -195,7 +195,7 @@ if(!isset($longitude))
         }
         logged_in = readCookie('ebduserid');
         logged_in_as = readCookie('ebdusername');
-        logged_pic = "<?php echo $this->session->userdata("ebdmypic");?>";
+        logged_pic = "<?php echo $this->session->userdata("sessebdmypic");?>";
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -239,17 +239,17 @@ if(!isset($longitude))
             <script>
             
                 if(logged_in == null) { //not logged in
-                    var public_data = '<li class="dropdown">';
-                    public_data += '<a href="#"  data-toggle="modal" data-target="#myModal" id="alogin">';
+                    var public_data = '<li class="dropdown" style="background-color:#212121;">';
+                    public_data += '<a href="#" class="search-bar-login" data-toggle="modal" data-target="#myModal" id="alogin" style="background-color:#212121;">';
                     public_data += '<i class="fa fa-fw fa-lock"></i> Login</a>';
                     public_data += '</li>';
                     document.write(public_data);
                 }
                if(logged_in == null) { // not logged in
-                var public_data = '<li class="dropdown">';
-                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" >';
+                var public_data = '<li class="dropdown" style="background-color:#212121;color:#ffffff;">';
+                    public_data += '<a href="<?php echo $base_url; ?>signup" target="_blank" id="header-signup-btn" style="background-color:#212121;">';
                     public_data += '<i class="fa fa-fw fa-plus"></i> Sign Up</a>';
-                    public_data += '<div class="dropdown-menu dropdown-size-280"></div>'
+                    public_data += '<div class="dropdown-menu dropdown-size-280" style="background-color:#212121;color:#ffffff;"></div>'
                     public_data += '</li>';
                     document.write(public_data);
                }  

@@ -5,11 +5,11 @@
          <div class="col-xs-6 col-md-2"> 
            <h4>Corporate</h4> 
            <ul class="list-unstyled"> 
-             <li><a href="<?php echo $base_url; ?>aboutus">About the company</a></li> 
+             <li><a href="<?php echo $base_url; ?>about-us">About the company</a></li> 
              <li><a href="">Our Mission</a></li> 
-             <li><a href="<?php echo $base_url; ?>ourteam">Our People</a></li> 
+             <li><a href="<?php echo $base_url; ?>our-team">Our People</a></li> 
              <li><a href="<?php echo $base_url; ?>career">Career</a></li> 
-             <li><a href="<?php echo $base_url; ?>contactus">Contact Us</a></li> 
+             <li><a href="<?php echo $base_url; ?>contact-us">Contact Us</a></li> 
            </ul> 
          </div> 
          <div class="col-xs-6 col-md-2"> 
@@ -31,7 +31,7 @@
            </ul> 
          </div>        <div class="col-xs-12 col-md-4"> 
            <div class="panel bg-transparent margin-none"> 
-             <div class="panel-body"> 
+<!--             <div class="panel-body"> 
                <div class="form-group form-control-default"> 
                  <label for="email">Email:</label> 
                  <input id="email" class="form-control" type="text" placeholder="Your email address .."> 
@@ -41,7 +41,7 @@
                </div> 
 
                <small class="help-block">* We will never sell your email</small> 
-             </div> 
+             </div> -->
            </div> 
          </div> 
        </div> 
@@ -81,4 +81,9 @@
              numberDisplayed: 2,
         }
 	);
+
+    $(function() {
+        $("#myModal").css("margin-top", '100px');
+   
+    });
 </script>

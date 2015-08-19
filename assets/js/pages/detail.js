@@ -238,6 +238,7 @@ function contactSubmit() {
 	var status ="";
 	var messg ="";
 	var id= "";
+        var label ="";
 	$.post(base_url+"contactus/post",
 	{
 	    name: $("#userName").val(),
@@ -255,25 +256,30 @@ function contactSubmit() {
 
         });
         if(status == 0){
-            $("#derr").html(messg);
-            $("#derr").show();
-            $("#derr").addClass('help-block-error');
-            
+            label = "danger";
         }else if(status == 1){ //user not activated
-             $("#derr").html(messg);
-             $("#derr").show();
-            $("#derr").addClass('help-block-success');
-             
+            label = "success";
         }else{
-            $("#derr").html(messg);
+            label = "info";
             
         }
+        $.bootstrapGrowl(messg, {
+            ele: 'body', // which element to append to
+            type: label, // (null, 'info', 'danger', 'success')
+            offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
+            align: 'left', // ('left', 'right', or 'center')
+            width: 250, // (integer, or 'auto')
+            delay: 3000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+            allow_dismiss: true, // If true then will display a cross to close the popup.
+            stackup_spacing: 10 // spacing between consecutively stacked growls.
+        }); 
     },'json'
 	);
 }
       
 $( "#frmrateReview" ).submit(function( event ) {
     rateReviewSubmit();
+    return false;
 });
         
         
@@ -349,7 +355,7 @@ function getRatingValue(){
     }else{
         $.bootstrapGrowl("Ratings cannot be empty!" , {
             ele: 'body', // which element to append to
-            type: danger, // (null, 'info', 'danger', 'success')
+            type: 'danger', // (null, 'info', 'danger', 'success')
             offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
             align: 'center', // ('left', 'right', or 'center')
             width: 250, // (integer, or 'auto')

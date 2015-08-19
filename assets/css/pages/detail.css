@@ -384,3 +384,13 @@
 	width:32px;
 	height:32px;
 }
+.school-name-text {
+	display: inline-block;
+	font-size: 14px;
+    font-weight:700;
+    max-width: 100%;
+    padding-left: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
