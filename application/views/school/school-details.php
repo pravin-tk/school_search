@@ -469,14 +469,14 @@
 <div class="section" data-anchor="overview">
 	<div class="divider" id="overview"></div>
 	<div class="row">
-		<?php include 'pages/overview.php';?>
+<?php include 'pages/overview.php';?>
 	</div>
 </div>
 
 <div class="section" data-anchor="facility">
 	<div class="divider" id="facility"></div>
 	  <div class="row">
-			<?php include 'pages/facility.php';?>
+<?php include 'pages/facility.php';?>
 	</div>
 </div>
 
@@ -487,7 +487,7 @@
 
 <div class="divider" id="gallery"></div>
   <div class="row">
-		<?php include 'pages/gallery.php';?>
+<?php include 'pages/gallery.php';?>
 </div>
 
 <div class="divider" id="review"></div>
