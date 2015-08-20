@@ -717,10 +717,11 @@ class home extends CI_Controller {
         public function socialLoginData(){
             $schoolId = $this->input->post('schoolId');
             $permlink = $this->input->post('permlink');
+       
             $api_key = 'school/basic.json/'.$schoolId;
             $apicalls = array (
-                            $api_key
-                        );
+                                $api_key
+                               );
             try {
                     $apioutput = $this->apiclient->process ( $apicalls );
                     foreach ( $apioutput as $key => $value ) {
@@ -728,8 +729,6 @@ class home extends CI_Controller {
                                     $schooldata = $value;
                             }
                     }
-                    error_log('heeey');
-                    error_log(json_encode($schooldata),0);
                     $output = $this->template->set ( 'schooldata', $schooldata)
                                              ->set('permlink',$permlink)
                                              ->set_layout ( false )

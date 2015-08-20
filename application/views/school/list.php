@@ -570,8 +570,14 @@ $classification = $filtersList['classificationFilter'];
                 <div id="schresult">
                     <?php
                     if (isset($schools)) {
-					echo '<script> var json = '. json_encode($schools).'</script>';
+			echo '<script> var json = '. json_encode($schools).'</script>';
                         foreach ($schools as $key => $school) {
+                            $arrLinks = explode("/",$permlink);
+                                $schoolName = strtolower($school['name']);
+                                $schoolName = str_replace(" ", "-", $schoolName);
+                                $schoolName = str_replace("'", "", $schoolName);
+                                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+                                $urllink = $base_url.$arrLinks[0]."/".$arrLinks[1]."/". $schoolName."-".$school['schoolId']."/".$arrLinks[2];
                             ?>
                             <div class="panel panel-default" id="list-search-result-<?php echo $school['schoolId'] ?>">
 
@@ -601,7 +607,7 @@ $classification = $filtersList['classificationFilter'];
                                                 <div class="list-top-line">
                                                     <div class="school-name-text margin-title text-capitalize">
 
-                                                        <a href="<?php echo $urllink;?>" target="_blank">
+                                                        <a href="<?php echo $urllink;?>" target="_blank" class="school-link-<?php echo $school['schoolId'] ?>">
                                                             <?php echo $school['name'] ?>
                                                         </a>
                                                     </div>
@@ -1156,37 +1162,37 @@ $('.toggle-event').change(function() {
 	}
   })
 $(".compaire").click(function(){
-	var compareSize = $('.toggle-event:checked').size();
-	if(compareSize >=2){
-	  	addToCompare();
-	  	$("#list-searchresult").hide();
-	  	$( "#compareview" ).fadeIn( "slow", function() {
-		    // Animation complete
-	  	});
-		var myTemplateObject = {
-			myTemplate: {
-			tilesNum: compareSize,
-			   	tiles: {
-				    0: '',
-				    1: '',
-				    2: '',
-				    3: ''
-			  	},
-				animations: {
-				    0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
-				    1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				    2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				    3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
-				}
-			}
-		}
-		var opt = {
-			templateObj: myTemplateObject
-		} 
-		$('#tiles-container').jstiles(opt);
-	}else{
-		alert("atleast 2 schools needed to compare");
-	}
+var compareSize = $('.toggle-event:checked').size();
+if(compareSize >=2){
+        addToCompare();
+        $("#list-searchresult").hide();
+        $( "#compareview" ).fadeIn( "slow", function() {
+            // Animation complete
+        });
+        var myTemplateObject = {
+                myTemplate: {
+                tilesNum: compareSize,
+                        tiles: {
+                            0: '',
+                            1: '',
+                            2: '',
+                            3: ''
+                        },
+                        animations: {
+                            0: { tlClass:'tl-slide-right', tlClassF:'tl-slide-right-in', tlDelay:10000 },
+                            1: { tlClass:'tl-slide-down', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+                            2: { tlClass:'tl-slide-up', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+                            3: { tlClass:'tl-slide-left', tlClassF:'tl-slide-down-f', tlDelay:1500 },
+                        }
+                }
+        }
+        var opt = {
+                templateObj: myTemplateObject
+        } 
+        $('#tiles-container').jstiles(opt);
+}else{
+        alert("atleast 2 schools needed to compare");
+}
 });
 $("#comparedistroy").click(function(){
 	$("#compareview").fadeOut( "slow", function() {
@@ -1198,35 +1204,48 @@ $("#comparedistroy").click(function(){
 
   $('.tl-page li').remove();
 });
+
+
+//Function for social login modal pop up
+$( ".share-school" ).click(function() {
+    var schoolId = $(this).data("id");
+    var divparent = "#list-search-result-"+$(this).data("id");
+    var aclass = '.school-link-'+schoolId;
+    var urLink = $(divparent).find(aclass).attr('href');
+    var html = "";
+    $.post(base_url+"share-social-login",
+    {
+    permlink: urLink,
+    schoolId: schoolId
+    },function(response){
+      $.each(response, function(key, value) {
+            if(key == "id")
+               id = value;
+            else if(key == "html")
+               html = value;
+            else if(key == "status")
+               status = value;
+
+           $("#fbModal #divsocial").html(html);
+           $("#fbModal #divsocial #copyurl").val(urLink);
+
+        });
+    },'json'
+    );
+});
+
+
+
+function popitup(url) {
+	newwindow=window.open(url,'name','height=400,width=550,top=150,left=350');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
 $('.toggle-event').bootstrapToggle({
     on: "<i class='fa fa-check'></i>",
     off: "compare",
     width:"100px"
 });  
-    //Function for social login modal pop up
-    $( ".share-school" ).click(function() {
-        var schoolId = $(this).data("id");
-        var divparent = "#list-search-result-"+$(this).data("id");
-        var urLink = $(divparent).find('.school-link').attr('href');
-        var html = "";
-       $.post(base_url+"share-social-login",
-        {
-        permlink: urLink,
-        schoolId: schoolId
-        },function(response){
-          $.each(response, function(key, value) {
-                if(key == "id")
-                   id = value;
-                else if(key == "html")
-                   html = value;
-                else if(key == "status")
-                   status = value;
-             
-               $("#fbModal #divsocial").html(html);
-               $("#fbModal #divsocial #copyurl").val(urLink);
-               
-            });
-        },'json'
-        );
-    });
+   
 </script>
