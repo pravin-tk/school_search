@@ -1203,4 +1203,30 @@ $('.toggle-event').bootstrapToggle({
     off: "compare",
     width:"100px"
 });  
+    //Function for social login modal pop up
+    $( ".share-school" ).click(function() {
+        var schoolId = $(this).data("id");
+        var divparent = "#list-search-result-"+$(this).data("id");
+        var urLink = $(divparent).find('.school-link').attr('href');
+        var html = "";
+       $.post(base_url+"share-social-login",
+        {
+        permlink: urLink,
+        schoolId: schoolId
+        },function(response){
+          $.each(response, function(key, value) {
+                if(key == "id")
+                   id = value;
+                else if(key == "html")
+                   html = value;
+                else if(key == "status")
+                   status = value;
+             
+               $("#fbModal #divsocial").html(html);
+               $("#fbModal #divsocial #copyurl").val(urLink);
+               
+            });
+        },'json'
+        );
+    });
 </script>

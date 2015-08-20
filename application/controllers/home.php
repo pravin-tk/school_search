@@ -713,4 +713,35 @@ class home extends CI_Controller {
             ->set_partial ( 'footer', 'partials/footer_links' );
             $this->template->build ( 'school/terms_of_use' );
 	}
+        
+        public function socialLoginData(){
+            $schoolId = $this->input->post('schoolId');
+            $permlink = $this->input->post('permlink');
+            $api_key = 'school/basic.json/'.$schoolId;
+            $apicalls = array (
+                            $api_key
+                        );
+            try {
+                    $apioutput = $this->apiclient->process ( $apicalls );
+                    foreach ( $apioutput as $key => $value ) {
+                            if (strpos ( $key, $api_key ) !== false) {
+                                    $schooldata = $value;
+                            }
+                    }
+                    error_log('heeey');
+                    error_log(json_encode($schooldata),0);
+                    $output = $this->template->set ( 'schooldata', $schooldata)
+                                             ->set('permlink',$permlink)
+                                             ->set_layout ( false )
+                                             ->build ( 'partials/social-login-html','', true );
+                    $data ['html'] = $output;
+                    $data ['status'] = 1;
+            } catch ( EBDApiException $e ) {
+                    $data ['status'] = 0;
+                    $data ['data'] = $apioutput;
+                    unset ( $apicalls );
+                    unset ( $apioutput );
+            }
+            echo json_encode($data);
+        }
 }
