@@ -175,7 +175,7 @@ $(function() {
     	$(this).addClass('active');
         var $anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
+            scrollTop: $($anchor.attr('href')).offset().top - 50
         }, 500, 'easeInOutExpo');
         event.preventDefault();
     });
