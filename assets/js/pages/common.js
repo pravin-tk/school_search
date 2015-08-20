@@ -95,6 +95,7 @@ $( document ).ready(function() {
                     invalid: 'glyphicon glyphicon-remove',
                     validating: 'glyphicon glyphicon-refresh'
             },
+            excluded: ':disabled',   // <=== Adding the 'excluded' option
             submitHandler: function(validator, form, submitButton) {
                    $('button[type="submit"]').prop('disabled', 'false')
                      userLogin();
@@ -174,7 +175,7 @@ $(function() {
     	$(this).addClass('active');
         var $anchor = $(this);
         $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top - $("#detailmenubar").height()
+            scrollTop: $($anchor.attr('href')).offset().top - 50
         }, 500, 'easeInOutExpo');
         event.preventDefault();
     });
@@ -194,4 +195,21 @@ $(window).load(function() {
 	$(".se-pre-con").fadeOut("slow");
 	
 });
+
+
+$('#myModal').on('hidden', function () {
+    console.log('yo')
+})
+
+
+
+$("#myModal").on('hidden.bs.modal', function () {
+        console.log("HEY u");
+        //Removing the error elements from the from-group
+        $('.form-group').removeClass('has-error has-feedback');
+        $('.form-group').find('small.help-block').hide();
+        $('.form-group').find('i.form-control-feedback').hide();
+
+    });
+
 

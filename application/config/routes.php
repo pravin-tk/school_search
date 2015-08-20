@@ -59,6 +59,9 @@ $route['logout'] = 'auth/userLogout';
 $route['user-profile'] = 'auth/userProfile';
 $route['search'] = 'home/search';
 $route['activate'] = 'auth/userActivate';
+$route['activate-user'] = 'auth/activateProfile';
+$route['update-password'] = 'auth/updatePassword';
+$route['update-profile'] = 'auth/profileUpdate';
 $route['contactus/post'] = 'home/contactPost';
 $route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z-]+)'] = 'home/search';
 $route['([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+-[0-9]{1,10})/([a-z-]+)'] = 'home/schoolDetail/$1-$2';
@@ -70,10 +73,12 @@ $route['save-school'] = 'home/saveSchool';
 $route['post-your-requirement'] = 'home/postRequirement';
 $route['save-requirement'] = 'home/saveRequirement';
 $route['post-rating-review'] = 'home/userRatingReview';
-$route['aboutus'] = 'home/aboutUs';
+$route['about-us'] = 'home/aboutUs';
 $route['career'] = 'home/joinUs';
-$route['ourteam'] = 'home/ourTeam';
-$route['contactus'] = 'home/contactUs';
+$route['our-team'] = 'home/ourTeam';
+$route['contact-us'] = 'home/contactUs';
 $route['privacy'] = 'home/privacy';
 $route['terms'] = 'home/terms';
+$route['share-social-login'] = 'home/socialLoginData';
+
 

@@ -5,6 +5,27 @@
 /*  .rating-sm { */
 /*     font-size: 1.13em; */
 /* }    */
+/*.rating-input{
+    font-size: 1.5em;
+}*/
+.symbol {
+  display: inline-block;
+  border-radius: 50%;
+  border: 5px double white;
+  width: 30px;
+  height: 30px;
+}
+
+.symbol-empty {
+  background-color: #ccc;
+}
+
+.symbol-filled {
+  background-color: black;
+}
+.rating-md { 
+font-size: 1.75em; 
+}
 </style>
 <div class="col-md-12">
   	<div class="panel panel-default">
@@ -13,7 +34,7 @@
 		    <strong>Rating & Reviews </strong>
                     <span class="btn btn-primary"><?php echo round($basicInfo['rating'],1);?></span>
                 </h3>
-                <div style="align:right"><a id="addReview" style="cursor:hand;" >Add Rating & Review </a> </div>
+                <div style="align:right;padding-left:100px;"><a class="button" id="addReview" style="cursor:hand;" ><i class="fa fa-pencil fa-fw"></i><u>Add Rating & Review </u></a> </div>
 	    </div>
             <div class="panel-body" id="divreviewfrm" style="display:none;">
                 <div class="container">
@@ -35,17 +56,18 @@
 	    				$totalRatingCount++;
                                         if(isset($schoolRating['id']))
                                             $ratingId = $schoolRating['id'];
+                                        //print_r($schoolRating);
                                 ?>
-          			<section class="panel panel-default" style="padding-bottom:5px;margin-bottom:5px;">
+          			<section class="panel panel-default text-yellow-800" style="padding-bottom:5px;margin-bottom:5px;">
             			<div class="panel-body">
 	                		<div class="col-xs-3 col-md-3 text-center">
-			          	      <i class="fa fa-2x"><img alt="<?php echo $schoolRating['name']?>" src="<?php echo asset_url();?>img/<?php echo strtolower($schoolRating['name']);?>.png" class="rating-category-icons"></i>
+			          	      <i class="fa fa-lg"><img alt="<?php echo $schoolRating['name']?>" src="<?php echo asset_url();?>img/<?php echo strtolower($schoolRating['name']);?>.png" class="rating-category-icons" ></i>
 			          	      <div class="infra-name">
 			          	      	<strong><?php echo $schoolRating['name']?></strong>
 			          	      </div>
 			                </div>
 		                 	<div class="col-xs-4 col-md-4 text-center">
-                                            <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating" />
+                                            <input type="number" name="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" id="rate_star_<?php echo $schoolRating['catid'];?>_<?php echo $ratingId;?>" class="rating fa-2x" data-value="<?php echo $schoolRating['rating'];?>" />
 		                      
                                             </div>
             			</div>
@@ -238,15 +260,16 @@ $( document ).ready(function() {
     <?php if(isset($userRatingInfo)){
             foreach($userRatingInfo as $key => $schoolRating){
 	    	$totalRatingCount++;
-                if(isset($schoolRating["id"]) && $schoolRating["id"]>0){?>  
-                    $("#rate_star_<?php echo $schoolRating["catid"]?>_<?php echo $schoolRating["id"]?>").rating({ size:'sm',showCaption:false,step:1});
-                <?php }else{ ?>      
-                    $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'sm',showCaption:false,step:1});
+                if(isset($schoolRating["id"]) && $schoolRating["id"]>0){?> //edit 
+                    $("#rate_star_<?php echo $schoolRating["catid"]?>_<?php echo $schoolRating["id"]?>").rating({ size:'md',showCaption:false,step:1});
+                   
+                <?php }else{ ?>      //add
+                    $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'md',showCaption:false,step:1});
             <?php }
             }
     }else{
-        foreach($schoolRatingInfo as $key => $schoolRating){ ?>
-            $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'sm',showCaption:false,step:1});    
+        foreach($schoolRatingInfo as $key => $schoolRating){ ?>//add 
+            $("#rate_star_<?php echo $schoolRating["catid"]?>_0").rating({ size:'md',showCaption:false,step:1});    
   <?php  }
     }?>          
     });

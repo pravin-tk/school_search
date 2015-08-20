@@ -89,4 +89,8 @@
              numberDisplayed: 2,
         }
 	);
+        $(function() {
+            $("#myModal").css("margin-top", '100px');
+   
+    });
 </script>

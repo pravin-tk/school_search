@@ -23,7 +23,13 @@ class Auth extends CI_Controller {
      * Function search
      */
     public function userSignup() {
-        // $this->template->set('standards',$data);
+        $userid = "";
+        if(isset($_COOKIE['ebduserid']) && $_COOKIE['ebduserid']!=""){
+                $userid = $_COOKIE['ebduserid'];
+        }elseif( $this->session->userdata('sessuserID')!="" ){
+                $userid = $this->session->userdata('sessuserID');
+        }
+        $this->template->set('userId',$userid);
         $this->template
                 ->set_layout('edbuddy')
                 ->title('Search for finest schools near you: Edbuddy.in')
@@ -140,16 +146,16 @@ class Auth extends CI_Controller {
                 if (strpos($key, 'user/login.json') !== false && $apioutput[$key]['status'] == 1) {
                     $responsedata = json_decode(str_replace("'",'"',$value['data']));
                      //error_log("USER activated status code=:".$responsedata->status);
-                   
+                     error_log("DB Image= ".$responsedata->image);
                      $responsedata->loginstatus=$apioutput[$key]['status'];
                      $responsedata->message=$apioutput[$key]['message'];
                      
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
                     $this->session->set_userdata('sessEmailID', $map['email']);
-                  
+                    $this->session->set_userdata('sessebdmypic', $responsedata->image);
                     $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], time() + (86400 * 30));
                     $this->input->set_cookie("ebdusername",$responsedata->firstName, time() + (86400 * 30));
-                    $this->input->set_cookie("ebdmypic",$responsedata->image, time() + (86400 * 30));
+                    
                 }else if(strpos($key, 'user/login.json') !== false ){
                     $responsedata->loginstatus=0;
                     $responsedata->message=$value['errors'][0];

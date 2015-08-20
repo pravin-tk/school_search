@@ -340,6 +340,17 @@
 /* 	margin:0 auto; */
 /* } */
 -->
+
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
+    .alert-danger {
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        color: #a94442;
+    }
 </style>
 
 
@@ -418,6 +429,7 @@
   </div>
   
 <!-- Fixed navbar -->
+<div style="height:70px;">
 <nav class="navbar navbar-default" role="navigation" id="detailmenubar">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -452,22 +464,22 @@
 	  </div>
 	</div>  
 </nav>
-
+</div>
 <div id="details-wrap">
 <!-- Begin page content -->
-<div class="section" data-anchor="overview">
-	<div class="divider" id="overview"></div>
+<div class="divider" id="overview"></div>
+<!-- <div class="section" data-anchor="overview"> -->
 	<div class="row">
-		<?php include 'pages/overview.php';?>
+<?php include 'pages/overview.php';?>
 	</div>
-</div>
+<!-- </div> -->
 
-<div class="section" data-anchor="facility">
-	<div class="divider" id="facility"></div>
+<div class="divider" id="facility"></div>
+<!-- <div class="section" data-anchor="facility"> -->
 	  <div class="row">
-			<?php include 'pages/facility.php';?>
+<?php include 'pages/facility.php';?>
 	</div>
-</div>
+<!-- </div> -->
 
 <div class="divider" id="visualtour"></div>  
 <div class="row">
@@ -476,7 +488,7 @@
 
 <div class="divider" id="gallery"></div>
   <div class="row">
-		<?php include 'pages/gallery.php';?>
+<?php include 'pages/gallery.php';?>
 </div>
 
 <div class="divider" id="review"></div>

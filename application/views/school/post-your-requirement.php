@@ -16,11 +16,15 @@
     position: none;
     }
     
+    .alert-success {
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        color: #3c763d;
+    }
     .alert-danger {
-        color: #a94442;
         background-color: #f2dede;
-        border-color: #BD362F;
-        width :70%;
+        border-color: #ebccd1;
+        color: #a94442;
     }
     </style>
 
@@ -44,7 +48,7 @@
                                     <h4> Post requirement </h4>
                                     <hr/>
                 <div class="media-body">
-                    <form method="post"   id="post_requirement_form" action="javascript:" enctype="multipart/form-data">
+                    <form method="post"   id="post_requirement_form"  enctype="multipart/form-data">
                         <div id="profile_form_error"></div>
                 <div class="form-group">
                     <label for="firstName" class="control-label">Your Name</label>
