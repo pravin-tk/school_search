@@ -730,7 +730,7 @@ $classification = $filtersList['classificationFilter'];
         												<?php } ?>
                                                 </div>
                                                 <div class="text-center">(0 votes)</div>
-                                                <div class="share-school">
+                                                <div class="share-school" data-toggle="modal" data-target="#fbModal" data-id="<?php echo $school['schoolId']; ?>">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
