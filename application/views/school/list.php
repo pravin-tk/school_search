@@ -7,7 +7,13 @@ $classification = $filtersList['classificationFilter'];
 ?>
 <style>
     html, body {height: 100%;}
-
+	.text-wrap {
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    white-space: nowrap;
+}
     #map-canvas {
         float:left;
         width:75%;
@@ -585,17 +591,17 @@ $classification = $filtersList['classificationFilter'];
                                                 </span>
                                             </p>
                                            
-                                                <input class="toggle-event" type="checkbox" data-width="100" data-toggle="toggle" value="<?php echo $school['schoolId']; ?>"data-on="Compare" data-off="Compare" data-id="<?php echo $school['schoolId']; ?>">
-                                                 <p class="compaire" id="compare-<?php echo $school['schoolId']; ?>">
-                                                    Compare
-                                                </p>
+                                                <input class="toggle-event" type="checkbox"   value="<?php echo $school['schoolId']; ?>" data-id="<?php echo $school['schoolId']; ?>">
+                                                 <span class="compaire" id="compare-<?php echo $school['schoolId']; ?>">
+                                                   <a> Compare Now</a>
+                                                </span>
                                         </div>
                                         <div class="media-body">
                                             <div class="col-sm-3" id="padding-left-08">
                                                 <div class="list-top-line">
                                                     <div class="school-name-text margin-title text-capitalize">
 
-                                                        <a href="<?php echo $urllink;?>" target="_blank" class="school-link">
+                                                        <a href="<?php echo $urllink;?>" target="_blank">
                                                             <?php echo $school['name'] ?>
                                                         </a>
                                                     </div>
@@ -718,7 +724,7 @@ $classification = $filtersList['classificationFilter'];
         												<?php } ?>
                                                 </div>
                                                 <div class="text-center">(0 votes)</div>
-                                                <div class="share-school" data-toggle="modal" data-target="#fbModal" data-id="<?php echo $school['schoolId']; ?>">
+                                                <div class="share-school">
                                                     <div class="text-center detail-value padding-top-05">
                                                         <i class="fa fa-share-alt fa-2x"></i>
                                                     </div>
@@ -761,7 +767,6 @@ $classification = $filtersList['classificationFilter'];
     	<span  class="btn btn-primary btn-circle absolute  right" id="comparedistroy" >X</span>
 	   	<div id="tiles-container"style="position:relative;top:45px;left:-25px;">
 		 	<ul class="tl-page" data-tl-template="myTemplate">
-		   
 		 	</ul>
 	   	</div>
     </div>
@@ -1142,10 +1147,11 @@ google.maps.event.addDomListener(window, 'load', function () {
 
 $('.toggle-event').change(function() {
 	if($(this).prop('checked')){
-	    $(this .span).html('Toggle: ' + $(this).prop('checked'));
+		$( this).parent().css( "width", "50px" );
 	    //if($('.toggle-event:checked').size() >= 2)
 	    $("#compare-"+$(this).attr("data-id")).show();
 	}else{
+		$( this).parent().css( "width", "100px" );
 		$("#compare-"+$(this).attr("data-id")).hide();
 	}
   })
@@ -1189,8 +1195,14 @@ $("#comparedistroy").click(function(){
 	$("#list-searchresult").fadeIn( "slow", function() {
 		    // Animation complete
 	});
-  	$('.tl-page li').remove();
+
+  $('.tl-page li').remove();
 });
+$('.toggle-event').bootstrapToggle({
+    on: "<i class='fa fa-check'></i>",
+    off: "compare",
+    width:"100px"
+});  
     //Function for social login modal pop up
     $( ".share-school" ).click(function() {
         var schoolId = $(this).data("id");

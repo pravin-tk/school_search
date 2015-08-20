@@ -223,7 +223,7 @@ function sortSchool(sortFilter) {
 }
 
 $('input:checkbox').click(function(){
-	//filterResults();
+	filterResults();
 });
 
 function clearSortFields(){
@@ -582,7 +582,7 @@ function addToCompare(){
 		            "<span class='btn btn-circle btn-white'><i class='fa fa-eye'></i></span></span></a>"+
 		            "</div>"+
 		            "<div class='panel-body'>"+
-		            "<h4 class='margin-v-0-5'>"+data.name+"</h4>"+
+		            "<h4 class='margin-v-0-5 text-wrap'>"+data.name+"</h4>"+
 		            "<p class='small'>"+
 		            "<span class='fa fa-fw fa-star text-yellow-800'></span>"+
 		            "<span class='fa fa-fw fa-star text-yellow-800'></span>"+
