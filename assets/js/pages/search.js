@@ -102,7 +102,12 @@ function filterResults() {
         	$(".nav .summary-list").html(dataArr.length);
         	dataArr = response.jsondata;
         	sortMarkers("");
-        	updateSortListedSchools();
+        	//updateSortListedSchools();
+        	$('.toggle-event').bootstrapToggle({
+        	    on: "<i class='fa fa-check'></i>",
+        	    off: "compare",
+        	    width:"100px"
+        	}); 
         },
         'json'
     );
@@ -222,7 +227,7 @@ function sortSchool(sortFilter) {
     );
 }
 
-$('input:checkbox').click(function(){
+$('.search-filters').click(function(){
 	filterResults();
 });
 
@@ -255,7 +260,7 @@ function lessFilters(){
 }
 
 function resetFilters(){
-	$('input:checkbox').removeAttr('checked');
+	$('.search-filters').removeAttr('checked');
 	filterResults();
 	scrollTopLink("search-list-row");
 	$(".show-item-count").hide();

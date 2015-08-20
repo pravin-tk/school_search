@@ -351,6 +351,15 @@
         border-color: #ebccd1;
         color: #a94442;
     }
+    .flipster-nav > li > a:hover, .flipster-nav > li > a:focus {
+	    text-decoration: none;
+	    color: #fff;
+	    background-color: #26a69a;
+	}
+	.flipster-nav >.flip-nav-current a {
+	    background-color: #26a69a;
+	    color: #fff;
+	}
 </style>
 
 
