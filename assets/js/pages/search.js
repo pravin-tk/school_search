@@ -484,7 +484,13 @@ function sortMarkers(sortitem){
 			} else {
 			var hexMarkerColor = '#FE7569';
 			}
-			var marker_url = base_url+"index.php/home/schoolDetail/"+item.schoolId+"/"+$("#standardId").val();
+			var permlink = $.cookie("ebdsearchgeoloc");
+			var permarr = permlink.split("/");
+			var school_name = item.name.toLowerCase();
+			school_name = school_name.replace(/\s/g,"-");
+			school_name = school_name.replace("'","");
+			school_name = school_name.replace("/[^A-Za-z0-9\-]/g","");
+			var marker_url = base_url+permarr[0]+"/"+permarr[1]+"/"+school_name+"-"+item.schoolId+"/"+permarr[2];
         var marker = new google.maps.Marker({
             map: map,
             draggable: false,
