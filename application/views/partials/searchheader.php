@@ -300,7 +300,7 @@ if(!isset($longitude))
 	                     	foreach ($classification as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolclassificationcheckbox" value="<?php echo $value['id']; ?>" class="search-filters" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -323,7 +323,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolBoard as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolboardcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolboardcheckbox" value="<?php echo $value['id']; ?>" class="search-filters" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -346,7 +346,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolMedium as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolmediumcheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolmediumcheckbox" value="<?php echo $value['id']; ?>" class="search-filters" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 
@@ -369,7 +369,7 @@ if(!isset($longitude))
 	                     	foreach ($schoolCategory as $key => $value) { ?>
                                     <div class="form-group">
 	                             	<div class="input-group">
-                                            <input type="checkbox" name="schoolcategorycheckbox" value="<?php echo $value['id']; ?>" /> <?php echo $value['name']; ?>
+                                            <input type="checkbox" name="schoolcategorycheckbox" value="<?php echo $value['id']; ?>" class="search-filters" /> <?php echo $value['name']; ?>
                                         </div>
 	                            </div>
 	                <?php 

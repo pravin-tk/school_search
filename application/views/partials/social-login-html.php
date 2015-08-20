@@ -1,10 +1,5 @@
 <?php 
-//   echo "<pre>";
-//    print_r($schooldata);exit;
-
-if(isset($schooldata)){
-    //foreach($schooldata as $key =>$school){
- 
+if(isset($schooldata)){ 
 ?>
 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -41,14 +36,22 @@ if(isset($schooldata)){
                             </div>
                         </div>
                      <div class="modal-footer social-buttons">
-                        <a class="btn  btn-social btn-facebook">
-                           <i class="fa fa-facebook"></i> Facebook
-                        </a>
-                        <a class="btn  btn-social btn-google">
-                          <i class="fa fa-google"></i> Google
-                        </a>
-                        <a class="btn btn-social btn-twitter">
-                          <i class="fa fa-twitter"></i> Twitter
-                        </a>
+                       <!-- Twitter -->
+                       <a onclick="return popitup('http://twitter.com/home?status=<?php echo $permlink;?>')"
+                        title="Share on Twitter"  class="btn btn-twitter" >
+                     <i class="fa fa-twitter"></i> Twitter</a>
+                     <!-- Facebook -->
+                     <a onclick="return popitup('https://www.facebook.com/sharer/sharer.php?u=<?php echo $permlink;?>')"
+                        title="Share on Facebook"  class="btn btn-facebook" >
+                     <i class="fa fa-facebook"></i> Facebook</a>
+                     <!-- Google+ -->
+                     <a onclick="return popitup('https://plus.google.com/share?url=<?php echo $permlink;?>')" 
+                        title="Share on Google+"  class="btn btn-googleplus">
+                     <i class="fa fa-google-plus"></i> Google+</a>
+
+                     <!-- LinkedIn -->
+                     <a onclick="return popitup('http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=<?php echo $permlink;?>')" 
+                         title="Share on LinkedIn"  class="btn btn-linkedin">
+                      <i class="fa fa-linkedin"></i> LinkedIn</a>
                     </div></div> </form>
     <?php }?>
