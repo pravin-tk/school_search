@@ -99,8 +99,8 @@ function filterResults() {
         	$("#schresult").html(response.html);
         	$("#schresult-map").html(response.htmlmap);
         	scrollTopLink("search-list-row");
-        	$(".nav .summary-list").html(dataArr.length);
         	dataArr = response.jsondata;
+        	$(".nav .summary-list").html(dataArr.length);
         	sortMarkers("");
         	//updateSortListedSchools();
         	$('.toggle-event').bootstrapToggle({

@@ -70,7 +70,7 @@
         logged_pic = "<?php echo $this->session->userdata("sessebdmypic");?>";
         
 </script>
-<nav class="navbar navbar-static-top" style="position: absolute;width:100%;"role="navigation">
+<nav class="navbar navbar-static-top" style="position: absolute;width:100%;background:rgba(30,30,30,0.2);"role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
