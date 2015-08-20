@@ -146,3 +146,9 @@ $('#globalSearch').on('keydown', '#searchform', function(evt) {
 	  }
 });
 
+$('.border').mouseover(function() {
+$(this).addClass('active');
+});
+$('.border').mouseout(function() {
+	$(this).removeClass('active');
+	});
