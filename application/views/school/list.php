@@ -1198,15 +1198,21 @@ $("#comparedistroy").click(function(){
 
   $('.tl-page li').remove();
 });
+
+$(document).ready(function () {
+
 $('.toggle-event').bootstrapToggle({
     on: "<i class='fa fa-check'></i>",
     off: "compare",
     width:"100px"
 });  
+
+});
     //Function for social login modal pop up
     $( ".share-school" ).click(function() {
         var schoolId = $(this).data("id");
         var divparent = "#list-search-result-"+$(this).data("id");
+        alert(divparent);
         var urLink = $(divparent).find('.school-link').attr('href');
         var html = "";
        $.post(base_url+"share-social-login",
