@@ -129,12 +129,11 @@ function anim(pos,t){
 } 
 
 $(document.body).on('change', '#standardId' ,function(){
-    var blnFlag = false;
     $.get(base_url+"/index.php/home/get_vaccant_seats/"+$("#schoolId").val()+"/"+$(this).val(),{},function(data){
     	var optiontxt =  $( "#standardId option:selected" ).text();
-        $.each(dataaobj, function(key, value) {
-            if(data["data"][0].vacantSeat > 0  ){
-            	$("#school-vaccant-seats-info").html(value.vacantSeat+" Available");
+    	$.each(data["data"], function(index, item) {
+            if(parseInt(item.vacantSeat) > 0  ){
+            	$("#school-vaccant-seats-info").html(item.vacantSeat+" Available");
             	$("ul").find("[data-flip-category='" + optiontxt + "']").click();
             } else {
             	$("#school-vaccant-seats-info").html("Not Available");

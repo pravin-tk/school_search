@@ -199,7 +199,7 @@ if(!isset($longitude))
         
 </script>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid" style="background-color:#212121;opacity:0.8;">
+    <div class="container-fluid" style="background-color:#212121;">
       <div class="navbar-header" style="color:white;height:45px;">
         <a href="" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav" style="color:white;">
