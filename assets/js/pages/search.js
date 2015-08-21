@@ -99,10 +99,15 @@ function filterResults() {
         	$("#schresult").html(response.html);
         	$("#schresult-map").html(response.htmlmap);
         	scrollTopLink("search-list-row");
-        	$(".nav .summary-list").html(dataArr.length);
         	dataArr = response.jsondata;
+        	$(".nav .summary-list").html(dataArr.length);
         	sortMarkers("");
-        	updateSortListedSchools();
+        	//updateSortListedSchools();
+        	$('.toggle-event').bootstrapToggle({
+        	    on: "<i class='fa fa-check'></i>",
+        	    off: "compare",
+        	    width:"100px"
+        	}); 
         },
         'json'
     );
@@ -222,7 +227,7 @@ function sortSchool(sortFilter) {
     );
 }
 
-$('input:checkbox').click(function(){
+$('.search-filters').click(function(){
 	filterResults();
 });
 
@@ -255,7 +260,7 @@ function lessFilters(){
 }
 
 function resetFilters(){
-	$('input:checkbox').removeAttr('checked');
+	$('.search-filters').removeAttr('checked');
 	filterResults();
 	scrollTopLink("search-list-row");
 	$(".show-item-count").hide();
@@ -479,7 +484,13 @@ function sortMarkers(sortitem){
 			} else {
 			var hexMarkerColor = '#FE7569';
 			}
-			var marker_url = base_url+"index.php/home/schoolDetail/"+item.schoolId+"/"+$("#standardId").val();
+			var permlink = $.cookie("ebdsearchgeoloc");
+			var permarr = permlink.split("/");
+			var school_name = item.name.toLowerCase();
+			school_name = school_name.replace(/\s/g,"-");
+			school_name = school_name.replace("'","");
+			school_name = school_name.replace("/[^A-Za-z0-9\-]/g","");
+			var marker_url = base_url+permarr[0]+"/"+permarr[1]+"/"+school_name+"-"+item.schoolId+"/"+permarr[2];
         var marker = new google.maps.Marker({
             map: map,
             draggable: false,
