@@ -53,6 +53,35 @@
     border-color: #ebccd1;
     color: #a94442;
     }
+    .homecategory{
+    font-weight:900;
+    color:#26a69a;
+    width:99%;
+    overflow:hidden;
+    }
+    .border.active{
+    background: #26a69a;
+    font-weight:900;
+    color:#fff;
+	    a{
+	    color:#fff;
+	    }
+    }
+    .border.active a{
+    color:#fff;
+    }
+    
+    .center{
+    margin:10px;
+    margin-right: auto;
+ 	margin-left: auto;
+ 	display: block;
+ 	}
+ 	
+ 	.border{
+ 	border-right:solid 1px;
+    border-color: #26a69a;
+    }
 </style>
 <div class="container" style="width: 100%;">
     <div class="row">
@@ -119,11 +148,37 @@
             
           
     </div>
+        <!-- /.container-fluid -->
 </div>
 <div id="push">
 </div>
 
-                  
+<div class="homecategory" style="">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-12">
+                    <div class="col-md-3 border text-center">
+                    	<div>
+                        <span class="icon"><i class="fa fa-4x fa-list center" ></i></span>
+                        <a class="page-scroll center" href="#about">List Your School</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3 border text-center">
+                    
+                        <span class="icon"><i class="fa fa-4x fa-mobile center " ></i></span>
+                        <a class="page-scroll center" href="#facility">Download App</a>
+                    </div>
+                    <div class="col-md-3 border text-center">
+                    	<span class="icon"><i class="fa fa-4x fa-lock center" ></i></span>
+                        <a class="page-scroll center" href="#gallery">Sign In</a>
+                    </div>
+                    <div class="col-md-3 border text-center">
+                    	<span class="icon"><i class="fa fa-4x fa-plus center" ></i></span>
+                        <a class="page-scroll center" href="#review">Sign Up</a>
+                    </div>
+            </div>
+            <!-- /.navbar-collapse -->
+</div>
+             
 <div id="content" class="ng-scope">
 
 	<div class="bg-white">

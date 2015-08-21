@@ -1205,6 +1205,7 @@ $("#comparedistroy").click(function(){
   $('.tl-page li').remove();
 });
 
+$(document).ready(function () {
 
 //Function for social login modal pop up
 $( ".share-school" ).click(function() {
@@ -1247,5 +1248,8 @@ $('.toggle-event').bootstrapToggle({
     off: "compare",
     width:"100px"
 });  
+
+});
+ 
    
 </script>

@@ -378,3 +378,10 @@ $(document).ready(function () {
         $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
     });
 });
+
+    $(".contact_details").slideUp();
+        $("#contact_details").click(function(){
+            $(".contact_details").slideDown();
+            $("#contact_details").hide();
+            
+});
