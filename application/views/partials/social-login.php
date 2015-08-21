@@ -34,11 +34,7 @@
     #fbModal .panel-body{
         min-height:20px;
     }
-    .btn-googleplus{
-        background-color: #D34836;
-        border-color: rgba(0, 0, 0, 0.2);
-        color: #fff;
-    }
+   
     #copyurl {
         font-size:10px;
     }

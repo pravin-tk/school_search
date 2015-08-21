@@ -1094,7 +1094,7 @@ function getPermlink(latitude,longitude,stdid){
                 }else{
                     $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
                         ele: 'body', // which element to append to
-                        type: 'danger', // (null, 'info', 'danger', 'success')
+                        type: 'info', // (null, 'info', 'danger', 'success')
                         offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
                         align: 'top', // ('left', 'right', or 'center')
                         width: 250, // (integer, or 'auto')
@@ -1233,14 +1233,6 @@ $( ".share-school" ).click(function() {
     },'json'
     );
 });
-
-
-
-function popitup(url) {
-	newwindow=window.open(url,'name','height=400,width=550,top=150,left=350');
-	if (window.focus) {newwindow.focus()}
-	return false;
-}
 
 $('.toggle-event').bootstrapToggle({
     on: "<i class='fa fa-check'></i>",

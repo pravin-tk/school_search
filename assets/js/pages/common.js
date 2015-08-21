@@ -212,4 +212,9 @@ $("#myModal").on('hidden.bs.modal', function () {
 
     });
 
-
+//open url in a popup without refreshing parent
+function popitup(url) {
+    newwindow=window.open(url,'name','height=400,width=550,top=150,left=350');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
