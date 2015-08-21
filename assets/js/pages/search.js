@@ -222,10 +222,11 @@ function sortSchool(sortFilter) {
         	$("#schresult-map").html(response.htmlmap);
         	scrollTopLink("search-list-row");
         	updateSortListedSchools();
+        },
         'json'
     );
 }
-},
+
 
 $('.search-filters').click(function(){
 	filterResults();

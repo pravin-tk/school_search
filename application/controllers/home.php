@@ -743,4 +743,27 @@ class home extends CI_Controller {
             }
             echo json_encode($data);
         }
+        
+    public function showSchoolContact() {
+        	$data = "";
+            $map['schoolId'] = $this->input->post('schoolId');
+            $requirement_key = 'school/contactclicked.json/'.$map['schoolId'];
+            $apicalls = array(array('url' => $requirement_key,
+                            'params' => http_build_query($map),
+            )
+            );
+            try {
+                    $apioutput = $this->apiclient->process($apicalls, 'POST');
+                    foreach ($apioutput as $key => $value) {
+                            if (strpos($key, $requirement_key) !== false) {
+                                    $data = $value;
+                            }
+                    }
+            } catch (EBDApiException $e) {
+
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+            echo json_encode($data);
+        }
 }
