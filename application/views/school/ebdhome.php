@@ -93,7 +93,7 @@
                         
                     </div>
                     <div class="item">
-                        <img src="<?php echo asset_url();?>img/school/schoolbus.jpg" alt="Slider"
+                        <img src="<?php echo asset_url();?>img/school/home_bg_image.png" alt="Slider"
 							class="" style="width:100%;height: 80%;">
                         
                     </div>
