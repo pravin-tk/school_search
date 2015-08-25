@@ -271,9 +271,10 @@ function popitup(url) {
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
  //~~~~~~~~~~~~~~~~~~~~~~~~ End Facebook
- 
+
  //~~~~~~~~~~~~~~~~~~~~ Google ~~~~~~~~~~~~~~~~~~~~~~~~
-    
+ 
+ 
     var firstName,lastName, email,image;
     function googleLogin(){
         var myParams = {
