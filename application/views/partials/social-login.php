@@ -34,17 +34,13 @@
     #fbModal .panel-body{
         min-height:20px;
     }
-    .btn-googleplus{
-        background-color: #D34836;
-        border-color: rgba(0, 0, 0, 0.2);
-        color: #fff;
-    }
+   
     #copyurl {
         font-size:10px;
     }
 </style>
 
-<?php if (isset($userId) && $userId < 1) { ?>
+
     <div class="modal fade" id="fbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document" >
             <div class="modal-content" id="divsocial" style="display:block">
@@ -54,5 +50,5 @@
             
         </div>
     </div>
-<?php } ?>
+
  

@@ -145,10 +145,8 @@ class Auth extends CI_Controller {
             foreach ($apioutput as $key => $value) {
                 if (strpos($key, 'user/login.json') !== false && $apioutput[$key]['status'] == 1) {
                     $responsedata = json_decode(str_replace("'",'"',$value['data']));
-                     //error_log("USER activated status code=:".$responsedata->status);
-                     error_log("DB Image= ".$responsedata->image);
-                     $responsedata->loginstatus=$apioutput[$key]['status'];
-                     $responsedata->message=$apioutput[$key]['message'];
+                    $responsedata->loginstatus=$apioutput[$key]['status'];
+                    $responsedata->message=$apioutput[$key]['message'];
                      
                     $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
                     $this->session->set_userdata('sessEmailID', $map['email']);
@@ -174,14 +172,25 @@ class Auth extends CI_Controller {
 
     public function userLogout() {
         $city = $this->uri->segment(1);
+        try {
+            $this->clearUserSession();
+            $data['status'] =1;
+            $data ['message'] = "Successfully logged out";
+        }catch (EBDApiException $e) {
+            $data ['status'] = 0;
+            $data ['message'] = "Error logging out";
+           
+        }
+        echo json_encode($data);
+    }
+    
+    public function clearUserSession(){
+        $city = $this->uri->segment(1);
         $this->input->set_cookie("ebduserid", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("ebdusername", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("edbmypic", null, time() - 60 * 60 * 24 * 30);
         $this->input->set_cookie("ebdratesch", null, time() - 60 * 60 * 24 * 30);
-        
         $this->session->sess_destroy();
-        $this->input->set_cookie($cookie);
-        redirect(site_url());
     }
 
     public function userProfile() {
@@ -190,7 +199,8 @@ class Auth extends CI_Controller {
         
         $userid = ($this->session->userdata('sessuserID') != '') ? $this->session->userdata('sessuserID') :$_COOKIE['ebduserid'] ;
         if($userid == ""){
-            $this->userLogout();
+            $this->clearUserSession();
+            redirect(site_url());
         }
         $profile_key = 'user/profile.json/' . $userid;
         $apicalls = array($profile_key);
@@ -309,7 +319,53 @@ class Auth extends CI_Controller {
         }
        
     }
+    
+    
+    public function userloginSocial() {
+        $responsedata = new stdClass();
+        $map['socialType'] = $this->input->post('st');
+        $map['email'] = $this->input->post('email');
+        $map['firstName'] = $this->input->post('fname');
+        $map['lastName'] = $this->input->post('lname');
+        $image = $this->input->post('pic');
+        
+        $apicalls = array(array('url' => 'user/login.json',
+                                'params' => $map,
+                                'headers' => 'multipart/form-data'));
+       
+        try {
+            $apioutput = $this->apiclient->process($apicalls, 'POST');
+          
+            foreach ($apioutput as $key => $value) {
+                if (strpos($key, 'user/login.json') !== false && $apioutput[$key]['status'] == 1) {
+                    $responsedata = json_decode(str_replace("'",'"',$value['data']));
+                    $responsedata->loginstatus=$apioutput[$key]['status'];
+                    $responsedata->message=$apioutput[$key]['message'];
+                     
+                    $this->session->set_userdata('sessuserID', $apioutput[$key]['id']);
+                    $this->session->set_userdata('sessEmailID', $map['email']);
+                    $this->session->set_userdata('sessebdmypic', $image);
+                    $this->session->set_userdata('sessSocial', 1);
+                    $this->input->set_cookie("ebduserid", $apioutput[$key]['id'], time() + (86400 * 30));
+                    $this->input->set_cookie("ebdusername",$responsedata->firstName, time() + (86400 * 30));
+                    
+                }else if(strpos($key, 'user/login.json') !== false ){
+                    $responsedata->loginstatus=0;
+                    $responsedata->message=$value['errors'][0];
+                   
+                }
+               
+            }
+             echo json_encode($responsedata);
+        } catch (EBDApiException $e) {
+            echo $e->getMessage();
+            unset($apicalls);
+            unset($apioutput);
+        }
+       
+    }
 
+ 
     
 
 }
