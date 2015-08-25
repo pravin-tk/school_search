@@ -14,8 +14,33 @@
     }
     #afb {
        padding-left:12px;
+       margin-left:65px;
+       float:left;
     }
+   
     
+    .btn-googleplus {
+        margin-right:30px;
+    }
+/*    span.icon {
+      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 12px;
+      height: 30px;
+      border-right: #2265d4 1px solid;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 12px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+       Use the Roboto font that is loaded in the <head> 
+      font-family: 'Roboto', sans-serif;
+    }*/
+
 </style>
 
 <?php if (isset($userId) && $userId < 1) { ?>
@@ -38,21 +63,9 @@
                                <div id="derr2"></div> 
                                <a id="afb"onclick="facebookLogin()" title="Share on Facebook"  
                                 class="btn btn-facebook" id="afb" ><i class="fa fa-facebook"></i> Facebook</a>
-<!--                                <a onclick="" title="Share on Google+" 
-                                    class="btn btn-googleplus"><i class="fa fa-google-plus"></i> Google+</a>-->
-                                    
-                                    <button class="btn btn-googleplus"
-                                        data-scope="https://www.googleapis.com/auth/plus.login"
-                                        data-clientid="967464106458-ledr335a5fnc7bjbdmj8e888fbo2vi1m.apps.googleusercontent.com"
-                                        data-callback="onSignInCallback"
-                                        data-theme="dark"
-                                        data-cookiepolicy="single_host_origin"><i class="fa fa-google-plus"></i> Google+
-                                    </button>
-                                    <!-- Textarea for outputting data -->
-                                    <div id="response" class="hide">
-                                      <textarea id="responseContainer" style="width:100%; height:150px"></textarea>
-                                    </div>
-                                  
+                             <a onclick="googleLogin()" title="Share on Google+" id="authorize-button"
+                                    class="btn btn-googleplus g-signin2"><i class="fa fa-google-plus"></i> Google+</a>
+                               
 
                             </div>
                         </div>
@@ -110,122 +123,143 @@
         </div>
     </div>
 <?php } ?>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+
+<!--<script src="https://apis.google.com/js/client:plusone.js" type="text/javascript"></script>-->
 <script>
-    //~~~~~~~~~~~~~~~ Facebook ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  function facebookLogin() {
-    var FB = window.FB;
-    var scopes = 'email,user_likes,public_profile';
-    var vFB =1;
-    FB.login(function(response) {
-      if (response.status === 'connected') {
-        console.log('The user has logged in!');
-        FB.api('/me',{fields: 'first_name,last_name,email,picture'}, function(response) {
-            userLoginSocial(
-                response.first_name,
-                response.last_name,
-                response.email,
-                response.picture.data.url,
-                vFB
-            )   
-        }); 
-          
-      
-      }
-    }, {scope: scopes});
-  }
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '711834812294128',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.0'
-    });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
- //~~~~~~~~~~~~~~~~~~~~~~~~ End Facebook
- 
- //~~~~~~~~~~~~~~~~~~~~ Google ~~~~~~~~~~~~~~~~~~~~~~~~
- 
-    var clientId = '967464106458-ledr335a5fnc7bjbdmj8e888fbo2vi1m.apps.googleusercontent.com';
-    var apiKey = 'AIzaSyAkhFinwaOSkS1JAcY8CO5JNmnUYz6e3r0';
-
- (function() {
-         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-         po.src = 'https://apis.google.com/js/client:plusone.js?onload=signinCallback';
-         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-      })();
-      function signinCallback(authResult) {
-          console.log(authResult)
-            if (authResult['status']['signed_in']) {
-                    document.getElementById('signinButton').setAttribute('style', 'display: none');
-                        makeAPICall();
-            } else {
-                console.log('Sign-in state: ' + authResult['error']);
-            }
-      }
-            function makeAPICall(){
-            gapi.client.load('plus', 'v1', function() {
-              var request = gapi.client.plus.people.get({
-                'userId': 'me'
-              });
-              request.execute(function (resp){
-                console.log(resp);
-                if(resp.id){
-                  console.log('ID: ' + resp.id);
-                }
-                if(resp.displayName){
-                  console.log('Display Name: ' + resp.displayName);
-                }
-                if(resp.image && resp.image.url){
-                  console.log('Image URL: ' + resp.image.url);
-                }
-                if(resp.url){
-                  console.log('Profile URL: ' + resp.url);
-                }
-              });
-           });
-      }
-
- //~~~~~~~~~~~~~~~~~~~~~ end google ~~~~~~~~~~~~~~~~~~~
-  function userLoginSocial(fname,lname,email,pic,type) {
-            $.post(base_url+"user-login-social",
-                {
-                fname: fname,
-                lname: lname,
-                email: email,
-                pic : pic,
-                st: type
-                },function(response){
-                    $.each(response, function(key, value) {
-                      console.log( "result= "+key + " , " + value );
-                          if(key == "id")
-                             id = value;
-                          else if(key == "message")
-                             messg = value;
-                          else if(key == "loginstatus")
-                             loginstatus = value;
-                         else if(key == "status")
-                             status = value;
-                      });
-                      if(loginstatus == "1"){
-                          location.reload();
-                      }else if(loginstatus == "0"){ //user not activated
-                          $("#derr2").html(messg);
-                          $("#derr2").addClass('help-block-error');
-                      }
-                  },'json'
-            );
-
-    }
+//     var vFB = 1; //facebook
+//     var vGP = 2; //google
+//    //~~~~~~~~~~~~~~~ Facebook ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//  function facebookLogin() {
+//    var FB = window.FB;
+//    var scopes = 'email,user_likes,public_profile';
+//   
+//    FB.login(function(response) {
+//      if (response.status === 'connected') {
+//        console.log('The user has logged in!');
+//        FB.api('/me',{fields: 'first_name,last_name,email,picture'}, function(response) {
+//            userLoginSocial(
+//                response.first_name,
+//                response.last_name,
+//                response.email,
+//                response.picture.data.url,
+//                vFB
+//            )   
+//        }); 
+//      }
+//    }, {scope: scopes});
+//  }
+//
+//  window.fbAsyncInit = function() {
+//    FB.init({
+//      appId      : '711834812294128',
+//      cookie     : true,
+//      xfbml      : true,
+//      version    : 'v2.0'
+//    });
+//  };
+//
+//  (function(d, s, id){
+//     var js, fjs = d.getElementsByTagName(s)[0];
+//     if (d.getElementById(id)) {return;}
+//     js = d.createElement(s); js.id = id;
+//     js.src = "//connect.facebook.net/en_US/sdk.js";
+//     fjs.parentNode.insertBefore(js, fjs);
+//   }(document, 'script', 'facebook-jssdk'));
+// //~~~~~~~~~~~~~~~~~~~~~~~~ End Facebook
+// 
+// //~~~~~~~~~~~~~~~~~~~~ Google ~~~~~~~~~~~~~~~~~~~~~~~~
+//    var gapi;
+//    var firstName,lastName, email,image;
+//    function googleLogin(){
+//        var myParams = {
+//                    'clientid' : '967464106458-ledr335a5fnc7bjbdmj8e888fbo2vi1m.apps.googleusercontent.com', //You need to set client id
+//                    'cookiepolicy' : 'single_host_origin',
+//                    'callback' : 'loginCallback', //callback function
+//                    'approvalprompt':'force',
+//                    'scope' : 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
+//        };
+//        gapi.auth.signIn(myParams);
+//        gapi.load('client', function() { 
+//            console.log('gapi.client loaded.');
+//        });
+//        gapi.client.load('plus', 'v1').then(function() {
+//             console.log('gapi.client.plus loaded.');
+//        })
+//    }
+//    
+//    function loginCallback(result)
+//{
+//    if(result['status']['signed_in'])
+//    {
+//        var request = gapi.client.plus.people.get(
+//        {
+//            'userId': 'me'
+//        });
+//        request.execute(function (resp){
+//            console.log(resp);
+//            var email = '';
+//            if(resp['emails']){
+//                for(i = 0; i < resp['emails'].length; i++){
+//                    if(resp['emails'][i]['type'] == 'account'){
+//                        email = resp['emails'][i]['value'];
+//                    }
+//                }
+//            }
+//            if(resp['name']){
+//                firstName = resp['name']['familyName'];
+//                lastName = resp['name']['givenName'];
+//            }
+// 
+//            //console.log(str);
+//             userLoginSocial(
+//                firstName,
+//                lastName,
+//                email,
+//                resp['image']['url'],
+//                vGP
+//            ) 
+//        });
+// 
+//    }
+// 
+//    }
+//        
+//    function onLoadCallback() {
+//            gapi.client.setApiKey('967464106458-ledr335a5fnc7bjbdmj8e888fbo2vi1m.apps.googleusercontent.com'); //set your API KEY
+//            gapi.client.load('plus', 'v1',function(){});//Load Google + API
+//    }
+//
+// //~~~~~~~~~~~~~~~~~~~~~ end google ~~~~~~~~~~~~~~~~~~~
+//  function userLoginSocial(fname,lname,email,pic,type) {
+//            $.post(base_url+"user-login-social",
+//                {
+//                fname: fname,
+//                lname: lname,
+//                email: email,
+//                pic : pic,
+//                st: type
+//                },function(response){
+//                    $.each(response, function(key, value) {
+//                      console.log( "result= "+key + " , " + value );
+//                          if(key == "id")
+//                             id = value;
+//                          else if(key == "message")
+//                             messg = value;
+//                          else if(key == "loginstatus")
+//                             loginstatus = value;
+//                         else if(key == "status")
+//                             status = value;
+//                      });
+//                      if(loginstatus == "1"){
+//                          location.reload();
+//                      }else if(loginstatus == "0"){ //user not activated
+//                          $("#derr2").html(messg);
+//                          $("#derr2").addClass('help-block-error');
+//                      }
+//                  },'json'
+//            );
+//
+//    }
   </script>
 

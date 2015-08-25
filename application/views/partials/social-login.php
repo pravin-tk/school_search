@@ -40,7 +40,7 @@
     }
 </style>
 
-<?php if (isset($userId) && $userId < 1) { ?>
+
     <div class="modal fade" id="fbModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document" >
             <div class="modal-content" id="divsocial" style="display:block">
@@ -50,5 +50,5 @@
             
         </div>
     </div>
-<?php } ?>
+
  
