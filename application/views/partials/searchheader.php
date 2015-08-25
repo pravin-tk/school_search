@@ -15,6 +15,21 @@ if(!isset($longitude))
 ?>
 <style>
 <!--
+#map-list-nav{
+	padding-left:0px;
+}
+.dropdown-sort{
+	padding:2px;
+}
+.dropdown-sort a{
+	color:#212121;
+}
+.sort-active a{
+	color:#26a69a;
+}
+.dropdown-sort a:hover{
+	color:#26a69a;
+}
 #alogin{
 	color:#ffffff;
 }
@@ -80,7 +95,6 @@ if(!isset($longitude))
 .selectpicker{
 	border:1px solid #ccc;
 }
-
 @media screen and (min-width: 768px){
 	.navbar .search-1 .form-control {
 	    height: 40px;
@@ -177,6 +191,77 @@ if(!isset($longitude))
     display:none;
 }
 
+.range-filter .dropdown-menu {
+	max-height:none;
+	min-width:135px;
+}
+.range-filter .range-header {
+    text-align: center;
+    line-height: 45px;
+    background: #e6e6e6;
+    border: 1px solid #cdcdcd;
+    margin-top: -6px;
+}
+.range-header .box {
+    font-size: 12px;
+    height: 25px;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    width: 46px;
+}
+.range-header .box, .range-header .dash {
+    display: inline-block;
+    vertical-align: middle;
+}
+.range-header .dash {
+    height: 1px;
+    width: 12px;
+    background: #7f7f7f;
+}
+.range-header .box {
+    font-size: 12px;
+    height: 25px;
+    font-weight: 700;
+    border: 1px solid #ccc;
+    width: 46px;
+}
+.range-header input, .range-header select {
+    color: #191919;
+    padding: 6px;
+    height: 40px;
+    margin: 0;
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+    outline: 0;
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: normal;
+    border-radius: 2px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.range-filter ul.range-list {
+    text-align: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.range-filter ul.range-list li.range-item {
+    padding: 0 8px;
+    line-height: 36px!important;
+    cursor: pointer;
+}
+.range-filter ul.range-list li.range-item.current-item {
+    font-weight: 700;
+}
+.range-filter ul.range-list li.range-item.selected, .range-filter ul.range-list li.range-item:hover {
+    background: #EAECEE;
+}
+.range-filter ul.range-list.text-right {
+    text-align: right;
+}
 
 -->
 </style>
@@ -278,7 +363,7 @@ if(!isset($longitude))
     	<input type="hidden" name="latitude" id="latitude" value="<?php echo $latitude;?>" /> 
     	<input type="hidden" name="longitude" id="longitude" value="<?php echo $longitude;?>" />
 		<!-- <input type="hidden" name="standardId" id="standardId" value="<?php echo $standardId;?>" /> -->
-    	<div class="navbar-header">
+    	<div class="navbar-header" >
 	        <button type="button" class="navbar-toggle collapsed filter-toggle-icon" data-toggle="collapse" data-target="#main-nav-search">
 	          <i class="text-success fa fa-filter"></i>
 	        </button>
@@ -289,7 +374,7 @@ if(!isset($longitude))
     	<div class="collapse navbar-collapse" id="main-nav-search">				
     		<ul class="nav navbar-nav navbar-left">
     		<!-- Category Filter -->
-	          <li class="dropdown filters">
+	          <li class="dropdown filters" style="padding-left:3px;">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	              <i class="fa fa-angle-down fa-2x"></i> Category<label class="show-item-count" id="classification-count">0</label>
 	            </a>
@@ -379,12 +464,88 @@ if(!isset($longitude))
 	           	</form>
 	            </div>
 	          </li>
+	          <li class="dropdown filters range-filter">
+	          	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	              <i class="fa fa-angle-down fa-2x"></i> Annual Fee<label class="show-item-count" id="annualfee-count">0</label>
+	            </a>
+	          	<ul class="dropdown-menu">
+					<div class="dropdown-filter-wrapper">
+						<form class="clearfix">
+							<div class="range-header">
+								<input class="box lower-box selected" placeholder="Min" tabindex="0" data-value="0" data-sample="lower">
+								<div class="dash">&nbsp;</div>
+								<input class="box upper-box selected" placeholder="Max" tabindex="0" data-value="0" data-sample="upper">
+							</div>
+							<div class="range-list-wrapper">
+								<ul class="lower-list range-list" data-sample="lower" style="display: block;">
+									<li class="range-item" data-value="0" data-sample="lower">
+										0
+									</li>
+									<li class="range-item" data-value="5000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										5000 +
+									</li>
+									<li class="range-item" data-value="10000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										10.0K +
+									</li>
+									<li class="range-item" data-value="20000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										20.0K +
+									</li>
+									<li class="range-item" data-value="30000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										30.0K +
+									</li>
+									<li class="range-item" data-value="40000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										40.0K +
+									</li>
+									<li class="range-item" data-value="50000" data-sample="lower">
+										<span class="icon-rupee"></span>
+										50.0K +
+									</li>
+								</ul>
+								<ul class="hide range-list text-right upper-list" data-sample="upper" style="display: none;">
+									<li class="range-item" data-value="10000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										10.0K
+									</li>
+									<li class="range-item" data-value="15000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										15.0K
+									</li>
+									<li class="range-item" data-value="20000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										20.0K
+									</li>
+									<li class="range-item" data-value="25000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										25.0K
+									</li>
+									<li class="range-item" data-value="30000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										30.0K
+									</li>
+									<li class="range-item" data-value="35000" data-sample="upper">
+										<span class="icon-rupee"></span>
+										35.0K
+									</li>
+									<li class="range-item" data-value="0" data-any="true" data-sample="upper">
+										Any value
+									</li>
+								</ul>
+							</div>
+						</form>
+					</div>
+				</ul>
+	          </li>
 	          <li>
 	      		<a href="javascript:resetFilters();">
                   	<i class="fa fa-undo"></i>
                 </a>
 	          </li>
-	          <li>
+	          <li style="padding-left:5px;padding-right:3px;">
 	      		<h4 class="filter-text-bar">
                     <i class="text-success fa fa-sort-numeric-asc"></i> 
 				</h4>
@@ -401,23 +562,23 @@ if(!isset($longitude))
 	            <div class="dropdown-menu dropdown-size-120">
 	            <form class="ng-pristine ng-valid">
                   	<div class="form-group">
-                            <div class="input-group">
-                                <a href="javascript:sortSchool('classFee');" id="classFee-button">
+                            <div class="dropdown-sort">
+                                <a href="javascript:sortSchool('classFee');" class="classFee-button">
                                         Fees <i class="fa fa-sort-amount-asc"></i>
                                 </a>
                             </div>
-                            <div>
-                                <a href="javascript:sortSchool('distance');" id="distance-button">
+                            <div class="dropdown-sort">
+                                <a href="javascript:sortSchool('distance');" class="distance-button">
                                         Distance <i class="fa fa-sort-amount-asc"></i>
                                 </a>
                             </div>
-                            <div>
-                                <a href="javascript:sortSchool('rating');" id="rating-button">
+                            <div class="dropdown-sort">
+                                <a href="javascript:sortSchool('rating');" class="rating-button">
                                         Rating <i class="fa fa-sort-amount-asc"></i>
                                 </a>
                             </div>
-                            <div>
-                                <a href="javascript:sortSchool('seats');" id="seats-button">
+                            <div class="dropdown-sort">
+                                <a href="javascript:sortSchool('seats');" class="seats-button">
                                         Seats <i class="fa fa-sort-amount-asc"></i>
                                 </a>
                             </div>
@@ -426,22 +587,22 @@ if(!isset($longitude))
 	            </div>
 	    </li>
             <li class="sort-field-list">
-                <a href="javascript:sortSchool('classFee');" id="classFee-button">
+                <a href="javascript:sortSchool('classFee');" class="classFee-button">
                         Fees <i class="fa fa-sort-amount-asc"></i>
                 </a>
             </li>
             <li class="sort-field-list">
-                <a href="javascript:sortSchool('distance');" id="distance-button">
+                <a href="javascript:sortSchool('distance');" class="distance-button">
                         Distance <i class="fa fa-sort-amount-asc"></i>
                 </a>
             </li>
             <li class="sort-field-list">
-                <a href="javascript:sortSchool('rating');" id="rating-button">
+                <a href="javascript:sortSchool('rating');" class="rating-button">
                         Rating <i class="fa fa-sort-amount-asc"></i>
                 </a>
             </li>
             <li class="sort-field-list">
-                <a href="javascript:sortSchool('seats');" id="seats-button">
+                <a href="javascript:sortSchool('seats');" class="seats-button">
                         Seats <i class="fa fa-sort-amount-asc"></i>
                 </a>
             </li>
