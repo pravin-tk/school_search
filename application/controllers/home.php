@@ -273,18 +273,18 @@ class home extends CI_Controller {
             $nearbyschool_key = 'nearbyschools.json?'.http_build_query($map);
             $school_rating_key ="xxx";
             if($userid == ""){
-                    $ratereview_key = 'school/rating.json/'.$schoolid;
+                $ratereview_key = 'school/rating.json/'.$schoolid;
             }else{
-                    $ratereview_key = 'school/ratingandreview.json/' .$schoolid."/".$userid;
+                $ratereview_key = 'school/ratingandreview.json/' .$schoolid."/".$userid;
                 $school_rating_key = 'school/rating.json/'.$schoolid;
             }
                     $apicalls = array(
                             $school_basic_key,
-                $school_other_key,
-                $standard_key,
-                $nearbyschool_key,
-                $ratereview_key,
-                    $school_rating_key
+                            $school_other_key,
+                            $standard_key,
+                            $nearbyschool_key,
+                            $ratereview_key,
+                            $school_rating_key
             );
                 $schoolInfo = null;
                 try {
@@ -306,6 +306,8 @@ class home extends CI_Controller {
                         $this->template->set('userRatingInfo',$value['ratings']);
                         }
                     $this->template->set('userReviewInfo',$value);
+//                    echo "<pre>";
+//                    print_r($value);exit;
                 } elseif (strpos($key,$school_rating_key) !==false && $userid <> ""){
                     $this->template->set('schoolRatingInfo',$value);
                 }

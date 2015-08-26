@@ -22,24 +22,9 @@
     .btn-googleplus {
         margin-right:30px;
     }
-/*    span.icon {
-      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-      display: inline-block;
-      vertical-align: middle;
-      width: 12px;
-      height: 30px;
-      border-right: #2265d4 1px solid;
+    .modal-footer {
+        text-align: right;
     }
-    span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 12px;
-      padding-right: 42px;
-      font-size: 14px;
-      font-weight: bold;
-       Use the Roboto font that is loaded in the <head> 
-      font-family: 'Roboto', sans-serif;
-    }*/
 
 </style>
 
@@ -86,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="text-align:right;">
                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
                         <input type="submit" class="btn btn-primary btn-sm" id= "btnpost" value ="Submit" >
                           <label><a href="#" class="forgot_password" style ="color:#26a69a;" >Forgot Password?</a></label>

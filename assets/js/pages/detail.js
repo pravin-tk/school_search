@@ -384,4 +384,4 @@ $(document).ready(function () {
             $(".contact_details").slideDown();
             $("#contact_details").hide();
             
-});
+    });

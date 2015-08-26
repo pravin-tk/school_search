@@ -75,18 +75,19 @@
 
                     }   
                 },
-//                requirement: {
-//                   // message: 'not valid',
-//                        validators: {
-//                                notEmpty: {
-//                                        message: 'details should not be empty'
-//                                },
-//                                stringLength: {
-//                                    min: 10,
-//                                    message: 'details  should more than 10 characters long.'
-//                            },                        }   
-//                    },
-                
+                requirement: {
+                    message: 'description is not valid',
+                    enabled: false,
+                    validators: {
+                            stringLength: {
+                                    min: 0,
+                                    max: 500,
+                                    message: 'description must be less  than 500 characters'
+                            },
+
+                    },
+                      } ,  
+                   
                 }//fields
                  
     });
