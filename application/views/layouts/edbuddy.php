@@ -116,7 +116,7 @@
         
 </script>
 </head>
-<body class="breakpoint-1024"id="page-top" data-spy="scroll" data-target=".property-meta">
+<body class="breakpoint-1024"id="page-top">
 	<div class="se-pre-con">
 	<p class="text-center loadings" >Loading Schools </p>
 	</div>

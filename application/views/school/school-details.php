@@ -387,11 +387,11 @@
 <div id="schoolheader" class="cover overlay overflow-hidden margin-bottom-none height-400 height-500-lg max-height-500" >
   	<div id="pan">
 	    <div id="wrapper" style="background:url(<?php echo $basicInfo["homeImage"];?>) no-repeat;background-size: 100% 100%;"></div>
-      	<div id="mask">
-			<div class="bac"></div>
-			<div class="logo"></div>
-			<div class="remote stop"></div>
-      	</div>
+<!--       	<div id="mask"> -->
+<!-- 			<div class="bac"></div> -->
+<!-- 			<div class="logo"></div> -->
+<!-- 			<div class="remote stop"></div> -->
+<!--       	</div> -->
     </div> 
     <div class="overlay overlay-bg-black overlay-full-xs">
       <div class="v-bottom">
@@ -474,7 +474,8 @@
 	</div>  
 </nav>
 </div>
-<div id="details-wrap">
+<div data-spy="scroll" data-target=".property-meta">
+<div id="details-wrap" >
 <!-- Begin page content -->
 <div class="divider" id="overview"></div>
 <!-- <div class="section" data-anchor="overview"> -->
@@ -492,7 +493,7 @@
 
 <div class="divider" id="visualtour"></div>  
 <div class="row">
-  <?php include 'pages/360.php';?>
+  <?php include 'pano.php';?>
 </div>
 
 <div class="divider" id="gallery"></div>
@@ -525,7 +526,7 @@
 
 </div><!--/wrap-->
 </div>
-
+</div>
 <ul class="nav pull-right scroll-top">
   <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
 </ul>

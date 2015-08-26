@@ -10,8 +10,8 @@ class Apiclient
 {	
 	
 	private $api;
-	private $api_url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/";
-        //private $api_url = "http://192.168.1.78:8080/edbuddy/webapi/api1.0/";
+// 	private $api_url = "http://54.68.33.139:8080/edbuddy/webapi/api1.0/";
+        private $api_url = "http://192.168.5.116:8080/edbuddy/webapi/api1.0/";
        //private $api_url = "http://192.168.1.110:8080/edbuddy/webapi/api1.0/";
 	private $userid;
 	public $expire = 86400;

@@ -50,6 +50,7 @@
     .has-error .form-control {
         background: none;
     }
+    center{display:none;}
   
 </style>
 <script type="text/javascript">

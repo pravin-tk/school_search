@@ -55,12 +55,15 @@
     }
     .homecategory{
     font-weight:900;
-    color:#26a69a;
-    width:99%;
+/*     color:#26a69a; */
+        color:#fff;
+        background: #26a69a;
+    
+    width:100%;
     overflow:hidden;
     }
     .border.active{
-    background: #26a69a;
+    background: #00796B;
     font-weight:900;
     color:#fff;
 	    a{
@@ -70,7 +73,9 @@
     .border.active a{
     color:#fff;
     }
-    
+    .border a{
+    color:#fff;
+    }
     .center{
     margin:10px;
     margin-right: auto;
@@ -80,10 +85,11 @@
  	
  	.border{
  	border-right:solid 1px;
-    border-color: #26a69a;
+    border-color: #fff;
     }
+  
 </style>
-<div class="container" style="width: 100%;">
+<div class="container" style="width: 100%;padding-left: 0px;padding-right: 0;">
     <div class="row">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner " id="homeslider">
@@ -119,7 +125,7 @@
                       <div class="form-group col-md-8">
                             <div class="col-md-3 selectContainer">
                                 <select class="selectpicker form-control" id="cboStd" name="standardId" required>
-                                        <option value="">--Select--</option>
+                                        <option value="">--Select Standard--</option>
                                         <?php  
                                         if(isset($standardlist))
                                             foreach ($standardlist as $key=>$value) { ?>
@@ -131,15 +137,18 @@
                             <div class="col-md-6">
                                 <input type="hidden" id="latitude" name="latitude" value="" /> 
                                 <input type="hidden" id="longitude" name="longitude" value="" /> 
-                                <input type="hidden" id="address" name="address" value="" /> 
+                                <input type="hidden" id="address" name="address" value="" />
+                                <div> 
                                 <input  id="schbox" type="text"  required
-                                        placeholder="Search by School, Area, Location" name="searchtxt"
-                                        class="form-control">
+                                        placeholder="Search by City Area, Location" name="searchtxt"
+                                        class="form-control "style="width: 71%;float: left;">
+                                </div>
+                                <div>        
+                                 <input type="button" value="&#xf002;" class="btn btn-clear btn-sm btn-min-block"  id="sch" style="font-weight:900;font-family: FontAwesome;"/>
+                                </div>        
                             </div>
-                        <div class="col-md-3">
-                        <input type="button" value="Find Out " class="btn btn-clear btn-sm btn-min-block"  id="sch" style="background:#26a69a;font-weight:900;"/>
-                       
-                        </div>
+<!--                         <div class="col-md-3" > -->
+<!--                         </div> -->
                         </div>
                         <div class="col-md-2 extra-search-div">&nbsp;</div>
                     </form>
@@ -155,25 +164,25 @@
 
 <div class="homecategory" style="">
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="col-md-12">
+            <div class="col-md-12"style="padding-left: 0px;padding-right: 0px;">
                     <div class="col-md-3 border text-center">
                     	<div>
-                        <span class="icon"><i class="fa fa-4x fa-list center" ></i></span>
-                        <a class="page-scroll center" href="#about">List Your School</a>
+                        <span class="icon"><i class="fa fa-3x fa-comment-o center" ></i></span>
+                        <a href="#clearsSqCX"  class="page-scroll center">Reviews</a>
                         </div>
                     </div>
                     <div class="col-md-3 border text-center">
                     
-                        <span class="icon"><i class="fa fa-4x fa-mobile center " ></i></span>
-                        <a class="page-scroll center" href="#facility">Download App</a>
+                        <span class="icon"><i class="fa fa-3x fa-question center " ></i></span>
+                        <a class="page-scroll center" href="#">How We Collect Data ?</a>
                     </div>
                     <div class="col-md-3 border text-center">
-                    	<span class="icon"><i class="fa fa-4x fa-lock center" ></i></span>
-                        <a class="page-scroll center" href="#gallery">Sign In</a>
+                    	<span class="icon"><i class="fa fa-3x fa-lock center" ></i></span>
+                        <a class="page-scroll center" href="#">Blog</a>
                     </div>
                     <div class="col-md-3 border text-center">
-                    	<span class="icon"><i class="fa fa-4x fa-plus center" ></i></span>
-                        <a class="page-scroll center" href="#review">Sign Up</a>
+                    	<span class="icon"><i class="fa fa-3x fa-list center" ></i></span>
+                        <a class="page-scroll center" href="<?php echo $base_url; ?>list-your-school">List Your School</a>
                     </div>
             </div>
             <!-- /.navbar-collapse -->
