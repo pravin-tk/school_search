@@ -36,7 +36,7 @@ $( document ).ready(function() {
                                     offset: {from: 'top', amount: 200}, // 'top', or 'bottom'
                                     align: 'center', // ('left', 'right', or 'center')
                                     width: 250, // (integer, or 'auto')
-                                    delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                                    delay: 25000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
                                     allow_dismiss: true, // If true then will display a cross to close the popup.
                                     stackup_spacing: 10 // spacing between consecutively stacked growls.
                             }); 
@@ -87,7 +87,7 @@ $( document ).ready(function() {
             $("#divforgotp").show();
         });
         
-        $(".alogin").click(function() {
+        $("#alogin").click(function() {
             
             $("#divlogin").show();
             $("#divforgotp").hide();
@@ -184,6 +184,11 @@ $(function() {
     	$(".page-scroll").removeClass('active');
     	$(this).addClass('active');
         var $anchor = $(this);
+       
+        if($anchor.attr('href') == "#contact"){
+            $(".contact_details").slideDown();
+            $("#contact_details").hide();
+        }
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top - 50
         }, 500, 'easeInOutExpo');
@@ -208,13 +213,13 @@ $(window).load(function() {
 
 
 $('#myModal').on('hidden', function () {
-    console.log('yo')
+    //console.log('yo')
 })
 
 
 
 $("#myModal").on('hidden.bs.modal', function () {
-        console.log("HEY u");
+        
         //Removing the error elements from the from-group
         $('.form-group').removeClass('has-error has-feedback');
         $('.form-group').find('small.help-block').hide();
@@ -240,7 +245,7 @@ function popitup(url) {
    
     FB.login(function(response) {
       if (response.status === 'connected') {
-        console.log('The user has logged in!');
+        //console.log('The user has logged in!');
         FB.api('/me',{fields: 'first_name,last_name,email,picture'}, function(response) {
             userLoginSocial(
                 response.first_name,
@@ -273,8 +278,6 @@ function popitup(url) {
  //~~~~~~~~~~~~~~~~~~~~~~~~ End Facebook
 
  //~~~~~~~~~~~~~~~~~~~~ Google ~~~~~~~~~~~~~~~~~~~~~~~~
- 
- 
     var firstName,lastName, email,image;
     function googleLogin(){
         var myParams = {
@@ -286,10 +289,10 @@ function popitup(url) {
         };
         gapi.auth.signIn(myParams);
         gapi.load('client', function() { 
-            console.log('gapi.client loaded.');
+            //console.log('gapi.client loaded.');
         });
         gapi.client.load('plus', 'v1').then(function() {
-             console.log('gapi.client.plus loaded.');
+             //console.log('gapi.client.plus loaded.');
         })
     }
     
@@ -388,7 +391,7 @@ function userLogout() {
                             offset: {from: 'top', amount: 90}, // 'top', or 'bottom'
                             align: 'center', // ('left', 'right', or 'center')
                             width: 250, // (integer, or 'auto')
-                            delay: 5000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
+                            delay: 25000, // Time while the message will be displayed. It's not equivalent to the *demo* timeOut!
                             allow_dismiss: true, // If true then will display a cross to close the popup.
                             stackup_spacing: 10 // spacing between consecutively stacked growls.
                 }); 

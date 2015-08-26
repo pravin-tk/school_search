@@ -111,11 +111,15 @@
 #mask .play{
 /*   background:url("play.png") no-repeat; */
 }
- .btn-googleplus{
+.btn-googleplus{
     background-color: #D34836;
     border-color: rgba(0, 0, 0, 0.2);
     color: #fff;
  }
+ .btn-clear:hover{
+    color: #FFF;
+    font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';

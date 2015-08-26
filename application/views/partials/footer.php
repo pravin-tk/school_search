@@ -49,9 +49,9 @@
         // //rating data for logged in user
         if (logged_in > 1 && logged_in != null) {
             rateformcookie = readCookie('ebdratesch');
-            
             if (rateformcookie == "yes") {
                 $("#divreviewfrm").show();
+                $('html, body').animate({ scrollTop: $('#review').offset().top+540}, 1000);
                 $("#divUserRatingReview").hide();
             }
         }
@@ -80,13 +80,12 @@
                  
 
                 }
-<?php if (isset($userReviewInfo['review'])) { ?>
-        
-                    $('#frmrateReview #hdnreviewid').val('<?php echo $userReviewInfo['reviewId'] ?>');
-                    $('#frmrateReview #txtReview').val('<?php echo $userReviewInfo['review'] ?>');
-                    $('#frmrateReview #txttitle').val('<?php echo $userReviewInfo['title'] ?>');
-<?php } ?>
-            }
+                <?php if (isset($userReviewInfo['review']) && isset($userReviewInfo['reviewId'])) { ?>
+                        $('#frmrateReview #hdnreviewid').val('<?php echo $userReviewInfo['reviewId'] ?>');
+                        $('#frmrateReview #txtReview').val('<?php echo $userReviewInfo['review'] ?>');
+                        $('#frmrateReview #txttitle').val('<?php echo $userReviewInfo['title'] ?>');
+                <?php } ?>
+            }// if data available
 
         }// if logged 
 

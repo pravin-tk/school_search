@@ -454,7 +454,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="main-nav1">
 	  <div class="property-meta" >
-	    <ul >
+	    <ul id="ul-section">
 	   	  <li class="property-meta-item ">
 	   	  	<a href="#overview" class="page-scroll" > <?php echo $basicInfo['name'];?> </a>
 	   	  </li>

@@ -1,5 +1,24 @@
+<style>
+    .contact-view-label {
+        color: #777;
+        font-size: 14px;
+        text-transform: capitalize;
+        text-align:right;
+        padding-left:52px;
+        cursor: hand;
+    }
+    .center-block {
+        padding-top: 12px;
+        
+    }
+    .btn-linkedin{
+        margin-left: -20px;
+    }
+</style>
+<?php 
+$permlink = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
-
+?>
 <div class="col-md-12">
   	<div class="panel panel-default">
       	<div class="panel-heading">
@@ -16,9 +35,11 @@
                                                 <h3 class="default-contact infra-heading" style="border-bottom: 1px solid #e2e9e6;">
                                                         <strong><?php echo $contactInfo['name'];?></strong>
                                                         <span class="locality-box-label"> <?php echo $contactInfo['address'];?></span>
+                                                        <a  class="contact-view-label" id="contact_details"><i class="fa fa-phone"></i>&nbsp;&nbsp;&nbsp;Contact Details</a>
                                                 </h3>
+                                            
                                         </div>
-                                     	<a id="contact_details">Click Here For Contact Details</a>
+                                     	
                                         <div class="text-left panel-body contact_details">
                                         <?php for ($i = 0; $i < count($contactInfo['contacts']); $i++){?>
                                         <div class="col-md-6">
@@ -76,13 +97,27 @@
 				        		<div class="panel-heading" style="border-bottom: 1px solid #e2e9e6;">
 				        			<h3 class="text-center infra-heading"><strong>Location On Map</strong></h3>
 			        			</div>
-			        			<div class="panel-body">
-			        			<div id="map_canvas" style="min-height:311px;margin-bottom:5px;"></div>
+			        			<div class="panel-body" >
+                                                            <div id="mcanvas" style = "border:3px solid #26a69a"> 
+                                                                <div id="map_canvas" style="min-height:311px;margin-bottom:5px;" ></div></div>
 			        			<div class="text-center center-block">
-					                <a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-3x social-fb"></i></a>
-						            <a href="https://twitter.com/bootsnipp"><i id="social" class="fa fa-twitter-square fa-3x social-tw"></i></a>
-						            <a href="https://plus.google.com/+Bootsnipp-page"><i id="social" class="fa fa-google-plus-square fa-3x social-gp"></i></a>
-						            <a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-3x social-em"></i></a>
+					              <!-- Twitter -->
+                                                        <a onclick="return popitup('http://twitter.com/home?status=<?php echo $permlink;?>')"
+                                                         title="Share on Twitter"  class="btn btn-social-icon btn-twitter" >
+                                                      <i class="fa fa-twitter"></i> </a>
+                                                      <!-- Facebook -->
+                                                      <a onclick="return popitup('https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $basicInfo['name'];?>&p[url]=<?php echo $permlink;?>')"
+                                                         title="Share on Facebook"  class="btn btn-social-icon btn-facebook" >
+                                                      <i class="fa fa-facebook"></i> </a>
+                                                      <!-- Google+ -->
+                                                      <a onclick="return popitup('https://plus.google.com/share?url=<?php echo $permlink;?>')" 
+                                                         title="Share on Google+"  class="btn btn-social-icon btn-googleplus">
+                                                      <i class="fa fa-google-plus"></i> </a>
+
+                                                      <!-- LinkedIn -->
+                                                      <a onclick="return popitup('http://www.linkedin.com/shareArticle?mini=true&url=&title=&summary=<?php echo $permlink;?>')" 
+                                                          title="Share on LinkedIn"  class="btn btn-social-icon btn-linkedin">
+                                                       <i class="fa fa-linkedin"></i> </a>
 								</div>
 								</div>
 			        		</div>

@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                        
-                        <input type="submit" id="req_save" class="btn btn-primary" value="Save" />
+                        <input type="submit" id="req_save" class="btn btn-primary" value="Submit" />
                         <input type="button" id="btncancel" class="btn btn-default" value="Cancel"
                                onclick="location.href = '<?php echo $base_url;?>';" />
                     </div>

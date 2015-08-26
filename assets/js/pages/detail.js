@@ -378,16 +378,7 @@ $(document).ready(function () {
         $('#reviewBoard .review-panel').not(':lt('+x+')').hide();
     });
 });
-
-    $(".contact_details").slideUp();
-        $("#contact_details").click(function(){
-        	showContact();
-            $(".contact_details").slideDown();
-            $("#contact_details").hide();
-            
-});
-        
-        function showContact() {
+function showContact() {
         	var status ="";
         	var messg ="";
         	var id= "";
@@ -409,3 +400,15 @@ $(document).ready(function () {
             },'json'
         	);
         }
+
+
+    $(".contact_details").slideUp();
+        $("#contact_details").click(function(){
+        	showContact();
+            $(".contact_details").slideDown();
+            $("#contact_details").hide();
+
+    });
+
+        
+        
