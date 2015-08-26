@@ -336,6 +336,52 @@ class home extends CI_Controller {
                         unset ( $apioutput );
                 }
                 $data ['data'] = $data;
+/**/
+                $xml="<krpano onstart='wait(0);start();' >\n\t\t";
+                $xml .="<include url='vtourskin.xml' />\n";
+                $xml .="<skin_settings maps='true' ";
+// 	            $xml .="maps_type='bing'";
+// 	             $xml .="maps_bing_api_key=''";
+// 	            $xml .="maps_zoombuttons='false'";
+// 	             $xml .="gyro='true'";
+// 	              $xml .=" title='true'";
+// 	             $xml .="thumbs='true'";
+// 	              $xml .="thumbs_width='120' thumbs_height='80' thumbs_padding='10' thumbs_crop='0|40|240|160'";
+// 	              $xml .="thumbs_opened='true'";
+// 	              $xml .="thumbs_text='true'";
+// 	              $xml .=" thumbs_dragging='true'";
+// 	               $xml .="thumbs_onhoverscrolling='false'";
+// 	               $xml .="thumbs_scrollbuttons='true'";
+// 	               $xml .="thumbs_scrollindicator='true'";
+// 	               $xml .="thumbs_loop='true'";
+// 	              $xml .="tooltips_thumbs='false'";
+// 	               $xml .="tooltips_hotspots='true'";
+// 	                $xml .="tooltips_mapspots='false'";
+// 	                $xml .="loadscene_flags='MERGE'";
+// 	               $xml .="loadscene_blend='BLEND(0.5)'";
+	               $xml .="controlbar_offset='20'/>";
+				 $xml .="\n<events name='backbutton_adjust' onxmlcomplete='if(layer[backbutton], set(layer[backbutton].y,60));' />";
+				 $xml .="\n<textstyle name='infostyle' origin='top' edge='top' yoffset='20' textalign='center' background='false' border='false'  fontsize='40' textcolor='0xFFFFFF' bold='false' effect='glow(0xFFFFFF,0.7,4,2);glow(0x000000,1,4,2);dropshadow(3,45,0x000000,2,0.6);' showtime='1.0' fadetime='1.0'/>";
+				 $xml .="\n<action name='start' > loadscene(scene_1, null, MERGE); update_button_states();</action>";
+                
+                 for($i=0; $i<count($schoolInfo['panorama']);$i++)
+                {
+                	$xml .= "\n<scene name='scene_".$i. "' title='seminar_b' onstart='' thumburl='panos/seminar_b.tiles/thumb.jpg' lat='' lng='' heading='seminar hall'>";
+                	$xml .= "\n<view hlookat='0' vlookat='0' fovtype='MFOV' fov='120' maxpixelzoom='2.0' fovmin='70' fovmax='140' limitview='auto' />";
+                	$xml .="\n<preview url='panos/seminar_b.tiles/preview.jpg' />";
+                	$xml .="\n<image>";
+                	$xml .="\n<sphere url='".$schoolInfo['panorama'][$i]['panoImage']."' />";
+                	$xml .="\n<mobile>";
+                	$xml .= "\n<cube url='panos/seminar_b.tiles/mobile_%s.jpg' />";
+                	$xml .="\n</mobile>";
+                	$xml .="\n</image>";
+                	$xml .="\n</scene>";
+                }
+                $xml.="</krpano>\n\r";
+                $xmlobj=new SimpleXMLElement($xml);
+                $new = fopen($_SERVER['DOCUMENT_ROOT']."/edbuddy/assets/js/media/".$schoolid.".xml", "w"); // open new file
+                fwrite($new, $xmlobj->asXML()); //write XML to new file using asXML method
+                fclose($new);
 
                 $this->template->set('userId',$userid);
                 $this->template->set('page','detail');
@@ -744,5 +790,51 @@ class home extends CI_Controller {
                     unset ( $apioutput );
             }
             echo json_encode($data);
+        }
+        
+    public function showSchoolContact() {
+        	$data = "";
+            $map['schoolId'] = $this->input->post('schoolId');
+            $requirement_key = 'school/contactclicked.json/'.$map['schoolId'];
+            $apicalls = array(array('url' => $requirement_key,
+                            'params' => http_build_query($map),
+            )
+            );
+            try {
+                    $apioutput = $this->apiclient->process($apicalls, 'POST');
+                    foreach ($apioutput as $key => $value) {
+                            if (strpos($key, $requirement_key) !== false) {
+                                    $data = $value;
+                            }
+                    }
+            } catch (EBDApiException $e) {
+
+                    unset($apicalls);
+                    unset($apioutput);
+            }
+            echo json_encode($data);
+        }
+        
+        public function generateXml(){
+        	/* create a dom document with encoding utf8 */
+        	$domtree = new DOMDocument('1.0', 'UTF-8');
+        	
+        	/* create the root element of the xml tree */
+        	$xmlRoot = $domtree->createElement("krpano onstart='wait(0);start();'");
+        	/* append it to the document created */
+        	$xmlRoot = $domtree->appendChild($xmlRoot);
+        	
+        	$currentTrack = $domtree->createElement("track");
+        	$currentTrack = $xmlRoot->appendChild($currentTrack);
+        	
+        	/* you should enclose the following two lines in a cicle */
+        	$currentTrack->appendChild($domtree->createElement('path','song1.mp3'));
+        	$currentTrack->appendChild($domtree->createElement('title','title of song1.mp3'));
+        	
+        	$currentTrack->appendChild($domtree->createElement('path','song2.mp3'));
+        	$currentTrack->appendChild($domtree->createElement('title','title of song2.mp3'));
+        	
+        	/* get the xml printed */
+        	echo $domtree->saveXML();
         }
 }

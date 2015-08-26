@@ -229,6 +229,7 @@ function sortSchool(sortFilter) {
     );
 }
 
+
 $('.search-filters').click(function(){
 	filterResults();
 });

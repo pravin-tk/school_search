@@ -197,10 +197,10 @@ $(function() {
 });
 
 // Highlight the top nav as scrolling occurs
-$('body').scrollspy({
-    target: '.property-meta',
-    offset: 51
-});
+//$('body').scrollspy({
+//    target: '.property-meta',
+//    offset: 51
+//});
 $("img").lazyload({
     effect : "fadeIn"
 });

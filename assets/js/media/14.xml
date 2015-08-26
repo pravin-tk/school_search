@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<krpano onstart="wait(0);start();">
+		<include url="vtourskin.xml"/>
+<skin_settings maps="true" controlbar_offset="20"/>
+<events name="backbutton_adjust" onxmlcomplete="if(layer[backbutton], set(layer[backbutton].y,60));"/>
+<textstyle name="infostyle" origin="top" edge="top" yoffset="20" textalign="center" background="false" border="false" fontsize="40" textcolor="0xFFFFFF" bold="false" effect="glow(0xFFFFFF,0.7,4,2);glow(0x000000,1,4,2);dropshadow(3,45,0x000000,2,0.6);" showtime="1.0" fadetime="1.0"/>
+<action name="start"> loadscene(scene_1, null, MERGE); update_button_states();</action></krpano>
