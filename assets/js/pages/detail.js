@@ -381,7 +381,31 @@ $(document).ready(function () {
 
     $(".contact_details").slideUp();
         $("#contact_details").click(function(){
+        	showContact();
             $(".contact_details").slideDown();
             $("#contact_details").hide();
             
 });
+        
+        function showContact() {
+        	var status ="";
+        	var messg ="";
+        	var id= "";
+                var label ="";
+        	$.post(base_url+"contactus/showcontact",
+        	{
+        	    schoolId: $("#schoolId").val(),
+        	},function(response){
+                $.each(response, function(key, value) {
+                    if(key == "id")
+                       id = value;
+                    else if(key == "message")
+                       messg = value;
+                    else if(key == "status")
+                       status = value;
+
+                });
+               
+            },'json'
+        	);
+        }

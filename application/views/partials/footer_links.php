@@ -1,5 +1,48 @@
 <?php include 'login.php';?>
 <section class="footer-section" > 
+	<div style="width: 100%;background-color: #2F2E40;padding:40px;">
+     <div class="container"> 
+       <div class="row"> 
+         <div class="col-xs-6 col-md-3"> 
+           <h4>Schools In Pune</h4> 
+           <ul class="list-unstyled"> 
+             <li><a href="<?php echo $base_url; ?>about-us">Schools In Hadpsar</a></li> 
+             <li><a href="">Schools In Hadpsar</a></li> 
+             <li><a href="#">Schools In Hadpsar</a></li> 
+             <li><a href="#">Schools In Hadpsar</a></li> 
+             <li><a href="#">Schools In Hadpsar</a></li> 
+           </ul> 
+         </div> 
+         <div class="col-xs-6 col-md-3"> 
+           <h4>Media</h4> 
+           <ul class="list-unstyled"> 
+             <li><a href="">k2 Schools in pune</a></li> 
+             <li><a href="">k2 Schools in pune</a></li> 
+             <li><a href="">k2 Schools in pune</a></li> 
+             <li><a href="">k2 Schools in pune</a></li> 
+           </ul> 
+         </div> 
+ 		<div class="col-xs-6 col-md-3"> 
+           <h4>Policies</h4> 
+           <ul class="list-unstyled"> 
+             <li><a href="#">How We Rate Schools</a></li> 
+             <li><a href="#">School Review Guidelines</a></li> 
+             <li><a href="#">Terms Of Use</a></li> 
+             <li><a href="#">Privacy and Policies</a></li> 
+           </ul> 
+       </div> 
+       <div class="col-xs-6 col-md-3"> 
+           <h4>Policies</h4> 
+           <ul class="list-unstyled"> 
+             <li><a href="#">How We Rate Schools</a></li> 
+             <li><a href="#">School Review Guidelines</a></li> 
+             <li><a href="#">Terms Of Use</a></li> 
+             <li><a href="#">Privacy and Policies</a></li> 
+           </ul> 
+       </div>
+     </div> 
+    </div>
+   </div> 
      <div class="container"> 
        <div class="row"> 
          <div class="col-xs-6 col-md-2"> 
@@ -29,19 +72,14 @@
              <li><a href="<?php echo $base_url; ?>terms">Terms Of Use</a></li> 
              <li><a href="<?php echo $base_url; ?>privacy">Privacy and Policies</a></li> 
            </ul> 
-         </div>        <div class="col-xs-12 col-md-4"> 
-           <div class="panel bg-transparent margin-none"> 
-<!--             <div class="panel-body"> 
-               <div class="form-group form-control-default"> 
-                 <label for="email">Email:</label> 
-                 <input id="email" class="form-control" type="text" placeholder="Your email address .."> 
-               </div> 
-               <div class="form-group"> 
-                 <button class="btn btn-pink-500">Subscribe</button> 
-               </div> 
-
-               <small class="help-block">* We will never sell your email</small> 
-             </div> -->
+         </div>        <div class="col-xs-12 col-md-6 text-center"> 
+           <div class="panel bg-transparent margin-none right"> 
+            <h4>Social Media</h4> 
+			<div class="social">
+			  <a href="http://facebook.com/ondrej.p.barta" class="link facebook" target="_parent"><span class="fa fa-facebook-square"></span></a>
+			  <a href="https://twitter.com/PageOnlineXS" class="link twitter" target="_parent"><span class="fa fa-twitter"></span></a>
+			  <a href="https://plus.google.com/+OndřejBárta-Otaku" class="link google-plus" target="_parent"><span class="fa fa-google-plus-square"></span></a>
+			</div>
            </div> 
          </div> 
        </div> 
@@ -86,4 +124,15 @@
         $("#myModal").css("margin-top", '100px');
    
     });
+
+//     document.onmousedown=disableclick;
+//     status="Right Click Disabled";
+//     function disableclick(e)
+//     {
+//       if(event.button==2)
+//        {
+//          alert(status);
+//          return false;  
+//        }
+//     }
 </script>

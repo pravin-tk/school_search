@@ -1,0 +1,80 @@
+<krpano onstart="wait(0);start();" >
+    <include url="vtourskin.xml" />
+	<!-- set skin settings: bingmaps? gyro? thumbnails? tooltips? -->
+	<skin_settings maps="true"
+	               maps_type="bing"
+	               maps_bing_api_key=""
+	               maps_zoombuttons="false"
+	               gyro="true"
+	               title="true"
+	               thumbs="true"
+	               thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+	               thumbs_opened="true"
+	               thumbs_text="true"
+	               thumbs_dragging="true"
+	               thumbs_onhoverscrolling="false"
+	               thumbs_scrollbuttons="true"
+	               thumbs_scrollindicator="true"
+	               thumbs_loop="true"
+	               tooltips_thumbs="false"
+	               tooltips_hotspots="true"
+	               tooltips_mapspots="false"
+	               loadscene_flags="MERGE"
+	               loadscene_blend="BLEND(0.5)"
+	               controlbar_offset="20"
+	               />
+	<!-- set optional skin logo url -->
+	
+    
+	<!-- adjust the examples backbutton position (if available), the wait(0) in the onstart action allows executing this event -->
+	<events name="backbutton_adjust" onxmlcomplete="if(layer[backbutton], set(layer[backbutton].y,60));" />
+	<!-- text styles for startup info -->
+	<textstyle name="infostyle" origin="top" edge="top" yoffset="20" textalign="center" background="false" border="false"  fontsize="40" textcolor="0xFFFFFF" bold="false" effect="glow(0xFFFFFF,0.7,4,2);glow(0x000000,1,4,2);dropshadow(3,45,0x000000,2,0.6);" showtime="1.0" fadetime="1.0" />
+	
+	<!-- start - load first scene -->
+	<action name="start">
+		loadscene(scene_seminar_b, null, MERGE);
+		update_button_states();
+	</action>
+
+		<!-- first scene/pano -->
+	<scene name="scene_seminar_b" title="seminar_b" onstart="" thumburl="panos/seminar_b.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/seminar_b.tiles/preview.jpg" />
+		<image>
+			<cube url="panos/seminar_b.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/seminar_b.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+	</scene>
+	<!-- second scene/pano-->
+	<scene name="scene1" title="seminar_b" onstart="" thumburl="../../img/panorma/campus_new.jpg" lat="" lng="" heading="">
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range"   />
+		<preview url="panos/seminar_b.tiles/preview.jpg" />
+		 <image>
+			<sphere url="../../img/panorma/campus_new.jpg" />
+		</image>
+	</scene>
+	<scene name="scene_Music_Room_Panorama" title="Music Room Panorama" onstart="" thumburl="panos/Music_Room_Panorama.tiles/thumb.jpg" lat="48.40733333" lng="-122.31683333" heading="0.0">
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-43.142" vlookatmax="43.142" />
+		<preview url="panos/Music_Room_Panorama.tiles/preview.jpg" />
+		<image>
+			<cube url="https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/activity_area.jpg" />
+			<mobile>
+				<cube url="panos/Music_Room_Panorama.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+	</scene>
+	<scene name="scene_seminar" title="seminar" onstart="" thumburl="panos/seminar.tiles/thumb.jpg" lat="" lng="" heading="">
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<preview url="panos/seminar.tiles/preview.jpg" />
+		<image>
+			<cube url="panos/seminar.tiles/pano_%s.jpg" />
+			<mobile>
+				<cube url="panos/seminar.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+	</scene>
+</krpano>
+

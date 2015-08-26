@@ -9268,7 +9268,7 @@ if (typeof jQuery === 'undefined') {
     $(this).one('bsTransitionEnd', function () { called = true })
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
     setTimeout(callback, duration)
-    return this
+    return this;
   }
 
   $(function () {

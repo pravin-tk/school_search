@@ -81,5 +81,7 @@ $route['contact-us'] = 'home/contactUs';
 $route['privacy'] = 'home/privacy';
 $route['terms'] = 'home/terms';
 $route['share-social-login'] = 'home/socialLoginData';
+$route['contactus/showcontact'] = 'home/showSchoolContact';
+
 
 
