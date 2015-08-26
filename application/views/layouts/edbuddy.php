@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
+<!--<meta name="google-signin-client_id" content="967464106458-ledr335a5fnc7bjbdmj8e888fbo2vi1m.apps.googleusercontent.com">-->
 <title>School Search</title>
 <link href="<?php echo asset_url();?>css/all.css" rel="stylesheet">
 <link href="<?php echo asset_url();?>css/app.css" rel="stylesheet">
@@ -32,6 +33,8 @@
 <script src="<?php echo asset_url();?>js/jquery.lazyload.min.js"></script>
 <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <style type="text/css">
 .gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div
 	{
@@ -108,7 +111,11 @@
 #mask .play{
 /*   background:url("play.png") no-repeat; */
 }
-
+ .btn-googleplus{
+    background-color: #D34836;
+    border-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+ }
 </style>
 <script type="text/javascript">
 	var base_url = '<?php echo $base_url; ?>';
@@ -122,6 +129,23 @@
 	</div>
     <?php echo $template['partials']['header']; ?>
     <?php echo $template['body']; ?>
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '711834812294128',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
     <script src="<?php echo asset_url();?>js/slick.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.flipster.min.js"></script>
     <script src="<?php echo asset_url();?>js/rating.js"></script>
@@ -130,9 +154,18 @@
     <script src="<?php echo asset_url();?>js/cobox.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.easing.min.js"></script>
     <script src="<?php echo asset_url();?>js/jquery.bootstrap-growl.min.js"></script>
-<!--    <script src="<?php echo asset_url();?>js/bootstrap-rating-input.js"></script>-->
     <script src="<?php echo asset_url();?>js/pages/common.js"></script>
     <script src="<?php echo asset_url();?>js/pages/<?php echo $page;?>.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script');
+        po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://plus.google.com/js/client:plusone.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+      })();
+      </script>
+
     <!-- // END .bg-white -->
 	<!-- // END #content -->
         

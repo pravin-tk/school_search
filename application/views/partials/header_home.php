@@ -128,7 +128,7 @@
                     private_data += '<ul class="dropdown-menu" role="menu">';
                     private_data += '<li><a href="<?php echo $base_url; ?>user-profile"><i class="fa fa-user"></i>Profile</a></li>';
 //                    private_data += '<li><a href="#"><i class="fa fa-wrench"></i>Settings</a></li>';
-                    private_data += '<li><a href="<?php echo $base_url; ?>logout"><i class="fa fa-sign-out"></i>Logout</a></li>';
+                    private_data += '<li><a  onclick = "userLogout()"><i class="fa fa-sign-out"></i>Logout</a></li>';
                     private_data += '</ul></li>';
                     document.write(private_data);
               }

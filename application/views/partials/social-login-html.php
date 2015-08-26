@@ -41,7 +41,7 @@ if(isset($schooldata)){
                         title="Share on Twitter"  class="btn btn-twitter" >
                      <i class="fa fa-twitter"></i> Twitter</a>
                      <!-- Facebook -->
-                     <a onclick="return popitup('https://www.facebook.com/sharer/sharer.php?u=<?php echo $permlink;?>')"
+                     <a onclick="return popitup('https://www.facebook.com/sharer/sharer.php?s=100&p[title]=<?php echo $schooldata['name'];?>&p[url]=<?php echo $permlink;?>')"
                         title="Share on Facebook"  class="btn btn-facebook" >
                      <i class="fa fa-facebook"></i> Facebook</a>
                      <!-- Google+ -->

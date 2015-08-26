@@ -12,6 +12,35 @@
     #divlogin_1 .form-control{
         width:109%;
     }
+    #afb {
+       padding-left:12px;
+       margin-left:65px;
+       float:left;
+    }
+   
+    
+    .btn-googleplus {
+        margin-right:30px;
+    }
+/*    span.icon {
+      background: url('/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 12px;
+      height: 30px;
+      border-right: #2265d4 1px solid;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 12px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+       Use the Roboto font that is loaded in the <head> 
+      font-family: 'Roboto', sans-serif;
+    }*/
+
 </style>
 
 <?php if (isset($userId) && $userId < 1) { ?>
@@ -20,11 +49,28 @@
             <div class="modal-content" id="divlogin" style="display:block">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Login with Email</h4>
-                </div><form  method="post" id="loginfrm">
-                    <div class="modal-body">
+                     <h4 class="modal-title" id="myModalLabel">Login</h4>
+                    <div id="response"></div>
+                    
+                </div>
+                <form  method="post" id="loginfrm">
+                    <div class="modal-body" >
+                       
+                   
                         <!-- Login -->
-                        <div class="panel panel-default" id="divlogin_1">
+                        <div class="panel panel-default" id="divlogin_1" style="text-align:center;">
+                            <div class="panel-body">
+                               <div id="derr2"></div> 
+                               <a id="afb"onclick="facebookLogin()" title="Share on Facebook"  
+                                class="btn btn-facebook" id="afb" ><i class="fa fa-facebook"></i> Facebook</a>
+                             <a onclick="googleLogin()" title="Share on Google+" id="authorize-button"
+                                    class="btn btn-googleplus g-signin2"><i class="fa fa-google-plus"></i> Google+</a>
+                               
+
+                            </div>
+                        </div>
+                        <h4 style="text-align:center;">OR</h4>
+                         <div class="panel panel-default" id="divlogin_1">
                             <div class="panel-body">
                                 <div id="derr"></div>
 
@@ -77,3 +123,6 @@
         </div>
     </div>
 <?php } ?>
+
+
+

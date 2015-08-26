@@ -292,7 +292,7 @@ $classification = $filtersList['classificationFilter'];
     .filter-text-bar{
         display:true;
     }
-    @media screen and (max-width:1040px){
+    @media screen and (max-width:1270px){
         .nav > .sort-field-list{
             display:none;
         }
@@ -572,7 +572,7 @@ $classification = $filtersList['classificationFilter'];
                     if (isset($schools)) {
 			echo '<script> var json = '. json_encode($schools).'</script>';
                         foreach ($schools as $key => $school) {
-                            $arrLinks = explode("/",$permlink);
+                            	$arrLinks = explode("/",$permlink);
                                 $schoolName = strtolower($school['name']);
                                 $schoolName = str_replace(" ", "-", $schoolName);
                                 $schoolName = str_replace("'", "", $schoolName);
@@ -852,7 +852,15 @@ if (isset($schools)) {
                 <?php } else { ?>
                     var schoolFeeMarker = "<?php echo $school['totalFee'] . " PA"; ?>";
                 <?php } ?>
-                var marker_url = "<?php echo $base_url ?>index.php/home/schoolDetail/<?php echo $school['schoolId']; ?>/<?php echo $standardId ?>";
+                <?php 
+	                $arrLinks = explode("/",$permlink);
+	                $schoolName = strtolower($school['name']);
+	                $schoolName = str_replace(" ", "-", $schoolName);
+	                $schoolName = str_replace("'", "", $schoolName);
+	                $schoolName = preg_replace('/[^A-Za-z0-9\-]/', '', $schoolName);
+	                $urllink = $base_url.$arrLinks[0]."/".$arrLinks[1]."/". $schoolName."-".$school['schoolId']."/".$arrLinks[2];
+                ?>
+                var marker_url = "<?php echo $urllink ?>";
                         var schoolBoards = "<?php echo $school['boardName'] ?>,<?php echo $school['mediums'] ?>";
 
                                 var marker<?php echo $school['schoolId'] ?> = new google.maps.Marker({
@@ -915,6 +923,12 @@ if (isset($schools)) {
                                     window.open(this.url, '_blank');
                                 });
                                 markers.push(marker);
+                                $(document.body).on('mouseenter', '#map-search-result-<?php echo $school['schoolId']; ?>' ,function(){
+                                	marker<?php echo $school['schoolId'] ?>.setAnimation(google.maps.Animation.BOUNCE);
+                                });
+                                $(document.body).on('mouseleave', '#map-search-result-<?php echo $school['schoolId']; ?>' ,function(){
+                                	marker<?php echo $school['schoolId'] ?>.setAnimation(null);
+                                });
 
         <?php
     }//foreach school
@@ -1094,7 +1108,7 @@ function getPermlink(latitude,longitude,stdid){
                 }else{
                     $.bootstrapGrowl("Sorry! We do not have schools in this location" , {
                         ele: 'body', // which element to append to
-                        type: 'danger', // (null, 'info', 'danger', 'success')
+                        type: 'info', // (null, 'info', 'danger', 'success')
                         offset: {from: 'top', amount: 75}, // 'top', or 'bottom'
                         align: 'top', // ('left', 'right', or 'center')
                         width: 250, // (integer, or 'auto')
@@ -1234,14 +1248,6 @@ $( ".share-school" ).click(function() {
     },'json'
     );
 });
-
-
-
-function popitup(url) {
-	newwindow=window.open(url,'name','height=400,width=550,top=150,left=350');
-	if (window.focus) {newwindow.focus()}
-	return false;
-}
 
 $('.toggle-event').bootstrapToggle({
     on: "<i class='fa fa-check'></i>",

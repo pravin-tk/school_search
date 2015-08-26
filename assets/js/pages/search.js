@@ -126,46 +126,48 @@ function sortSchool(sortFilter) {
     var rating = "random";
     var distance = "random";
     var seats = "random";
-    
-	$("#"+sortFilter+"-button").addClass("active");
+    $(".sort-field-list").removeClass("open");
+    $(".dropdown-sort").removeClass("sort-active");
+	$("."+sortFilter+"-button").parent('li').addClass('open');
+	$("."+sortFilter+"-button").parent('.dropdown-sort').addClass('sort-active');
 	sortMarkers(sortFilter);
 	if (sortFilter == "classFee") {
 		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Fees <i class='fa fa-sort-amount-asc'></i>");
+			$("."+sortFilter+"-button").html("Fees <i class='fa fa-sort-amount-asc'></i>");
 			$("#"+sortFilter).val("1");
 			classFee = "asc";
 		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Fees <i class='fa fa-sort-amount-desc'></i>");
+			$("."+sortFilter+"-button").html("Fees <i class='fa fa-sort-amount-desc'></i>");
 			$("#"+sortFilter).val("0");
 			classFee = "desc";
 		}
 	} else if(sortFilter == "distance") {
 		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-asc'></i>");
+			$("."+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-asc'></i>");
 			$("#"+sortFilter).val("1");
 			distance = "asc";
 		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-desc'></i>");
+			$("."+sortFilter+"-button").html("Distance <i class='fa fa-sort-amount-desc'></i>");
 			$("#"+sortFilter).val("0");
 			distance = "desc";
 		}
 	} else if(sortFilter == "rating") {
 		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-asc'></i>");
+			$("."+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-asc'></i>");
 			$("#"+sortFilter).val("1");
 			rating = "asc";
 		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-desc'></i>");
+			$("."+sortFilter+"-button").html("Rating <i class='fa fa-sort-amount-desc'></i>");
 			$("#"+sortFilter).val("0");
 			rating = "desc";
 		}
 	} else if(sortFilter == "seats") {
 		if (parseInt($("#"+sortFilter).val()) == 0 || $("#"+sortFilter).val() == "") {
-			$("#"+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-asc'></i>");
+			$("."+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-asc'></i>");
 			$("#"+sortFilter).val("1");
 			seats = "asc";
 		} else if (parseInt($("#"+sortFilter).val()) == 1) {
-			$("#"+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-desc'></i>");
+			$("."+sortFilter+"-button").html("Seats <i class='fa fa-sort-amount-desc'></i>");
 			$("#"+sortFilter).val("0");
 			seats = "desc";
 		}
@@ -237,14 +239,15 @@ function clearSortFields(){
 	$("#distance").val("");
 	$("#rating").val("");
 	$("#seats").val("");
-	$("#classFee-button").html("Fees <i class='fa fa-sort-amount-asc'></i>").removeClass("active");
-	$("#rating-button").html("Rating <i class='fa fa-sort-amount-asc'></i>").removeClass("active");
-	$("#distance-button").html("Distance <i class='fa fa-sort-amount-asc'></i>").removeClass("active");
-	$("#seats-button").html("Seats <i class='fa fa-sort-amount-asc'></i>").removeClass("active");
+	$(".classFee-button").html("Fees <i class='fa fa-sort-amount-asc'></i>");
+	$(".rating-button").html("Rating <i class='fa fa-sort-amount-asc'></i>");
+	$(".distance-button").html("Distance <i class='fa fa-sort-amount-asc'></i>");
+	$(".seats-button").html("Seats <i class='fa fa-sort-amount-asc'></i>");
+	$(".sort-field-list").removeClass("open");
+	$(".dropdown-sort").removeClass("sort-active");
 }
 
 function sortClear(){
-	//$('input:checkbox').removeAttr('checked');
 	clearSortFields();
 	filterResults();
 	scrollTopLink("search-list-row");
@@ -563,6 +566,12 @@ function sortMarkers(sortitem){
         	window.open(this.url, '_blank');
         });
         markers.push(marker);
+        $(document.body).on('mouseenter', '#map-search-result-'+item.schoolId ,function(){
+        	marker.setAnimation(google.maps.Animation.BOUNCE);
+        });
+        $(document.body).on('mouseleave', '#map-search-result-'+item.schoolId ,function(){
+        	marker.setAnimation(null);
+        });
 	});
 }
 
