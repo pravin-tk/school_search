@@ -5,9 +5,9 @@
 <events name="backbutton_adjust" onxmlcomplete="if(layer[backbutton], set(layer[backbutton].y,60));"/>
 <textstyle name="infostyle" origin="top" edge="top" yoffset="20" textalign="center" background="false" border="false" fontsize="40" textcolor="0xFFFFFF" bold="false" effect="glow(0xFFFFFF,0.7,4,2);glow(0x000000,1,4,2);dropshadow(3,45,0x000000,2,0.6);" showtime="1.0" fadetime="1.0"/>
 <action name="start"> loadscene(scene_1, null, MERGE); update_button_states();</action>
-<scene name="scene_0" title="seminar_b" onstart="" thumburl="panos/seminar_b.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
+<scene name="scene_0" title="seminar_b" onstart="" thumburl="panos/Music_Room_Panorama.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
 <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
-<preview url="panos/seminar_b.tiles/preview.jpg"/>
+<preview url="panos/Music_Room_Panorama.tiles/preview.jpg"/>
 <image>
 <sphere url="https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/activity_area.jpg"/>
 <mobile>
@@ -15,9 +15,9 @@
 </mobile>
 </image>
 </scene>
-<scene name="scene_1" title="seminar_b" onstart="" thumburl="panos/seminar_b.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
+<scene name="scene_1" title="seminar_b" onstart="" thumburl="panos/Music_Room_Panorama.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
 <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
-<preview url="panos/seminar_b.tiles/preview.jpg"/>
+<preview url="panos/Music_Room_Panorama.tiles/preview.jpg"/>
 <image>
 <sphere url="https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/nursery.jpg"/>
 <mobile>
@@ -25,9 +25,9 @@
 </mobile>
 </image>
 </scene>
-<scene name="scene_2" title="seminar_b" onstart="" thumburl="panos/seminar_b.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
+<scene name="scene_2" title="seminar_b" onstart="" thumburl="panos/Music_Room_Panorama.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
 <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
-<preview url="panos/seminar_b.tiles/preview.jpg"/>
+<preview url="panos/Music_Room_Panorama.tiles/preview.jpg"/>
 <image>
 <sphere url="https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/playarea.jpg"/>
 <mobile>
@@ -35,9 +35,9 @@
 </mobile>
 </image>
 </scene>
-<scene name="scene_3" title="seminar_b" onstart="" thumburl="panos/seminar_b.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
+<scene name="scene_3" title="seminar_b" onstart="" thumburl="panos/Music_Room_Panorama.tiles/thumb.jpg" lat="" lng="" heading="seminar hall">
 <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
-<preview url="panos/seminar_b.tiles/preview.jpg"/>
+<preview url="panos/Music_Room_Panorama.tiles/preview.jpg"/>
 <image>
 <sphere url="https://s3-ap-southeast-1.amazonaws.com/edbuddy/images/pano/playgroup.jpg"/>
 <mobile>

@@ -41,7 +41,7 @@ font-size: 1.75em;
                     <div class ="col-md-12">
                         <section style="padding-bottom:5px;margin-bottom:5px;" class="panel panel-default">
             			<div class="panel-body">
-                                    <h4> Rating and review form</h4>
+                                    <h4>Your reviews</h4>
                                     <form id="frmrateReview" name="frmrateReview" method="post" />
                                     <input type="hidden" name="hdnSchid" id="hdnSchid" value="<?php echo $schId;?>" />
                                     <button id ="btnopenLogin" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none"> open login form</button>
@@ -104,7 +104,7 @@ font-size: 1.75em;
                                                     <strong>Review Title</strong>
                                                   </div>
                                             </div>
-                                            <div class="col-xs-4 col-md-4 text-center">
+                                            <div class="col-xs-4 col-md-8 text-center">
                                             <div class="rating">
                                                 <input type="hidden" id="hdnreviewid" value="" />
                                                <input id="txttitle" name="txttitle" type="text" 
@@ -120,9 +120,9 @@ font-size: 1.75em;
                                                     <strong>Review Description</strong>
                                                   </div>
                                             </div>
-                                            <div class="col-xs-4 col-md-4 text-center">
+                                            <div class="col-xs-4 col-md-8 text-center">
                                             <div class="rating">
-                                                <textarea name="txtReview" id="txtReview" class="form-control"> </textarea>		                       
+                                                <textarea name="txtReview" id="txtReview" class="form-control" rows="8"> </textarea>		                       
                                             </div>
 
                                         </div>
@@ -136,7 +136,7 @@ font-size: 1.75em;
                                             <div class="col-xs-4 col-md-4 text-center">
                                                 <div class="rating">
                                                     <input type="submit" name="btnAddReview" class="btn btn-primary btn-sm" 
-                                                           id="btnAddReview" value="Submit">
+                                                           id="btnAddReview" value="Publish Review">
                                                     <input type="button" class="btn btn-default btn-sm" name="btnCancel" id="btnCancel" value="Cancel"/>
                                                 </div>
 
