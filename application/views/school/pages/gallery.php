@@ -9,14 +9,17 @@
     padding-top: 7px;
     height: 33px; opacity: 0.5;
     position: relative; 
-    top: -20px;
+    top: -30px;
 }
 
 .fix{
     width: 100%;
     padding: 0px;
 }
-
+.desc_content{
+    font-weight: bold;
+    font-size:15px;
+}
 
 </style>
 

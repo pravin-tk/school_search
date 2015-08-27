@@ -50,8 +50,9 @@
         if (logged_in > 1 && logged_in != null) {
             rateformcookie = readCookie('ebdratesch');
             if (rateformcookie == "yes") {
+                console.log("scroll till review");
                 $("#divreviewfrm").show();
-                $('html, body').animate({ scrollTop: $('#review').offset().top+540}, 1000);
+                $('html, body').animate({ scrollTop: $('#review').offset().top+50}, 1000);
                 $("#divUserRatingReview").hide();
             }
         }
@@ -99,7 +100,8 @@
         $("#frmrateReview #btnCancel").click(function () {
             $("#divreviewfrm").hide();
             $("#divUserRatingReview").show();
-
+            $("#addReview").show();
+            $('html, body').animate({ scrollTop: $('#review').offset().top}, 1000);
         });
         
         $("#addReview").click(function () {
@@ -109,7 +111,7 @@
                 // if(rateformcookie == "yes"){
                 $("#divreviewfrm").show();
                 $("#divUserRatingReview").hide();
-
+                $("#addReview").hide();
                 // }
             } else {
                

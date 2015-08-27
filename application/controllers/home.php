@@ -366,9 +366,9 @@ class home extends CI_Controller {
                 
                  for($i=0; $i<count($schoolInfo['panorama']);$i++)
                 {
-                	$xml .= "\n<scene name='scene_".$i. "' title='seminar_b' onstart='' thumburl='panos/seminar_b.tiles/thumb.jpg' lat='' lng='' heading='seminar hall'>";
+                	$xml .= "\n<scene name='scene_".$i. "' title='seminar_b' onstart='' thumburl='panos/Music_Room_Panorama.tiles/thumb.jpg' lat='' lng='' heading='seminar hall'>";
                 	$xml .= "\n<view hlookat='0' vlookat='0' fovtype='MFOV' fov='120' maxpixelzoom='2.0' fovmin='70' fovmax='140' limitview='auto' />";
-                	$xml .="\n<preview url='panos/seminar_b.tiles/preview.jpg' />";
+                	$xml .="\n<preview url='panos/Music_Room_Panorama.tiles/preview.jpg' />";
                 	$xml .="\n<image>";
                 	$xml .="\n<sphere url='".$schoolInfo['panorama'][$i]['panoImage']."' />";
                 	$xml .="\n<mobile>";
@@ -379,7 +379,7 @@ class home extends CI_Controller {
                 }
                 $xml.="</krpano>\n\r";
                 $xmlobj=new SimpleXMLElement($xml);
-                $new = fopen($_SERVER['DOCUMENT_ROOT']."/edbuddy/assets/js/media/".$schoolid.".xml", "w"); // open new file
+                $new = fopen($_SERVER['DOCUMENT_ROOT']."/edbuddy-proj/assets/js/media/".$schoolid.".xml", "w"); // open new file
                 fwrite($new, $xmlobj->asXML()); //write XML to new file using asXML method
                 fclose($new);
 
